@@ -1,0 +1,396 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+        <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
+
+        <h:outputStylesheet library="css" name="bootstrap.css"/>
+        <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
+        <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
+        <!--<h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
+        <h:outputStylesheet library="css" name="formValidation.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/>-->
+
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
+        <h:outputScript library="js" name="bootstrap.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
+        <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
+        <h:outputScript library="js" name="miCalendario.js" target="body"/>
+        <h:outputScript library="js" name="mostrar.js" target="body"/>
+        <!--<h:outputScript library="js" name="formValidation.min.js" target="body"/>
+        <h:outputScript library="js" name="validacionFormularios.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
+        <h:outputScript library="js" name="es_ES.js" target="body"/>-->
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+
+        <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
+
+        <title>
+            <ui:insert name="title"></ui:insert>
+        </title>
+    </h:head>
+
+    <h:body class="marcaguaA">
+        <header class="">
+            <h:form>
+                <nav class="trans2 navbar-fixed-top perfilHover">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar color2"></span>
+                                <span class="icon-bar color2" ></span>
+                                <span class="icon-bar color2"></span>
+                            </button>
+                            <a class="navbar-brand botonesnav" href="#">Aprendiz</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li><a class="botonesnav" href="/PSIQUE/modAprendiz/principalAprendiz.xhtml"><i class="fa fa-desktop fa-lg"></i> &nbsp; Principal</a> </li>
+                                <li><a class="botonesnav" href="/PSIQUE/modAprendiz/citaProgramada.xhtml"><i class="fa fa-book fa-lg"></i> &nbsp; Gestionar cita</a> </li>
+                                <li><a class="botonesnav" href="/PSIQUE/modAprendiz/notificacion.xhtml"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones</a> </li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</h:commandLink></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right centrar" style="padding-top:10px;" >
+                                <li class="fa fa-eye fa-2x"></li>
+                            </ul>
+                            <ul style="margin-top: 5px; margin-left: 5px;" class="nav navbar-nav navbar-right img-rounded ">
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </h:form>
+        </header>
+        <div class="container">
+            <div class="row container-fluid trans3">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <c:if test="#{citaControlador.modalCita == 1}" >
+                    <div class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
+                    </div>
+                </c:if>
+                <c:if test="#{mensajeControlador.modalMensaje == 1}" >
+                    <div class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Mensaje enviado</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{mensajeControlador.modalMensaje == 2}" >
+                    <div class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Usuario inexistente </strong>Por favor vuelva a intentarlo verificando escribir correctamente el nombre completo
+                    </div>
+                </c:if>
+                <div class="col-xs-12 col-sm-4 col-md-3  color1">
+                    <div class="container-fluid perfilHover">
+                        <div class="profile-sidebar control-group">
+                            <div class="profile-userpic btn-group-lg centrar">
+                                <h:graphicImage style="max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
+                            </div>
+                            <hr/>
+                            <div class="profile-usertitle centrar center-block">
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
+                                <br/> 
+                                <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
+                            </div>
+                            <br/>
+                            <div class="profile-usermenu botonesnav">
+                                <ul class="nav botonesnav">
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                </ul>
+                            </div>
+                            <br/>
+                            <hr/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
+                    <!--CUERPO-->
+                    <ui:insert name="body"></ui:insert>
+                </div>
+            </div>
+            <div class="modal fade " id="modalValorar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod13">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Calificacion de atencion</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Valore la atencion que ud recibio por parte del psicologo en esta cita.</label>
+                                    <br/>
+                                    <select name="valor" class="form-control">
+                                        <option disabled="true" selected="true">Calificacion</option>
+                                        <option value="5" >Muy buena</option>
+                                        <option value="4" >Buena</option>
+                                        <option value="3" >Aceptable</option>
+                                        <option value="2" >Podria mejorar</option>
+                                        <option value="1" >Mala</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton action="#{citaControlador.valorarCita(citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz))}" class="botones2 btn" value="Valorar cita   "></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod6">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear mensaje</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3><small>Para:</small></h3>
+                                <input type="text" autocomplete="off" class="form-control" name="para" list="usuarios"/>
+                                <select class="selectpicker">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select>
+                                <h3><small>Asunto:</small></h3>
+                                <input class="form-control" name="asunto"/>
+                                <h3><small>Mensaje:</small></h3>
+                                <textarea class="form-control" name="mensaje"/>
+                                <br/>
+                                <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
+                                <datalist id="usuarios">
+                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
+                                        <option data-value="#{u.idUsuario}" >#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
+                                    </c:forEach>
+                                </datalist>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMensaje(usuarioControlador.usuarioLog)}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalNuevaCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod1">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Solicitar cita</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Seleccione el horario de su preferencia</label>
+                                    <select class="form-control" onchange="mostrarJornada(this.value)">
+                                        <option disabled="true" selected="true">Jornada</option>
+                                        <option value="1">Mañana</option>
+                                        <option value="2">Tarde</option>
+                                    </select>
+                                    <br/>
+                                    <div id="Tarde" style="display: none;" >
+                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                        <select name="psicologo" class="form-control">
+                                            <option disabled="true" selected="true">Psicologos</option>
+                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                                <c:if test="#{p.jornada == 'Tarde'}">
+                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                        <br/>
+                                        <label style="color:black;" >Fecha:</label>
+                                        <input type="date" class="form-control" name="fecha"/>
+                                        <br/>
+                                        <label style="color:black;">Hora</label>
+                                        <input id="calendarioTarde" type="text" class="time form-control" name="hora"/>
+                                        <br/>
+                                    </div>
+                                    <div id="Mañana" style="display: none;" >
+                                        <label style="color:black;">Seleccione el psicologo de su preferencia</label>
+                                        <select name="psicologo" class="form-control">
+                                            <option disabled="true" selected="true">Psicologos</option>
+                                            <c:forEach var="p" items="#{usuarioControlador.listaPsicologos}">
+                                                <c:if test="#{p.jornada == 'Mañana'}">
+                                                    <option value="#{p.idPsicologo}" >#{p.usuario.nombres} #{p.usuario.primerApellido} #{p.usuario.segundoApellido}</option>
+                                                </c:if>
+                                            </c:forEach>
+                                        </select>
+                                        <br/>
+                                        <label style="color:black;" >Fecha:</label>
+                                        <input type="date" class="form-control" name="fecha2"/>
+                                        <br/>
+                                        <label style="color:black;">Hora</label>
+                                        <input id="calendarioMañana" type="text" class="time form-control" name="hora2"/>
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton action="#{citaControlador.solicitarCita(usuarioControlador.usuarioLog.aprendiz)}" class="botones2 btn" value="Solicitar"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalDatosPersonales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod14">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Editar datos personales</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Correo electronico</label>
+                                    <br/>
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" />
+                                    <label style="color:black;">Telefono</label>
+                                    <br/>
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Editar datos" action="#{usuarioControlador.editarDatosPersonales()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <c:forEach items="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz)}" var="c">
+                <div class="modal fade" id="modalEliminar#{c.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod4">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Confirmacion</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Esta seguro que desea cancelar la cita ?</h3>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton class="botones2 btn" value="Cancelar" action="#{citaControlador.cancelarCitaAprendiz(c)}"></h:commandButton>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cerrar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </c:forEach>
+            <c:forEach var="l" items="#{mensajeControlador.mensajes}">
+                <div class="modal fade" id="modalVer#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Mensaje #{l.idMensaje}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h4><small>De:</small><br/>#{l.idEmisor.nombres} #{l.idEmisor.primerApellido} #{l.idEmisor.segundoApellido}</h4>
+                                    <h4><small>Asunto</small><br/>#{l.asunto}</h4>
+                                    <h4><small>Mensaje</small><br/>#{l.mensaje}</h4>
+                                    <br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalResponder#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3><small>Para:</small></h3>
+                                    <h4>#{l.idEmisor.nombres} #{l.idEmisor.primerApellido} #{l.idEmisor.segundoApellido}</h4>
+                                    <h3><small>Asunto:</small></h3>
+                                    <input class="form-control" name="asunto"/>
+                                    <h3><small>Mensaje:</small></h3>
+                                    <textarea class="form-control" name="mensaje"/>
+                                    <br/>
+                                    <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton class="botones2 btn" value="Responder" action="#{mensajeControlador.reenviarMensaje(l.idEmisor, l.idReceptor)}"></h:commandButton>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalEliminarM#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod2">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Eliminar mensaje #{l.idMensaje}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <h3>Esta seguro que desea borrar el mensaje ?</h3>
+                                    <br/>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton class="botones2 btn" value="Borrar" action="#{mensajeControlador.borrarMensajeAprendiz(l)}"></h:commandButton>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </c:forEach>
+            <div class="color1 row">
+                <div class="centrar container tfooter col-md-12">
+                    <hr/>
+                    <h4>CopyRigth © 2015 | PSIQUE Todos los derechos reservados
+                        <br/>
+                        Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
+                        <br/>
+                        <small>PSIQUE 3.6</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
