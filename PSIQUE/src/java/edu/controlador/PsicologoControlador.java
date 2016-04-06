@@ -61,6 +61,7 @@ public class PsicologoControlador implements Serializable {
     private Test testLog;
     private Pregunta preguntaLog;
     private Respuesta respuestaLog;
+    private Cita citaLog;
     private Ficha fichaLog;
     private int estados;
 
@@ -233,6 +234,19 @@ public class PsicologoControlador implements Serializable {
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
+    
+    public String registrarObservacion (){
+        
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        Cita cita = new Cita ();
+        cita = citaLog;
+        cita.setObservacion((String) params.get("observacion"));
+        citaFacade.edit(cita);
+        estados = 1;
+        return "registrarObservacion.xhtml";
+    }
 
     public String aceptarCitar(Cita cita) {
         cita.setEstado("pendiente");
@@ -268,7 +282,7 @@ public class PsicologoControlador implements Serializable {
         List<Cita> Citas = citaFacade.findAll();
         List<Cita> citasPendientes = new ArrayList<Cita>();
         for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("pendiente")) {
+            if (Citas.get(i).getEstado().equals("PENDIENTE")) {
                 citasPendientes.add(Citas.get(i));
             }
         }
@@ -359,6 +373,15 @@ public class PsicologoControlador implements Serializable {
     public void setFichaLog(Ficha fichaLog) {
         this.fichaLog = fichaLog;
     }
+
+    public Cita getCitaLog() {
+        return citaLog;
+    }
+
+    public void setCitaLog(Cita citaLog) {
+        this.citaLog = citaLog;
+    }
+    
     
     
 
