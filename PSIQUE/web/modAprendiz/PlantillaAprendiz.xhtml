@@ -175,11 +175,11 @@
                             </div>
                             <div class="modal-body">
                                 <h3><small>Para:</small></h3>
-                                <input type="text" autocomplete="off" class="form-control" name="para" list="usuarios"/>
-                                <select class="selectpicker">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
+                                <select class="selectpicker" name="para" data-live-search="true">
+                                    <option disabled="true" selected="true">Seleccione un usuario</option>
+                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
+                                        <option value="#{u.idUsuario}">#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
+                                    </c:forEach>
                                 </select>
                                 <h3><small>Asunto:</small></h3>
                                 <input class="form-control" name="asunto"/>
@@ -188,9 +188,7 @@
                                 <br/>
                                 <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
                                 <datalist id="usuarios">
-                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
-                                        <option data-value="#{u.idUsuario}" >#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
-                                    </c:forEach>
+                                    
                                 </datalist>
                             </div>
                             <div class="modal-footer">

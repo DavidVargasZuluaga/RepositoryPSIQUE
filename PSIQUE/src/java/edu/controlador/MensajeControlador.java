@@ -122,21 +122,15 @@ public class MensajeControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             String rec = (String) params.get("para");
-            for (int i = 0; i < listaUsuarios.size(); i++) {
-                String nombre = (listaUsuarios.get(i).getNombres()+""+ listaUsuarios.get(i).getPrimerApellido() +""+ listaUsuarios.get(i).getSegundoApellido());
-                if (rec.equals(nombre)) {
-                    receptor = listaUsuarios.get(i);
-                    m.setIdEmisor(us);
-                    m.setFecha(fechaActual);
-                    m.setIdReceptor(receptor);
-                    m.setEstado("Enviado");
-                    m.setMensaje((String) params.get("mensaje"));
-                    m.setAsunto((String) params.get("asunto"));
-                    mensajeFacade.create(m);
-                    modalMensaje = 1;
-                    break;
-                }
-            }
+            receptor = usuarioFacade.find(Long.parseLong(rec));
+            m.setIdEmisor(us);
+            m.setFecha(fechaActual);
+            m.setIdReceptor(receptor);
+            m.setEstado("Enviado");
+            m.setMensaje((String) params.get("mensaje"));
+            m.setAsunto((String) params.get("asunto"));
+            mensajeFacade.create(m);
+            modalMensaje = 1;
             if (receptor.getIdUsuario() == null) {
                 modalMensaje = 2;
             }
@@ -215,4 +209,3 @@ public class MensajeControlador implements Serializable {
         this.listaUsuarios = listaUsuarios;
     }
 }
-
