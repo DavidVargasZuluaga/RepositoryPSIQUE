@@ -242,6 +242,7 @@ public class PsicologoControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         Cita cita = new Cita ();
         cita = citaLog;
+        cita.setEstado("CUMPLIDA");
         cita.setObservacion((String) params.get("observacion"));
         citaFacade.edit(cita);
         estados = 1;

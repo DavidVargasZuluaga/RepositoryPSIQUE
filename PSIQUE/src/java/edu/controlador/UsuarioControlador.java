@@ -68,7 +68,7 @@ public class UsuarioControlador implements Serializable {
         aprendizLog = new Aprendiz();
         aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
-
+        
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
         listaCoordinadores = usuarioFacade.findAll();

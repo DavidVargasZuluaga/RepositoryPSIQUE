@@ -40,22 +40,31 @@ public class CitaControlador implements Serializable {
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mma");
 
     private int modalCita;
-    
+
     @PostConstruct
     private void init() {
         citaTemp = new Cita();
-        
+
+        modalCita = 0;
+    }
+    
+    public void cerrarModal(){
         modalCita = 0;
     }
 
     public List<Cita> listarCitasAprendizLog(Aprendiz a) {
         List<Cita> resul = new ArrayList();
         List<Cita> citas = citaFacade.findAll();
-        for (int i = 0; i < citas.size(); i++) {
-            if (citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
-                resul.add(citas.get(i));
+        try {
+            for (int i = 0; i < citas.size(); i++) {
+                if (citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                    resul.add(citas.get(i));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return resul;
     }
 
@@ -82,29 +91,30 @@ public class CitaControlador implements Serializable {
             citaTemp.setIdAprendiz(a);
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
             String hora;
-            if(citaTemp.getIdPsicologo().getJornada().equals("Mañana")){
-                hora = (params.get("fecha2")+" "+params.get("hora2"));
+            if (citaTemp.getIdPsicologo().getJornada().equals("Mañana")) {
+                hora = (params.get("fecha2") + " " + params.get("hora2"));
             } else {
-                hora = (params.get("fecha")+" "+params.get("hora"));
+                hora = (params.get("fecha") + " " + params.get("hora"));
             }
             citaTemp.setFecha((Date) format.parse(hora));
             citaTemp.setValoracion(0);
             citaTemp.setEstado("SOLICITADA");
-            for (int i = 0; i < listaCitas.size() ; i++) {
-                if(listaCitas.get(i).getFecha().equals(citaTemp.getFecha())){
+            for (int i = 0; i < listaCitas.size(); i++) {
+                if (listaCitas.get(i).getFecha().equals(citaTemp.getFecha())) {
                     existe = true;
                     break;
                 }
             }
-            if(!existe){
+            if (!existe) {
                 modalCita = 0;
                 citaFacade.create(citaTemp);
             } else {
                 modalCita = 1;
                 citaTemp = new Cita();
             }
-            
+
         } catch (Exception e) {
+            modalCita = 2;
             e.printStackTrace();
         }
         return "/modAprendiz/citaProgramada.xhtml";
@@ -151,7 +161,7 @@ public class CitaControlador implements Serializable {
                 citaTemp = listaCitas.get(i);
             }
         }
-        if(citaTemp.getIdCita() == null){
+        if (citaTemp.getIdCita() == null) {
             citaTemp = null;
         }
         return citaTemp;

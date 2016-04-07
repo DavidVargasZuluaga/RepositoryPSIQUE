@@ -49,22 +49,47 @@ public class MensajeControlador implements Serializable {
         mensajes = mensajeFacade.findAll();
         listaUsuarios = usuarioFacade.findAll();
     }
+    
+    public void cerrarModal(){
+        modalMensaje = 0;
+    }
 
-    public List<Mensaje> cargarMensajesRecibidos(Usuario u) {
+    public List<Mensaje> listarMensajesNuevos(Usuario u) {
         List<Mensaje> tMensajes = mensajeFacade.findAll();
-        List<Mensaje> mensajes = new ArrayList();
+        List<Mensaje> mensajes2 = new ArrayList();
+        Date fechaComparar = new Date();
+        fechaComparar.setMonth(fechaComparar.getMonth() - 1);
         try {
             for (int i = 0; i < tMensajes.size(); i++) {
                 if (tMensajes.get(i).getIdReceptor().getIdUsuario().equals(u.getIdUsuario())) {
-                    if (!tMensajes.get(i).getEstado().equals("Borrado")) {
-                        mensajes.add(tMensajes.get(i));
+                    if (tMensajes.get(i).getEstado().equals("Enviado")) {
+                        if (tMensajes.get(i).getFecha().after(fechaComparar)) {
+                            mensajes2.add(tMensajes.get(i));
+                        }
                     }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return mensajes;
+        return mensajes2;
+    }
+
+    public List<Mensaje> cargarMensajesRecibidos(Usuario u) {
+        List<Mensaje> tMensajes = mensajeFacade.findAll();
+        List<Mensaje> mensajes2 = new ArrayList();
+        try {
+            for (int i = 0; i < tMensajes.size(); i++) {
+                if (tMensajes.get(i).getIdReceptor().getIdUsuario().equals(u.getIdUsuario())) {
+                    if (!tMensajes.get(i).getEstado().equals("Borrado")) {
+                        mensajes2.add(tMensajes.get(i));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return mensajes2;
     }
 
     public List<Mensaje> cargarMensajesEnviados(Usuario u) {
