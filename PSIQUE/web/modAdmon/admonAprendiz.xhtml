@@ -7,26 +7,23 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="title">
-        title
+        Aprendices
     </ui:define>
 
     <ui:define name="body">
-         <section>           
-            <div class="container trans2">
-                <br/><br/><br/><br/>
+        <section>           
+            <div class="container-fluid trans2">
+                
+                
                 <div class="row color1">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
                             <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Aprendices</h1>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <hr/>
-                            <br/>
-                        </div>
-                    </div>
-                    <c:if test="#{controladorAprendiz.ver == 1}">
+
+
+                    <c:if test="#{usuarioControlador.ver == 1}">
                         <div class="alert "  aria-label="Close" data-dismiss="alert" >
                             <table id="example" class="table table-bordered" width="100%">
                                 <legend>Caracteristicas del aprendiz</legend>
@@ -76,18 +73,17 @@
                                 </tbody>
                             </table>
                             <h:form >
-                                <h:link onclick="admonAprendiz"> <h:commandLink class="btn " value="Cerrar" action="#{controladorAprendiz.cerrarDatos()}"/></h:link>
+                                <h:link onclick="admonAprendiz"> <h:commandLink class="btn " value="Cerrar" action="#{usuarioControlador.cerrarDatos()}"/></h:link>
                             </h:form>
                         </div>
 
                     </c:if>
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="table-responsive">
                             <div class="panel filterable">
                                 <div class="panel-heading ">
                                     <h3 class="centrar panel-title">Aprendices SILSPA</h3>
                                 </div>
-
 
                                 <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
@@ -115,21 +111,102 @@
                                                 <td>#{lista.aprendiz.ficha.noFicha}</td> 
                                                 <td>
                                                     <h:form>
-                                                        <h:commandLink action="#{controladorAprendiz.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>
+                                                        <h:commandLink action="#{usuarioControlador.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>
                                                         <h:commandLink class="btn botonesnav" onclick="$('#myModal#{lista.idUsuario}').modal(); return false;" title="Ver mensaje completo">
                                                             <i class="fa fa-pencil fa-lg botonesnav"></i>
                                                         </h:commandLink>
                                                           <!--  <button type="button" class="fa fa fa-pencil fa-lg botonesnav"  title="Modifcar aprendiz" data-toggle="modal" data-target="#myModal#{lista.idUsuario}"   ></button>-->
                                                     </h:form>                                                          
-                                                </td>    
+                                                </td> 
 
-                                                
+                                                <!--Modal aprendices-->
+                                                <div class="modal fade" id="myModal#{lista.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <h:form id="formulario#{lista.idUsuario}">
+                                                                <div class="modal-body">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                                                        <h4 class="modal-title" id="myModalLabel">Actualizar Aprendiz  #{lista.nombres} #{lista.primerApellido} </h4>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <br/>
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                                                            <input  class="form-control" id="nombres" value="#{lista.nombres}" name="nombres" />
+                                                                        </div>
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
+                                                                            <input class="form-control" id="primerApellido" value="#{lista.primerApellido}" name="primerApellido"/>
+                                                                        </div>
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                                                            <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                                                            <div class="form-group">
+                                                                                <h:selectOneMenu  value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                                                    <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                                                    <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                                                    <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                                                                </h:selectOneMenu>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Número de documento">#</span>
+                                                                            <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Correo">@</span>
+                                                                            <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                                                            <input class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
+                                                                        </div>
+
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
+                                                                            <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                                                            <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
+                                                                        </div>
+
+                                                                        <div class="form-group input-group">
+                                                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                                                            <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
+                                                                        </div>
+
+                                                                        <hr />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="modal-footer">
+
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(lista)}" >
+                                                                        <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
+                                                                    </h:commandButton>
+                                                                </div>
+                                                            </h:form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
                                             </tr>
-
-
                                         </ui:repeat> 
                                         <br/>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -140,15 +217,7 @@
             </div>
             <!-- InstanceEndEditable -->
 
-            <div class="color1 row">
-                <br/>
-                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
-                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
-                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
-                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
-                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
-                </div>
-            </div>
+
         </section>
     </ui:define>
 

@@ -8,17 +8,16 @@
     <ui:composition template="PlantillaAdmon.xhtml">
 
         <ui:define name="title">
-            title
+          Perfil administrador
         </ui:define>
 
         <ui:define name="body">
             <div class="col-md-9">
                 <div class="profile-content">
-                    <form class="color 1 form-horizontal" id="formregistro" >
+                    <form class="color1 form-horizontal" id="datosAdministrador" >
                         <legend>Mi perfil</legend>
                         <div class="control-group">
                             <label class="control-label" for="ide">Documento</label>
-                            <!--<input id="ide" name="ide" type="text"  class="disabled input-xlarge form-control" disabled="true"/>-->
                             <h:outputLabel style="color:black;" class="disabled input-xlarge form-control" value="#{usuarioControlador.usuarioLog.noDocumento}" />
                         </div>
                         <!-- Text input-->

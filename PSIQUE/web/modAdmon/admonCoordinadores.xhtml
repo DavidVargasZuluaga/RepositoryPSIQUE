@@ -7,28 +7,21 @@
                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:define name="title">
-        title
+        Coordinadores
     </ui:define>
 
     <ui:define name="body">
         <section>
             <!-- InstanceBeginEditable name="TODO" -->
-            <div class="container trans2">
-                <br/><br/><br/><br/>
+            <div class="container-fluid trans2">
                 <div class="row color1">
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
                             <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Coordinadores</h1>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <hr/>
-                            <br/>
-                        </div>
-                    </div>
 
-                    <c:if test="#{controladorCoordinador.ver == 1}">
+                    <c:if test="#{usuarioControlador.ver == 1}">
                         <div class="alert "  aria-label="Close" data-dismiss="alert" >
                             <table id="example" class="table table-bordered" width="100%">
                                 <legend>Caracteristicas del aprendiz</legend>
@@ -78,12 +71,12 @@
                                 </tbody>
                             </table>
                             <h:form>
-                                <h:link onclick="admonCoordinadores"> <h:commandLink class="btn " value="Cerrar" action="#{controladorCoordinador.cerrarDatos()}"/></h:link>
+                                <h:link onclick="admonCoordinadores"> <h:commandLink class="btn " value="Cerrar" action="#{usuarioControlador.cerrarDatos()}"/></h:link>
                             </h:form>
                         </div>
 
                     </c:if>
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="table-responsive">
                             <div class="panel filterable">
                                 <div class="panel-heading ">
@@ -113,14 +106,12 @@
                                                 <td>#{listaCoordinadores.coordinador.idPrograma.nombrePrograma}</td> 
                                                 <td>
                                                     <h:form>
-                                                        <h:commandLink action="#{controladorCoordinador.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>    
+                                                        <h:commandLink action="#{usuarioControlador.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>    
                                                         <h:commandLink class="btn botonesnav" onclick="$('#myModal#{listaCoordinadores.idUsuario}').modal(); return false;" title="Ver mensaje completo">
                                                             <i class="fa fa-pencil fa-lg botonesnav"></i>
                                                         </h:commandLink>
                                                     </h:form>                                                  
                                                 </td>
-
-                                                
                                             </tr>
                                         </ui:repeat>        						
                                     </tbody>
@@ -133,15 +124,7 @@
             </div>
             <!-- InstanceEndEditable -->
 
-            <div class="color1 row">
-                <br/>
-                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
-                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
-                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
-                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
-                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
-                </div>
-            </div>
+
         </section>
     </ui:define>
 
