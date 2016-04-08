@@ -407,7 +407,9 @@
                                     <br/>
                                 </div>
                                 <div class="modal-footer">
-                                    <h:commandButton class="botones2 btn" value="Realizar test" action="realizarTest.xhtml"></h:commandButton>
+                                    <h:commandButton class="botones2 btn" value="Realizar test" action="realizarTest.xhtml">
+                                        <f:setPropertyActionListener value="#{t}" target="#{testCortnolador.testLog}" />
+                                    </h:commandButton>
                                     <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>
