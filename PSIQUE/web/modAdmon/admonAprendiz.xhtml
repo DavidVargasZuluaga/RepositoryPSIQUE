@@ -13,8 +13,8 @@
     <ui:define name="body">
         <section>           
             <div class="container-fluid trans2">
-                
-                
+
+
                 <div class="row color1">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
@@ -84,131 +84,45 @@
                                 <div class="panel-heading ">
                                     <h3 class="centrar panel-title">Aprendices SILSPA</h3>
                                 </div>
-
-                                <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="Id" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Id</th>
-                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
-                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
-                                            <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
-                                            <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                            <th data-field="Programa al que corresponde" data-align="center" data-sortable="true" class="col-md-2">Programa al que corresponde</th>
-                                            <th data-field="Ficha en la que se encuentra" data-align="center" data-sortable="true" class="col-md-2">Ficha en la que se encuentra</th>
-                                            <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>                                     
-                                        <ui:repeat var="lista" value="#{usuarioControlador.traerListaAprendiz()}">  
+                                <h:form>
+                                    <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                        <thead>
                                             <tr>
-                                                <td>#{lista.idUsuario}</td> 
-                                                <td>#{lista.noDocumento}</td> 
-                                                <td>#{lista.nombres}</td> 
-                                                <td>#{lista.primerApellido}</td> 
-                                                <td>#{lista.segundoApellido}</td> 
-                                                <td>#{lista.aprendiz.ficha.idPrograma.nombrePrograma}</td> 
-                                                <td>#{lista.aprendiz.ficha.noFicha}</td> 
-                                                <td>
-                                                    <h:form>
+                                                <th data-field="Id" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Id</th>
+                                                <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                                <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                                <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
+                                                <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                                <th data-field="Programa al que corresponde" data-align="center" data-sortable="true" class="col-md-2">Programa al que corresponde</th>
+                                                <th data-field="Ficha en la que se encuentra" data-align="center" data-sortable="true" class="col-md-2">Ficha en la que se encuentra</th>
+                                                <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>                                     
+                                            <ui:repeat var="lista" value="#{usuarioControlador.traerListaAprendiz()}">  
+                                                <tr>
+                                                    <td>#{lista.idUsuario}</td> 
+                                                    <td>#{lista.noDocumento}</td> 
+                                                    <td>#{lista.nombres}</td> 
+                                                    <td>#{lista.primerApellido}</td> 
+                                                    <td>#{lista.segundoApellido}</td> 
+                                                    <td>#{lista.aprendiz.ficha.idPrograma.nombrePrograma}</td> 
+                                                    <td>#{lista.aprendiz.ficha.noFicha}</td> 
+                                                    <td>
+
                                                         <h:commandLink action="#{usuarioControlador.verDatos()}" class="fa fa-eye fa-lg botonesnav"/>
                                                         <h:commandLink class="btn botonesnav" onclick="$('#myModal#{lista.idUsuario}').modal(); return false;" title="Ver mensaje completo">
                                                             <i class="fa fa-pencil fa-lg botonesnav"></i>
                                                         </h:commandLink>
-                                                          <!--  <button type="button" class="fa fa fa-pencil fa-lg botonesnav"  title="Modifcar aprendiz" data-toggle="modal" data-target="#myModal#{lista.idUsuario}"   ></button>-->
-                                                    </h:form>                                                          
-                                                </td> 
 
-                                                <!--Modal aprendices-->
-                                                <div class="modal fade" id="myModal#{lista.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <h:form id="formulario#{lista.idUsuario}">
-                                                                <div class="modal-body">
-                                                                    <div class="modal-header">
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                                                                        <h4 class="modal-title" id="myModalLabel">Actualizar Aprendiz  #{lista.nombres} #{lista.primerApellido} </h4>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        <br/>
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                                                            <input  class="form-control" id="nombres" value="#{lista.nombres}" name="nombres" />
-                                                                        </div>
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
-                                                                            <input class="form-control" id="primerApellido" value="#{lista.primerApellido}" name="primerApellido"/>
-                                                                        </div>
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                                                            <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                                                            <div class="form-group">
-                                                                                <h:selectOneMenu  value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                                                    <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                                                    <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                                                    <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                                                                </h:selectOneMenu>
-                                                                            </div>
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Número de documento">#</span>
-                                                                            <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Correo">@</span>
-                                                                            <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                                                            <input class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
-                                                                        </div>
-
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
-                                                                            <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                                                            <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
-                                                                        </div>
-
-                                                                        <div class="form-group input-group">
-                                                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                                                            <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
-                                                                        </div>
-
-                                                                        <hr />
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="modal-footer">
-
-                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(lista)}" >
-                                                                        <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
-                                                                    </h:commandButton>
-                                                                </div>
-                                                            </h:form>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </tr>
-                                        </ui:repeat> 
-                                        <br/>
-                                    </tbody>
-                                </table>
+                                                    </td> 
+                                                </tr>
+                                            </ui:repeat> 
+                                            <br/>
+                                        </tbody>
+                                    </table>
+                                </h:form>
                             </div>
                         </div>
                     </div>

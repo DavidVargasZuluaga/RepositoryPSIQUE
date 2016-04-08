@@ -61,6 +61,7 @@ public class UsuarioControlador implements Serializable {
     @PostConstruct
     public void init() {
         modalCreacion = 0;
+        ver = 0 ;
 
         usuario = new Usuario();
         usuarioLog = new Usuario();
@@ -68,7 +69,7 @@ public class UsuarioControlador implements Serializable {
         aprendizLog = new Aprendiz();
         aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
-        
+
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
         listaCoordinadores = usuarioFacade.findAll();
@@ -106,7 +107,7 @@ public class UsuarioControlador implements Serializable {
             }
             switch (usuarioLog.getIdRol().getIdRol()) {
                 case 1:
-                    res = "/modAdmon/miperfilAd.xhtml";
+                    res = "/modAdmon/principalAdmon.xhtml";
                     break;
                 case 2:
                     res = "/modCoordinador/principalCoordinador.xhtml";
@@ -254,7 +255,6 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return res;
 //    }
-
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
     public String cancelarCita(Cita cita) {
@@ -306,6 +306,16 @@ public class UsuarioControlador implements Serializable {
     private List<Usuario> listaAprendiz;
     private List<Usuario> listaCoordinadores;
     private List<Usuario> listapsicologos;
+
+    private int ver;
+
+    public void verDatos() {
+        ver = 1;
+    }
+
+    public void cerrarDatos() {
+        ver = 0;
+    }
 
 //  esto va en el post construct
 //     usuario = new Usuario();
@@ -457,5 +467,30 @@ public class UsuarioControlador implements Serializable {
     public void setFechaActual(Date fechaActual) {
         this.fechaActual = fechaActual;
     }
+
+    public List<Usuario> getListaCoordinadores() {
+        return listaCoordinadores;
+    }
+
+    public void setListaCoordinadores(List<Usuario> listaCoordinadores) {
+        this.listaCoordinadores = listaCoordinadores;
+    }
+
+    public List<Usuario> getListapsicologos() {
+        return listapsicologos;
+    }
+
+    public void setListapsicologos(List<Usuario> listapsicologos) {
+        this.listapsicologos = listapsicologos;
+    }
+
+    public int getVer() {
+        return ver;
+    }
+
+    public void setVer(int ver) {
+        this.ver = ver;
+    }
+    
 
 }

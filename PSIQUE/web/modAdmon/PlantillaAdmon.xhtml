@@ -13,7 +13,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
 
         <h:outputStylesheet library="css" name="bootstrap.css"/>
-        <!-- <h:outputStylesheet library="css" name="estilos.css"/>-->
+        <h:outputStylesheet library="css" name="estilos.css"/>
         <h:outputStylesheet library="css" name="font-awesome.css"/>
         <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
         <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
@@ -38,7 +38,7 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
-       <!-- <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>-->
+       <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
         <title>
             <ui:insert name="title"></ui:insert>
@@ -78,6 +78,7 @@
                                         <li role="separator" class="divider"></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/programaFormacionRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Registrar programa de formación</a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/fichaRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Registrar ficha</a></li>
+                                        
                                         <!-- <li role="separator" class="divider"></li>
                                        <li><a href="administradorAdmon.html"><i class="fa fa fa-user-secret fa-lg"></i>  Administrador</a></li>
                                         <li role="separator" class="divider"></li>-->
@@ -91,7 +92,7 @@
                             <ul class="nav navbar-nav navbar-right">
                                 <img class="imgdere" alt="Brand" src="/PSIQUE/resources/img/ojo64.png"/>
                             </ul>			
-                            
+
                         </div>
                     </div>
                 </nav>
@@ -120,10 +121,10 @@
                             <br/>
                             <div class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
                             <br/>
@@ -227,263 +228,264 @@
             </div>
 
             <!--Modal aprendices-->
-            <div class="modal fade" id="myModal#{lista.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <h:form id="formulario#{lista.idUsuario}">
-                            <div class="modal-body">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Aprendiz  #{lista.nombres} #{lista.primerApellido} </h4>
-                                </div>
+            <ui:repeat var="lista" value="#{usuarioControlador.traerListaAprendiz()}">
+                <div class="modal fade" id="myModal#{lista.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <h:form id="formulario#{lista.idUsuario}">
                                 <div class="modal-body">
-                                    <br/>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                        <input  class="form-control" id="nombres" value="#{lista.nombres}" name="nombres" />
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Actualizar Aprendiz  #{lista.nombres} #{lista.primerApellido} </h4>
                                     </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                      <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
-                                        <input class="form-control" id="primerApellido" value="#{lista.primerApellido}" name="primerApellido"/>
+                                    <div class="modal-body">
+                                        <br/>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                            <input  class="form-control" id="nombres" value="#{lista.nombres}" name="nombres" />
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
+                                            <input class="form-control" id="primerApellido" value="#{lista.primerApellido}" name="primerApellido"/>
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                            <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
+                                        </div>
+
+                                        <!-- <div class="form-group input-group">
+                                             <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                             <div class="form-group">
+                                                 <h:selectOneMenu  value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                     <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                     <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                     <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                     <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                                 </h:selectOneMenu>
+                                             </div>
+                                         </div>-->
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Número de documento">#</span>
+                                            <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Correo">@</span>
+                                            <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                            <input class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
+                                        </div>
+
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
+                                            <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                            <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                            <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
+                                        </div>
+
+                                        <hr />
                                     </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                        <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
-                                    </div>
-
-                                    <!-- <div class="form-group input-group">
-                                         <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                         <div class="form-group">
-                                             <h:selectOneMenu  value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                 <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                 <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                 <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                 <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                             </h:selectOneMenu>
-                                         </div>
-                                     </div>-->
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Número de documento">#</span>
-                                        <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Correo">@</span>
-                                        <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                        <input class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
-                                    </div>
-
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
-                                        <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                        <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                        <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
-                                    </div>
-
-                                    <hr />
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
+                                <div class="modal-footer">
 
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(lista)}" >
-                                    <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
-                                </h:commandButton>
-                            </div>
-                        </h:form>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(lista)}" >
+                                        <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ui:repeat>
 
             <!--modal coordinadores-->
-            <div class="modal fade" id="myModal#{listaCoordinadores.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <h:form id="formularioCo#{listaCoordinadores.idUsuario}">
-                            <div class="modal-body">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Coordinador  #{listaCoordinadores.nombres} #{listaCoordinadores.primerApellido} </h4>
-                                </div>
+            <ui:repeat value="#{usuarioControlador.traerListaCoordinadores()}" var="listaCoordinadores">
+                <div class="modal fade" id="modalCoordinadores#{listaPsicologo.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <h:form id="formularioCo#{listaCoordinadores.idUsuario}">
                                 <div class="modal-body">
-                                    <br/>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                        <input  class="form-control" id="nombres" value="#{listaCoordinadores.nombres}" name="nombres" />
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Actualizar Coordinador  #{listaCoordinadores.nombres} #{listaCoordinadores.primerApellido} </h4>
                                     </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                      <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
-                                        <input class="form-control" id="primerApellido" value="#{listaCoordinadores.primerApellido}" name="primerApellido"/>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                        <input  class="form-control" id="segundoApellido" value="#{listaCoordinadores.segundoApellido}" name="segundoApellido" />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                        <div class="form-group">
-                                            <h:selectOneMenu value="#{listaCoordinadores.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                            </h:selectOneMenu>
+                                    <div class="modal-body">
+                                        <br/>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                            <input  class="form-control" id="nombres" value="#{listaCoordinadores.nombres}" name="nombres" />
                                         </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
+                                            <input class="form-control" id="primerApellido" value="#{listaCoordinadores.primerApellido}" name="primerApellido"/>
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                            <input  class="form-control" id="segundoApellido" value="#{listaCoordinadores.segundoApellido}" name="segundoApellido" />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                            <div class="form-group">
+                                                <h:selectOneMenu value="#{listaCoordinadores.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                    <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                    <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                    <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Número de documento">#</span>
+                                            <input  class="form-control" id="noDocumento" value="#{listaCoordinadores.noDocumento}" name="noDocumento" />                                                                           
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Correo">@</span>
+                                            <input class="form-control" id="correo" value="#{listaCoordinadores.correo}" name="correo"   />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                            <input class="form-control"  id="clave"  value="#{listaCoordinadores.clave}" name="clave"   />
+                                        </div>
+
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
+                                            <input class="form-control" id="telefono" value="#{listaCoordinadores.telefono}"  name="telefono" />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                            <input class="form-control" id="Estado" value="#{listaCoordinadores.estado}" name="estado"   />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                            <input  class="form-control" id="rol" value="#{listaCoordinadores.idRol.idRol}" name="rol"   />
+                                        </div>
+
+                                        <hr />
                                     </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Número de documento">#</span>
-                                        <input  class="form-control" id="noDocumento" value="#{listaCoordinadores.noDocumento}" name="noDocumento" />                                                                           
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Correo">@</span>
-                                        <input class="form-control" id="correo" value="#{listaCoordinadores.correo}" name="correo"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                        <input class="form-control"  id="clave"  value="#{listaCoordinadores.clave}" name="clave"   />
-                                    </div>
-
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
-                                        <input class="form-control" id="telefono" value="#{listaCoordinadores.telefono}"  name="telefono" />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                        <input class="form-control" id="Estado" value="#{listaCoordinadores.estado}" name="estado"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                        <input  class="form-control" id="rol" value="#{listaCoordinadores.idRol.idRol}" name="rol"   />
-                                    </div>
-
-                                    <hr />
                                 </div>
-                            </div>
 
-                            <div class="modal-footer">
+                                <div class="modal-footer">
 
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(listaCoordinadores)}" >
-                                    <f:param name="formularioCo" value="Actualizar#{listaCoordinadores.idUsuario}"/> 
-                                </h:commandButton>
-                            </div>
-                        </h:form>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(listaCoordinadores)}" >
+                                        <f:param name="formularioCo" value="Actualizar#{listaCoordinadores.idUsuario}"/> 
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
-            </div>
-
+            </ui:repeat>
             <!--Modal Psicologo-->
-            <div class="modal fade" id="myModal#{listaPsicologo.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <h:form id="formularioPs#{listaPsicologo.idUsuario}">
-                            <div class="modal-body">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Actualizar Coordinador  #{listaPsicologo.nombres} #{listaPsicologo.primerApellido} </h4>
-                                </div>
+            <ui:repeat var="listaPsicologo" value="#{usuarioControlador.traerListaPsicologos()}">
+
+                <div class="modal fade" id="myModal#{listaPsicologo.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <h:form id="formularioPs#{listaPsicologo.idUsuario}">
                                 <div class="modal-body">
-
-
-                                    <br/>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                        <input  class="form-control" id="nombres" value="#{listaPsicologo.nombres}" name="nombres" />
-
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Actualizar Coordinador  #{listaPsicologo.nombres} #{listaPsicologo.primerApellido} </h4>
                                     </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                      <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
-                                        <input class="form-control" id="primerApellido" value="#{listaPsicologo.primerApellido}" name="primerApellido"/>
-                                    </div>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                        <input  class="form-control" id="segundoApellido" value="#{listaPsicologo.segundoApellido}" name="segundoApellido" />
-                                    </div>
+                                    <div class="modal-body">
 
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                        <div class="form-group">
-                                            <h:selectOneMenu value="#{listaPsicologo.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                            </h:selectOneMenu>
+
+                                        <br/>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                            <input  class="form-control" id="nombres" value="#{listaPsicologo.nombres}" name="nombres" />
+
                                         </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                          <!--  <h:inputText  class="form-control" id="primerapellido"  value="#{lista.primerApellido}"/>-->
+                                            <input class="form-control" id="primerApellido" value="#{listaPsicologo.primerApellido}" name="primerApellido"/>
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                            <input  class="form-control" id="segundoApellido" value="#{listaPsicologo.segundoApellido}" name="segundoApellido" />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                            <div class="form-group">
+                                                <h:selectOneMenu value="#{listaPsicologo.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                    <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                    <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                    <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                                </h:selectOneMenu>
+                                            </div>
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Número de documento">#</span>
+                                            <input  class="form-control" id="noDocumento" value="#{listaPsicologo.noDocumento}" name="noDocumento" />                                                                           
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Correo">@</span>
+                                            <input class="form-control" id="correo" value="#{listaPsicologo.correo}" name="correo"   />
+                                        </div>
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                            <input class="form-control"  id="clave"  value="#{listaPsicologo.clave}" name="clave"   />
+                                        </div>
+
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
+                                            <input class="form-control" id="telefono" value="#{listaPsicologo.telefono}"  name="telefono" />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                            <input class="form-control" id="Estado" value="#{listaPsicologo.estado}" name="estado"   />
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                            <input  class="form-control" id="rol" value="#{listaPsicologo.idRol.idRol}" name="rol"   />
+                                        </div>
+
+                                        <hr />
                                     </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Número de documento">#</span>
-                                        <input  class="form-control" id="noDocumento" value="#{listaPsicologo.noDocumento}" name="noDocumento" />                                                                           
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Correo">@</span>
-                                        <input class="form-control" id="correo" value="#{listaPsicologo.correo}" name="correo"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                        <input class="form-control"  id="clave"  value="#{listaPsicologo.clave}" name="clave"   />
-                                    </div>
-
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
-                                        <input class="form-control" id="telefono" value="#{listaPsicologo.telefono}"  name="telefono" />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                        <input class="form-control" id="Estado" value="#{listaPsicologo.estado}" name="estado"   />
-                                    </div>
-
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                        <input  class="form-control" id="rol" value="#{listaPsicologo.idRol.idRol}" name="rol"   />
-                                    </div>
-
-                                    <hr />
                                 </div>
-                            </div>
-
-                            <div class="modal-footer">
-
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{controladorUsuario.actualizar(listaPsicologo)}" >
-                                    <f:param name="formularioPs" value="Actualizar#{listaPsicologo.idUsuario}"/> 
-                                </h:commandButton>
-                            </div>
-                        </h:form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{controladorUsuario.actualizar(listaPsicologo)}" >
+                                        <f:param name="formularioPs" value="Actualizar#{listaPsicologo.idUsuario}"/> 
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </ui:repeat>
 
             <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
@@ -495,11 +497,11 @@
                             </div>
                             <div class="modal-body">
                                 <h3><small>Para:</small></h3>
-                                <input type="text" autocomplete="off" class="form-control" name="para" list="usuarios"/>
-                                <select class="selectpicker">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
+                                <select class="selectpicker" name="para" data-live-search="true">
+                                    <option disabled="true" selected="true">Seleccione un usuario</option>
+                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
+                                        <option value="#{u.idUsuario}">#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
+                                    </c:forEach>
                                 </select>
                                 <h3><small>Asunto:</small></h3>
                                 <input class="form-control" name="asunto"/>
@@ -507,11 +509,7 @@
                                 <textarea class="form-control" name="mensaje"/>
                                 <br/>
                                 <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
-                                <datalist id="usuarios">
-                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
-                                        <option data-value="#{u.idUsuario}" >#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
-                                    </c:forEach>
-                                </datalist>
+
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMensaje(usuarioControlador.usuarioLog)}"></h:commandButton>
