@@ -59,7 +59,6 @@ public class TestControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             for (int i = 0; i < testLog.getPreguntaList().size(); i++) {
-                
                 String resp = ""+params.get("pregunta"+""+testLog.getPreguntaList().get(i).getIdPregunta());
                 Integer idRespuesta = Integer.parseInt(resp);
                 Respuesta respu = respuestaFacade.find(idRespuesta);
