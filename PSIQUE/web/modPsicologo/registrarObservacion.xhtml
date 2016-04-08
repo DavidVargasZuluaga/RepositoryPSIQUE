@@ -53,18 +53,25 @@
                             <li><a href="../../modUsuario/miPerfilP.html" class="botonesnav"><i class="fa fa-home fa-lg"></i> &nbsp; Principal</a></li>
                             <li class="dropdown">
                                 <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa fa-book fa-lg"></i> &nbsp; Historial &nbsp; <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a><strong>Aprendices</strong></a></li>
-                                    <li><a href="citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
-                                    <li><a href="citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
-                                    <li><a href="HistorialDeCitas.html"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="../../modUsuario/listaAprendices.html"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Historial de un aprendiz</strong></a></li>
-                                    <li><a href="crearTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Crear test</strong></a></li>
-                                    <li><a href="mostrarTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Mostrar los test</strong></a></li>
-                                    <li><a href="listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Asignar test a un Aprendiz</strong></a></li>
+                                <ul class="nav navbar-nav">
+                                    <li><a href="indexPiscologo.xhtml" class="botonesnav"><i class="fa fa-home fa-lg"></i> &nbsp; Principal</a></li>
+                                    <li class="dropdown">
+                                        <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa fa-book fa-lg"></i> &nbsp; Historial &nbsp; <span class="caret"></span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a><strong>Aprendices</strong></a></li>
+                                            <li><a href="citasSolicitadas.xhtml"><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas solicitadas</a></li>
+                                            <li><a href="citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
+                                            <li><a href="citasSolicitadas.xhtml"><i class="fa ffa fa-archive fa-lg"></i> &nbsp; Historial de citas</a></li>
+                                            <li role="separator" class="divider"></li>
 
-                                    <li role="separator" class="divider"></li>
+                                            <li><a href="crearTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Crear test</strong></a></li>
+                                            <li><a href="mostrarTest.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Mostrar los test</strong></a></li>
+                                            <li><a href="listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; <strong>Asignar test a un Aprendiz</strong></a></li>
+
+                                            <li role="separator" class="divider"></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="../../modUsuario/Notificaciones/NotifiPsi.html" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones &nbsp; <span class="badge color2">12</span></a></li>
                                 </ul>
                             </li>
                             <li><a href="../../modUsuario/Notificaciones/NotifiPsi.html" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i> &nbsp; Notificaciones &nbsp; <span class="badge color2">12</span></a></li>
@@ -120,10 +127,10 @@
                                             <textarea class="form-control" id="observacion" name="observacion" required="true"></textarea>
                                         </div>
                                     </div>
-                                    
 
-                                    
-                                   
+
+
+
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
                                         <h:commandButton action="#{psicologoControlador.registrarObservacion()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
                                     </div>
