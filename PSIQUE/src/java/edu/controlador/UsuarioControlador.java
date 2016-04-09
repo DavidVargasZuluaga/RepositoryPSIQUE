@@ -11,8 +11,11 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
@@ -46,9 +49,8 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int modalCreacion;
-    private Date fechaActual = new Date();
-
+    
+    private Calendar fecha2;
     private Usuario usuarioLog;
     private Usuario usuarioTemp;
     private Aprendiz aprendizLog;
@@ -58,12 +60,24 @@ public class UsuarioControlador implements Serializable {
     private List<Usuario> listaUsuarios;
     private List<Psicologo> listaPsicologos;
 
+    private int ver;
+    private int modalCreacion;
+    private int año;
+    private int mes;
+    private int dia;
+    private int hora;
+    private int minuto;
+    private int segundo;
+    private String version;
+    private String fechaActual;
+    private String horaActual ;
+    
     @PostConstruct
     public void init() {
+        fecha2 = GregorianCalendar.getInstance();
         modalCreacion = 0;
-        ver = 0 ;
+        ver = 0;
 
-        usuario = new Usuario();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -72,9 +86,17 @@ public class UsuarioControlador implements Serializable {
 
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
-        listaCoordinadores = usuarioFacade.findAll();
-        listapsicologos = usuarioFacade.findAll();
-        listaAprendiz = usuarioFacade.findAll();
+
+        año = fecha2.get(Calendar.YEAR);
+        mes = fecha2.get(Calendar.MONTH)+1;
+        dia = fecha2.get(Calendar.DAY_OF_MONTH);
+        hora = fecha2.get(Calendar.HOUR_OF_DAY);
+        minuto = fecha2.get(Calendar.MINUTE);
+        segundo = fecha2.get(Calendar.SECOND);
+        version = "PSIQUE 3.8";
+        fechaActual = (dia + "/" + mes);
+        horaActual = (+ hora + " : " + minuto);
+
     }
 
     public Usuario buscarPorNombre(String nombre) {
@@ -88,9 +110,9 @@ public class UsuarioControlador implements Serializable {
         }
         return us;
     }
-    
-    public String redireccionarACitasSolicitadas (String direccion){
-       return "/"+direccion;
+
+    public String redireccionarACitasSolicitadas(String direccion) {
+        return "/" + direccion;
     }
 
     public String autenticar() {
@@ -139,7 +161,7 @@ public class UsuarioControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/index";
+        return "/PSIQUE/index";
     }
 
     public void validarSesion() {
@@ -259,6 +281,9 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return res;
 //    }
+    
+    
+    
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
     public String cancelarCita(Cita cita) {
@@ -306,12 +331,7 @@ public class UsuarioControlador implements Serializable {
     }
 
     //    Parte Andres parte del controlador Usuario
-    private Usuario usuario;
-    private List<Usuario> listaAprendiz;
-    private List<Usuario> listaCoordinadores;
-    private List<Usuario> listapsicologos;
-
-    private int ver;
+    
 
     public void verDatos() {
         ver = 1;
@@ -321,20 +341,12 @@ public class UsuarioControlador implements Serializable {
         ver = 0;
     }
 
-//  esto va en el post construct
-//     usuario = new Usuario();
-//        usuarioLog = new Usuario();
-//        usuarioTemp = new Usuario();
-//        usuarioTemp2 = new Usuario();
-//        listaAprendiz = usuarioFacade.findAll();
-//        listaCoordinadores = usuarioFacade.findAll();
-//        listapsicologos = usuarioFacade.findAll();
-//        listaUsuarios = new ArrayList();
+
     public List<Usuario> traerListaAprendiz() {
         List<Usuario> lista = new ArrayList();
-        for (int i = 0; i < listaAprendiz.size(); i++) {
-            if (listaAprendiz.get(i).getIdRol().getIdRol() == 4) {
-                lista.add(listaAprendiz.get(i));
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 4) {
+                lista.add(listaUsuarios.get(i));
             }
         }
         return lista;
@@ -342,9 +354,9 @@ public class UsuarioControlador implements Serializable {
 
     public List<Usuario> traerListaCoordinadores() {
         List<Usuario> listaCo = new ArrayList();
-        for (int i = 0; i < listaCoordinadores.size(); i++) {
-            if (listaCoordinadores.get(i).getIdRol().getIdRol() == 2) {
-                listaCo.add(listaCoordinadores.get(i));
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 2) {
+                listaCo.add(listaUsuarios.get(i));
             }
         }
         return listaCo;
@@ -352,9 +364,9 @@ public class UsuarioControlador implements Serializable {
 
     public List<Usuario> traerListaPsicologos() {
         List<Usuario> listaPs = new ArrayList();
-        for (int i = 0; i < listapsicologos.size(); i++) {
-            if (listapsicologos.get(i).getIdRol().getIdRol() == 3) {
-                listaPs.add(listapsicologos.get(i));
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 3) {
+                listaPs.add(listaUsuarios.get(i));
             }
         }
         return listaPs;
@@ -384,22 +396,62 @@ public class UsuarioControlador implements Serializable {
         }
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public int getAño() {
+        return año;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setAño(int año) {
+        this.año = año;
     }
 
-    public List<Usuario> getListaAprendiz() {
-        return listaAprendiz;
+    public int getMes() {
+        return mes;
     }
 
-    public void setListaAprendiz(List<Usuario> listaAprendiz) {
-        this.listaAprendiz = listaAprendiz;
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getHora() {
+        return hora;
+    }
+
+    public void setHora(int hora) {
+        this.hora = hora;
+    }
+
+    public int getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(int minuto) {
+        this.minuto = minuto;
+    }
+
+    public int getSegundo() {
+        return segundo;
+    }
+
+    public void setSegundo(int segundo) {
+        this.segundo = segundo;
+    }
+
+    public String getHoraActual() {
+        return horaActual;
+    }
+
+    public void setHoraActual(String horaActual) {
+        this.horaActual = horaActual;
+    }
+    
     public Usuario getUsuarioLog() {
         return usuarioLog;
     }
@@ -464,28 +516,12 @@ public class UsuarioControlador implements Serializable {
         this.aprendizLog = aprendizLog;
     }
 
-    public Date getFechaActual() {
-        return fechaActual;
+    public Calendar getFecha2() {
+        return fecha2;
     }
 
-    public void setFechaActual(Date fechaActual) {
-        this.fechaActual = fechaActual;
-    }
-
-    public List<Usuario> getListaCoordinadores() {
-        return listaCoordinadores;
-    }
-
-    public void setListaCoordinadores(List<Usuario> listaCoordinadores) {
-        this.listaCoordinadores = listaCoordinadores;
-    }
-
-    public List<Usuario> getListapsicologos() {
-        return listapsicologos;
-    }
-
-    public void setListapsicologos(List<Usuario> listapsicologos) {
-        this.listapsicologos = listapsicologos;
+    public void setFecha2(Calendar fecha2) {
+        this.fecha2 = fecha2;
     }
 
     public int getVer() {
@@ -495,6 +531,22 @@ public class UsuarioControlador implements Serializable {
     public void setVer(int ver) {
         this.ver = ver;
     }
-    
 
+    public String getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(String fechaActual) {
+        this.fechaActual = fechaActual;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    
 }
