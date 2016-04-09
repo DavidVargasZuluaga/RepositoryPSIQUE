@@ -88,6 +88,10 @@ public class UsuarioControlador implements Serializable {
         }
         return us;
     }
+    
+    public String redireccionarACitasSolicitadas (String direccion){
+       return "/"+direccion;
+    }
 
     public String autenticar() {
         String res = "/PSIQUE/index.xhtml";
@@ -113,7 +117,7 @@ public class UsuarioControlador implements Serializable {
                     res = "/modCoordinador/principalCoordinador.xhtml";
                     break;
                 case 3:
-                    res = "/modPsicologo/indexPsicologo.xhtml";
+                    res = "/indexPsicologo.xhtml";
                     break;
                 case 4:
                     res = "/modAprendiz/principalAprendiz.xhtml";

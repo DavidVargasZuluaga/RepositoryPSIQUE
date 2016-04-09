@@ -6,7 +6,7 @@
 
     <body>
 
-        <ui:composition template="../PlantillaPsicologo.xhtml">
+        <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
               Psicologo
@@ -14,16 +14,11 @@
 
             <ui:define name="body">
                <div class="row margen color1">
-                   
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
                             <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Citas Solicitadas</h1>
                         </div>
                     </div>
-                   
-
-
-                   
                         <div class="table-responsive">
                             <div class="panel filterable">
                                 <div class="panel-heading ">
@@ -40,7 +35,6 @@
                                             <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Opciones</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <ui:repeat var="miLista" value="#{psicologoControlador.mostrarAprendices()}">
                                             <tr>
@@ -56,8 +50,6 @@
                                 </table>
                             </div>
                         </div>
-                   
-
                 </div>
             </ui:define>
 

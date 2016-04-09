@@ -250,7 +250,7 @@ public class PsicologoControlador implements Serializable {
     }
 
     public String aceptarCitar(Cita cita) {
-        cita.setEstado("pendiente");
+        cita.setEstado("PENDIENTE");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
