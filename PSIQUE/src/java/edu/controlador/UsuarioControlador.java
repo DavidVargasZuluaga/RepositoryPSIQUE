@@ -49,23 +49,12 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int ver;
-    private int modalCreacion;
-    private int año;
-    private int mes;
-    private int dia;
-    private int hora;
-    private int minuto;
-    private int segundo;
-    private String version;
-    private String fechaActual;
-    private String horaActual;
+    private int ver, modalCreacion, año, mes, dia, hora, minuto, segundo;
+    private String version, fechaActual,horaActual;
 
     private Calendar fecha2;
-    private Usuario usuarioLog;
-    private Usuario usuarioTemp;
-    private Aprendiz aprendizLog;
-    private Aprendiz aprendizTemp;
+    private Usuario usuarioLog, usuarioTemp;
+    private Aprendiz aprendizLog, aprendizTemp;
     private Psicologo psicologoLog;
 
     private List<Usuario> listaUsuarios;
@@ -120,7 +109,7 @@ public class UsuarioControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-            Long doc = Long.parseLong((String) params.get("documento"));
+            long doc = Long.parseLong((String) params.get("documento"));
             String clave = (String) params.get("clave");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
@@ -154,22 +143,13 @@ public class UsuarioControlador implements Serializable {
 
     public String cerrarSesion() {
         try {
-            init();
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+            return "/PSIQUE/index.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
+            return "/PSIQUE/index.xhtml";
         }
-        return "/PSIQUE/index.xhtml";
-    }
-
-    public String invalidarSesion() {
-        try {
-            init();
-            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "/PSIQUE/";
+        
     }
 
     public void validarSesion() {
