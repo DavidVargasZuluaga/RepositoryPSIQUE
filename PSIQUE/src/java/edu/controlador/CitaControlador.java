@@ -38,18 +38,11 @@ public class CitaControlador implements Serializable {
     private PsicologoFacade psicologoFacade;
 
     private int modalCita;
-    private int año;
-    private int mes;
-    private int dia;
-    private int hora;
-    private int minuto;
-    private int segundo;
-    private String fechaActual;
-    private String horaActual;
+    private int año, mes, dia, hora, minuto, segundo;
+    private String fechaActual, horaActual;
 
     private Calendar fecha;
-    private Cita citaTemp;
-    private Cita citaAnterior;
+    private Cita citaTemp, citaAnterior;
     private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mmaa");
 
     @PostConstruct
@@ -127,6 +120,13 @@ public class CitaControlador implements Serializable {
                         existe = true;
                         break;
                     }
+                    if (listaCitas.get(i).getIdAprendiz().equals(a)) {
+                        if (listaCitas.get(i).getEstado().equals("SOLICITADA") || listaCitas.get(i).getEstado().equals("SOLICITADA")) {
+                            existe = true;
+                            break;
+                        }
+                    }
+
                 }
                 if (!existe) {
                     modalCita = 0;

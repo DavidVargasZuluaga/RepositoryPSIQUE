@@ -85,7 +85,7 @@ public class UsuarioControlador implements Serializable {
         segundo = fecha2.get(Calendar.SECOND);
         fechaActual = (dia + "/" + mes);
         horaActual = (+hora + " : " + minuto);
-        
+
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -153,6 +153,16 @@ public class UsuarioControlador implements Serializable {
     }
 
     public String cerrarSesion() {
+        try {
+            init();
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/PSIQUE/index.xhtml";
+    }
+
+    public String invalidarSesion() {
         try {
             init();
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();

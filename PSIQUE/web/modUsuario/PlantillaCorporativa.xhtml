@@ -32,7 +32,9 @@
         <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
         <title>Bienvenido a PSIQUE</title>
-        
+
+        <f:event type="preRenderView" listener="#{usuarioControlador.invalidarSesion()}"/>
+
     </h:head>
 
     <h:body class="marcagua">
