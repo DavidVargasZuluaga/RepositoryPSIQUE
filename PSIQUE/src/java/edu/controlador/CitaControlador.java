@@ -12,7 +12,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -35,20 +37,38 @@ public class CitaControlador implements Serializable {
     @Inject
     private PsicologoFacade psicologoFacade;
 
+    private int modalCita;
+    private int año;
+    private int mes;
+    private int dia;
+    private int hora;
+    private int minuto;
+    private int segundo;
+    private String fechaActual;
+    private String horaActual;
+
+    private Calendar fecha;
     private Cita citaTemp;
     private Cita citaAnterior;
-    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mma");
-
-    private int modalCita;
+    private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mmaa");
 
     @PostConstruct
     private void init() {
-        citaTemp = new Cita();
-
         modalCita = 0;
+        fecha = GregorianCalendar.getInstance();
+        año = fecha.get(Calendar.YEAR);
+        mes = fecha.get(Calendar.MONTH) + 1;
+        dia = fecha.get(Calendar.DAY_OF_MONTH);
+        hora = fecha.get(Calendar.HOUR_OF_DAY);
+        minuto = fecha.get(Calendar.MINUTE);
+        segundo = fecha.get(Calendar.SECOND);
+        fechaActual = (dia + "/" + mes);
+        horaActual = (+hora + " : " + minuto);
+
+        citaTemp = new Cita();
     }
-    
-    public void cerrarModal(){
+
+    public void cerrarModal() {
         modalCita = 0;
     }
 
@@ -82,6 +102,8 @@ public class CitaControlador implements Serializable {
     public String solicitarCita(Aprendiz a) {
         citaTemp = new Cita();
         boolean existe = false;
+        Date fechaComparar = fecha.getTime();
+        fechaComparar.setHours(fechaComparar.getHours() + 12);
         List<Cita> listaCitas = citaFacade.findAll();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -90,27 +112,31 @@ public class CitaControlador implements Serializable {
         try {
             citaTemp.setIdAprendiz(a);
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
-            String hora;
+            String hora = " ";
             if (citaTemp.getIdPsicologo().getJornada().equals("Mañana")) {
                 hora = (params.get("fecha2") + " " + params.get("hora2"));
             } else {
                 hora = (params.get("fecha") + " " + params.get("hora"));
             }
             citaTemp.setFecha((Date) format.parse(hora));
-            citaTemp.setValoracion(0);
-            citaTemp.setEstado("SOLICITADA");
-            for (int i = 0; i < listaCitas.size(); i++) {
-                if (listaCitas.get(i).getFecha().equals(citaTemp.getFecha())) {
-                    existe = true;
-                    break;
+            if (!citaTemp.getFecha().before(fechaComparar)) {
+                citaTemp.setValoracion(0);
+                citaTemp.setEstado("SOLICITADA");
+                for (int i = 0; i < listaCitas.size(); i++) {
+                    if (listaCitas.get(i).getFecha().equals(citaTemp.getFecha())) {
+                        existe = true;
+                        break;
+                    }
                 }
-            }
-            if (!existe) {
-                modalCita = 0;
-                citaFacade.create(citaTemp);
+                if (!existe) {
+                    modalCita = 0;
+                    citaFacade.create(citaTemp);
+                } else {
+                    modalCita = 1;
+                    citaTemp = new Cita();
+                }
             } else {
-                modalCita = 1;
-                citaTemp = new Cita();
+                modalCita = 3;
             }
 
         } catch (Exception e) {

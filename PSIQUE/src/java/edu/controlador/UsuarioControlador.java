@@ -49,17 +49,6 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    
-    private Calendar fecha2;
-    private Usuario usuarioLog;
-    private Usuario usuarioTemp;
-    private Aprendiz aprendizLog;
-    private Aprendiz aprendizTemp;
-    private Psicologo psicologoLog;
-
-    private List<Usuario> listaUsuarios;
-    private List<Psicologo> listaPsicologos;
-
     private int ver;
     private int modalCreacion;
     private int año;
@@ -70,14 +59,33 @@ public class UsuarioControlador implements Serializable {
     private int segundo;
     private String version;
     private String fechaActual;
-    private String horaActual ;
-    
+    private String horaActual;
+
+    private Calendar fecha2;
+    private Usuario usuarioLog;
+    private Usuario usuarioTemp;
+    private Aprendiz aprendizLog;
+    private Aprendiz aprendizTemp;
+    private Psicologo psicologoLog;
+
+    private List<Usuario> listaUsuarios;
+    private List<Psicologo> listaPsicologos;
+
     @PostConstruct
     public void init() {
-        fecha2 = GregorianCalendar.getInstance();
+        version = "PSIQUE 3.8";
         modalCreacion = 0;
         ver = 0;
-
+        fecha2 = GregorianCalendar.getInstance();
+        año = fecha2.get(Calendar.YEAR);
+        mes = fecha2.get(Calendar.MONTH) + 1;
+        dia = fecha2.get(Calendar.DAY_OF_MONTH);
+        hora = fecha2.get(Calendar.HOUR_OF_DAY);
+        minuto = fecha2.get(Calendar.MINUTE);
+        segundo = fecha2.get(Calendar.SECOND);
+        fechaActual = (dia + "/" + mes);
+        horaActual = (+hora + " : " + minuto);
+        
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -86,16 +94,6 @@ public class UsuarioControlador implements Serializable {
 
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
-
-        año = fecha2.get(Calendar.YEAR);
-        mes = fecha2.get(Calendar.MONTH)+1;
-        dia = fecha2.get(Calendar.DAY_OF_MONTH);
-        hora = fecha2.get(Calendar.HOUR_OF_DAY);
-        minuto = fecha2.get(Calendar.MINUTE);
-        segundo = fecha2.get(Calendar.SECOND);
-        version = "PSIQUE 3.8";
-        fechaActual = (dia + "/" + mes);
-        horaActual = (+ hora + " : " + minuto);
 
     }
 
@@ -161,7 +159,7 @@ public class UsuarioControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/PSIQUE/index";
+        return "/PSIQUE/";
     }
 
     public void validarSesion() {
@@ -281,9 +279,6 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return res;
 //    }
-    
-    
-    
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
     public String cancelarCita(Cita cita) {
@@ -331,8 +326,6 @@ public class UsuarioControlador implements Serializable {
     }
 
     //    Parte Andres parte del controlador Usuario
-    
-
     public void verDatos() {
         ver = 1;
     }
@@ -340,7 +333,6 @@ public class UsuarioControlador implements Serializable {
     public void cerrarDatos() {
         ver = 0;
     }
-
 
     public List<Usuario> traerListaAprendiz() {
         List<Usuario> lista = new ArrayList();
@@ -451,7 +443,7 @@ public class UsuarioControlador implements Serializable {
     public void setHoraActual(String horaActual) {
         this.horaActual = horaActual;
     }
-    
+
     public Usuario getUsuarioLog() {
         return usuarioLog;
     }
@@ -548,5 +540,4 @@ public class UsuarioControlador implements Serializable {
         this.version = version;
     }
 
-    
 }

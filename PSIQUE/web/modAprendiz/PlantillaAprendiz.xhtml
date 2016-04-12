@@ -87,7 +87,7 @@
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
                             #{citaControlador.cerrarModal()}
                         </button><h4>
-                        <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
+                            <strong>Turno no disponible!</strong> Hora no disponible, intentelo de nuevo en otra hora.
                         </h4>
                     </div>
                 </c:if>
@@ -97,6 +97,14 @@
                             #{citaControlador.cerrarModal()}
                         </button>
                         <h4><strong>Cita no solicitada</strong> Datos de la cita invalidos.</h4>
+                    </div>
+                </c:if>
+                <c:if test="#{citaControlador.modalCita == 3}" >
+                    <div class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            #{citaControlador.cerrarModal()}
+                        </button>
+                        <h4><strong>Cita no solicitada</strong> Elija una fecha con minimo 24 horas de anticipacion</h4>
                     </div>
                 </c:if>
                 <c:if test="#{mensajeControlador.modalMensaje == 1}" >
@@ -420,7 +428,7 @@
             <div class="color1 row">
                 <div class="centrar container tfooter col-md-12">
                     <hr/>
-                    <h4>CopyRigth © 2015 | PSIQUE Todos los derechos reservados
+                    <h4>CopyRigth © 2016 | PSIQUE Todos los derechos reservados
                         <br/>
                         Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
                         <br/>

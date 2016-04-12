@@ -74,7 +74,7 @@
                                     <h:outputLabel style="font-size:20px;" >&nbsp; Ud solicito una cita</h:outputLabel>
                                     <h4>Fecha y hora</h4>
                                     <h:outputLabel style="color:black;" class="label" value="#{c.fecha}">
-                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                        <f:convertDateTime pattern="dd/MM hh:mm" type="time"  />
                                     </h:outputLabel>
                                     <h4>Psicologo</h4>
                                     <h5>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</h5>
