@@ -62,7 +62,7 @@ public class UsuarioControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        version = "PSIQUE 3.8";
+        version = "PSIQUE 3.9";
         modalCreacion = 0;
         ver = 0;
         fecha2 = GregorianCalendar.getInstance();
