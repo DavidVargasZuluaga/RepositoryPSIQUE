@@ -13,11 +13,9 @@
 
         <ui:define name="body">
 
-            <div class="container-fluid centrar">
-                <h1>Bienvenido Aprendiz</h1>
-                <br/>
-                <h:outputLabel style="color:black; font-size: xx-large;" class="label" value="#{usuarioControlador.fechaActual} "/>
-                <h:outputLabel style="color:black; font-size: xx-large;" class="label" value="#{usuarioControlador.horaActual} "/>
+            <div class="container-fluid ">
+                <h1 style="font-size: 40;" class="color1">Bienvenido Aprendiz</h1>
+                <h:outputLabel style="color:black; font-size: xx-large;" class="label" ><i class="fa fa-calendar fa-lg color1"></i> #{usuarioControlador.fechaActual}</h:outputLabel>
                 <hr/>
                 <c:choose >
                     <c:when test="#{(usuarioControlador.fecha2.time.hours ==3)}">

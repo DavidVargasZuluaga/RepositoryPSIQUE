@@ -1,5 +1,5 @@
 function mostrarJornada(id) {
-    if (id == 1) {
+    if (id ==  1) {
         $("#Mañana").show();
         $("#Tarde").hide();
     }
@@ -30,8 +30,3 @@ function mostrarBoton(id) {
         $("#boton1").hide();
     }
 }
-$('#myTabs a').click(function (e) {
-    e.preventDefault()
-    $(this).tab('show')
-})
-

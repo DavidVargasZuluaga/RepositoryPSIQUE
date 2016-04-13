@@ -406,16 +406,16 @@
             return 'Loading, please wait...';
         },
         formatRecordsPerPage: function (pageNumber) {
-            return sprintf('%s records per page', pageNumber);
+            return sprintf('%s Mostrar por pagina', pageNumber);
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
-            return sprintf('Showing %s to %s of %s rows', pageFrom, pageTo, totalRows);
+            return sprintf(' Mostrando %s de %s | Toral: %s filas', pageFrom, pageTo, totalRows);
         },
         formatSearch: function () {
             return 'Search';
         },
         formatNoMatches: function () {
-            return 'No matching records found';
+            return 'No se encontraron resultados';
         },
         formatPaginationSwitch: function () {
             return 'Hide/Show pagination';
@@ -1031,7 +1031,7 @@
             html = [];
             html.push(
                 '<div class="pull-' + this.options.searchAlign + ' search">',
-                sprintf('<input class="form-control' + (this.options.iconSize === undefined ? '' : ' input-' + this.options.iconSize) + '" type="text" placeholder="%s">',
+                sprintf('<input class="form-control' + (this.options.iconSize === undefined ? '' : ' input-' + this.options.iconSize) + '" type="text" placeholder="Buscar ...">',
                     this.options.formatSearch()),
                 '</div>');
 

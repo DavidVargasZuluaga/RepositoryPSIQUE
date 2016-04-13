@@ -103,7 +103,7 @@ public class UsuarioControlador implements Serializable {
     }
 
     public String autenticar() {
-        String res = "/PSIQUE/index.xhtml";
+        String res = "/PSIQUE/";
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -130,9 +130,6 @@ public class UsuarioControlador implements Serializable {
                     break;
                 case 4:
                     res = "/modAprendiz/principalAprendiz.xhtml";
-                    break;
-                default:
-                    res = "/index.xhtml";
                     break;
             }
         } catch (Exception e) {
