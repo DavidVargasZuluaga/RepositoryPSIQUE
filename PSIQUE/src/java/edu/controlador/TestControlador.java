@@ -36,12 +36,14 @@ public class TestControlador implements Serializable {
     @Inject
     PreguntaFacade preguntaFacade;
 
+    int modalTest ;
     Test testLog;
     Respuesta respuestaTem ;
     List<Pregunta> listaPreguntas;
 
     @PostConstruct
     public void init() {
+        modalTest = 0;
         testLog = new Test();
         respuestaTem = new Respuesta();
         listaPreguntas = preguntaFacade.findAll();
@@ -65,10 +67,12 @@ public class TestControlador implements Serializable {
                 suma =+ respu.getValor();
             }
             testLog.setResultado(""+suma);
+            testLog.setEstado("RESUELTO");
+            modalTest = 1;
             testFacade.edit(testLog);
         } catch (Exception e) {
+            modalTest = 2;
             e.printStackTrace();
-            System.out.println("ERROR !!!");
         }
         return "notificacion.xhtml";
     }
@@ -89,6 +93,9 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
+    public void cerrarModal() {
+        modalTest = 0;
+    }
 
     public Test getTestLog() {
         return testLog;
@@ -96,6 +103,30 @@ public class TestControlador implements Serializable {
 
     public void setTestLog(Test testLog) {
         this.testLog = testLog;
+    }
+
+    public int getModalTest() {
+        return modalTest;
+    }
+
+    public void setModalTest(int modalTest) {
+        this.modalTest = modalTest;
+    }
+
+    public Respuesta getRespuestaTem() {
+        return respuestaTem;
+    }
+
+    public void setRespuestaTem(Respuesta respuestaTem) {
+        this.respuestaTem = respuestaTem;
+    }
+
+    public List<Pregunta> getListaPreguntas() {
+        return listaPreguntas;
+    }
+
+    public void setListaPreguntas(List<Pregunta> listaPreguntas) {
+        this.listaPreguntas = listaPreguntas;
     }
 
 }

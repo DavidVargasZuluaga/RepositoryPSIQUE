@@ -80,6 +80,22 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{testCortnolador.modalTest == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            #{testCortnolador.cerrarModal()}
+                        </button>
+                        <strong>Test resuelto</strong> Muchas gracias
+                    </div>
+                </c:if>
+                 <c:if test="#{testCortnolador.modalTest == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            #{testCortnolador.cerrarModal()}
+                        </button>
+                        <strong>Error</strong> Vuelva a intentarlo mas tarde
+                    </div>
+                </c:if>
                 <c:if test="#{citaControlador.modalCita == 1}" >
                     <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
