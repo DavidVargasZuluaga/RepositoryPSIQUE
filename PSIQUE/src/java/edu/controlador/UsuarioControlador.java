@@ -50,7 +50,7 @@ public class UsuarioControlador implements Serializable {
     private FichaFacade fichaFacade;
 
     private int ver, modalCreacion, año, mes, dia, hora, minuto, segundo;
-    private String version, fechaActual,horaActual;
+    private String version, fechaActual, horaActual;
 
     private Calendar fecha2;
     private Usuario usuarioLog, usuarioTemp;
@@ -146,7 +146,7 @@ public class UsuarioControlador implements Serializable {
             e.printStackTrace();
             return "/PSIQUE/";
         }
-        
+
     }
 
     public void validarSesion() {
@@ -233,7 +233,7 @@ public class UsuarioControlador implements Serializable {
         usuarioFacade.edit(usuarioLog);
         switch (usuarioLog.getIdRol().getIdRol()) {
             case 1:
-                res = "/index.xhtml";
+                res = "/modAdmon/configuracion.xhtml";
                 break;
             case 2:
                 res = "/modCoordinador/configuracion.xhtml";
@@ -249,6 +249,22 @@ public class UsuarioControlador implements Serializable {
                 break;
         }
         return "";
+    }
+
+    public String actualizarEstado(Usuario u) {
+        String res = "/modAdmon/todosUsuarios.xhtml";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String es = (String) params.get("estadoDes");
+            u.setEstado(es);
+            usuarioFacade.edit(u);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
 //    public String recuperarContraseña() {

@@ -77,9 +77,10 @@
                                         <li><a href="/PSIQUE/modUsuario/Registro/coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Coordinador</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong>Sobre el sistema</strong></a></li>
-                                        <li><a href="/PSIQUE/modUsuario/Registro/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de autidorias</a></li>
-                                        <li><a href="/PSIQUE/modUsuario/Registro/entradas.xhtml"><i class="fa fa fa-eye fa-lg"></i> Seguimiento de entradas</a></li>
-
+                                        <li><a href="/PSIQUE/modAdmon/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de autidorias</a></li>
+                                        <li><a href="/PSIQUE/modAdmon/entradas.xhtml"><i class="fa fa fa-eye fa-lg"></i> Seguimiento de entradas</a></li>
+                                        <li><a href="/PSIQUE/modAdmon/todosUsuarios.xhtml"><i class="fa fa fa-users fa-lg"></i> Todos los usuarios</a></li>
+                                        <li role="separator" class="divider"></li>
                                         <!-- <li role="separator" class="divider"></li>
                                        <li><a href="administradorAdmon.html"><i class="fa fa fa-user-secret fa-lg"></i>  Administrador</a></li>
                                         <li role="separator" class="divider"></li>-->
@@ -319,6 +320,39 @@
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                                     <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(lista)}" >
                                         <f:param name="formulario" value="Actualizar#{lista.idUsuario}"/> 
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </ui:repeat>
+
+            <!-- MODAL ACTIVAR/DESACTIVAR USUARIO-->
+            <ui:repeat var="l" value="#{usuarioControlador.listaUsuarios}">
+                <div class="modal fade" id="activar#{l.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <h:form id="activarform">
+                                <div class="modal-body">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                        <h4 class="modal-title" id="myModalLabel">Estado de #{l.nombres} #{l.primerApellido} </h4>
+                                    </div>
+                                    <h3>Estado actual: #{l.estado}</h3>
+                                    <div class="modal-body">
+                                        <select name="estadoDes" class="form-control">
+                                            <option value="ACTIVO" >ACTIVO</option>
+                                            <option value="DESERTADO" >DESERTADO</option>
+                                            <option value="GRADUADO" >GRADUADO</option>
+                                            <option value="INACTIVO" >INACTIVO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="${usuarioControlador.actualizarEstado(l)}" >
+                                        <f:param name="activarform" value="Actualizar#{listaPsicologo.idUsuario}"/> 
                                     </h:commandButton>
                                 </div>
                             </h:form>

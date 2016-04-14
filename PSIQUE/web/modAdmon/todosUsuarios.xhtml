@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaAdmon.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Todos los usuarios
+    </ui:define>
+
+    <ui:define name="body">
+        <section>           
+            <div class="container-fluid trans2">
+
+
+                <div class="row color1">
+                    <div class="container-fluid">
+                        <div class="col-xs-12 col-sm-12 col-md-12 ">
+                            <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i> Todos los usuarios<br/><small>Activos e inactivos</small></h1>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="table-responsive">
+                            <div class="panel filterable">
+                                <h:form>
+                                    <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="Id" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Id</th>
+                                                <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                                <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                                <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
+                                                <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                                <th data-field="Estado" data-align="center" data-sortable="true" class="col-md-2">Estado</th>
+                                                <th data-field="Activar/Desactivar" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>                                     
+                                            <ui:repeat var="lista" value="#{usuarioControlador.listaUsuarios}">  
+                                                <tr>
+                                                    <td>#{lista.idUsuario}</td> 
+                                                    <td>#{lista.noDocumento}</td> 
+                                                    <td>#{lista.nombres}</td> 
+                                                    <td>#{lista.primerApellido}</td> 
+                                                    <td>#{lista.segundoApellido}</td> 
+                                                    <td>#{lista.estado}</td> 
+                                                    <td>
+                                                        <h:commandLink class="btn botonesnav" onclick="$('#activar#{lista.idUsuario}').modal(); return false;" title="Ver mensaje completo">
+                                                            <i class="fa fa-pencil fa-lg botonesnav"></i>
+                                                        </h:commandLink>
+                                                    </td> 
+                                                </tr>
+                                            </ui:repeat> 
+                                            <br/>
+                                        </tbody>
+                                    </table>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/><br/>
+            </div>
+            <!-- InstanceEndEditable -->
+
+
+        </section>
+    </ui:define>
+
+</ui:composition>
