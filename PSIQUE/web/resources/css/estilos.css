@@ -90,10 +90,10 @@ section{
 .marcaguaP{
 	background-image:url(../resources/img/mAguaP.png);
 }
-
-.fasdfasd{
-	height:64px;width:64px;
+.marcaguac{
+	background-image:url(../resources/img/mAguaC.png);
 }
+
 .trans{
 	opacity: 0.74;
 	background-color:#3B9687;
