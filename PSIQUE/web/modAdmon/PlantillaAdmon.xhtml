@@ -64,7 +64,7 @@
                             <ul style="font-size: 18px;" class="nav navbar-nav">
                                 <li><a href="/PSIQUE/modAdmon/principalAdmon.xhtml" class="botonesnav"><i class="fa fa-home fa-lg"></i>  Principal</a></li>
                                 <li class="dropdown">
-                                    <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users fa-lg"></i>  Usuarios  <span class="caret"></span></a>
+                                    <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs fa-lg"></i> Control<span class="caret"></span></a>
                                     <ul style="font-size: 18px;" class="dropdown-menu">
                                         <li><a><strong>Editar</strong></a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Aprendiz</a></li>
@@ -72,20 +72,20 @@
                                         <li><a href="/PSIQUE/modAdmon/admonCoordinadores.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Coordinador</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonProgramas-Fichas.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Programas y fichas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a><strong>Crear</strong></a></li>
+                                        <li><a><strong>Crear Usuario</strong></a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Psicologo</a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Coordinador</a></li>
-
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="/PSIQUE/modUsuario/Registro/programaFormacionRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Registrar programa de formación</a></li>
-                                        <li><a href="/PSIQUE/modUsuario/Registro/fichaRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Registrar ficha</a></li>
+                                        <li><a><strong>Sobre el sistema</strong></a></li>
+                                        <li><a href="/PSIQUE/modUsuario/Registro/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de autidorias</a></li>
+                                        <li><a href="/PSIQUE/modUsuario/Registro/entradas.xhtml"><i class="fa fa fa-eye fa-lg"></i> Seguimiento de entradas</a></li>
 
                                         <!-- <li role="separator" class="divider"></li>
                                        <li><a href="administradorAdmon.html"><i class="fa fa fa-user-secret fa-lg"></i>  Administrador</a></li>
                                         <li role="separator" class="divider"></li>-->
                                     </ul>
                                 </li>
-                                <li><a href="/PSIQUE/modUsuario/Notificaciones/notifiAdmon.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones </a></li>
+                                <li><a href="/PSIQUE/modAdmon/notificacion.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones </a></li>
                             </ul>
                             <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
                                 <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesion</b></h:commandLink></li>
@@ -136,10 +136,10 @@
                             <br/>
                             <div style="font-size: 18px;" class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
                             <br/>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="PlantillaAdmon.xhtml">
+
+        <ui:define name="title">
+            Notificaciones
+        </ui:define>
+
+        <ui:define name="body">
+            <div class="table-responsive">
+                <div class="panel filterable">
+                    <h2>Notificaciones</h2>
+                    <hr/>
+                    <h3>Mensajes nuevos</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th data-field="#" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">#</th>
+                                <th data-field="Titulo" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Titulo</th>
+                                <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                                <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                            </tr>
+                        </thead>
+                        <tbody>                                     
+                            <c:forEach var="m" items="#{mensajeControlador.listarMensajesNuevos(usuarioControlador.usuarioLog)}">  
+                                <tr>
+                                    <td>#{m.idMensaje}</td> 
+                                    <td>#{m.idEmisor.nombres}</td>
+                                    <td>#{m.asunto}</td>
+                                    <td>
+                                        <h:outputLabel style="color:black;" class="label" value="#{m.fecha}">
+                                            <f:convertDateTime pattern="dd/MM/yyy hh:mma" />
+                                        </h:outputLabel>
+                                    </td> 
+                                    <td align="center" width="20%" >
+                                        <h:form>
+                                            <h:commandLink class="btn botonesnav" action="mensajeria.xhtml" title="Ir a mensajeria">
+                                                <i class="fa fa-eye fa-lg"></i>
+                                            </h:commandLink>
+                                        </h:form>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
