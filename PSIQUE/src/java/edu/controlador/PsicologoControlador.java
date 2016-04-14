@@ -49,10 +49,9 @@ public class PsicologoControlador implements Serializable {
 
     @Inject
     private RespuestaFacade respuestaFacade;
-    
-    @Inject 
+
+    @Inject
     private FichaFacade fichaFacade;
-   
 
     private Usuario usuarioLog;
     private Aprendiz aprendizLog;
@@ -118,12 +117,12 @@ public class PsicologoControlador implements Serializable {
         }
         return res;
     }
-    
-    public List<Ficha> mostrarFichas (){
+
+    public List<Ficha> mostrarFichas() {
         return fichaFacade.findAll();
     }
-    
-    public List<Aprendiz> mostrarAprendicesFicha (){
+
+    public List<Aprendiz> mostrarAprendicesFicha() {
         return fichaLog.getAprendizList();
     }
 
@@ -162,14 +161,13 @@ public class PsicologoControlador implements Serializable {
         preguntaLog.getRespuestaList().add(respuesta);
         estados = 1;
     }
-    
-    public void eliminarRespuesta(Respuesta respuesta){
+
+    public void eliminarRespuesta(Respuesta respuesta) {
         respuestaFacade.remove(respuesta);
     }
 
     public String crearPregunta() {
-        
-        
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -183,16 +181,40 @@ public class PsicologoControlador implements Serializable {
 
         return "crearPregunta.xhtml";
     }
-    
-    public void asignarTest (Test test){
+
+    public void asignarTest(Test test) {
+
         test.setIdTest(null);
         test.setIdAprendiz(aprendizLog);
-        testFacade.create(test);
+        test.setEstado("PLANTILLA");
+        List<Pregunta> lstaPregunta = new ArrayList<Pregunta>();
+        lstaPregunta = test.getPreguntaList();
+        List<Respuesta> lstaRespuesta = new ArrayList<Respuesta>();
+        if (test.getEstado().equals("ASIGNADO")) {
+            estados = 10;
+        }
+        if (lstaPregunta == null) {
+            estados = 10;
+        }else {
+            test.setEstado("ASIGNADO");
+            testFacade.create(test);
+            for (int i = 0; i < lstaPregunta.size(); i++) {
+                lstaPregunta.get(i).setIdTest(test);
+                lstaRespuesta = lstaPregunta.get(i).getRespuestaList();
+                preguntaFacade.create(lstaPregunta.get(i));
+                for (int j = 0; j < lstaRespuesta.size(); j++) {
+                    lstaRespuesta.get(j).setIdPregunta(lstaPregunta.get(i));
+                    respuestaFacade.create(lstaRespuesta.get(j));
+                }
+            } estados = 20;
+        }
+
+       
     }
 
     public List<Respuesta> mostrarRespuestas() {
         return preguntaLog.getRespuestaList();
-        
+
     }
 
     public void eliminarPregunta(Pregunta pregunta) {
@@ -234,13 +256,13 @@ public class PsicologoControlador implements Serializable {
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
-    
-    public String registrarObservacion (){
-        
+
+    public String registrarObservacion() {
+
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
-        Cita cita = new Cita ();
+        Cita cita = new Cita();
         cita = citaLog;
         cita.setEstado("CUMPLIDA");
         cita.setObservacion((String) params.get("observacion"));
@@ -382,8 +404,5 @@ public class PsicologoControlador implements Serializable {
     public void setCitaLog(Cita citaLog) {
         this.citaLog = citaLog;
     }
-    
-    
-    
 
 }

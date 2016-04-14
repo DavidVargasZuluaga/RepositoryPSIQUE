@@ -9,9 +9,18 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>precargaControlador</servlet-name>
+        <servlet-class>edu.controlador.precargaControlador</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>precargaControlador</servlet-name>
+        <url-pattern>/modAdmon/precargaControlador</url-pattern>
+        <url-pattern>/precargaControlador</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -82,7 +82,7 @@ public class TestControlador implements Serializable {
         List<Test> listaTestT = testFacade.findAll();
         try {
             for (int i = 0; i < listaTestT.size(); i++) {
-                if (listaTestT.get(i).getIdAprendiz().getUsuario().equals(u)) {
+                if (listaTestT.get(i).getIdAprendiz().getUsuario().getIdUsuario().equals(u.getIdUsuario())) {
                     if (listaTestT.get(i).getEstado().equals("ASIGNADO")) {
                         listaTestA.add(listaTestT.get(i));
                     }

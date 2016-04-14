@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
        <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
@@ -96,6 +97,16 @@
                             <div class="panel filterable">
                                 <div class="panel-heading ">
                                     <h3 class="centrar panel-title">Tests SILSPA</h3>
+                                    <c:if test="#{psicologoControlador.estados == 10}">
+                                        <div class="alert alert-warning" role="alert">
+                                            Este test ya está resuelto o no ha sido configurado
+                                        </div>
+                                    </c:if>
+                                    <c:if test="#{psicologoControlador.estados == 20}">
+                                        <div class="alert alert-warning" role="alert">
+                                            Test asignado correctaamente
+                                        </div>
+                                    </c:if>
                                 </div>
                                 <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
@@ -119,12 +130,12 @@
                                         </ui:repeat>
                                     </tbody>
                                 </table>
-                                <h:form><h:commandButton value="verAprendices" action="#{psicologoControlador.asignarTest(miLista)}" ></h:commandButton></h:form>
+                                <h:form><h:commandButton value="ver Aprendices" action="verAprendices.xhtml}" ><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"></f:setPropertyActionListener></h:commandButton></h:form>
                             </div>
                         </div>
                     </div>
                 </div>
-
+               
                 <!-- InstanceEndEditable -->
             </div>
             <div class="color1 row">

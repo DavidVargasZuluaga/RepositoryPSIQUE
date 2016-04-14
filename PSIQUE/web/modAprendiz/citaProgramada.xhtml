@@ -35,6 +35,7 @@
                             Psicologo
                             <br/> 
                             #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}
+                            <br/>
                             <c:choose>
                                 <c:when test="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).valoracion == 0}">
                                     <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
@@ -42,10 +43,10 @@
                                     </h:commandLink>
                                 </c:when>
                                 <c:otherwise>
-                                    Valoracion
+                                    <b class="color1">Valoracion :</b>
                                     #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).valoracion}
                                     <br/>
-                                    <small>5(Muy buena), 4(Buena), 3(Aceptable), 2(Podria mejorar), 1(Mala)</small>
+                                    <small >5(Muy buena), 4(Buena), 3(Aceptable), 2(Podria mejorar), 1(Mala)</small>
                                 </c:otherwise>
                             </c:choose>
                             <hr/>
