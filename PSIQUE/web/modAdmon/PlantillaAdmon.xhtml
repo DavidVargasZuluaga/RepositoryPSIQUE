@@ -10,7 +10,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-        <link rel="shortcut icon" type="image/x-icon" href="/resources/img/icono.ico"/>
+        <link rel="shortcut icon" type="image/x-icon" href="/PSIQUE/resources/img/icono.ico"/>
 
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
@@ -27,15 +27,15 @@
         <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
         <h:outputScript library="js" name="miCalendario.js" target="body"/>
         <h:outputScript library="js" name="mostrar.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-table-exports.js" target="body"/>
         <!--<h:outputScript library="js" name="formValidation.min.js" target="body"/>
         <h:outputScript library="js" name="validacionFormularios.js" target="body"/>
         <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
         <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
-        <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
 
-        <!-- Latest compiled and minified JavaScript -->
+        <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
@@ -43,13 +43,14 @@
         <title>
             <ui:insert name="title"></ui:insert>
         </title>
+
     </h:head>
 
-    <h:body class="marcaguaA">
+    <h:body class="marcaguaAd">
         <header class="">
             <h:form id="menu">
-                <nav class="trans2 navbar-fixed-top">
-                    <div class="container ">
+                <nav class="trans2 navbar-fixed-top perfilHover">
+                    <div class="container">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed " data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" >
                                 <span class="sr-only">Toggle navigation</span>
@@ -57,14 +58,14 @@
                                 <span class="icon-bar color2" ></span>
                                 <span class="icon-bar color2"></span>
                             </button>
-                            <a class="navbar-brand botonesnav" href="/PSIQUE/modAdmon/principalAdmon.xhtml">Administrador</a>
+                            <a style="font-size: 24px;" class="navbar-brand botonesnav" ><b>#{usuarioControlador.usuarioLog.idRol.nombre}</b></a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
+                            <ul style="font-size: 18px;" class="nav navbar-nav">
                                 <li><a href="/PSIQUE/modAdmon/principalAdmon.xhtml" class="botonesnav"><i class="fa fa-home fa-lg"></i>  Principal</a></li>
                                 <li class="dropdown">
                                     <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users fa-lg"></i>  Usuarios  <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
+                                    <ul style="font-size: 18px;" class="dropdown-menu">
                                         <li><a><strong>Editar</strong></a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Aprendiz</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonPsicologo.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Psicologo</a></li>
@@ -84,15 +85,11 @@
                                         <li role="separator" class="divider"></li>-->
                                     </ul>
                                 </li>
-                                <li><a href="/PSIQUE/modUsuario/Notificaciones/notifiAdmon.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones  <span class="badge color2">6</span></a></li>
+                                <li><a href="/PSIQUE/modUsuario/Notificaciones/notifiAdmon.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones </a></li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav" >Cerrar Sesion &nbsp; &nbsp;</h:commandLink></li>
+                            <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesion</b></h:commandLink></li>
                             </ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <img class="imgdere" alt="Brand" src="/PSIQUE/resources/img/ojo64.png"/>
-                            </ul>			
-
                         </div>
                     </div>
                 </nav>
@@ -104,27 +101,45 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{mensajeControlador.modalMensaje == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{mensajeControlador.cerrarModal()}
+                        </button>
+                        <strong>Mensaje enviado</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{mensajeControlador.modalMensaje == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{mensajeControlador.cerrarModal()}
+                        </button>
+                        <strong>Usuario inexistente </strong>Por favor vuelva a intentarlo verificando escribir correctamente el nombre completo.
+                    </div>
+                </c:if>
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
-                    <div class="container-fluid perfilHover">
+                    <div class="container-fluid">
                         <div class="profile-sidebar control-group">
                             <div class="profile-userpic btn-group-lg centrar">
                                 <h:graphicImage style="max-width: 200px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle centrar" />
+                                <hr/>
                             </div>
-                            <hr/>
-                            <div class="profile-usertitle centrar center-block">
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres} &nbsp;"/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido} &nbsp; "/>
-                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido} &nbsp; "/>
+                            <div style="font-size: 18px;" class="profile-usertitle centrar center-block">
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value="#{usuarioControlador.usuarioLog.nombres}&nbsp;"/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.primerApellido}&nbsp; "/>
+                                <h:outputLabel style="color:black;" class="profile-usertitle-name centrar" value=" #{usuarioControlador.usuarioLog.segundoApellido}&nbsp; "/>
                                 <br/> 
                                 <h:outputLabel style="color:#5a7391;" class="profile-usertitle-job centrar" value="#{usuarioControlador.usuarioLog.idRol.nombre}"/>
                             </div>
                             <br/>
-                            <div class="profile-usermenu botonesnav">
+                            <div style="font-size: 18px;" class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAprendiz/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
                             <br/>
@@ -139,12 +154,10 @@
                             <strong>Usuario modificado</strong>
                         </div>
                     </c:if>
-
                     <!--CUERPO-->
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
-            <!--Modal datos Administrador-->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -486,7 +499,6 @@
                     </div>
                 </div>
             </ui:repeat>
-
             <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod6">
@@ -504,12 +516,14 @@
                                     </c:forEach>
                                 </select>
                                 <h3><small>Asunto:</small></h3>
-                                <input class="form-control" name="asunto"/>
+                                <input class="form-control" name="asunto" required="true" />
                                 <h3><small>Mensaje:</small></h3>
-                                <textarea class="form-control" name="mensaje"/>
+                                <textarea class="form-control" name="mensaje" required="true"/>
                                 <br/>
                                 <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
+                                <datalist id="usuarios">
 
+                                </datalist>
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMensaje(usuarioControlador.usuarioLog)}"></h:commandButton>
@@ -519,7 +533,6 @@
                     </h:form>
                 </div>
             </div>
-
             <div class="modal fade" id="modalDatosPersonales" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod14">
@@ -546,7 +559,6 @@
                     </h:form>
                 </div>
             </div>
-
             <c:forEach var="l" items="#{mensajeControlador.mensajes}">
                 <div class="modal fade" id="modalVer#{l.idMensaje}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
@@ -616,20 +628,10 @@
                     </div>
                 </div>
             </c:forEach>
-
-            <div class="color1 row">
-                <br/>
-                <div class="col btn-group col-sx6 col-sm-6 col-md-4 col-md-offset-5 col-sm-offset-4 col-xs-offset-4" >
-                    <butoon class="btn btn-primary" tabindex="20"><i class="fa fa-facebook fa-2x"></i></butoon>
-                    <butoon class="btn btn-info" tabindex="21"><i class="fa fa-twitter fa-2x"></i></butoon>
-                    <butoon class="btn  btn-danger" tabindex="22"><i class="fa fa-youtube-play fa-2x"></i></butoon>
-                    <butoon class="btn btn-warning" tabindex="23" ><i class="fa fa-google-plus fa-2x"></i></butoon>
-                </div>
-            </div>
             <div class="color1 row">
                 <div class="centrar container tfooter col-md-12">
                     <hr/>
-                    <h4>CopyRigth © 2015 | PSIQUE Todos los derechos reservados
+                    <h4>CopyRigth © 2016 | PSIQUE Todos los derechos reservados
                         <br/>
                         Sistema de Información para el Seguimiento Psicológico del Aprendiz.   
                         <br/>

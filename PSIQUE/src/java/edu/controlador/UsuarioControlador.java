@@ -141,10 +141,10 @@ public class UsuarioControlador implements Serializable {
     public String cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            return "/PSIQUE/index.xhtml";
+            return "/PSIQUE/";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/PSIQUE/index.xhtml";
+            return "/PSIQUE/";
         }
         
     }
