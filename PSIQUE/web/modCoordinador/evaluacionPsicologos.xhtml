@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="PlantillaCoordinador.xhtml">
+
+        <ui:define name="title">
+            Bienvenido Coordinador
+        </ui:define>
+
+        <head>
+            <!--Js Graficas -->
+            <h:outputScript library="js" name="Chart.js"/>
+            <h:outputScript library="js" name="fusioncharts.js"/>
+            <h:outputScript library="js" name="fusioncharts.charts.js"/>
+            <h:outputScript library="js" name="Chart.js"/>
+            <!--<script src="../../resources/js/Chart1.js" type="text/javascript"></script>
+            <script src="../../resources/js/fusioncharts.js" type="text/javascript"></script>
+            <script src="../../resources/js/fusioncharts.charts.js" type="text/javascript"></script>-->
+            <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+            <!-- Latest compiled and minified JavaScript -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+        </head>
+
+        <ui:define name="body">
+
+            <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
+                <!--CUERPO-->
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.num1}" name="t3" id="t3"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.excelente}" name="excelente" id="excelente"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.buena}" name="buena" id="buena"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.aceptable}" name="aceptable" id="aceptable"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.mala}" name="mala" id="mala"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.nombrePsicologo}" name="nombre" id="nombre"   />
+                    </h:form>
+                </div>
+
+                <legend>Gráfica valorativa de los psicólogos por parte del personal estudiantil</legend>
+                <br/><br/>
+                <h:form>
+                    <select class="selectpicker" name="obj" id="select" data-live-search="true" >
+                        <option disabled="true" selected="true">Seleccione un psicólogo</option>
+                        <c:forEach var="u" items="#{controladorGrafica.traerPsicologos()}" >
+                            <option value="#{u.idPsicologo}">#{u.usuario.nombres} #{u.usuario.primerApellido} #{u.usuario.segundoApellido}</option>
+                        </c:forEach>
+                    </select>
+                    &nbsp; &nbsp;<h:commandButton class="btn  botones2" value="Ver gráfica"  action="#{controladorGrafica.valoracion()}"/>
+                </h:form>
+                <br/><br/>
+                <div id="estadistica">  
+                    <div id="graficaValoracion" >     
+                        <div id="chart-container"></div>
+                    </div>
+                </div>
+
+            </div>
+            <script>
+
+
+
+                var num1 = document.getElementById('excelente').value;
+                var num2 = parseFloat(num1);
+
+                var num3 = document.getElementById('buena').value;
+                var num4 = parseFloat(num3);
+
+                var num5 = document.getElementById('aceptable').value;
+                var num6 = parseFloat(num5);
+
+                var num7 = document.getElementById('puedeMejorar').value;
+                var num8 = parseFloat(num7);
+
+                var num9 = document.getElementById('mala').value;
+                var num10 = parseFloat(num9);
+
+                var nom = document.getElementById('nombre').value;
+                $(function () {
+
+                    $(document).ready(function () {
+
+                        // Build the chart
+                        $('#graficaValoracion').highcharts({
+                            chart: {
+                                plotBackgroundColor: null,
+                                plotBorderWidth: null,
+                                plotShadow: false,
+                                type: 'pie'
+                            },
+                            title: {
+                                text: 'Psicologo:' + " " + nom,
+                            },
+                            tooltip: {
+                                valueSuffix: '',           
+                                //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                            },
+                            plotOptions: {
+                                pie: {
+                                    allowPointSelect: true,
+                                    cursor: 'pointer',
+                                    dataLabels: {
+                                        // enabled: false
+                                        enabled: true,
+                                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                        style: {
+                                            color: (Highcharts.theme) || 'black'
+                                        }
+                                    },
+                                    showInLegend: true
+                                }
+                            },
+                            series: [{
+                                    name: 'Número de citas',
+                                    colorByPoint: true,
+                                    data: [{
+                                            name: 'Excelente',
+                                            y: num2
+                                        }, {
+                                            name: 'Buena',
+                                            y: num4,
+                                            sliced: true,
+                                            selected: true
+                                        }, {
+                                            name: 'Aceptable',
+                                            y: num6
+                                        }, {
+                                            name: 'Podria mejorar',
+                                            y: num8
+                                        }, {
+                                            name: 'Mala',
+                                            y: num10
+                                        }]
+                                }]
+                        });
+                    });
+                });
+
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

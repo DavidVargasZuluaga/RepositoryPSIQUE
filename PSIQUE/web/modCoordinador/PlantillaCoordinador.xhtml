@@ -7,7 +7,7 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
         <link rel="shortcut icon" type="image/x-icon" href="/PSIQUE/resources/img/icono.ico"/>
@@ -34,12 +34,29 @@
         <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+
 
         <script src="//rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
+
+        <!--Js Graficas -->
         <h:outputScript library="js" name="Chart.js" target="body"/>
+        <h:outputScript library="js" name="fusioncharts.js"/>
+        <h:outputScript library="js" name="fusioncharts.charts.js"/>
+        
+        <!--<script src="../../resources/js/Chart1.js" type="text/javascript"></script>
+        <script src="../../resources/js/fusioncharts.js" type="text/javascript"></script>
+        <script src="../../resources/js/fusioncharts.charts.js" type="text/javascript"></script>-->
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
 
         <f:event type="preRenderView" listener="#{usuarioControlador.validarSesion()}"/>
 
@@ -73,7 +90,7 @@
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong>Psicologos</strong></a></li>
                                         <li><a href="#"><i class="fa fa fa-search fa-lg"></i> &nbsp; Busqueda</a></li>
-                                        <li><a href="#"><i class="fa fa fa-area-chart fa-lg"></i> &nbsp; Generales Historicos</a></li>
+                                        <li><a href="/PSIQUE/modCoordinador/evaluacionPsicologos.xhtml"><i class="fa fa fa-area-chart fa-lg"></i> &nbsp; Valoración</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="#"><i class="fa fa fa-bar-chart fa-lg"></i> &nbsp; Ultimos reportes generales</a></li>
                                         <li role="separator" class="divider"></li>						
