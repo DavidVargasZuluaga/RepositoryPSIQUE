@@ -126,7 +126,7 @@ public class UsuarioControlador implements Serializable {
                     res = "/modCoordinador/principalCoordinador.xhtml";
                     break;
                 case 3:
-                    res = "/indexPsicologo.xhtml";
+                    res = "/modPsicologo/indexPsicologo.xhtml";
                     break;
                 case 4:
                     res = "/modAprendiz/principalAprendiz.xhtml";
