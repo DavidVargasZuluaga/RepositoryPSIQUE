@@ -28,9 +28,9 @@
                             Fecha y hora<br/>
                             <small>
                                 <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha}">
-                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
-                            </h:outputLabel>
-                                </small>
+                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                </h:outputLabel>
+                            </small>
                             <br/>
                             Psicologo
                             <br/> 
@@ -60,16 +60,16 @@
                                     <strong>Fecha y hora</strong>
                                     <br/>
                                     <small><h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{c.fecha}">
-                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
-                                    </h:outputLabel></small>
+                                            <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                        </h:outputLabel></small>
                                     <br/>
                                     <strong>Psicologo</strong>
                                     <br/>
                                     <small>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</small>
                                     <br/>
                                     <strong>Cita confirmada</strong>
-                                    <h:commandLink style="font-size: 19px;" class="btn botonesinv" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
-                                        <i class="fa fa-times-circle-o fa-lg"></i>
+                                    <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
+                                        <i class="fa fa-times-circle-o fa-lg"></i> Cancelar cita
                                     </h:commandLink>
                                     <hr/>
                                 </div>
