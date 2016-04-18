@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -89,6 +90,22 @@
                 <br/>
                 <br/>
                 <dir class="container-fluid">
+                    <c:if test="#{usuarioControlador.modalRecuperarContraseña == 1}" >
+                        <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                #{usuarioControlador.cerrarModal()}
+                            </button>
+                            <strong>Correo enviado</strong> Ah sido enviada la contraseña a su correo satisfactoriamente.
+                        </div>
+                    </c:if>
+                    <c:if test="#{usuarioControlador.modalRecuperarContraseña == 2}" >
+                        <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                #{usuarioControlador.cerrarModal()}
+                            </button>
+                            <strong>Error</strong> Error.
+                        </div>
+                    </c:if>
                     <div class="centrar col-xs-12 col-sm-5 col-md-3">
                         <h:graphicImage value="/resources/img/ojo.png" class="centrar img-responsive" />
                     </div>

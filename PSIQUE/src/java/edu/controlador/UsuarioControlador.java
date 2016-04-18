@@ -49,9 +49,10 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int ver, modalCreacion, año, mes, dia, hora, minuto, segundo;
+    private int ver, modalCreacion, modalRecuperarContraseña, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
+    private Correo correo;
     private Calendar fecha2;
     private Usuario usuarioLog, usuarioTemp;
     private Aprendiz aprendizLog, aprendizTemp;
@@ -64,6 +65,7 @@ public class UsuarioControlador implements Serializable {
     public void init() {
         version = "PSIQUE 3.9";
         modalCreacion = 0;
+        modalRecuperarContraseña = 0;
         ver = 0;
         fecha2 = GregorianCalendar.getInstance();
         año = fecha2.get(Calendar.YEAR);
@@ -75,6 +77,7 @@ public class UsuarioControlador implements Serializable {
         fechaActual = (dia + "/" + mes);
         horaActual = (+hora + " : " + minuto);
 
+        correo = new Correo();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -109,7 +112,8 @@ public class UsuarioControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-            long doc = Long.parseLong((String) params.get("documento"));
+            String doc2 = (String) params.get("documento");
+            long doc = Long.parseLong(doc2);
             String clave = (String) params.get("clave");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
@@ -141,10 +145,10 @@ public class UsuarioControlador implements Serializable {
     public String cerrarSesion() {
         try {
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            return "/PSIQUE/";
+            return "/PSIQUE/index.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/PSIQUE/";
+            return "/index.xhtml";
         }
 
     }
@@ -267,21 +271,34 @@ public class UsuarioControlador implements Serializable {
         return res;
     }
 
-//    public String recuperarContraseña() {
-//        String res = "/modUsuario/recuperarContraseña.xhtml";
-//        String correo = " ";
-//        FacesContext facesContext = FacesContext.getCurrentInstance();
-//        ExternalContext externalContext = facesContext.getExternalContext();
-//        Map params = externalContext.getRequestParameterMap();
-//        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-//        try {
-//            correo = ((String) params.get("correo"));
-//            Mailer.send(correo, "correo", "Mensajeeeeeeeee");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return res;
-//    }
+    public String recuperarContraseña() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String c = (String) params.get("correo");
+            for (int i = 0; i < listaUsuarios.size(); i++) {
+                if (listaUsuarios.get(i).getCorreo().equals(c)) {
+                    correo.setContrasena("hwfjffasxglqqerx");
+                    correo.setUsuario("psique2016@gmail.com");
+                    correo.setAsunto("Recuperar Contraseña");
+                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
+                    correo.setDestino(c);
+                    correo.setRutraArchivo("");
+                    CorreoControlador enviar = new CorreoControlador();
+                    enviar.enviarCorreo(correo);
+                    modalRecuperarContraseña = 1;
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            modalRecuperarContraseña = 2;
+        }
+        return "/index.xhtml";
+    }
+
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
     public String cancelarCita(Cita cita) {
@@ -326,6 +343,10 @@ public class UsuarioControlador implements Serializable {
     public List<Cita> mostrarCitas() {
         List<Cita> Citas = citaFacade.findAll();
         return Citas;
+    }
+
+    public void cerrarModal() {
+        modalRecuperarContraseña = 0;
     }
 
     //    Parte Andres parte del controlador Usuario
@@ -541,6 +562,22 @@ public class UsuarioControlador implements Serializable {
 
     public void setVersion(String version) {
         this.version = version;
+    }
+
+    public Correo getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(Correo correo) {
+        this.correo = correo;
+    }
+
+    public int getModalRecuperarContraseña() {
+        return modalRecuperarContraseña;
+    }
+
+    public void setModalRecuperarContraseña(int modalRecuperarContraseña) {
+        this.modalRecuperarContraseña = modalRecuperarContraseña;
     }
 
 }
