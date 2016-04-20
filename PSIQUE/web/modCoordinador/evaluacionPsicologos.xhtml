@@ -10,7 +10,7 @@
             Bienvenido Coordinador
         </ui:define>
 
-        <head>
+        <h:head>
             <!--Js Graficas -->
             <h:outputScript library="js" name="Chart.js"/>
             <h:outputScript library="js" name="fusioncharts.js"/>
@@ -28,84 +28,77 @@
 
             <!-- Latest compiled and minified JavaScript -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-        </head>
+        </h:head>
 
         <ui:define name="body">
 
-            <div class="col-xs-12 col-sm-8 col-md-9" style="color: black;" >
-                <!--CUERPO-->
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.num1}" name="t3" id="t3"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.excelente}" name="excelente" id="excelente"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.buena}" name="buena" id="buena"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.aceptable}" name="aceptable" id="aceptable"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.mala}" name="mala" id="mala"   />
-                    </h:form>
-                </div>
-
-                <div class="form-group input-group">
-                    <h:form>
-                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.nombrePsicologo}" name="nombre" id="nombre"   />
-                    </h:form>
-                </div>
-
-                <legend>Gráfica valorativa de los psicólogos por parte del personal estudiantil</legend>
-                <br/><br/>
-                <h:form>
+            <legend>Gráfica valorativa de los psicólogos por parte del personal estudiantil</legend>
+            <br/>
+            <h:form>
+                <div class="form-group centrar">
                     <select class="selectpicker" name="obj" id="select" data-live-search="true" >
                         <option disabled="true" selected="true">Seleccione un psicólogo</option>
                         <c:forEach var="u" items="#{controladorGrafica.traerPsicologos()}" >
                             <option value="#{u.idPsicologo}">#{u.usuario.nombres} #{u.usuario.primerApellido} #{u.usuario.segundoApellido}</option>
                         </c:forEach>
                     </select>
-                    &nbsp; &nbsp;<h:commandButton class="btn  botones2" value="Ver gráfica"  action="#{controladorGrafica.valoracion()}"/>
-                </h:form>
-                <br/><br/>
-                <div id="estadistica">  
-                    <div id="graficaValoracion" >     
-                        <div id="chart-container"></div>
-                    </div>
+                    <h:commandButton class="btn  botones2" value="Ver gráfica"  action="#{controladorGrafica.valoracion()}"/>
                 </div>
 
+            </h:form>
+            <div id="estadistica">  
+                <div id="graficaValoracion" >     
+                    <div id="chart-container"></div>
+                </div>
+            </div>
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.num1}" name="t3" id="t3"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.excelente}" name="excelente" id="excelente"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.buena}" name="buena" id="buena"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.aceptable}" name="aceptable" id="aceptable"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.podriaMejorar}" name="puedeMejorar" id="puedeMejorar"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.mala}" name="mala" id="mala"   />
+                </h:form>
+            </div>
+
+            <div class="form-group input-group centrar">
+                <h:form>
+                    <input  type="hidden" class="form-control"  value="#{controladorGrafica.nombrePsicologo}" name="nombre" id="nombre"   />
+                </h:form>
             </div>
             <script>
-
-
-
                 var num1 = document.getElementById('excelente').value;
                 var num2 = parseFloat(num1);
 
@@ -138,7 +131,7 @@
                                 text: 'Psicologo:' + " " + nom,
                             },
                             tooltip: {
-                                valueSuffix: '',           
+                                valueSuffix: '',
                                 //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
                             },
                             plotOptions: {

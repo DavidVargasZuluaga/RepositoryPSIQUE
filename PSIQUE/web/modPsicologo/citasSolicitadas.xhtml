@@ -7,11 +7,11 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-              Citas solicitadas
+                Citas solicitadas
             </ui:define>
 
             <ui:define name="body">
-               
+
                 <div class="row margen color1">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
@@ -24,28 +24,27 @@
                                 <div class="panel-heading ">
                                     <h3 class="centrar panel-title">Citas Solicitadas SILSPA</h3>
                                 </div>
-                                <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                <table class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
                                         <tr>
+                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
                                             <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
                                             <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
                                             <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-2">Primer apellido</th>
                                             <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
                                             <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Estado</th>
                                             <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Cancelar</th>
                                             <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Aceptar</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                         <ui:repeat var="miLista" value="#{psicologoControlador.mostrarCitasSolicitadas()}">
                                             <tr>
+                                                <td>#{miLista.idAprendiz.usuario.fechaNacimiento}</td>
                                                 <td>#{miLista.idAprendiz.usuario.noDocumento}</td>
                                                 <td>#{miLista.idAprendiz.usuario.nombres}</td>
                                                 <td>#{miLista.idAprendiz.usuario.primerApellido}</td>
                                                 <td>#{miLista.idAprendiz.usuario.segundoApellido}</td>
-                                                <td>#{miLista.idAprendiz.usuario.fechaNacimiento}</td>
                                                 <td>#{miLista.estado}</td>
                                                 <td align="center"> <h:form><h:commandButton value="cancelar" action="#{psicologoControlador.cancelarCita(miLista)}" onclick="return confirm('Desea cancelar esta cita?')"/></h:form> </td>
                                                 <td align="center"> <h:form><h:commandButton value="aceptar" action="#{psicologoControlador.aceptarCitar(miLista)}" onclick="return confirm('Desea aceptar esta cita?')"/></h:form> </td>

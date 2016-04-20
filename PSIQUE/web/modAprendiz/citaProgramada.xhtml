@@ -28,7 +28,7 @@
                             Fecha y hora<br/>
                             <small>
                                 <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha}">
-                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
                                 </h:outputLabel>
                             </small>
                             <br/>
@@ -59,9 +59,11 @@
                                     <h3>Usted tiene una cita programada</h3>
                                     <strong>Fecha y hora</strong>
                                     <br/>
-                                    <small><h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{c.fecha}">
-                                            <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
-                                        </h:outputLabel></small>
+                                    <small>
+                                        <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{c.fecha}">
+                                            <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                        </h:outputLabel>
+                                    </small>
                                     <br/>
                                     <strong>Psicologo</strong>
                                     <br/>
@@ -80,7 +82,7 @@
                                     Fecha y hora
                                     <br/>
                                     <h:outputLabel style="color:black;font-size: 19px;" value="#{c.fecha}">
-                                        <f:convertDateTime pattern="dd/MM hh:mm" type="time"  />
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" type="time" timeZone="GMT-5" />
                                     </h:outputLabel>
                                     <br/>Psicologo
                                     <br/>

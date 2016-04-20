@@ -64,6 +64,12 @@ public class CitaControlador implements Serializable {
     public void cerrarModal() {
         modalCita = 0;
     }
+    
+    public Calendar convertirFecha(Date d){
+        Calendar c = new GregorianCalendar();
+        c.setTime(d);
+        return c;
+    }
 
     public List<Cita> listarCitasAprendizLog(Aprendiz a) {
         List<Cita> resul = new ArrayList();
@@ -105,13 +111,18 @@ public class CitaControlador implements Serializable {
         try {
             citaTemp.setIdAprendiz(a);
             citaTemp.setIdPsicologo(psicologoFacade.find(Long.parseLong((String) params.get("psicologo"))));
-            String hora = " ";
-            if (citaTemp.getIdPsicologo().getJornada().equals("Mañana")) {
-                hora = (params.get("fecha2") + " " + params.get("hora2"));
-            } else {
-                hora = (params.get("fecha") + " " + params.get("hora"));
+            String hora3 = "";
+            switch (citaTemp.getIdPsicologo().getJornada()) {
+                case "Mañana":
+                    hora3 = (params.get("fecha2") + " " + params.get("hora2"));
+                    break;
+                case "Tarde":
+                    hora3 = (params.get("fecha") + " " + params.get("hora3"));
+                    break;
+                case "Noche":
+                    break;
             }
-            citaTemp.setFecha((Date) format.parse(hora));
+            citaTemp.setFecha((Date) format.parse(hora3));
             if (!citaTemp.getFecha().before(fechaComparar)) {
                 citaTemp.setValoracion(0);
                 citaTemp.setEstado("SOLICITADA");
@@ -121,12 +132,11 @@ public class CitaControlador implements Serializable {
                         break;
                     }
                     if (listaCitas.get(i).getIdAprendiz().equals(a)) {
-                        if (listaCitas.get(i).getEstado().equals("SOLICITADA") || listaCitas.get(i).getEstado().equals("SOLICITADA")) {
+                        if (listaCitas.get(i).getEstado().equals("SOLICITADA") || listaCitas.get(i).getEstado().equals("PENDIENTE")) {
                             existe = true;
                             break;
                         }
                     }
-
                 }
                 if (!existe) {
                     modalCita = 0;
@@ -138,7 +148,6 @@ public class CitaControlador implements Serializable {
             } else {
                 modalCita = 3;
             }
-
         } catch (Exception e) {
             modalCita = 2;
             e.printStackTrace();
