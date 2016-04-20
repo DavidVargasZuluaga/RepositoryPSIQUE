@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -54,6 +56,9 @@ public class Auditoria implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
+    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Usuario usuarioidUsuario;
 
     public Auditoria() {
     }
@@ -97,6 +102,14 @@ public class Auditoria implements Serializable {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Usuario getUsuarioidUsuario() {
+        return usuarioidUsuario;
+    }
+
+    public void setUsuarioidUsuario(Usuario usuarioidUsuario) {
+        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override

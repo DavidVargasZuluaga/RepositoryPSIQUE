@@ -104,6 +104,8 @@ public class Usuario implements Serializable {
     private List<Notificacion> notificacionList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Coordinador coordinador;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    private List<Entrada> entradaList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Psicologo psicologo;
     @JoinColumn(name = "idRol", referencedColumnName = "idRol")
@@ -113,6 +115,8 @@ public class Usuario implements Serializable {
     private List<Mensaje> mensajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idReceptor")
     private List<Mensaje> mensajeList1;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
+    private List<Auditoria> auditoriaList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Aprendiz aprendiz;
     @OneToMany(mappedBy = "idRemitente")
@@ -254,6 +258,15 @@ public class Usuario implements Serializable {
         this.coordinador = coordinador;
     }
 
+    @XmlTransient
+    public List<Entrada> getEntradaList() {
+        return entradaList;
+    }
+
+    public void setEntradaList(List<Entrada> entradaList) {
+        this.entradaList = entradaList;
+    }
+
     public Psicologo getPsicologo() {
         return psicologo;
     }
@@ -286,6 +299,15 @@ public class Usuario implements Serializable {
 
     public void setMensajeList1(List<Mensaje> mensajeList1) {
         this.mensajeList1 = mensajeList1;
+    }
+
+    @XmlTransient
+    public List<Auditoria> getAuditoriaList() {
+        return auditoriaList;
+    }
+
+    public void setAuditoriaList(List<Auditoria> auditoriaList) {
+        this.auditoriaList = auditoriaList;
     }
 
     public Aprendiz getAprendiz() {

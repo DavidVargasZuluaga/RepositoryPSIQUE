@@ -13,12 +13,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -31,17 +32,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Entrada.findAll", query = "SELECT e FROM Entrada e"),
-    @NamedQuery(name = "Entrada.findByIdUsuario", query = "SELECT e FROM Entrada e WHERE e.idUsuario = :idUsuario"),
     @NamedQuery(name = "Entrada.findByIdEntrada", query = "SELECT e FROM Entrada e WHERE e.idEntrada = :idEntrada"),
     @NamedQuery(name = "Entrada.findByFecha", query = "SELECT e FROM Entrada e WHERE e.fecha = :fecha"),
     @NamedQuery(name = "Entrada.findByAccion", query = "SELECT e FROM Entrada e WHERE e.accion = :accion")})
 public class Entrada implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "idUsuario")
-    private long idUsuario;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
@@ -53,25 +49,15 @@ public class Entrada implements Serializable {
     @Size(max = 30)
     @Column(name = "accion")
     private String accion;
+    @JoinColumn(name = "Usuario_idUsuario", referencedColumnName = "idUsuario")
+    @ManyToOne(optional = false)
+    private Usuario usuarioidUsuario;
 
     public Entrada() {
     }
 
     public Entrada(Integer idEntrada) {
         this.idEntrada = idEntrada;
-    }
-
-    public Entrada(Integer idEntrada, long idUsuario) {
-        this.idEntrada = idEntrada;
-        this.idUsuario = idUsuario;
-    }
-
-    public long getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(long idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public Integer getIdEntrada() {
@@ -96,6 +82,14 @@ public class Entrada implements Serializable {
 
     public void setAccion(String accion) {
         this.accion = accion;
+    }
+
+    public Usuario getUsuarioidUsuario() {
+        return usuarioidUsuario;
+    }
+
+    public void setUsuarioidUsuario(Usuario usuarioidUsuario) {
+        this.usuarioidUsuario = usuarioidUsuario;
     }
 
     @Override

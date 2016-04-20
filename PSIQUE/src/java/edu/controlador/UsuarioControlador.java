@@ -32,6 +32,9 @@ import javax.servlet.http.HttpServletRequest;
 public class UsuarioControlador implements Serializable {
 
     @Inject
+    private EntradaFacade entradaFacade;
+    
+    @Inject
     private RolFacade rolFacade;
 
     @Inject
@@ -52,7 +55,8 @@ public class UsuarioControlador implements Serializable {
     private int ver, modalCreacion, modalRecuperarContraseña, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
-    private Correo correo;
+    private Entrada objEntrada;
+  //  private Correo correo;
     private Calendar fecha2;
     private Usuario usuarioLog, usuarioTemp;
     private Aprendiz aprendizLog, aprendizTemp;
@@ -60,6 +64,9 @@ public class UsuarioControlador implements Serializable {
 
     private List<Usuario> listaUsuarios;
     private List<Psicologo> listaPsicologos;
+    private List<Entrada> listaEntrada;
+
+    Date fecha1 = new Date();
 
     @PostConstruct
     public void init() {
@@ -77,12 +84,13 @@ public class UsuarioControlador implements Serializable {
         fechaActual = (dia + "/" + mes);
         horaActual = (+hora + " : " + minuto);
 
-        correo = new Correo();
+   //     correo = new Correo();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
         aprendizTemp = new Aprendiz();
         psicologoLog = new Psicologo();
+        objEntrada = new Entrada();
 
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
@@ -125,15 +133,19 @@ public class UsuarioControlador implements Serializable {
             switch (usuarioLog.getIdRol().getIdRol()) {
                 case 1:
                     res = "/modAdmon/principalAdmon.xhtml";
+                    registrarIngresoAlSistema();
                     break;
                 case 2:
                     res = "/modCoordinador/principalCoordinador.xhtml";
+                    registrarIngresoAlSistema();
                     break;
                 case 3:
                     res = "/modPsicologo/indexPsicologo.xhtml";
+                    registrarIngresoAlSistema();
                     break;
                 case 4:
                     res = "/modAprendiz/principalAprendiz.xhtml";
+                    registrarIngresoAlSistema();
                     break;
             }
         } catch (Exception e) {
@@ -280,14 +292,14 @@ public class UsuarioControlador implements Serializable {
             String c = (String) params.get("correo");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getCorreo().equals(c)) {
-                    correo.setContrasena("hwfjffasxglqqerx");
-                    correo.setUsuario("psique2016@gmail.com");
-                    correo.setAsunto("Recuperar Contraseña");
-                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
-                    correo.setDestino(c);
-                    correo.setRutraArchivo("");
-                    CorreoControlador enviar = new CorreoControlador();
-                    enviar.enviarCorreo(correo);
+//                    correo.setContrasena("hwfjffasxglqqerx");
+//                    correo.setUsuario("psique2016@gmail.com");
+//                    correo.setAsunto("Recuperar Contraseña");
+//                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
+//                    correo.setDestino(c);
+//                    correo.setRutraArchivo("");
+//                    CorreoControlador enviar = new CorreoControlador();
+//                    enviar.enviarCorreo(correo);
                     modalRecuperarContraseña = 1;
                     break;
                 }
@@ -301,6 +313,15 @@ public class UsuarioControlador implements Serializable {
 
     // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
     // PENDIENTE POR MODIFICAR
+    public void registrarIngresoAlSistema() {
+        objEntrada.setAccion("Ingreso al sistema");
+        objEntrada.setFecha(fecha1);
+        //   objEntrada.setIdUsuario(usuarioLog.getIdUsuario());
+        objEntrada.setUsuarioidUsuario(usuarioLog);
+        entradaFacade.create(objEntrada);
+        System.out.println("Ingreso al sistema exitoso");
+    }
+
     public String cancelarCita(Cita cita) {
         cita.setEstado("CANCELADA");
         citaFacade.edit(cita);
@@ -564,13 +585,13 @@ public class UsuarioControlador implements Serializable {
         this.version = version;
     }
 
-    public Correo getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(Correo correo) {
-        this.correo = correo;
-    }
+//    public Correo getCorreo() {
+//        return correo;
+//    }
+//
+//    public void setCorreo(Correo correo) {
+//        this.correo = correo;
+//    }
 
     public int getModalRecuperarContraseña() {
         return modalRecuperarContraseña;
@@ -580,4 +601,11 @@ public class UsuarioControlador implements Serializable {
         this.modalRecuperarContraseña = modalRecuperarContraseña;
     }
 
+    public List<Entrada> getListaEntrada() {
+        return listaEntrada = entradaFacade.findAll();
+    }
+
+    public void setListaEntrada(List<Entrada> listaEntrada) {
+        this.listaEntrada = listaEntrada;
+    }
 }
