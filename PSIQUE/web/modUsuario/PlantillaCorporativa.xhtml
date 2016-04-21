@@ -73,7 +73,7 @@
                                     <li><a style="font-size: 17px;"><strong>Desarrolladores</strong></a></li>
                                     <li><a style="font-size: 16px;" href="/PSIQUE/modCorporativo/nosotrosD.html"><i class="fa fa-code fa-lg"></i> Sobre nosotros...</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a style="font-size: 16px;" href="/PSIQUE/modCorporativo/contactenos.html"><i class="fa fa-comment fa-lg"></i> Contáctenos</a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#modalMensajeAd').modal('show'); return false;" href="#"><i class="fa fa-comment fa-lg"></i> Contáctenos</a></li>
                                     <li role="separator" class="divider"></li>						
                                 </ul>
                             </li>
@@ -145,30 +145,35 @@
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
 
+            <div class="modal fade" id="modalMensajeAd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod6">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Contactenos</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h3><small>Asunto:</small></h3>
+                                <input class="form-control" name="asunto" required="true" />
+                                <h3><small>Mensaje:</small></h3>
+                                <textarea class="form-control" name="mensaje" required="true"/>
+                                <br/>
+                                <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMnjAdmon()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+
             <div class="color1 row">
                 <br/>
                 <div class="col-sx-12 col-sm-8 col-md-4">
-                    <div class="media">
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <h:graphicImage class="img-circle media-object" value="/resources/img/twit/t1.jpg" style="height:64px;width:64px;"/>
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Felide Diaz<small> @FelideDiaz</small></h4>
-                            Excelente pagina.
-                        </div>
-                        <br/>
-                        <div class="media-left media-middle">
-                            <a href="#">
-                                <h:graphicImage class="img-circle media-object" value="/resources/img/twit/t2.jpg" style="height:64px;width:64px;"/>
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <h4 class="media-heading">Andres Vargas <small> @AndresVargas</small></h4>
-                            Puedo comunicarme con el psicólogo del centro en unos pocos clicks.
-                        </div>
-                    </div>
+
                 </div>
                 <div class="centrar col-sx-12 col-sm-4 col-md-4">
                     <h:graphicImage value="/resources/img/dispo.png" style="max-width: 100%;"/>
@@ -185,7 +190,6 @@
             <div class="color1 row">
                 <div style="border-color: #02584A; border: 3px;" class="col-xs-12 col-sm-6 col-md-2 col-md-offset-5  col-sm-offset-3">
                     <div class="centrar" >
-                        <a class="btn btn-group-vertical botonesinv" ><i class="fa fa-twitter fa-3x"></i></a>
                         <a class="btn btn-group-vertical botonesinv" ><i class="fa fa-google fa-3x"></i></a>
                     </div>
                 </div>

@@ -49,8 +49,8 @@ public class MensajeControlador implements Serializable {
         mensajes = mensajeFacade.findAll();
         listaUsuarios = usuarioFacade.findAll();
     }
-    
-    public void cerrarModal(){
+
+    public void cerrarModal() {
         modalMensaje = 0;
     }
 
@@ -130,6 +130,31 @@ public class MensajeControlador implements Serializable {
             m.setEstado("Borrado");
             mensajeFacade.edit(m);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String enviarMnjAdmon() {
+        String res = "/PSIQUE/";
+        Mensaje m = new Mensaje();
+        String espacion = " ";
+        fechaActual = new Date();
+        Usuario receptor = new Usuario();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            receptor = usuarioFacade.find(Long.parseLong("10101010"));
+            m.setFecha(fechaActual);
+            m.setIdReceptor(receptor);
+            m.setEstado("Enviado");
+            m.setMensaje((String) params.get("mensaje"));
+            m.setAsunto((String) params.get("asunto"));
+            mensajeFacade.create(m);
+            modalMensaje = 1;
+            } catch (Exception e) {
             e.printStackTrace();
         }
         return res;
