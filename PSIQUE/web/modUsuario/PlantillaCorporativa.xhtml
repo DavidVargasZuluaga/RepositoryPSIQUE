@@ -57,21 +57,20 @@
                                 <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-server fa-lg"></i> Servicios <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a style="font-size: 17px;"><strong>Psicología</strong></a></li>
-                                    <li><a style="font-size: 16px;" href="404.html"><i class="fa fa-info fa-lg"></i> Orientación y asesoramiento psicopatología</a></li>
-                                    <li><a style="font-size: 16px;" href="404.html"><i class="fa fa-info fa-lg"></i> Atención psicológica</a></li>
-                                    <li><a style="font-size: 16px;" href="404.html"><i class="fa fa-question fa-lg"></i> Como puedo concertar una visita ?</a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#orientacionAsesoramiento').modal('show'); return false;" href="#"><i class="fa fa-info fa-lg"></i> Orientación y asesoramiento psicopatología</a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#atencionPsicologia').modal('show'); return false;" href="#"><i class="fa fa-info fa-lg"></i> Atención psicológica</a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#solicitarCita').modal('show'); return false;" href="#"><i class="fa fa-question fa-lg"></i> Como puedo concertar una visita ?</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a style="font-size: 17px;" href="404.html" class="botonesnav"><i class="fa fa-eye-slash fa-lg"></i> PSIQUE</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-users fa-lg"></i> Nosotros <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a style="font-size: 17px;"><strong >Psicólogos</strong></a></li>
-                                    <li><a style="font-size: 16px;" href="/PSIQUE/modCorporativo/nosotrosP.html"><i class="fa fa-user-md fa-lg"></i> Sobre nosotros ... </a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#sobrePsicologos').modal('show'); return false;" href="#"><i class="fa fa-user-md fa-lg"></i> Sobre nosotros ... </a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a style="font-size: 17px;"><strong>Desarrolladores</strong></a></li>
-                                    <li><a style="font-size: 16px;" href="/PSIQUE/modCorporativo/nosotrosD.html"><i class="fa fa-code fa-lg"></i> Sobre nosotros...</a></li>
+                                    <li><a style="font-size: 16px;" onclick="$('#sobreDesarrolladores').modal('show'); return false;" href="#"><i class="fa fa-code fa-lg"></i> Sobre nosotros...</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a style="font-size: 16px;" onclick="$('#modalMensajeAd').modal('show'); return false;" href="#"><i class="fa fa-comment fa-lg"></i> Contáctenos</a></li>
                                     <li role="separator" class="divider"></li>						
@@ -145,6 +144,114 @@
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
 
+            <div class="modal fade" id="solicitarCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod10">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Solicitar una cita</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="sobreDesarrolladores" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod12">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Sobre Desarrolladores</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="sobrePsicologos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod11">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Sobre Psicologos</h4>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="solicitarCita" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod9">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Solicitar una cita</h4>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="atencionPsicologia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod8">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Atencion Psicologica</h4>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="orientacionAsesoramiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod7">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Orientacion y asesoramiento psicopatologia</h4>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
             <div class="modal fade" id="modalMensajeAd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod6">
@@ -169,6 +276,42 @@
                     </h:form>
                 </div>
             </div>
+            <div class="modal fade" id="comoUsarPsique" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <h:form class="form-horizontal form" id="mod14">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Como usar PSIQUE</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="ingenieriaPsique" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-lg" role="document">
+                    <h:form class="form-horizontal form" id="mod15">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">IngenieriaPsique</h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
 
             <div class="color1 row">
                 <br/>
@@ -180,10 +323,9 @@
                 </div>
                 <div style="border-color: #02584A; border: 3px;" class="col-sx-12 col-sm-12 col-md-4 ">
                     <div class="centrar" >
-                        <a style="font-size: 17px;" href="#" class="btn btn-group-justified botonesinv" >¿Como usar PSIQUE?</a>
-                        <a style="font-size: 17px;" href="#" class="btn btn-group-justified botonesinv">Blog del CSF</a>
-                        <a style="font-size: 17px;" href="#" class="btn btn-group-justified botonesinv">Ingeniería PSIQUE</a>
-                        <a style="font-size: 17px;" href="#" class="btn btn-group-justified botonesinv">Otros enlaces</a>
+                        <a style="font-size: 17px;" onclick="$('#comoUsarPsique').modal('show'); return false;" href="#" class="btn btn-group-justified botonesinv" >¿Como usar PSIQUE?</a>
+                        <a style="font-size: 17px;" href="http://serviciosfinancierosena.blogspot.com.co/" class="btn btn-group-justified botonesinv">Blog del CSF</a>
+                        <a style="font-size: 17px;" onclick="$('#ingenieriaPsique').modal('show'); return false;" href="#" class="btn btn-group-justified botonesinv">Ingeniería PSIQUE</a>
                     </div>
                 </div>
             </div>
