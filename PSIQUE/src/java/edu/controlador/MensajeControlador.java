@@ -46,6 +46,7 @@ public class MensajeControlador implements Serializable {
         modalMensaje = 0;
         mensajeTemp = new Mensaje();
         fechaActual = new Date();
+        fechaActual.setHours(fechaActual.getHours()-5);
         mensajes = mensajeFacade.findAll();
         listaUsuarios = usuarioFacade.findAll();
     }
@@ -146,7 +147,8 @@ public class MensajeControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-            receptor = usuarioFacade.find(Long.parseLong("10101010"));
+            long idAdmon = 1;
+            receptor = usuarioFacade.find(idAdmon);
             m.setFecha(fechaActual);
             m.setIdReceptor(receptor);
             m.setEstado("Enviado");

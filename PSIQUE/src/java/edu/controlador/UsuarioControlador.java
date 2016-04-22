@@ -33,7 +33,7 @@ public class UsuarioControlador implements Serializable {
 
     @Inject
     private EntradaFacade entradaFacade;
-    
+
     @Inject
     private RolFacade rolFacade;
 
@@ -311,8 +311,6 @@ public class UsuarioControlador implements Serializable {
         return "/index.xhtml";
     }
 
-    // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
-    // PENDIENTE POR MODIFICAR
     public void registrarIngresoAlSistema() {
         objEntrada.setAccion("Ingreso al sistema");
         objEntrada.setFecha(fecha1);
@@ -322,6 +320,8 @@ public class UsuarioControlador implements Serializable {
         System.out.println("Ingreso al sistema exitoso");
     }
 
+    // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
+    // PENDIENTE POR MODIFICAR
     public String cancelarCita(Cita cita) {
         cita.setEstado("CANCELADA");
         citaFacade.edit(cita);
@@ -592,7 +592,6 @@ public class UsuarioControlador implements Serializable {
 //    public void setCorreo(Correo correo) {
 //        this.correo = correo;
 //    }
-
     public int getModalRecuperarContraseña() {
         return modalRecuperarContraseña;
     }
