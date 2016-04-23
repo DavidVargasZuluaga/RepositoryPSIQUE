@@ -195,7 +195,7 @@ public class PsicologoControlador implements Serializable {
         }
         if (lstaPregunta == null) {
             estados = 10;
-        }else {
+        } else {
             test.setEstado("ASIGNADO");
             testFacade.create(test);
             for (int i = 0; i < lstaPregunta.size(); i++) {
@@ -206,10 +206,10 @@ public class PsicologoControlador implements Serializable {
                     lstaRespuesta.get(j).setIdPregunta(lstaPregunta.get(i));
                     respuestaFacade.create(lstaRespuesta.get(j));
                 }
-            } estados = 20;
+            }
+            estados = 20;
         }
 
-       
     }
 
     public List<Respuesta> mostrarRespuestas() {
@@ -252,7 +252,7 @@ public class PsicologoControlador implements Serializable {
     }
 
     public String cancelarCita(Cita cita) {
-        cita.setEstado("cancelada");
+        cita.setEstado("CANCELADA");
         citaFacade.edit(cita);
         return "citasSolicitadas.xhtml";
     }
@@ -301,23 +301,27 @@ public class PsicologoControlador implements Serializable {
         return "/modPiscologo/editarRespuesta.xhtml";
     }
 
-    public List<Cita> mostrarCitasPendientes() {
-        List<Cita> Citas = citaFacade.findAll();
+    public List<Cita> mostrarCitasPendientes(Psicologo p) {
+        List<Cita> citas = citaFacade.findAll();
         List<Cita> citasPendientes = new ArrayList<Cita>();
-        for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("PENDIENTE")) {
-                citasPendientes.add(Citas.get(i));
+        for (int i = 0; i < citas.size(); i++) {
+            if (citas.get(i).getEstado().equals("PENDIENTE")) {
+                if (citas.get(i).getIdPsicologo().getIdPsicologo().equals(p.getIdPsicologo())) {
+                    citasPendientes.add(citas.get(i));
+                }
             }
         }
         return citasPendientes;
     }
 
-    public List<Cita> mostrarCitasSolicitadas() {
-        List<Cita> Citas = citaFacade.findAll();
-        List<Cita> citasPendientes = new ArrayList<Cita>();
-        for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("SOLICITADA")) {
-                citasPendientes.add(Citas.get(i));
+    public List<Cita> mostrarCitasSolicitadas(Psicologo p) {
+        List<Cita> citas = citaFacade.findAll();
+        List<Cita> citasPendientes = new ArrayList();
+        for (int i = 0; i < citas.size(); i++) {
+            if (citas.get(i).getEstado().equals("SOLICITADA")) {
+                if (citas.get(i).getIdPsicologo().getIdPsicologo().equals(p.getIdPsicologo())) {
+                    citasPendientes.add(citas.get(i));
+                }
             }
         }
         return citasPendientes;
@@ -328,9 +332,17 @@ public class PsicologoControlador implements Serializable {
         return "/modPiscologo/editarTest.xhtml";
     }
 
-    public List<Cita> mostrarCitas() {
-        List<Cita> Citas = citaFacade.findAll();
-        return Citas;
+    public List<Cita> mostrarCitas(Psicologo p) {
+        List<Cita> todasCitas = citaFacade.findAll();
+        List<Cita> citas = new ArrayList();
+        for (int i = 0; i < todasCitas.size(); i++) {
+            if (todasCitas.get(i).getEstado().equals("CUMPLIDA")) {
+                if (todasCitas.get(i).getIdPsicologo().getIdPsicologo().equals(p.getIdPsicologo())) {
+                    citas.add(todasCitas.get(i));
+                }
+            }
+        }
+        return citas;
     }
 
     public Usuario getUsuarioLog() {

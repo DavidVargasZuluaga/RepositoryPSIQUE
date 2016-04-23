@@ -93,6 +93,22 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
+    
+    public List<Test> listarTestAprendiz(Aprendiz a){
+        List<Test> listaTestA = new ArrayList();
+        List<Test> listaTestT = testFacade.findAll();
+        try {
+            for (int i = 0; i < listaTestT.size(); i++) {
+                if(listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                    listaTestA.add(listaTestT.get(i));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaTestA;
+    }
+    
     public void cerrarModal() {
         modalTest = 0;
     }

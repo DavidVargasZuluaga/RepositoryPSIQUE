@@ -36,6 +36,9 @@ public class CitaControlador implements Serializable {
 
     @Inject
     private PsicologoFacade psicologoFacade;
+    
+    @Inject
+    private ObservacionFacade observacionFacade;
 
     private int modalCita;
     private int año, mes, dia, hora, minuto, segundo;
@@ -65,6 +68,36 @@ public class CitaControlador implements Serializable {
         modalCita = 0;
     }
     
+    public List<Cita> citasAprendiz(Aprendiz a){
+        List<Cita> todasCitas = citaFacade.findAll();
+        List<Cita> citas = new ArrayList();
+        try {
+            for (int i = 0; i < todasCitas.size(); i++) {
+                if(todasCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                    citas.add(todasCitas.get(i));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return citas ;
+    }
+    
+    public List<Observacion> obsevacionesAprendiz(Aprendiz a){
+        List<Observacion> todasObservaciones = observacionFacade.findAll();
+        List<Observacion> observaciones = new ArrayList();
+        try{
+            for (int i = 0; i < todasObservaciones.size(); i++) {
+                if(todasObservaciones.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                    observaciones.add(todasObservaciones.get(i));
+                }
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return observaciones;
+    }
+    
     public Calendar convertirFecha(Date d){
         Calendar c = new GregorianCalendar();
         c.setTime(d);
@@ -83,7 +116,6 @@ public class CitaControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return resul;
     }
 

@@ -36,7 +36,7 @@ public class MensajeControlador implements Serializable {
 
     private Date fechaActual;
 
-    private int modalMensaje;
+    private int modalMensaje, modalMensajeAdmon;
     private Mensaje mensajeTemp;
     private List<Mensaje> mensajes;
     private List<Usuario> listaUsuarios;
@@ -44,15 +44,17 @@ public class MensajeControlador implements Serializable {
     @PostConstruct
     private void init() {
         modalMensaje = 0;
+        modalMensajeAdmon = 0;
         mensajeTemp = new Mensaje();
         fechaActual = new Date();
-        fechaActual.setHours(fechaActual.getHours()-5);
+        fechaActual.setHours(fechaActual.getHours() - 5);
         mensajes = mensajeFacade.findAll();
         listaUsuarios = usuarioFacade.findAll();
     }
 
     public void cerrarModal() {
         modalMensaje = 0;
+        modalMensajeAdmon = 0;
     }
 
     public List<Mensaje> listarMensajesNuevos(Usuario u) {
@@ -136,7 +138,7 @@ public class MensajeControlador implements Serializable {
         return res;
     }
 
-    public String enviarMnjAdmon() {
+    public void enviarMnjAdmon() {
         String res = "/PSIQUE/";
         Mensaje m = new Mensaje();
         String espacion = " ";
@@ -155,11 +157,10 @@ public class MensajeControlador implements Serializable {
             m.setMensaje((String) params.get("mensaje"));
             m.setAsunto((String) params.get("asunto"));
             mensajeFacade.create(m);
-            modalMensaje = 1;
-            } catch (Exception e) {
+            modalMensajeAdmon = 1;
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return res;
     }
 
     public String enviarMensaje(Usuario us) {
@@ -260,4 +261,13 @@ public class MensajeControlador implements Serializable {
     public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
+
+    public int getModalMensajeAdmon() {
+        return modalMensajeAdmon;
+    }
+
+    public void setModalMensajeAdmon(int modalMensajeAdmon) {
+        this.modalMensajeAdmon = modalMensajeAdmon;
+    }
+        
 }

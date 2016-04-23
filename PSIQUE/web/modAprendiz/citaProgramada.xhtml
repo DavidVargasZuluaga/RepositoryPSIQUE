@@ -55,7 +55,7 @@
                     <c:forEach items="#{citaControlador.listarCitasAprendizLog(usuarioControlador.usuarioLog.aprendiz)}" var="c">
                         <c:choose>
                             <c:when test="#{c.estado == 'PENDIENTE'}">
-                                <div class="col-xm-12 ">
+                                <div class="col-xm-12">
                                     <h3>Usted tiene una cita programada</h3>
                                     <strong>Fecha y hora</strong>
                                     <br/>

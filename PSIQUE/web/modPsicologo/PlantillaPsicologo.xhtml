@@ -154,6 +154,96 @@
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
+            <ui:repeat var="miLista" value="#{psicologoControlador.mostrarCitasSolicitadas(usuarioControlador.usuarioLog.psicologo)}">
+                <div class="modal fade" id="modalAceptarCita#{miLista.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod13">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Desea aceptar esta cita ?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones2 btn" action="#{psicologoControlador.aceptarCitar(miLista)}"><i class="fa fa-check fa-lg"></i> Aceptar cita</h:commandLink>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalCancelarCita#{miLista.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod14">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Desea cancelar esta cita ?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones2 btn" action="#{psicologoControlador.cancelarCita(miLista)}"><i class="fa fa-times fa-lg"></i> Cancelar</h:commandLink>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:repeat>
+            <ui:repeat var="miLista2" value="#{psicologoControlador.mostrarCitasPendientes(usuarioControlador.usuarioLog.psicologo)}">
+                <div class="modal fade" id="modalCancelarCita#{miLista2.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod14">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Desea cancelar esta cita ?</h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones2 btn" action="#{psicologoControlador.cancelarCita(miLista2)}"><i class="fa fa-times fa-lg"></i> Cancelar</h:commandLink>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:repeat>
+            <ui:repeat var="miLista3" value="#{psicologoControlador.mostrarCitas(usuarioControlador.usuarioLog.psicologo)}">
+                <div class="modal fade" id="modalMostrarCita#{miLista3.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod14">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Informacion cita #{miLista3.idCita}</h4>
+                                </div>
+                                <div style="font-size: 18px" class="modal-body">
+                                    <h3 class="color1">Cita</h3>
+                                    <label>Fecha</label>
+                                    <br/>
+                                    <h:outputLabel value="#{miLista3.fecha}">
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                    </h:outputLabel>
+                                    <br/>
+                                    <label>Observacion</label>
+                                    <br/>
+                                    #{miLista3.observacion}
+                                    <br/>
+                                    <label>Aprendiz</label>
+                                    <br/>
+                                    #{miLista3.idAprendiz.usuario.nombres} #{miLista3.idAprendiz.usuario.primerApellido} #{miLista3.idAprendiz.usuario.segundoApellido}
+                                    <br/>
+                                    <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
+                                        <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{miLista3.idAprendiz}"/>
+                                        <i class="fa fa-user"></i> Ver perfil
+                                    </h:commandLink>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:repeat>
             <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod6">

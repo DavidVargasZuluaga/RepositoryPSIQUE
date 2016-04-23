@@ -84,11 +84,20 @@
             </nav>
         </header>
         <div class="container">
+
             <div class="color1 container-fluid row">
                 <br/>
                 <br/>
                 <br/>
                 <dir class="container-fluid">
+                    <c:if test="#{mensajeControlador.modalMensajeAdmon == 1}" >
+                        <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                #{mensajeControlador.cerrarModal()}
+                            </button>
+                            <strong>Mensaje enviado</strong> Muchas gracias
+                        </div>
+                    </c:if>
                     <c:if test="#{usuarioControlador.modalRecuperarContraseña == 1}" >
                         <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -140,7 +149,6 @@
                     </div>
                 </dir>
             </div>
-
             <!--CUERPO-->
             <ui:insert name="body"></ui:insert>
 
@@ -153,7 +161,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Solicitar una cita</h4>
                             </div>
                             <div class="modal-body">
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
@@ -171,7 +179,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Sobre Desarrolladores</h4>
                             </div>
                             <div class="modal-body">
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
@@ -285,7 +293,7 @@
                                 <h4 class="modal-title" id="myModalLabel">Como usar PSIQUE</h4>
                             </div>
                             <div class="modal-body">
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
@@ -303,7 +311,7 @@
                                 <h4 class="modal-title" id="myModalLabel">IngenieriaPsique</h4>
                             </div>
                             <div class="modal-body">
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
