@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
         <ui:composition template="PlantillaPsicologo.xhtml">
 
@@ -12,24 +13,31 @@
             </ui:define>
 
             <ui:define name="body">
-                <div class="container-fluid ">
-                    <h1 style="font-size: 40;" class="color1">Bienvenido Psicologo</h1>
+                <div style="font-size: 18px;"  class="container-fluid ">
+                    <h1 style="font-size: 40px;" class="color1">Bienvenido Psicologo</h1>
                     <h:outputLabel style="color:black; font-size: xx-large;" class="label" ><i class="fa fa-calendar fa-lg color1"></i> #{usuarioControlador.fechaActual}</h:outputLabel>
                     <hr/>
-                    <c:choose >
-                        <c:when test="#{(usuarioControlador.fecha2.time.hours ==3)}">
-                            <h2>Confiar en ti mismo no garantiza el éxito, pero no hacerlo garantiza el fracaso.<small><br/>-Albert Bandura.</small></h2>
-                        </c:when>
-                        <c:when test="#{(usuarioControlador.fecha2.time.hours ==5)}">
-                            <h2>El éxito requiere de persistencia, la habilidad de no rendirse en la cara del fracaso. Creo que el estilo optimista es la llave a la persistencia.<small><br/>-Martin Seligman.</small></h2>
-                        </c:when>
-                        <c:when test="#{(usuarioControlador.fecha2.time.hours !=1)}">
-                            <h2>A través de otros nos convertimos en nosotros mimos.<small><br/>-Lev S. Vygotsky.</small></h2>
-                        </c:when>
-                    </c:choose>
+                    <h2>Citas para hoy</h2>
+                    <h:form>
+                        <c:if test="#{citaControlador.modalVacio == 1}" >
+                            <label>Usted no tiene citas programdas para este dia.</label>
+                        </c:if>
+                        <c:forEach items="#{citaControlador.citasParaHoy(usuarioControlador.usuarioLog.psicologo)}" var="citas">
+                            <label>#{citas.idAprendiz.usuario.nombres} #{citas.idAprendiz.usuario.primerApellido} #{citas.idAprendiz.usuario.segundoApellido}</label>
+                            <br/>
+                            <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{citas.fecha}" >
+                                <f:convertDateTime pattern="hh:mm aa" timeZone="GMT-5"/>
+                            </h:outputLabel>
+                            <br/>
+                            <h:commandLink class="btn botones2" action="registrarObservacion.xhtml" >
+                                <f:setPropertyActionListener target="#{psicologoControlador.citaLog}" value="#{citas}"/>
+                                <i class="fa fa-check" ></i> Registrar Observacion
+                            </h:commandLink>
+                            <hr/>
+                        </c:forEach>
+                    </h:form>
                 </div>
             </ui:define>
-
         </ui:composition>
 
     </body>

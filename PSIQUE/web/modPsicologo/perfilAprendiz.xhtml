@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:body>
         <ui:composition template="PlantillaPsicologo.xhtml">
 
@@ -18,15 +19,18 @@
                     <div>
                         <br/>
                         <ul style="font-size:16px; color: #02584A;" class="nav nav-tabs" role="tablist">
-                            <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong>Informacion</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><strong>Observaciones</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><strong>Test</strong></a></li>
+                            <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong><i class="fa fa-user"></i> Informacion Basica</strong></a></li>
+                            <li role="presentation"><a style="color: #02584A ;" href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Datos Personales</strong></a></li>
+                            <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><strong><i class="fa fa-eye"></i> Observaciones</strong></a></li>
+                            <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><strong><i class="fa fa-align-left"></i> Test</strong></a></li>
+                            <li role="presentation"><a style="color: #02584A ;" href="#diagrama" aria-controls="diagrama" role="tab" data-toggle="tab"><strong><i class="fa fa-tree"></i> Diagrama Familiar</strong></a></li>
                         </ul>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active" id="home">
-                                <div class="table-responsive">
-                                    <div style="font-size:19px; color:black;" class="panel filterable color1">
+                                <div class="table-responsive ">
+                                    <div style="font-size:19px; color:black;" class=" color1 panel filterable color1">
                                         <h2>Informacion basica</h2>
+                                        <br/>
                                         <div class="profile-userpic btn-group-lg">
                                             <h:graphicImage style="max-width: 150px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle" />
                                         </div>
@@ -61,71 +65,76 @@
                                             <br/>
                                             #{usuarioControlador.aprendizTemp.usuario.telefono}
                                         </div>
-                                        <hr/>
-                                        <h2>Datos personales</h2>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Programa de formacion</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.ficha.idPrograma.nombrePrograma}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Numero de ficha</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.ficha.noFicha}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Ubicacion</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.ubicacion}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Genero</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.sexo}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Estado civil</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.estadoCivil}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Raza</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.raza}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Religion</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.religion}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Tendencia politica</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.tendenciaPolitica}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Tendencia sexual</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.orientacionSexual}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Discapacidad</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.discapacidad}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px    ; color:black;">Pasa tiempo</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.pasaTiempo}
-                                        </div>
                                         <br/>
-                                        <hr/>
                                         <br/>
                                     </div>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="profile">
+                            <div style="font-size:19px; color:black;" role="tabpanel" class="tab-pane color1" id="personal">
+                                <h2>Datos personales</h2>
+                                <br/>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Programa de formacion</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.ficha.idPrograma.nombrePrograma}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Numero de ficha</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.ficha.noFicha}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Ubicacion</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.ubicacion}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Genero</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.sexo}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Estado civil</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.estadoCivil}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Raza</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.raza}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Religion</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.religion}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Tendencia politica</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.tendenciaPolitica}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Tendencia sexual</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.orientacionSexual}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px; color:black;">Discapacidad</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.discapacidad}
+                                </div>
+                                <div class="form-group">
+                                    <label style="font-size:17px    ; color:black;">Pasa tiempo</label>
+                                    <br/>
+                                    #{usuarioControlador.aprendizTemp.pasaTiempo}
+                                </div>
+                                <br/>
+                                <br/>
+                            </div>
+                            <div role="tabpanel" class="tab-pane color1" id="profile">
                                 <div style="font-size:18px;" class="table-responsive" >
+                                    <h2>Observaciones</h2>
+                                    <br/>
                                     <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
                                         <div>
                                             <label>Psicologo :</label>  &nbsp; 
@@ -156,8 +165,9 @@
                                     </c:forEach>
                                 </div>
                             </div>
-                            <div role="tabpanel" class="tab-pane" id="messages">
+                            <div role="tabpanel" class="tab-pane color1" id="messages">
                                 <div  style="font-size:18px;" class="table-responsive">
+                                    <h2>Test</h2>
                                     <br/>
                                     <c:forEach var="test" items="#{testCortnolador.listarTestAprendiz(usuarioControlador.aprendizTemp)}" >
                                         <div>
@@ -179,6 +189,29 @@
                                         </div>
                                     </c:forEach>
                                 </div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="diagrama">
+                                <h2>Diagrama familiar</h2>
+                                <br/>
+                                <p:diagram value="#{diagramaControlador.model}" style="height:600px" styleClass="ui-widget-content" />
+
+                                <style type="text/css">
+                                    .ui-diagram-element {   
+                                        width:5em; 
+                                        height:5em;
+                                        line-height:5em;
+                                        text-align: center;
+                                        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                                        border-radius: 5em;
+                                        border: 1px solid #404a4e;
+                                        background-color: #404a4e;
+                                        color: #cccccc;
+                                    }
+
+                                    .ui-diagram-element:hover {
+                                        background-color: #20282b;
+                                    }
+                                </style>
                             </div>
                         </div>
                     </div>

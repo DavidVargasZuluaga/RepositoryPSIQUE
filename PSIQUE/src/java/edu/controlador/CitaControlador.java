@@ -36,12 +36,11 @@ public class CitaControlador implements Serializable {
 
     @Inject
     private PsicologoFacade psicologoFacade;
-    
+
     @Inject
     private ObservacionFacade observacionFacade;
 
-    private int modalCita;
-    private int año, mes, dia, hora, minuto, segundo;
+    private int año, mes, dia, hora, minuto, segundo, modalVacio, modalCita;
     private String fechaActual, horaActual;
 
     private Calendar fecha;
@@ -51,6 +50,7 @@ public class CitaControlador implements Serializable {
     @PostConstruct
     private void init() {
         modalCita = 0;
+        modalVacio = 0;
         fecha = GregorianCalendar.getInstance();
         año = fecha.get(Calendar.YEAR);
         mes = fecha.get(Calendar.MONTH) + 1;
@@ -67,38 +67,63 @@ public class CitaControlador implements Serializable {
     public void cerrarModal() {
         modalCita = 0;
     }
-    
-    public List<Cita> citasAprendiz(Aprendiz a){
+
+    public List<Cita> citasAprendiz(Aprendiz a) {
         List<Cita> todasCitas = citaFacade.findAll();
         List<Cita> citas = new ArrayList();
         try {
             for (int i = 0; i < todasCitas.size(); i++) {
-                if(todasCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                if (todasCitas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
                     citas.add(todasCitas.get(i));
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return citas ;
+        return citas;
     }
-    
-    public List<Observacion> obsevacionesAprendiz(Aprendiz a){
+
+    public List<Observacion> obsevacionesAprendiz(Aprendiz a) {
         List<Observacion> todasObservaciones = observacionFacade.findAll();
         List<Observacion> observaciones = new ArrayList();
-        try{
+        try {
             for (int i = 0; i < todasObservaciones.size(); i++) {
-                if(todasObservaciones.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                if (todasObservaciones.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
                     observaciones.add(todasObservaciones.get(i));
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return observaciones;
     }
-    
-    public Calendar convertirFecha(Date d){
+
+    public List<Cita> citasParaHoy(Psicologo p) {
+        List<Cita> resul = new ArrayList();
+        List<Cita> citas = citaFacade.findAll();
+        try {
+            SimpleDateFormat fechaComparar = new SimpleDateFormat("yyyyMMdd");
+            for (int i = 0; i < citas.size(); i++) {
+                if (citas.get(i).getIdPsicologo().getIdPsicologo().equals(p.getIdPsicologo())) {
+                    if (citas.get(i).getEstado().equals("PENDIENTE")) {
+                        if (fechaComparar.format(fecha.getTime()).equals(fechaComparar.format(citas.get(i).getFecha()))) {
+                            resul.add(citas.get(i));
+                        }
+                    }
+                }
+            }
+            if(resul.isEmpty()){
+                modalVacio = 1;
+            }else{
+                modalVacio = 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resul;
+    }
+
+    public Calendar convertirFecha(Date d) {
         Calendar c = new GregorianCalendar();
         c.setTime(d);
         return c;
@@ -149,7 +174,7 @@ public class CitaControlador implements Serializable {
                     hora3 = (params.get("fecha2") + " " + params.get("hora2"));
                     break;
                 case "Tarde":
-                    hora3 = (params.get("fecha") + " " + params.get("hora3"));
+                    hora3 = (params.get("fecha") + " " + params.get("hora"));
                     break;
                 case "Noche":
                     break;
@@ -256,6 +281,38 @@ public class CitaControlador implements Serializable {
 
     public void setModalCita(int modalCita) {
         this.modalCita = modalCita;
+    }
+
+    public int getModalVacio() {
+        return modalVacio;
+    }
+
+    public void setModalVacio(int modalVacio) {
+        this.modalVacio = modalVacio;
+    }
+
+    public String getFechaActual() {
+        return fechaActual;
+    }
+
+    public void setFechaActual(String fechaActual) {
+        this.fechaActual = fechaActual;
+    }
+
+    public String getHoraActual() {
+        return horaActual;
+    }
+
+    public void setHoraActual(String horaActual) {
+        this.horaActual = horaActual;
+    }
+
+    public Calendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Calendar fecha) {
+        this.fecha = fecha;
     }
 
 }

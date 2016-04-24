@@ -16,14 +16,13 @@
                 <div class="row margen color1">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Registrar Observación</h1>
+                            <h1><i class="fa fa-calendar-plus-o fa-lg"></i> Registrar Observación</h1>
                         </div>
                     </div>
                     <div class="container-fluid ">
                         <div class="table-responsive">
                             <div class="panel filterable">
                                 <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Observaciones SILSPA</h3>
                                     <c:if test="#{psicologoControlador.estados == 1}">
                                         <div class="alert alert-warning" role="alert">
                                             Observación registrada correcatemnte
@@ -31,34 +30,24 @@
                                     </c:if>
                                 </div>
                                 <h:form id="formulario" class="form-group" >
-
-                                    <!-- Form Name -->
-                                    <legend>Observación</legend>
-
-                                    <!-- Textarea -->
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="Observacion">Observación</label>
                                         <div>                     
                                             <textarea class="form-control" id="observacion" name="observacion" required="true"></textarea>
                                         </div>
                                     </div>
-
-
-
-
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
                                         <h:commandButton action="#{psicologoControlador.registrarObservacion()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
                                     </div>
                                 </h:form>
                                 <h:form>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="citasPendientes.xhtml" id="regresar" value="Regresar" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
+                                        <h:commandButton action="indexPsicologo.xhtml" id="regresar" value="Regresar" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
                                     </div>
                                 </h:form>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </ui:define>
         </ui:composition>

@@ -51,6 +51,10 @@
                                                         <h:commandLink class="color1" onclick="$('#modalCancelarCita#{miLista.idCita}').modal(); return false;" >
                                                             <i class="fa fa-times fa-lg"></i>
                                                         </h:commandLink>
+                                                        <h:commandLink title="Ver Perfil Psicólogico" style="font-size: 18px" class="btn color1" action="perfilAprendiz.xhtml" >
+                                                            <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{miLista.idAprendiz}"/>
+                                                            <i class="fa fa-user"></i> Perfil
+                                                        </h:commandLink>
                                                     </h:form> 
                                                 </td>
                                             </tr>

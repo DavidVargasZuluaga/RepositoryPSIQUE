@@ -258,7 +258,6 @@ public class PsicologoControlador implements Serializable {
     }
 
     public String registrarObservacion() {
-
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -268,7 +267,7 @@ public class PsicologoControlador implements Serializable {
         cita.setObservacion((String) params.get("observacion"));
         citaFacade.edit(cita);
         estados = 1;
-        return "registrarObservacion.xhtml";
+        return "indexPsicologo.xhtml";
     }
 
     public String aceptarCitar(Cita cita) {
