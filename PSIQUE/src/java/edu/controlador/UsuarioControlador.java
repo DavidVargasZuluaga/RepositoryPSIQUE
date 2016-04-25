@@ -15,7 +15,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
@@ -107,6 +106,11 @@ public class UsuarioControlador implements Serializable {
             }
         }
         return us;
+    }
+    
+    public String editarPerfilAprendiz(){
+        aprendizFacade.edit(aprendizTemp);
+        return "perfilAprendiz.xhtml";
     }
 
     public String redireccionarACitasSolicitadas(String direccion) {

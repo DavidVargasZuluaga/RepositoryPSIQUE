@@ -17,203 +17,211 @@
                 <div class="row margen color1">
                     <h1>Perfil de #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido}</h1>
                     <div>
-                        <br/>
-                        <ul style="font-size:16px; color: #02584A;" class="nav nav-tabs" role="tablist">
-                            <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong><i class="fa fa-user"></i> Informacion Basica</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Datos Personales</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><strong><i class="fa fa-eye"></i> Observaciones</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><strong><i class="fa fa-align-left"></i> Test</strong></a></li>
-                            <li role="presentation"><a style="color: #02584A ;" href="#diagrama" aria-controls="diagrama" role="tab" data-toggle="tab"><strong><i class="fa fa-tree"></i> Diagrama Familiar</strong></a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane active" id="home">
-                                <div class="table-responsive ">
-                                    <div style="font-size:19px; color:black;" class=" color1 panel filterable color1">
-                                        <h2>Informacion basica</h2>
-                                        <br/>
-                                        <div class="profile-userpic btn-group-lg">
-                                            <h:graphicImage style="max-width: 150px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle" />
-                                        </div>
-                                        <br/>
-                                        <div class="form-group">
-                                            #{usuarioControlador.aprendizTemp.usuario.estado}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px;">Nombre :</label>
+                        <h:form>
+                            <br/>
+                            <ul style="font-size:16px; color: #02584A;" class="nav nav-tabs" role="tablist">
+                                <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong><i class="fa fa-user"></i> Informacion Basica</strong></a></li>
+                                <li role="presentation"><a style="color: #02584A ;" href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Datos Personales</strong></a></li>
+                                <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><strong><i class="fa fa-eye"></i> Observaciones</strong></a></li>
+                                <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><strong><i class="fa fa-align-left"></i> Test</strong></a></li>
+                                <li role="presentation"><a style="color: #02584A ;" href="#diagrama" aria-controls="diagrama" role="tab" data-toggle="tab"><strong><i class="fa fa-tree"></i> Diagrama Familiar</strong></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="home">
+                                    <div class="table-responsive ">
+                                        <div style="font-size:19px; color:black;" class=" color1 panel filterable color1">
+                                            <h2>Informacion basica</h2>
                                             <br/>
-                                            #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido} #{usuarioControlador.aprendizTemp.usuario.segundoApellido}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">No de documento</label>
+                                            <div class="profile-userpic btn-group-lg">
+                                                <h:graphicImage style="max-width: 150px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle" />
+                                            </div>
                                             <br/>
-                                            #{usuarioControlador.aprendizTemp.usuario.tipoDocumento} #{usuarioControlador.aprendizTemp.usuario.noDocumento}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Correo</label>
+                                            <div class="form-group">
+                                                #{usuarioControlador.aprendizTemp.usuario.estado}
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size:17px;">Nombre :</label>
+                                                <br/>
+                                                #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido} #{usuarioControlador.aprendizTemp.usuario.segundoApellido}
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size:17px; color:black;">No de documento</label>
+                                                <br/>
+                                                #{usuarioControlador.aprendizTemp.usuario.tipoDocumento} #{usuarioControlador.aprendizTemp.usuario.noDocumento}
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size:17px; color:black;">Correo</label>
+                                                <br/>
+                                                #{usuarioControlador.aprendizTemp.usuario.correo}
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size:17px; color:black;">Fecha de nacimiento</label>
+                                                <br/>
+                                                <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{usuarioControlador.aprendizTemp.usuario.fechaNacimiento}">
+                                                    <f:convertDateTime pattern="dd/MM/yyy" timeZone="GMT-5"/>
+                                                </h:outputLabel>
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="font-size:17px; color:black;">Telefono</label>
+                                                <br/>
+                                                #{usuarioControlador.aprendizTemp.usuario.telefono}
+                                            </div>
+                                            <h:commandLink class="btn botonesinv" onclick="$('#editarPerfilAprendiz').modal(); return false;">
+                                                <i class="fa fa-pencil-square"></i> Editar
+                                            </h:commandLink>
                                             <br/>
-                                            #{usuarioControlador.aprendizTemp.usuario.correo}
-                                        </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Fecha de nacimiento</label>
                                             <br/>
-                                            <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{usuarioControlador.aprendizTemp.usuario.fechaNacimiento}">
-                                                <f:convertDateTime pattern="dd/MM/yyy" timeZone="GMT-5"/>
-                                            </h:outputLabel>
                                         </div>
-                                        <div class="form-group">
-                                            <label style="font-size:17px; color:black;">Telefono</label>
-                                            <br/>
-                                            #{usuarioControlador.aprendizTemp.usuario.telefono}
-                                        </div>
-                                        <br/>
-                                        <br/>
                                     </div>
                                 </div>
-                            </div>
-                            <div style="font-size:19px; color:black;" role="tabpanel" class="tab-pane color1" id="personal">
-                                <h2>Datos personales</h2>
-                                <br/>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Programa de formacion</label>
+                                <div style="font-size:19px; color:black;" role="tabpanel" class="tab-pane color1" id="personal">
+                                    <h2>Datos personales</h2>
                                     <br/>
-                                    #{usuarioControlador.aprendizTemp.ficha.idPrograma.nombrePrograma}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Numero de ficha</label>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Programa de formacion</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.ficha.idPrograma.nombrePrograma}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Numero de ficha</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.ficha.noFicha}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Ubicacion</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.ubicacion}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Genero</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.sexo}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Estado civil</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.estadoCivil}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Raza o grupo etnico</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.raza}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Religion</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.religion}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Tendencia politica</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.tendenciaPolitica}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Tendencia sexual</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.orientacionSexual}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px; color:black;">Discapacidad</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.discapacidad}
+                                    </div>
+                                    <div class="form-group">
+                                        <label style="font-size:17px    ; color:black;">Pasa tiempo</label>
+                                        <br/>
+                                        #{usuarioControlador.aprendizTemp.pasaTiempo}
+                                    </div>
+                                    <h:commandLink class="btn botonesinv" onclick="$('#editarDatosAprendiz').modal(); return false;">
+                                        <i class="fa fa-pencil-square"></i> Editar
+                                    </h:commandLink>
                                     <br/>
-                                    #{usuarioControlador.aprendizTemp.ficha.noFicha}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Ubicacion</label>
                                     <br/>
-                                    #{usuarioControlador.aprendizTemp.ubicacion}
                                 </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Genero</label>
+                                <div role="tabpanel" class="tab-pane color1" id="profile">
+                                    <div style="font-size:18px;" class="table-responsive" >
+                                        <h2>Observaciones</h2>
+                                        <br/>
+                                        <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
+                                            <div>
+                                                <label>Psicologo :</label>  &nbsp; 
+                                                #{citas.idPsicologo.usuario.nombres} #{citas.idPsicologo.usuario.primerApellido}
+                                                <br/>
+                                                <label>Fecha :</label> &nbsp; 
+                                                <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{citas.fecha}">
+                                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                                </h:outputLabel>
+                                                <br/>
+                                                #{citas.observacion}
+                                                <hr/>
+                                            </div>
+                                        </c:forEach>
+                                        <c:forEach var="obser" items="#{citaControlador.obsevacionesAprendiz(usuarioControlador.aprendizTemp)}" >
+                                            <div>
+                                                <label>Remitente :</label> &nbsp; 
+                                                #{obser.idRemitente.nombres} #{obser.idRemitente.primerApellido}
+                                                <br/>
+                                                <label>Fecha :</label> &nbsp; 
+                                                <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{obser.fecha}">
+                                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                                </h:outputLabel>
+                                                <br/>
+                                                #{obser.observcion}
+                                                <hr/>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane color1" id="messages">
+                                    <div  style="font-size:18px;" class="table-responsive">
+                                        <h2>Test</h2>
+                                        <br/>
+                                        <c:forEach var="test" items="#{testCortnolador.listarTestAprendiz(usuarioControlador.aprendizTemp)}" >
+                                            <div>
+                                                <label>Estado :</label>  &nbsp; 
+                                                #{test.estado}
+                                                <br/>
+                                                <label>Fecha :</label> &nbsp; 
+                                                <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{test.fecha}">
+                                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                                </h:outputLabel>
+                                                <br/>
+                                                <label>Nombre :</label>  &nbsp; #{test.nombre}
+                                                <br/>
+                                                <label>Descripcion :</label>  &nbsp; #{test.descripcion}
+                                                <br/>
+                                                <label>Resultado :</label>  &nbsp; #{test.resultado}
+                                                <br/>
+                                                <hr/>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="diagrama">
+                                    <h2>Diagrama familiar</h2>
                                     <br/>
-                                    #{usuarioControlador.aprendizTemp.sexo}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Estado civil</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.estadoCivil}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Raza</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.raza}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Religion</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.religion}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Tendencia politica</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.tendenciaPolitica}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Tendencia sexual</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.orientacionSexual}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px; color:black;">Discapacidad</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.discapacidad}
-                                </div>
-                                <div class="form-group">
-                                    <label style="font-size:17px    ; color:black;">Pasa tiempo</label>
-                                    <br/>
-                                    #{usuarioControlador.aprendizTemp.pasaTiempo}
-                                </div>
-                                <br/>
-                                <br/>
-                            </div>
-                            <div role="tabpanel" class="tab-pane color1" id="profile">
-                                <div style="font-size:18px;" class="table-responsive" >
-                                    <h2>Observaciones</h2>
-                                    <br/>
-                                    <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
-                                        <div>
-                                            <label>Psicologo :</label>  &nbsp; 
-                                            #{citas.idPsicologo.usuario.nombres} #{citas.idPsicologo.usuario.primerApellido}
-                                            <br/>
-                                            <label>Fecha :</label> &nbsp; 
-                                            <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{citas.fecha}">
-                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
-                                            </h:outputLabel>
-                                            <br/>
-                                            #{citas.observacion}
-                                            <hr/>
-                                        </div>
-                                    </c:forEach>
-                                    <c:forEach var="obser" items="#{citaControlador.obsevacionesAprendiz(usuarioControlador.aprendizTemp)}" >
-                                        <div>
-                                            <label>Remitente :</label> &nbsp; 
-                                            #{obser.idRemitente.nombres} #{obser.idRemitente.primerApellido}
-                                            <br/>
-                                            <label>Fecha :</label> &nbsp; 
-                                            <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{obser.fecha}">
-                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
-                                            </h:outputLabel>
-                                            <br/>
-                                            #{obser.observcion}
-                                            <hr/>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane color1" id="messages">
-                                <div  style="font-size:18px;" class="table-responsive">
-                                    <h2>Test</h2>
-                                    <br/>
-                                    <c:forEach var="test" items="#{testCortnolador.listarTestAprendiz(usuarioControlador.aprendizTemp)}" >
-                                        <div>
-                                            <label>Estado :</label>  &nbsp; 
-                                            #{test.estado}
-                                            <br/>
-                                            <label>Fecha :</label> &nbsp; 
-                                            <h:outputLabel style="font-size: 16px; color:black;" class="label" value="#{test.fecha}">
-                                                <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
-                                            </h:outputLabel>
-                                            <br/>
-                                            <label>Nombre :</label>  &nbsp; #{test.nombre}
-                                            <br/>
-                                            <label>Descripcion :</label>  &nbsp; #{test.descripcion}
-                                            <br/>
-                                            <label>Resultado :</label>  &nbsp; #{test.resultado}
-                                            <br/>
-                                            <hr/>
-                                        </div>
-                                    </c:forEach>
-                                </div>
-                            </div>
-                            <div role="tabpanel" class="tab-pane" id="diagrama">
-                                <h2>Diagrama familiar</h2>
-                                <br/>
-                                <p:diagram value="#{diagramaControlador.model}" style="height:600px" styleClass="ui-widget-content" />
+                                    <p:diagram value="#{diagramaControlador.model}" style="height:600px" styleClass="ui-widget-content" />
 
-                                <style type="text/css">
-                                    .ui-diagram-element {   
-                                        width:5em; 
-                                        height:5em;
-                                        line-height:5em;
-                                        text-align: center;
-                                        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
-                                        border-radius: 5em;
-                                        border: 1px solid #404a4e;
-                                        background-color: #404a4e;
-                                        color: #cccccc;
-                                    }
+                                    <style type="text/css">
+                                        .ui-diagram-element {   
+                                            width:5em; 
+                                            height:5em;
+                                            line-height:5em;
+                                            text-align: center;
+                                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                                            border-radius: 5em;
+                                            border: 1px solid #404a4e;
+                                            background-color: #404a4e;
+                                            color: #cccccc;
+                                        }
 
-                                    .ui-diagram-element:hover {
-                                        background-color: #20282b;
-                                    }
-                                </style>
+                                        .ui-diagram-element:hover {
+                                            background-color: #20282b;
+                                        }
+                                    </style>
+                                </div>
                             </div>
-                        </div>
+                        </h:form>
                     </div>
                 </div>
             </ui:define>
