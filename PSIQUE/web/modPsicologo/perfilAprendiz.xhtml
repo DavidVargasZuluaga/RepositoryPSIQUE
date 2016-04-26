@@ -141,8 +141,8 @@
                                 <div role="tabpanel" class="tab-pane color1" id="profile">
                                     <div style="font-size:18px;" class="table-responsive" >
                                         <h2>Observaciones</h2>
-                                        <br/>
                                         <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
+                                        <br/>
                                         <br/>
                                         <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
                                             <div>

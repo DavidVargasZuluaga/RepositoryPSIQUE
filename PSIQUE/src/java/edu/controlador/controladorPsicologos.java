@@ -61,7 +61,7 @@ public class controladorPsicologos implements Serializable {
     private int ver;
     
     public controladorPsicologos() {
-        ver = 0;
+        
     }
     
     @PostConstruct
@@ -69,6 +69,7 @@ public class controladorPsicologos implements Serializable {
         psicologo = new Psicologo();
         ListaPsicologo = new ArrayList<>();
     }
+    
     
     public void crearUsuario() {
         usuarioTemp = new Usuario();

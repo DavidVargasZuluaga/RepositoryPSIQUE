@@ -97,6 +97,24 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{psicologoControlador.modalObservacion == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{psicologoControlador.cerrarModal()}
+                        </button>
+                        <strong>Observacion agregada</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{psicologoControlador.modalObservacion == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{psicologoControlador.cerrarModal()}
+                        </button>
+                        <strong>Error observacion</strong>
+                    </div>
+                </c:if>
                 <c:if test="#{usuarioControlador.modalModificarAprendiz == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -115,7 +133,7 @@
                         <strong>Error</strong>
                     </div>
                 </c:if>
-                
+
                 <c:if test="#{mensajeControlador.modalMensaje == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -270,36 +288,22 @@
                         <div class="modal-content" >
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Informacion cita #{miLista3.idCita}</h4>
+                                <h4 class="modal-title" id="myModalLabel">Agregar observacion</h4>
                             </div>
                             <div style="font-size: 18px" class="modal-body">
-                                <h3 class="color1">Cita</h3>
-                                <label>Fecha</label>
-                                <br/>
-                                <h:outputLabel value="#{miLista3.fecha}">
-                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
-                                </h:outputLabel>
-                                <br/>
                                 <label>Observacion</label>
                                 <br/>
-                                #{miLista3.observacion}
+                                <textarea class="form-control" name="observacion"/>
                                 <br/>
-                                <label>Aprendiz</label>
-                                <br/>
-                                #{miLista3.idAprendiz.usuario.nombres} #{miLista3.idAprendiz.usuario.primerApellido} #{miLista3.idAprendiz.usuario.segundoApellido}
-                                <br/>
-                                <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
-                                    <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{miLista3.idAprendiz}"/>
-                                    <i class="fa fa-user"></i> Ver perfil
-                                </h:commandLink>
+                                <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
                             </div>
                             <div class="modal-footer">
                                 <div class="modal-footer">
-                                    <h:commandLink class="botones btn" action="#{usuarioControlador.editarPerfilAprendiz()}" value="Editar" />
-                                    <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarDatosAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
+                                    <h:commandLink class="botones btn" action="#{psicologoControlador.agregarObservacion(usuarioControlador.fecha2.time , usuarioControlador.aprendizTemp , usuarioControlador.usuarioLog)}" >
+                                        <i class="fa fa-plus"></i> Agregar
+                                    </h:commandLink>
                                     <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                                 </div>
-                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
                     </h:form>
@@ -545,9 +549,7 @@
                                 <textarea class="form-control" name="mensaje" required="true"/>
                                 <br/>
                                 <button trype="burron" class="btn botonesinv" disabled="true" ><i class="fa fa-paperclip fa-lg" title="Adjuntar archivo"></i> </button>
-                                <datalist id="usuarios">
 
-                                </datalist>
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton class="botones2 btn" value="Enviar" action="#{mensajeControlador.enviarMensaje(usuarioControlador.usuarioLog)}"></h:commandButton>

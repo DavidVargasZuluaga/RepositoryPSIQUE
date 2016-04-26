@@ -52,7 +52,11 @@ public class PsicologoControlador implements Serializable {
 
     @Inject
     private FichaFacade fichaFacade;
+    
+    @Inject
+    private ObservacionFacade observacionFacade;
 
+    private Observacion observacionTemp;
     private Usuario usuarioLog;
     private Aprendiz aprendizLog;
     private List<Usuario> listaUsuarios;
@@ -62,7 +66,7 @@ public class PsicologoControlador implements Serializable {
     private Respuesta respuestaLog;
     private Cita citaLog;
     private Ficha fichaLog;
-    private int estados;
+    private int estados, modalObservacion;
 
     @PostConstruct
     public void init() {
@@ -74,6 +78,33 @@ public class PsicologoControlador implements Serializable {
         preguntaLog = new Pregunta();
         respuestaLog = new Respuesta();
         fichaLog = new Ficha();
+        observacionTemp = new Observacion();
+        modalObservacion = 0;
+    }
+    
+    public String agregarObservacion(Date f, Aprendiz a, Usuario u){
+        String res = "perfilAprendiz.xhtml";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            observacionTemp.setFecha(f);
+            observacionTemp.setIdAprendiz(a);
+            observacionTemp.setIdRemitente(u);
+            observacionTemp.setObservcion((String) params.get( "observacion"));
+            observacionFacade.create(observacionTemp);
+            observacionTemp = new Observacion();
+            modalObservacion = 1;
+        } catch (Exception e) {
+            modalObservacion = 2;
+            e.printStackTrace();
+        }
+        return res ;
+    }
+    
+    public void cerrarModal(){
+        modalObservacion = 0;
     }
 
     public String autenticar() {
@@ -416,4 +447,12 @@ public class PsicologoControlador implements Serializable {
         this.citaLog = citaLog;
     }
 
+    public int getModalObservacion() {
+        return modalObservacion;
+    }
+
+    public void setModalObservacion(int modalObservacion) {
+        this.modalObservacion = modalObservacion;
+    }
+    
 }
