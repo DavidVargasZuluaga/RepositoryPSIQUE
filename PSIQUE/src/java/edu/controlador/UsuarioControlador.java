@@ -51,7 +51,7 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int ver, modalCreacion, modalRecuperarContraseña, año, mes, dia, hora, minuto, segundo;
+    private int ver, modalCreacion, modalRecuperarContraseña, modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
     private Entrada objEntrada;
@@ -72,6 +72,7 @@ public class UsuarioControlador implements Serializable {
         version = "PSIQUE 3.9";
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
+        modalModificarAprendiz = 0;
         ver = 0;
         fecha2 = GregorianCalendar.getInstance();
         año = fecha2.get(Calendar.YEAR);
@@ -107,9 +108,26 @@ public class UsuarioControlador implements Serializable {
         }
         return us;
     }
-    
-    public String editarPerfilAprendiz(){
-        aprendizFacade.edit(aprendizTemp);
+
+    public String editarPerfilAprendiz() {
+        try {
+            aprendizFacade.edit(aprendizTemp);
+            modalModificarAprendiz = 1;
+        } catch (Exception e) {
+            modalModificarAprendiz = 2;
+            e.printStackTrace();
+        }
+        return "perfilAprendiz.xhtml";
+    }
+
+    public String editarDatosAprendiz() {
+        try {
+            aprendizFacade.edit(aprendizTemp);
+            modalModificarAprendiz = 1;
+        } catch (Exception e) {
+            modalModificarAprendiz = 2;
+            e.printStackTrace();
+        }
         return "perfilAprendiz.xhtml";
     }
 
@@ -372,6 +390,8 @@ public class UsuarioControlador implements Serializable {
 
     public void cerrarModal() {
         modalRecuperarContraseña = 0;
+        modalCreacion = 0;
+        modalModificarAprendiz = 0;
     }
 
     //    Parte Andres parte del controlador Usuario
@@ -611,4 +631,21 @@ public class UsuarioControlador implements Serializable {
     public void setListaEntrada(List<Entrada> listaEntrada) {
         this.listaEntrada = listaEntrada;
     }
+
+    public int getModalModificarAprendiz() {
+        return modalModificarAprendiz;
+    }
+
+    public void setModalModificarAprendiz(int modalModificarAprendiz) {
+        this.modalModificarAprendiz = modalModificarAprendiz;
+    }
+
+    public Correo getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(Correo correo) {
+        this.correo = correo;
+    }
+
 }

@@ -132,7 +132,7 @@
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.pasaTiempo}
                                     </div>
-                                    <h:commandLink class="btn botonesinv" onclick="$('#editarDatosAprendiz').modal(); return false;">
+                                    <h:commandLink class="btn botonesinv" onclick="$('#informacionPersonalAprendiz').modal(); return false;">
                                         <i class="fa fa-pencil-square"></i> Editar
                                     </h:commandLink>
                                     <br/>
@@ -141,6 +141,8 @@
                                 <div role="tabpanel" class="tab-pane color1" id="profile">
                                     <div style="font-size:18px;" class="table-responsive" >
                                         <h2>Observaciones</h2>
+                                        <br/>
+                                        <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
                                         <br/>
                                         <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
                                             <div>

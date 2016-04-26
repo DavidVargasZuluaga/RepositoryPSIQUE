@@ -97,6 +97,25 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{usuarioControlador.modalModificarAprendiz == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Aprendiz Modificado</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalModificarAprendiz == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Error</strong>
+                    </div>
+                </c:if>
+                
                 <c:if test="#{mensajeControlador.modalMensaje == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -154,175 +173,7 @@
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
-            <div class="modal fade" id="editarPerfilAprendiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-sm" role="document">
-                    <h:form class="form-horizontal form" id="mod18">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h3 class="modal-title" id="myModalLabel">Editar perfil</h3>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="form-group">
-                                        <label >Nombres:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.nombres}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Primer Apellido:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.primerApellido}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Segundo Apellido:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.segundoApellido}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Tipo de documento</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.tipoDocumento}" >
-                                            <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                            <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                            <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                            <f:selectItem itemValue="PP" itemLabel="Pasaporte" />    
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >No de documento:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.noDocumento}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Correo electronico:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.correo}" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Fecha de nacimiento:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.fechaNacimiento}" >
-                                            <f:convertDateTime pattern="dd/MM/yyy"/>
-                                        </h:inputText>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Telefono:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.telefono}" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarPerfilAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
-                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
-                            </div>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
-            <div class="modal fade" id="editarDatosAprendiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-sm" role="document">
-                    <h:form class="form-horizontal form" id="mod19">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h3 class="modal-title" id="myModalLabel">Editar datos personales</h3>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div class="form-group">
-                                        <label >Programa de formacion:</label>
-                                        <br/>
-                                        <h:selectOneMenu  class="form-control" value="#{usuarioControlador.aprendizTemp.ficha}" >
 
-                                            <f:selectItem itemDisabled="true" />
-                                        </h:selectOneMenu>                                     
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Numero de ficha:</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.ficha}" >
-                                            <c:forEach items="#{usuarioControlador.aprendizTemp.ficha.idPrograma.fichaList}" var="fichas" >
-                                                <f:selectItem itemLabel="#{fichas.noFicha}" itemValue="#{fichas}" />
-                                            </c:forEach>
-                                        </h:selectOneMenu>                                    
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Ubicacion:</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.ubicacion}" >
-                                            <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
-                                            <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
-                                            <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
-                                            <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
-                                            <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
-                                            <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
-                                            <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
-                                            <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
-                                            <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
-                                            <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
-                                            <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
-                                            <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
-                                            <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
-                                            <f:selectItem itemLabel="Suba" itemValue="Suba" />
-                                            <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
-                                            <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
-                                            <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
-                                            <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
-                                            <f:selectItem itemLabel="Usme" itemValue="Usme" />
-                                        </h:selectOneMenu> 
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Genero:</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.sexo}" >
-                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
-                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Estado civil:</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.estadoCivil}" >
-                                            <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
-                                            <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
-                                            <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
-                                            <f:selectItem itemValue="Casado/a" itemLabel="Viudo/a" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Raza o grupo etnico:</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.raza}" >
-                                            <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
-                                            <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
-                                            <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                            <f:selectItem itemValue="Otro.." itemLabel="Otro" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Fecha de nacimiento:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.fechaNacimiento}" >
-                                            <f:convertDateTime pattern="dd/MM/yyy"/>
-                                        </h:inputText>
-                                    </div>
-                                    <div class="form-group">
-                                        <label >Telefono:</label>
-                                        <br/>
-                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.telefono}" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarPerfilAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
-                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
-                            </div>
-                        </div>
-                    </h:form>
-                </div>
-            </div>
             <ui:repeat var="miLista" value="#{psicologoControlador.mostrarCitasSolicitadas(usuarioControlador.usuarioLog.psicologo)}">
                 <div class="modal fade" id="modalAceptarCita#{miLista.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
@@ -413,6 +264,265 @@
                     </div>
                 </div>
             </ui:repeat>
+            <div class="modal fade" id="agregarObservacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod21">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Informacion cita #{miLista3.idCita}</h4>
+                            </div>
+                            <div style="font-size: 18px" class="modal-body">
+                                <h3 class="color1">Cita</h3>
+                                <label>Fecha</label>
+                                <br/>
+                                <h:outputLabel value="#{miLista3.fecha}">
+                                    <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
+                                </h:outputLabel>
+                                <br/>
+                                <label>Observacion</label>
+                                <br/>
+                                #{miLista3.observacion}
+                                <br/>
+                                <label>Aprendiz</label>
+                                <br/>
+                                #{miLista3.idAprendiz.usuario.nombres} #{miLista3.idAprendiz.usuario.primerApellido} #{miLista3.idAprendiz.usuario.segundoApellido}
+                                <br/>
+                                <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
+                                    <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{miLista3.idAprendiz}"/>
+                                    <i class="fa fa-user"></i> Ver perfil
+                                </h:commandLink>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones btn" action="#{usuarioControlador.editarPerfilAprendiz()}" value="Editar" />
+                                    <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarDatosAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="editarPerfilAprendiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod18">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title" id="myModalLabel">Editar perfil</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <div class="form-group">
+                                        <label >Nombres:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.nombres}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Primer Apellido:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.primerApellido}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Segundo Apellido:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.segundoApellido}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Tipo de documento</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.tipoDocumento}" >
+                                            <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                            <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                            <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                            <f:selectItem itemValue="PP" itemLabel="Pasaporte" />    
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >No de documento:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.noDocumento}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Correo electronico:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.correo}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Fecha de nacimiento:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.fechaNacimiento}" >
+                                            <f:convertDateTime pattern="dd/MM/yyy"/>
+                                        </h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Telefono:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.telefono}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarPerfilAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="informacionPersonalAprendiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod20">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h3 class="modal-title" id="myModalLabel">Editar datos personales</h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <!--<div class="form-group">
+                                        <label >Programa de formacion:</label>
+                                        <br/>
+                                        <h:selectOneMenu  class="form-control" >
+                                            <f:selectItem itemDisabled="true" />
+                                        </h:selectOneMenu>                                     
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Numero de ficha:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.ficha}" >
+                                            <c:forEach items="#{usuarioControlador.aprendizTemp.ficha.idPrograma.fichaList}" var="fichas" >
+                                                <f:selectItem itemLabel="#{fichas.noFicha}" itemValue="#{fichas}" />
+                                            </c:forEach>
+                                        </h:selectOneMenu>                                    
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label >Ubicacion:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.ubicacion}" >
+                                            <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
+                                            <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
+                                            <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
+                                            <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
+                                            <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
+                                            <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
+                                            <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
+                                            <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
+                                            <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
+                                            <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
+                                            <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
+                                            <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
+                                            <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
+                                            <f:selectItem itemLabel="Suba" itemValue="Suba" />
+                                            <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
+                                            <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
+                                            <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
+                                            <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
+                                            <f:selectItem itemLabel="Usme" itemValue="Usme" />
+                                        </h:selectOneMenu> 
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Genero:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.sexo}" >
+                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Estado civil:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.estadoCivil}" >
+                                            <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
+                                            <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
+                                            <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
+                                            <f:selectItem itemValue="Casado/a" itemLabel="Viudo/a" />
+                                        </h:selectOneMenu>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label >Raza o grupo etnico:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.raza}" >
+                                            <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
+                                            <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
+                                            <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
+                                            <f:selectItem itemValue="Otro.." itemLabel="Otro" />
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Religion:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.religion}" >
+                                            <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
+                                            <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
+                                            <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
+                                            <f:selectItem itemValue="Pentecostalismo" itemLabel="Pentecostalismo" />
+                                            <f:selectItem itemValue="Testigos de Jehová" itemLabel="Testigos de Jehová" />
+                                            <f:selectItem itemValue="Comunión Anglicana" itemLabel="Comunión Anglicana" />
+                                            <f:selectItem itemValue="Rastafarismo" itemLabel="Rastafarismo" />
+                                            <f:selectItem itemValue="Islamismo" itemLabel="Islamismo" />
+                                            <f:selectItem itemValue="Budismo" itemLabel="Budismo" />
+                                            <f:selectItem itemValue="Judaísmo" itemLabel="Judaísmo" />
+                                            <f:selectItem itemValue="Iglesia Ortodoxa" itemLabel="Iglesia Ortodoxa" />
+                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
+                                        </h:selectOneMenu>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label >Tendencia politica:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.tendenciaPolitica}" >
+                                            <f:selectItem itemValue="Partido Social de Unidad Nacional" itemLabel="Partido Social de Unidad Nacional" />
+                                            <f:selectItem itemValue="Centro Democrático" itemLabel="Centro Democrático" />
+                                            <f:selectItem itemValue="Partido Conservador Colombiano" itemLabel="Partido Conservador Colombiano" />
+                                            <f:selectItem itemValue="Partido Liberal Colombiano" itemLabel="Partido Liberal Colombiano" />
+                                            <f:selectItem itemValue="Partido Cambio Radical" itemLabel="Partido Cambio Radical" />
+                                            <f:selectItem itemValue="Partido Opción Ciudadana" itemLabel="Partido Opción Ciudadana" />
+                                            <f:selectItem itemValue="Alianza Verde" itemLabel="Alianza Verde" />
+                                            <f:selectItem itemValue="Polo Democrático Alternativo" itemLabel="Polo Democrático Alternativo" />
+                                            <f:selectItem itemValue="Movimiento Independiente de Renovación Absoluta" itemLabel="Movimiento Independiente de Renovación Absoluta" />
+                                            <f:selectItem itemValue="Alianza Social Independiente" itemLabel="Alianza Social Independiente" />
+                                            <f:selectItem itemValue="Movimiento Alternativo Indígena y Socialo" itemLabel="Movimiento Alternativo Indígena y Socialo" />
+                                            <f:selectItem itemValue="Fundación Ébano por Colombia Funeco" itemLabel="Fundación Ébano por Colombia Funeco" />
+                                            <f:selectItem itemValue="Autoridades Indígenas de Colombia" itemLabel="Autoridades Indígenas de Colombia" />
+                                            <f:selectItem itemValue="Unión Patriótica" itemLabel="Unión Patriótica" />
+                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
+                                        </h:selectOneMenu>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label >Orientacion sexual:</label>
+                                        <br/>
+                                        <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.orientacionSexual}" >
+                                            <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
+                                            <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
+                                            <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
+                                            <f:selectItem itemValue="Asexualidado" itemLabel="Asexualidado" />
+                                            <f:selectItem itemValue="Pansexualidad" itemLabel="Pansexualidad" />
+                                            <f:selectItem itemValue="Demisexualidad" itemLabel="Demisexualidad" />
+                                            <f:selectItem itemValue="Antrosexualidad" itemLabel="Antrosexualidad" />
+                                        </h:selectOneMenu>                               
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Discapacidad:</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.discapacidad}" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Pasa tiempo :</label>
+                                        <br/>
+                                        <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.pasaTiempo}" />
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandLink class="botones2 btn" action="#{usuarioControlador.editarDatosAprendiz()}"><i class="fa fa-check fa-lg"></i> Editar</h:commandLink>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
             <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod6">
