@@ -97,6 +97,24 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{testCortnolador.modalTestAsignado == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{testCortnolador.cerrarModal()}
+                        </button>
+                        <strong>Test asignado</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{testCortnolador.modalTestAsignado == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{testCortnolador.cerrarModal()}
+                        </button>
+                        <strong>Error al asignar test</strong>
+                    </div>
+                </c:if>
                 <c:if test="#{psicologoControlador.modalObservacion == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -107,7 +125,7 @@
                     </div>
                 </c:if>
                 <c:if test="#{psicologoControlador.modalObservacion == 2}" >
-                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             #{psicologoControlador.cerrarModal()}
@@ -125,12 +143,12 @@
                     </div>
                 </c:if>
                 <c:if test="#{usuarioControlador.modalModificarAprendiz == 2}" >
-                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             #{usuarioControlador.cerrarModal()}
                         </button>
-                        <strong>Error</strong>
+                        <strong>Error al modificar aprendiz</strong>
                     </div>
                 </c:if>
 
@@ -191,7 +209,32 @@
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
-
+            <ui:repeat var="test" value="#{testCortnolador.listarTestPlantilla()}">
+                <div class="modal fade" id="asignarTest#{test.idTest}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod21">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Asignar test</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <select class="selectpicker" name="aprendiz" data-live-search="true">
+                                        <option disabled="true" selected="true">Seleccione un aprendiz</option>
+                                        <c:forEach var="apren" items="#{usuarioControlador.listarAprendicesActivos()}" >
+                                            <option value="#{apren.idAprendiz}">#{apren.usuario.nombres} #{apren.usuario.primerApellido} #{u.segundoApellido}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones2 btn" action="#{testCortnolador.asignarTest(test)}"><i class="fa fa-check fa-lg"></i> Aceptar cita</h:commandLink>
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:repeat>
             <ui:repeat var="miLista" value="#{psicologoControlador.mostrarCitasSolicitadas(usuarioControlador.usuarioLog.psicologo)}">
                 <div class="modal fade" id="modalAceptarCita#{miLista.idCita}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">

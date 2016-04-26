@@ -35,8 +35,11 @@ public class TestControlador implements Serializable {
     
     @Inject
     PreguntaFacade preguntaFacade;
+    
+    @Inject
+    AprendizFacade aprendizFacade;
 
-    int modalTest ;
+    int modalTest, modalTestAsignado ;
     Test testLog;
     Respuesta respuestaTem ;
     List<Pregunta> listaPreguntas;
@@ -44,9 +47,44 @@ public class TestControlador implements Serializable {
     @PostConstruct
     public void init() {
         modalTest = 0;
+        modalTestAsignado = 0;
         testLog = new Test();
         respuestaTem = new Respuesta();
         listaPreguntas = preguntaFacade.findAll();
+    }
+    
+    public String asignarTest(Test t){
+        String res = "mostrarTest.xhtml";
+        Test testTemp = new Test();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String para = (String) params.get("aprendiz");
+            long para2 = Long.parseLong(para);
+            testTemp = t;
+            testTemp.setIdTest(null);
+            testTemp.setIdAprendiz(aprendizFacade.find(para2));
+            testTemp.setEstado("ASIGNADO");
+            testFacade.create(testTemp);
+            modalTestAsignado = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            modalTestAsignado = 2;
+        }
+        return res;
+    }
+    
+    public List<Test> listarTestPlantilla(){
+        List<Test> tests = testFacade.findAll();
+        List<Test> resTets = new ArrayList();
+        for (int i = 0; i < tests.size(); i++) {
+            if(tests.get(i).getEstado().equals("PLANTILLA")){
+                resTets.add(tests.get(i));
+            }
+        }
+        return resTets;
     }
     
     public List<Respuesta> listaRespuestasAprendiz(Pregunta p){
@@ -111,6 +149,7 @@ public class TestControlador implements Serializable {
     
     public void cerrarModal() {
         modalTest = 0;
+        modalTestAsignado = 0;
     }
 
     public Test getTestLog() {
@@ -143,6 +182,14 @@ public class TestControlador implements Serializable {
 
     public void setListaPreguntas(List<Pregunta> listaPreguntas) {
         this.listaPreguntas = listaPreguntas;
+    }
+
+    public int getModalTestAsignado() {
+        return modalTestAsignado;
+    }
+
+    public void setModalTestAsignado(int modalTestAsignado) {
+        this.modalTestAsignado = modalTestAsignado;
     }
 
 }

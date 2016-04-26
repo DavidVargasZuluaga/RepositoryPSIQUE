@@ -64,6 +64,7 @@ public class UsuarioControlador implements Serializable {
     private List<Usuario> listaUsuarios;
     private List<Psicologo> listaPsicologos;
     private List<Entrada> listaEntrada;
+    private List<Aprendiz> listaAprendices;
 
     Date fecha1 = new Date();
 
@@ -94,7 +95,18 @@ public class UsuarioControlador implements Serializable {
 
         listaUsuarios = usuarioFacade.findAll();
         listaPsicologos = psicologoFacade.findAll();
+        listaAprendices = aprendizFacade.findAll();
 
+    }
+    
+    public List<Aprendiz> listarAprendicesActivos(){
+        List<Aprendiz> resList = new ArrayList();
+        for (int i = 0; i < listaAprendices.size(); i++) {
+            if(listaAprendices.get(i).getUsuario().getEstado().equals("ACTIVO")){
+                resList.add(listaAprendices.get(i));
+            }
+        }
+        return resList;
     }
 
     public Usuario buscarPorNombre(String nombre) {
@@ -646,6 +658,14 @@ public class UsuarioControlador implements Serializable {
 
     public void setCorreo(Correo correo) {
         this.correo = correo;
+    }
+
+    public List<Aprendiz> getListaAprendices() {
+        return listaAprendices;
+    }
+
+    public void setListaAprendices(List<Aprendiz> listaAprendices) {
+        this.listaAprendices = listaAprendices;
     }
 
 }
