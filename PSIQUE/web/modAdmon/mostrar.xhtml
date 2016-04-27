@@ -78,7 +78,7 @@
                                                         #{excelControlador.miHoja.getCell(columna,fila).getContents()}
                                                     </td>
                                                 </c:forEach>
-                                                #{excelControlador.setTipoDocumento(excelControlador.miHoja.getCell(0,fila).getContents())})
+                                                <td> #{excelControlador.setTipoDocumento(excelControlador.miHoja.getCell(0,fila).getContents())}</td>
                                                 #{excelControlador.setNoDocumento(excelControlador.miHoja.getCell(1,fila).getContents())}
                                                 #{excelControlador.setCorreo((excelControlador.miHoja.getCell(2,fila).getContents()))}
                                                 #{excelControlador.setClave((excelControlador.miHoja.getCell(3,fila).getContents()))}

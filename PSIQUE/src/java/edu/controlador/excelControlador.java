@@ -55,7 +55,9 @@ public class excelControlador implements Serializable {
         return archivoExcel.getNumberOfSheets();
     }
     
-    public boolean ingresarUsuario(){
+    public boolean ingresarUsuario(){ 
+        
+        try {
         Usuario u = new Usuario();
         u.setIdRol(rolFacade.find(rol));
         u.setTipoDocumento(tipoDocumento);
@@ -68,7 +70,7 @@ public class excelControlador implements Serializable {
         u.setNombres(nombres);
         u.setSegundoApellido(segundoApellido);
         u.setTelefono(telefono);
-        try {
+       
            usuarioFacade.create(u);
            return true;
        } catch (Exception e) {

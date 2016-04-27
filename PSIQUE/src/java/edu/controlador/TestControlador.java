@@ -32,16 +32,16 @@ public class TestControlador implements Serializable {
 
     @Inject
     RespuestaFacade respuestaFacade;
-    
+
     @Inject
     PreguntaFacade preguntaFacade;
-    
+
     @Inject
     AprendizFacade aprendizFacade;
 
-    int modalTest, modalTestAsignado ;
+    int modalTest, modalTestAsignado;
     Test testLog;
-    Respuesta respuestaTem ;
+    Respuesta respuestaTem;
     List<Pregunta> listaPreguntas;
 
     @PostConstruct
@@ -52,8 +52,8 @@ public class TestControlador implements Serializable {
         respuestaTem = new Respuesta();
         listaPreguntas = preguntaFacade.findAll();
     }
-    
-    public String asignarTest(Test t){
+
+    public String asignarTest(Test t) {
         String res = "mostrarTest.xhtml";
         Test testTemp = new Test();
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -75,19 +75,23 @@ public class TestControlador implements Serializable {
         }
         return res;
     }
-    
-    public List<Test> listarTestPlantilla(){
+
+    public List<Test> listarTestPlantilla() {
         List<Test> tests = testFacade.findAll();
         List<Test> resTets = new ArrayList();
-        for (int i = 0; i < tests.size(); i++) {
-            if(tests.get(i).getEstado().equals("PLANTILLA")){
-                resTets.add(tests.get(i));
+        try {
+            for (int i = 0; i < tests.size(); i++) {
+                if (tests.get(i).getEstado().equals("PLANTILLA")) {
+                    resTets.add(tests.get(i));
+                }
             }
+        } catch (Exception e) {
         }
+
         return resTets;
     }
-    
-    public List<Respuesta> listaRespuestasAprendiz(Pregunta p){
+
+    public List<Respuesta> listaRespuestasAprendiz(Pregunta p) {
         return p.getRespuestaList();
     }
 
@@ -99,12 +103,12 @@ public class TestControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             for (int i = 0; i < testLog.getPreguntaList().size(); i++) {
-                String resp = ""+params.get("pregunta"+""+testLog.getPreguntaList().get(i).getIdPregunta());
+                String resp = "" + params.get("pregunta" + "" + testLog.getPreguntaList().get(i).getIdPregunta());
                 Integer idRespuesta = Integer.parseInt(resp);
                 Respuesta respu = respuestaFacade.find(idRespuesta);
-                suma =+ respu.getValor();
+                suma = +respu.getValor();
             }
-            testLog.setResultado(""+suma);
+            testLog.setResultado("" + suma);
             testLog.setEstado("RESUELTO");
             modalTest = 1;
             testFacade.edit(testLog);
@@ -131,13 +135,13 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
-    
-    public List<Test> listarTestAprendiz(Aprendiz a){
+
+    public List<Test> listarTestAprendiz(Aprendiz a) {
         List<Test> listaTestA = new ArrayList();
         List<Test> listaTestT = testFacade.findAll();
         try {
             for (int i = 0; i < listaTestT.size(); i++) {
-                if(listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())){
+                if (listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
                     listaTestA.add(listaTestT.get(i));
                 }
             }
@@ -146,7 +150,7 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
-    
+
     public void cerrarModal() {
         modalTest = 0;
         modalTestAsignado = 0;
