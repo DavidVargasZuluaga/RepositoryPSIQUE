@@ -15,7 +15,7 @@
                 <div class="row margen color1">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-align-justify fa-lg"></i> Test para implementar</h1>
+                            <h1><i class="fa fa-file-text fa-lg"></i> Test para implementar</h1>
                         </div>
                     </div>
                     <div class="container-fluid ">
@@ -38,6 +38,9 @@
                                                     <td align="center" width="15%">
                                                         <h:commandLink class="color1" title="Asignar test" onclick="$('#asignarTest#{test.idTest}').modal(); return false;" >
                                                             <i class="fa fa-child fa-lg"></i>
+                                                        </h:commandLink>
+                                                        <h:commandLink class="color1" title="Ver test" onclick="$('#verTest#{test.idTest}').modal(); return false;" >
+                                                            <i class="fa fa-eye fa-lg"></i>
                                                         </h:commandLink>
                                                     </td>
                                                 </tr>

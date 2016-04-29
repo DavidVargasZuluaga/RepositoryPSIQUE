@@ -107,48 +107,6 @@ public class PsicologoControlador implements Serializable {
         modalObservacion = 0;
     }
 
-    public String autenticar() {
-        String res = "/index.xhtml";
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            Long doc = Long.parseLong((String) params.get("documento"));
-            String clave = (String) params.get("clave");
-            this.listaUsuarios = ejbUsuario.findAll();
-            for (int i = 0; i < listaUsuarios.size(); i++) {
-                if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
-                    this.usuarioLog = listaUsuarios.get(i);
-                    httpServletRequest.getSession().setAttribute("UsuarioLog", listaUsuarios.get(i));
-                    break;
-                }
-            }
-            switch (usuarioLog.getIdRol().getIdRol()) {
-                case 1:
-                    res = "/modPsicologo/indexPsicologo.xhtml";
-                    break;
-                case 2:
-                    res = "modCoordinador/principalCoordinador.xhtml";
-                    break;
-                case 3:
-                    psicologoLog = psicologoFacade.find(usuarioLog.getIdUsuario());
-                    res = "modPsicologo/indexPsicologo.xhtml";
-                    break;
-                case 4:
-                    aprendizLog = aprendizFacade.find(usuarioLog.getIdUsuario());
-                    res = "modAprendiz/principalAprendiz.xhtml";
-                    break;
-                default:
-                    res = "/index.xhtml";
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return res;
-    }
-
     public List<Ficha> mostrarFichas() {
         return fichaFacade.findAll();
     }
@@ -214,7 +172,6 @@ public class PsicologoControlador implements Serializable {
     }
 
     public void asignarTest(Test test) {
-
         test.setIdTest(null);
         test.setIdAprendiz(aprendizLog);
         test.setEstado("PLANTILLA");
@@ -252,34 +209,8 @@ public class PsicologoControlador implements Serializable {
         preguntaFacade.remove(pregunta);
     }
 
-    public String cerrarSesion() {
-        try {
-            init();
-            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return "/index";
-    }
-
     public List<Pregunta> mostrarPreguntas() {
         return (List<Pregunta>) testLog.getPreguntaList();
-    }
-
-    public void validarSesion() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null) {
-            } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     public String cancelarCita(Cita cita) {

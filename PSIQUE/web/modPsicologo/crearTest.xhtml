@@ -9,35 +9,33 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-              Crear test
+                Crear test
             </ui:define>
 
             <ui:define name="body">
                 <div class="row margen color1">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Crear Test</h1>
+                            <h1><i class="fa fa-file fa-lg"></i> Crear Test</h1>
                         </div>
                     </div>
                     <div class="container-fluid ">
                         <div class="table-responsive">
-                            <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Aprendices SILSPA</h3>
-                                    <c:if test="#{psicologoControlador.estados == 1}">
-                                        <div class="alert alert-warning" role="alert">
-                                            Test creado correctamente
-                                        </div>
-                                    </c:if>
-                                </div>
+                            <div style="font-size:19px;" class="panel filterable">
+                                <c:if test="#{psicologoControlador.estados == 1}">
+                                    <div class="alert alert-warning" role="alert">
+                                        Test creado correctamente
+                                    </div>
+                                </c:if>
                                 <h:form id="formulario" class="form-group" >
+                                    <br/>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="titulo">Titulo</label>  
-                                        <input id="titulo" name="titulo" type="text" placeholder="titulo" class="form-control input-md" required=""/>
+                                        <label  class="col-md-4 control-label" for="titulo">Nombre:</label>  
+                                        <input id="titulo" name="titulo" type="text" class="form-control input-md" required=""/>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="descripcion">Descripcion</label>  
-                                        <input id="descripcion" name="descripcion" type="text" placeholder="Test para algo" class="form-control input-md" required=""/>
+                                        <label class="col-md-4 control-label" for="descripcion">Descripcion:</label>  
+                                        <input id="descripcion" name="descripcion" type="text" class="form-control input-md" required=""/>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
                                         <h:commandButton action="#{psicologoControlador.crearTest()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>

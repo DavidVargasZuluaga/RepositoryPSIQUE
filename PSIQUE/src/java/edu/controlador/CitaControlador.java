@@ -32,6 +32,9 @@ import javax.servlet.http.HttpServletRequest;
 public class CitaControlador implements Serializable {
 
     @Inject
+    private AprendizFacade aprendizFacade;
+    
+    @Inject
     private CitaFacade citaFacade;
 
     @Inject
@@ -112,9 +115,9 @@ public class CitaControlador implements Serializable {
                     }
                 }
             }
-            if(resul.isEmpty()){
+            if (resul.isEmpty()) {
                 modalVacio = 1;
-            }else{
+            } else {
                 modalVacio = 0;
             }
         } catch (Exception e) {
@@ -257,6 +260,52 @@ public class CitaControlador implements Serializable {
             citaTemp = null;
         }
         return citaTemp;
+    }
+
+    // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
+    // PENDIENTE POR MODIFICAR
+    public String cancelarCita(Cita cita) {
+        cita.setEstado("CANCELADA");
+        citaFacade.edit(cita);
+        return "citasSolicitadas.xhtml";
+    }
+
+    public String aceptarCitar(Cita cita) {
+        cita.setEstado("PENDIENTE");
+        citaFacade.edit(cita);
+        return "citasSolicitadas.xhtml";
+    }
+
+    public List<Aprendiz> mostrarAprendices() {
+        List<Aprendiz> aprendices = aprendizFacade.findAll();
+        return aprendices;
+    }
+
+    public List<Cita> mostrarCitasPendientes() {
+        List<Cita> Citas = citaFacade.findAll();
+        List<Cita> citasPendientes = new ArrayList<Cita>();
+        for (int i = 0; i < Citas.size(); i++) {
+            if (Citas.get(i).getEstado().equals("PENDIENTE")) {
+                citasPendientes.add(Citas.get(i));
+            }
+        }
+        return citasPendientes;
+    }
+
+    public List<Cita> mostrarCitasSolicitadas() {
+        List<Cita> Citas = citaFacade.findAll();
+        List<Cita> citasPendientes = new ArrayList<Cita>();
+        for (int i = 0; i < Citas.size(); i++) {
+            if (Citas.get(i).getEstado().equals("SOLICITADA")) {
+                citasPendientes.add(Citas.get(i));
+            }
+        }
+        return citasPendientes;
+    }
+
+    public List<Cita> mostrarCitas() {
+        List<Cita> Citas = citaFacade.findAll();
+        return Citas;
     }
 
     public Cita getCitaTemp() {

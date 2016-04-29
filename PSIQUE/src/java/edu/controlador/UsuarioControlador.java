@@ -109,17 +109,17 @@ public class UsuarioControlador implements Serializable {
         return resList;
     }
 
-    public Usuario buscarPorNombre(String nombre) {
-        List<Usuario> listaU = usuarioFacade.findAll();
-        Usuario us = new Usuario();
-        for (int i = 0; i < listaU.size(); i++) {
-            if (listaU.get(i).getNombres().equals(nombre) || listaU.get(i).getPrimerApellido().equals(nombre)) {
-                us = listaU.get(i);
-                break;
-            }
-        }
-        return us;
-    }
+//    public Usuario buscarPorNombre(String nombre) {
+//        List<Usuario> listaU = usuarioFacade.findAll();
+//        Usuario us = new Usuario();
+//        for (int i = 0; i < listaU.size(); i++) {
+//            if (listaU.get(i).getNombres().equals(nombre) || listaU.get(i).getPrimerApellido().equals(nombre)) {
+//                us = listaU.get(i);
+//                break;
+//            }
+//        }
+//        return us;
+//    }
 
     public String editarPerfilAprendiz() {
         try {
@@ -141,10 +141,6 @@ public class UsuarioControlador implements Serializable {
             e.printStackTrace();
         }
         return "perfilAprendiz.xhtml";
-    }
-
-    public String redireccionarACitasSolicitadas(String direccion) {
-        return "/" + direccion;
     }
 
     public String autenticar() {
@@ -212,72 +208,7 @@ public class UsuarioControlador implements Serializable {
             e.printStackTrace();
         }
     }
-
-    public void crearUsuario() {
-        usuarioTemp = new Usuario();
-        boolean existe = true;
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            usuarioTemp.setIdRol(rolFacade.find(4));
-            usuarioTemp.setTipoDocumento((String) params.get("tipoDocumento"));
-            usuarioTemp.setNoDocumento(Long.parseLong((String) params.get("documento")));
-            usuarioTemp.setClave((String) params.get("clave"));
-            usuarioTemp.setClave((String) params.get("correo"));
-            usuarioTemp.setEstado("ACTIVO");
-            usuarioTemp.setFechaNacimiento((Date) params.get("fechaNacimiento"));
-            usuarioTemp.setNombres((String) params.get("nombres"));
-            usuarioTemp.setPrimerApellido((String) params.get("primerApellido"));
-            usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
-            usuarioTemp.setTelefono((String) params.get("telefono"));
-            for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
-                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()) {
-                    existe = false;
-                    usuarioTemp = new Usuario();
-                    break;
-                }
-            }
-            if (existe) {
-                usuarioFacade.create(usuarioTemp);
-                modalCreacion = 1;
-            } else {
-                modalCreacion = 2;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String crearAprendiz() {
-        crearUsuario();
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-
-        try {
-            if (usuarioTemp != null) {
-                aprendizTemp.setUsuario(usuarioTemp);
-                aprendizTemp.setFicha(fichaFacade.find((Integer) params.get("Ficha")));
-                aprendizTemp.setUbicacion((String) params.get("ubicacion"));
-                aprendizTemp.setSexo((String) params.get("sexo"));
-                aprendizTemp.setEstadoCivil((String) params.get("estadoCivil"));
-                aprendizTemp.setRaza((String) params.get("raza"));
-                aprendizTemp.setReligion((String) params.get("religion"));
-                aprendizTemp.setTendenciaPolitica((String) params.get("politica"));
-                aprendizTemp.setOrientacionSexual((String) params.get("sexual"));
-                aprendizTemp.setDiscapacidad((String) params.get("discapacidad"));
-                aprendizTemp.setPasaTiempo((String) params.get("pasaTiempo"));
-                aprendizFacade.create(aprendizTemp);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return " ";
-    }
-
+    
     public String editarDatosPersonales() {
         String res = "/PSIQUE";
         usuarioFacade.edit(usuarioLog);
@@ -312,7 +243,6 @@ public class UsuarioControlador implements Serializable {
             u.setEstado(es);
             usuarioFacade.edit(u);
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return res;
     }
@@ -352,52 +282,6 @@ public class UsuarioControlador implements Serializable {
         objEntrada.setUsuarioidUsuario(usuarioLog);
         entradaFacade.create(objEntrada);
         System.out.println("Ingreso al sistema exitoso");
-    }
-
-    // FELIPE ES UN PUERCO METIENDO CONTENIDO DEL MODULO CITAS EN ESTE CONTROLADOR
-    // PENDIENTE POR MODIFICAR
-    public String cancelarCita(Cita cita) {
-        cita.setEstado("CANCELADA");
-        citaFacade.edit(cita);
-        return "citasSolicitadas.xhtml";
-    }
-
-    public String aceptarCitar(Cita cita) {
-        cita.setEstado("PENDIENTE");
-        citaFacade.edit(cita);
-        return "citasSolicitadas.xhtml";
-    }
-
-    public List<Aprendiz> mostrarAprendices() {
-        List<Aprendiz> aprendices = aprendizFacade.findAll();
-        return aprendices;
-    }
-
-    public List<Cita> mostrarCitasPendientes() {
-        List<Cita> Citas = citaFacade.findAll();
-        List<Cita> citasPendientes = new ArrayList<Cita>();
-        for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("PENDIENTE")) {
-                citasPendientes.add(Citas.get(i));
-            }
-        }
-        return citasPendientes;
-    }
-
-    public List<Cita> mostrarCitasSolicitadas() {
-        List<Cita> Citas = citaFacade.findAll();
-        List<Cita> citasPendientes = new ArrayList<Cita>();
-        for (int i = 0; i < Citas.size(); i++) {
-            if (Citas.get(i).getEstado().equals("SOLICITADA")) {
-                citasPendientes.add(Citas.get(i));
-            }
-        }
-        return citasPendientes;
-    }
-
-    public List<Cita> mostrarCitas() {
-        List<Cita> Citas = citaFacade.findAll();
-        return Citas;
     }
 
     public void cerrarModal() {
