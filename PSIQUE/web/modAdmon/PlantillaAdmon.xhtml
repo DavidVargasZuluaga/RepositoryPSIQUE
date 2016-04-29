@@ -65,16 +65,16 @@
                                     <ul style="font-size: 18px;" class="dropdown-menu">
                                         <li><a><strong>Editar</strong></a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Aprendiz</a></li>
-                                        <li><a href="/PSIQUE/modAdmon/admonPsicologo.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Psicologo</a></li>
+                                        <li><a href="/PSIQUE/modAdmon/admonPsicologo.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Psicólogo</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonCoordinadores.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Coordinador</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonProgramas-Fichas.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Programas y fichas</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong>Crear Usuario</strong></a></li>
-                                        <li><a href="/PSIQUE/modUsuario/Registro/psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Psicologo</a></li>
+                                        <li><a href="/PSIQUE/modUsuario/Registro/psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Psicólogo</a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Coordinador</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong>Sobre el sistema</strong></a></li>
-                                        <li><a href="/PSIQUE/modAdmon/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de autidorias</a></li>
+                                        <li><a href="/PSIQUE/modAdmon/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de auditorias</a></li>
                                         <li><a href="/PSIQUE/modAdmon/historialDeIngresos.xhtml"><i class="fa fa fa-eye fa-lg"></i>Historial de ingresos</a></li>
                                         <li><a href="/PSIQUE/modAdmon/todosUsuarios.xhtml"><i class="fa fa fa-users fa-lg"></i> Todos los usuarios</a></li>
                                         <li role="separator" class="divider"></li>
@@ -86,7 +86,7 @@
                                 <li><a href="/PSIQUE/modAdmon/notificacion.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones </a></li>
                             </ul>
                             <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
-                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesion</b></h:commandLink></li>
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesión</b></h:commandLink></li>
                             </ul>
                         </div>
                     </div>
@@ -135,8 +135,8 @@
                             <div style="font-size: 18px;" class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
                                     <li><a class="botonesnav" href="/PSIQUE/modAdmon/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajería</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modAdmon/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuración</a></li>
                                     <li><a class="botonesnav" href="/PSIQUE/modAdmon/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
@@ -444,7 +444,7 @@
                     </div>
                 </div>
             </ui:repeat>
-            <!--Modal Psicologo-->
+            <!--Modal Psicólogo-->
             <ui:repeat var="listaPsicologo" value="#{usuarioControlador.traerListaPsicologos()}">
 
                 <div class="modal fade" id="myModal#{listaPsicologo.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -574,10 +574,10 @@
                             </div>
                             <div class="modal-body">
                                 <div class="control-label">
-                                    <label style="color:black;">Correo electronico</label>
+                                    <label style="color:black;">Correo electrónico</label>
                                     <br/>
                                     <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" />
-                                    <label style="color:black;">Telefono</label>
+                                    <label style="color:black;">Teléfono</label>
                                     <br/>
                                     <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
                                 </div>

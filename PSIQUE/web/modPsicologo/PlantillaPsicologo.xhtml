@@ -84,7 +84,7 @@
                                 <li><a href="/PSIQUE/modPsicologo/notificacion.xhtml" class="botonesnav"><i class="fa fa-bookmark fa-lg"></i>  Notificaciones </a></li>
                             </ul>
                             <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
-                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesion</b></h:commandLink></li>
+                                <li><h:commandLink action="#{usuarioControlador.cerrarSesion()}" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Cerrar Sesión</b></h:commandLink></li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             <span aria-hidden="true">&times;</span>
                             #{psicologoControlador.cerrarModal()}
                         </button>
-                        <strong>Observacion agregada</strong>
+                        <strong>Observación agregada</strong>
                     </div>
                 </c:if>
                 <c:if test="#{psicologoControlador.modalObservacion == 2}" >
@@ -130,7 +130,7 @@
                             <span aria-hidden="true">&times;</span>
                             #{psicologoControlador.cerrarModal()}
                         </button>
-                        <strong>Error observacion</strong>
+                        <strong>Error observación</strong>
                     </div>
                 </c:if>
                 <c:if test="#{usuarioControlador.modalModificarAprendiz == 1}" >
@@ -188,8 +188,8 @@
                             <div style="font-size: 18px;" class="profile-usermenu botonesnav">
                                 <ul class="nav botonesnav">
                                     <li><a class="botonesnav" href="/PSIQUE/modPsicologo/miPerfil.xhtml" ><i class="fa fa-user fa-lg"></i> &nbsp; Mi perfil</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modPsicologo/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajeria</a></li>
-                                    <li><a class="botonesnav" href="/PSIQUE/modPsicologo/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuracion</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modPsicologo/mensajeria.xhtml" ><i class="fa fa-envelope fa-lg"></i> &nbsp; Mensajería</a></li>
+                                    <li><a class="botonesnav" href="/PSIQUE/modPsicologo/configuracion.xhtml" ><i class="fa fa-cog fa-spin fa-lg"></i> &nbsp; Configuración</a></li>
                                     <li><a class="botonesnav" href="/PSIQUE/modPsicologo/ayuda.xhtml" ><i class="fa fa-question-circle fa-lg"></i> &nbsp; Ayuda</a></li>
                                 </ul>
                             </div>
@@ -317,7 +317,7 @@
                             <div class="modal-content" >
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Informacion cita #{miLista3.idCita}</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Información cita #{miLista3.idCita}</h4>
                                 </div>
                                 <div style="font-size: 18px" class="modal-body">
                                     <h3 class="color1">Cita</h3>
@@ -327,7 +327,7 @@
                                         <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
                                     </h:outputLabel>
                                     <br/>
-                                    <label>Observacion</label>
+                                    <label>Observación</label>
                                     <br/>
                                     #{miLista3.observacion}
                                     <br/>
@@ -354,10 +354,10 @@
                         <div class="modal-content" >
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel">Agregar observacion</h4>
+                                <h4 class="modal-title" id="myModalLabel">Agregar observación</h4>
                             </div>
                             <div style="font-size: 18px" class="modal-body">
-                                <label>Observacion</label>
+                                <label>Observación</label>
                                 <br/>
                                 <textarea class="form-control" name="observacion"/>
                                 <br/>
@@ -416,7 +416,7 @@
                                         <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.noDocumento}" />
                                     </div>
                                     <div class="form-group">
-                                        <label >Correo electronico:</label>
+                                        <label >Correo electrónico:</label>
                                         <br/>
                                         <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.correo}" />
                                     </div>
@@ -428,7 +428,7 @@
                                         </h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <label >Telefono:</label>
+                                        <label >Teléfono:</label>
                                         <br/>
                                         <h:inputText class="form-control" value="#{usuarioControlador.aprendizTemp.usuario.telefono}" />
                                     </div>
@@ -469,7 +469,7 @@
                                         </h:selectOneMenu>                                    
                                     </div>-->
                                     <div class="form-group">
-                                        <label >Ubicacion:</label>
+                                        <label >Ubicación:</label>
                                         <br/>
                                         <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.ubicacion}" >
                                             <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
@@ -512,7 +512,7 @@
                                         </h:selectOneMenu>
                                     </div> 
                                     <div class="form-group">
-                                        <label >Raza o grupo etnico:</label>
+                                        <label >Raza o grupo étnico:</label>
                                         <br/>
                                         <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.raza}" >
                                             <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
@@ -522,7 +522,7 @@
                                         </h:selectOneMenu>
                                     </div>
                                     <div class="form-group">
-                                        <label >Religion:</label>
+                                        <label >Religión:</label>
                                         <br/>
                                         <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.religion}" >
                                             <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
@@ -540,7 +540,7 @@
                                         </h:selectOneMenu>
                                     </div> 
                                     <div class="form-group">
-                                        <label >Tendencia politica:</label>
+                                        <label >Tendencia política:</label>
                                         <br/>
                                         <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.tendenciaPolitica}" >
                                             <f:selectItem itemValue="Partido Social de Unidad Nacional" itemLabel="Partido Social de Unidad Nacional" />
@@ -561,7 +561,7 @@
                                         </h:selectOneMenu>
                                     </div> 
                                     <div class="form-group">
-                                        <label >Orientacion sexual:</label>
+                                        <label >Orientación sexual:</label>
                                         <br/>
                                         <h:selectOneMenu class="form-control" value="#{usuarioControlador.aprendizTemp.orientacionSexual}" >
                                             <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
@@ -635,10 +635,10 @@
                             </div>
                             <div class="modal-body">
                                 <div class="control-label">
-                                    <label style="color:black;">Correo electronico</label>
+                                    <label style="color:black;">Correo electrónico</label>
                                     <br/>
                                     <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" />
-                                    <label style="color:black;">Telefono</label>
+                                    <label style="color:black;">Teléfono:</label>
                                     <br/>
                                     <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
                                 </div>
