@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package edu.controlador;
 
 import edu.entidad.*;
@@ -51,7 +46,7 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int ver, modalCreacion, modalRecuperarContraseña, modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
+    private int ver, modalCreacion, modalRecuperarContraseña, modalIngreso, modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
     private Entrada objEntrada;
@@ -60,17 +55,17 @@ public class UsuarioControlador implements Serializable {
     private Usuario usuarioLog, usuarioTemp;
     private Aprendiz aprendizLog, aprendizTemp;
     private Psicologo psicologoLog;
+    private Date fecha1 = new Date();
 
     private List<Usuario> listaUsuarios;
     private List<Psicologo> listaPsicologos;
     private List<Entrada> listaEntrada;
     private List<Aprendiz> listaAprendices;
 
-    Date fecha1 = new Date();
-
     @PostConstruct
     public void init() {
         version = "PSIQUE 3.9";
+        modalIngreso = 0;
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
         modalModificarAprendiz = 0;
@@ -98,11 +93,11 @@ public class UsuarioControlador implements Serializable {
         listaAprendices = aprendizFacade.findAll();
 
     }
-    
-    public List<Aprendiz> listarAprendicesActivos(){
+
+    public List<Aprendiz> listarAprendicesActivos() {
         List<Aprendiz> resList = new ArrayList();
         for (int i = 0; i < listaAprendices.size(); i++) {
-            if(listaAprendices.get(i).getUsuario().getEstado().equals("ACTIVO")){
+            if (listaAprendices.get(i).getUsuario().getEstado().equals("ACTIVO")) {
                 resList.add(listaAprendices.get(i));
             }
         }
@@ -120,7 +115,7 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return us;
 //    }
-
+    
     public String editarPerfilAprendiz() {
         try {
             aprendizFacade.edit(aprendizTemp);
@@ -179,7 +174,7 @@ public class UsuarioControlador implements Serializable {
                     break;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+             modalIngreso = 1;
         }
         return res;
     }
@@ -208,7 +203,7 @@ public class UsuarioControlador implements Serializable {
             e.printStackTrace();
         }
     }
-    
+
     public String editarDatosPersonales() {
         String res = "/PSIQUE";
         usuarioFacade.edit(usuarioLog);
@@ -288,6 +283,7 @@ public class UsuarioControlador implements Serializable {
         modalRecuperarContraseña = 0;
         modalCreacion = 0;
         modalModificarAprendiz = 0;
+        modalIngreso = 0;
     }
 
     //    Parte Andres parte del controlador Usuario
@@ -550,6 +546,30 @@ public class UsuarioControlador implements Serializable {
 
     public void setListaAprendices(List<Aprendiz> listaAprendices) {
         this.listaAprendices = listaAprendices;
+    }
+
+    public Entrada getObjEntrada() {
+        return objEntrada;
+    }
+
+    public void setObjEntrada(Entrada objEntrada) {
+        this.objEntrada = objEntrada;
+    }
+
+    public Date getFecha1() {
+        return fecha1;
+    }
+
+    public void setFecha1(Date fecha1) {
+        this.fecha1 = fecha1;
+    }
+
+    public int getModalIngreso() {
+        return modalIngreso;
+    }
+
+    public void setModalIngreso(int modalIngreso) {
+        this.modalIngreso = modalIngreso;
     }
 
 }

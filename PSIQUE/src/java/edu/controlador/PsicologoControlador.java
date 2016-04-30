@@ -52,7 +52,7 @@ public class PsicologoControlador implements Serializable {
 
     @Inject
     private FichaFacade fichaFacade;
-    
+
     @Inject
     private ObservacionFacade observacionFacade;
 
@@ -81,8 +81,8 @@ public class PsicologoControlador implements Serializable {
         observacionTemp = new Observacion();
         modalObservacion = 0;
     }
-    
-    public String agregarObservacion(Date f, Aprendiz a, Usuario u){
+
+    public String agregarObservacion(Date f, Aprendiz a, Usuario u) {
         String res = "perfilAprendiz.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -92,7 +92,7 @@ public class PsicologoControlador implements Serializable {
             observacionTemp.setFecha(f);
             observacionTemp.setIdAprendiz(a);
             observacionTemp.setIdRemitente(u);
-            observacionTemp.setObservcion((String) params.get( "observacion"));
+            observacionTemp.setObservcion((String) params.get("observacion"));
             observacionFacade.create(observacionTemp);
             observacionTemp = new Observacion();
             modalObservacion = 1;
@@ -100,10 +100,10 @@ public class PsicologoControlador implements Serializable {
             modalObservacion = 2;
             e.printStackTrace();
         }
-        return res ;
+        return res;
     }
-    
-    public void cerrarModal(){
+
+    public void cerrarModal() {
         modalObservacion = 0;
     }
 
@@ -121,14 +121,17 @@ public class PsicologoControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         Date fecha = new Date();
         Test test = new Test();
-        test.setIdTest(null);
-        test.setIdAprendiz(null);
-        test.setResultado(null);
-        test.setFecha(fecha);
-        test.setNombre((String) params.get("titulo"));
-        test.setDescripcion((String) params.get("descripcion"));
-        testFacade.create(test);
-        estados = 1;
+        try {
+            test.setIdTest(null);
+            test.setIdAprendiz(null);
+            test.setResultado(null);
+            test.setFecha(fecha);
+            test.setNombre((String) params.get("titulo"));
+            test.setDescripcion((String) params.get("descripcion"));
+            testFacade.create(test);
+            estados = 1;
+        } catch (Exception e) {
+        }
         return "/modPiscologo/crearTest.xhtml";
     }
 
@@ -385,5 +388,5 @@ public class PsicologoControlador implements Serializable {
     public void setModalObservacion(int modalObservacion) {
         this.modalObservacion = modalObservacion;
     }
-    
+
 }

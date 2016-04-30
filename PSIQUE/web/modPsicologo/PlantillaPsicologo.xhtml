@@ -243,14 +243,25 @@
                                     <h4 class="modal-title" id="myModalLabel">Ver test </h4>
                                 </div>
                                 <div class="modal-body">
-                                    <select class="selectpicker" name="aprendiz" data-live-search="true">
-                                        <option disabled="true" selected="true">Seleccione un aprendiz</option>
-                                        <c:forEach var="apren" items="#{usuarioControlador.listarAprendicesActivos()}" >
-                                            <option value="#{apren.idAprendiz}">#{apren.usuario.nombres} #{apren.usuario.primerApellido} #{u.segundoApellido}</option>
-                                        </c:forEach>
-                                    </select>
+
                                 </div>
                                 <div class="modal-footer">
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal fade" id="cancelarTest#{test.idTest}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod23">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Eliminar test </h4>
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandLink class="botones2 btn" action="#{testCortnolador.eliminarTest(test)}"><i class="fa fa-times-circle-o fa-lg"></i> Eliminar test</h:commandLink>
                                     <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                                 </div>
                             </div>

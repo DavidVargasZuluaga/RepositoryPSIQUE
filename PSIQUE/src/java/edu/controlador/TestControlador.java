@@ -70,7 +70,22 @@ public class TestControlador implements Serializable {
         }
         return res;
     }
-
+    
+    public String eliminarTest(Test t){
+        testFacade.remove(t);
+        return "mostrarTest.xhtml";
+    }
+    
+    public List<Pregunta> listarPreguntas(Test t){
+        List<Pregunta> preguntas = t.getPreguntaList();
+        return preguntas;
+    }
+    
+    public List<Respuesta> listarRespuestas(Pregunta p){
+        List<Respuesta> respuestas = p.getRespuestaList();
+        return respuestas;
+    }
+    
     public List<Test> listarTestPlantilla() {
         List<Test> tests = testFacade.findAll();
         List<Test> resTets = new ArrayList();
@@ -85,7 +100,6 @@ public class TestControlador implements Serializable {
         }
         return resTets;
     }
-    
 
     public List<Respuesta> listaRespuestasAprendiz(Pregunta p) {
         return p.getRespuestaList();
@@ -120,14 +134,13 @@ public class TestControlador implements Serializable {
         List<Test> listaTestT = testFacade.findAll();
         try {
             for (int i = 0; i < listaTestT.size(); i++) {
-                if (listaTestT.get(i).getIdAprendiz().getUsuario().getIdUsuario().equals(u.getIdUsuario())) {
-                    if (listaTestT.get(i).getEstado().equals("ASIGNADO")) {
+                if (listaTestT.get(i).getEstado().equals("ASIGNADO")) {
+                    if (listaTestT.get(i).getIdAprendiz().getUsuario().getIdUsuario().equals(u.getIdUsuario())) {
                         listaTestA.add(listaTestT.get(i));
                     }
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return listaTestA;
     }

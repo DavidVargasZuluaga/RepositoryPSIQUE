@@ -48,7 +48,7 @@
                             <span class="icon-bar color2" ></span>
                             <span class="icon-bar color2"></span>
                         </button>
-                        <a style="font-size: 24px;" class="navbar-brand botonesnav" ><b>Usuario</b></a>
+                        <a style="font-size: 24px;" class="navbar-brand botonesnav" ><b></b></a>
                     </div>
                     <div style="font-size: 17px;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
@@ -84,12 +84,19 @@
             </nav>
         </header>
         <div class="container">
-
             <div class="color1 container-fluid row">
                 <br/>
                 <br/>
                 <br/>
                 <dir class="container-fluid">
+                    <c:if test="#{usuarioControlador.modalIngreso == 1}" >
+                        <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                #{mensajeControlador.cerrarModal()}
+                            </button>
+                            <strong>Datos incorrectos</strong> Vuelva a intentarlo
+                        </div>
+                    </c:if>
                     <c:if test="#{mensajeControlador.modalMensajeAdmon == 1}" >
                         <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -134,9 +141,7 @@
                                 <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" ><i class="fa fa-question-circle fa-lg"></i> Olvidaste tu contraseña</a>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                <h:commandLink  style="font-size: 17px;" action="#{usuarioControlador.autenticar()}" id="ingresar" class="btn botones btn-group-justified" tabindex="3">
-                                    <i class="fa fa-sign-in fa-lg"></i> Ingresar
-                                </h:commandLink>
+                                <h:commandButton style="font-size: 17px;" action="#{usuarioControlador.autenticar()}" id="ingresar" class="btn botones btn-group-justified" tabindex="3" value="Ingresar" ></h:commandButton>
                             </div>
                         </h:form>
                         <div class="form-group col-xs-6 col-sm-6 col-md-6">
