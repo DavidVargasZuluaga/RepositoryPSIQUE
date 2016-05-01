@@ -75,7 +75,9 @@ public class controladorFicha implements Serializable {
             }
 
             if (existe) {
+               
                 fichaFacade.create(ficha);
+                
                 System.out.println("ficha creada");
 //                modalCreacion = 1;
             } else {

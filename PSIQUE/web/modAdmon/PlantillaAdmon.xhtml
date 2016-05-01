@@ -63,17 +63,17 @@
                                 <li class="dropdown">
                                     <a class="botonesnav dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs fa-lg"></i> Control<span class="caret"></span></a>
                                     <ul style="font-size: 18px;" class="dropdown-menu">
-                                        <li><a><strong>Editar</strong></a></li>
+                                        <li><a><strong class="botonesnav">Editar</strong></a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonAprendiz.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Aprendiz</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonPsicologo.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Psicólogo</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonCoordinadores.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Coordinador</a></li>
                                         <li><a href="/PSIQUE/modAdmon/admonProgramas-Fichas.xhtml"><i class="fa fa fa-pencil-square-o fa-lg"></i>  Programas y fichas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a><strong>Crear Usuario</strong></a></li>
+                                        <li><a><strong class="botonesnav">Crear Usuario</strong></a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/psicologoRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Psicólogo</a></li>
                                         <li><a href="/PSIQUE/modUsuario/Registro/coordinadorRegistro.xhtml"><i class="fa fa fa-user-plus fa-lg"></i>  Coordinador</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a><strong>Sobre el sistema</strong></a></li>
+                                        <li><a><strong class="botonesnav">Sobre el sistema</strong></a></li>
                                         <li><a href="/PSIQUE/modAdmon/auditorias.xhtml"><i class="fa fa fa-eye fa-lg"></i>  Historial de auditorias</a></li>
                                         <li><a href="/PSIQUE/modAdmon/historialDeIngresos.xhtml"><i class="fa fa fa-eye fa-lg"></i>Historial de ingresos</a></li>
                                         <li><a href="/PSIQUE/modAdmon/todosUsuarios.xhtml"><i class="fa fa fa-users fa-lg"></i> Todos los usuarios</a></li>
@@ -159,81 +159,81 @@
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
-                            <h4 class="modal-title" id="myModalLabel">Modificar datos del administrador</h4>
-                        </div>
-                        <div class="modal-body">
-                            <h:form id="formularioAdministrador">
+                        <h:form id="ModalDatosAprendiz">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span></button>
+                                <h4 class="modal-title" id="myModalLabel">Modificar datos del administrador</h4>
+                            </div>
+                            <div class="modal-body">
+                               
 
-                                <label for="nombres">Nombre</label>
-                                <div class="form-group input-group">                                    
-                                    <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                    <input  class="form-control" id="nombres" value="#{usuarioControlador.usuarioLog.nombres}" name="nombres" />
-                                </div>
-                                <label for="primerApellido">Apellido</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                    <input class="form-control" id="primerApellido" value="#{usuarioControlador.usuarioLog.primerApellido}" name="primerApellido"/>
-                                </div>
-                                <label for="segundoApellido">Segundo apellido</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                    <input  class="form-control" id="segundoApellido" value="#{usuarioControlador.usuarioLog.segundoApellido}" name="segundoApellido" />
-                                </div>
-                                <label for="tipoDocumento">Tipo de documento</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                    <div class="form-group">
-                                        <h:selectOneMenu value="#{usuarioControlador.usuarioLog.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                            <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                            <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                            <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                            <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                        </h:selectOneMenu>
+                                    <label for="nombres">Nombre</label>
+                                    <div class="form-group input-group">                                    
+                                        <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                        <input  class="form-control" id="nombres" value="#{usuarioControlador.usuarioLog.nombres}" name="nombres" />
                                     </div>
-                                </div>
-                                <label for="noDocumento">Número de documento</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Número de documento"><i class="fa fa-hashtag"></i></span>
-                                    <input  class="form-control" id="noDocumento" value="#{usuarioControlador.usuarioLog.noDocumento}" name="noDocumento" />                                                                           
-                                </div>
-                                <label for="correo">Correo</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Correo"><i class="fa fa-at"></i></span>
-                                    <input class="form-control" id="correo" value="#{usuarioControlador.usuarioLog.correo}" name="correo"   />
-                                </div>
-                                <label for="clave">Contraseña</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                    <input class="form-control"  id="clave"  value="#{usuarioControlador.usuarioLog.clave}" name="clave"   />
-                                </div>
+                                    <label for="primerApellido">Apellido</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                        <input class="form-control" id="primerApellido" value="#{usuarioControlador.usuarioLog.primerApellido}" name="primerApellido"/>
+                                    </div>
+                                    <label for="segundoApellido">Segundo apellido</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                        <input  class="form-control" id="segundoApellido" value="#{usuarioControlador.usuarioLog.segundoApellido}" name="segundoApellido" />
+                                    </div>
+                                    <label for="tipoDocumento">Tipo de documento</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                        <div class="form-group">
+                                            <h:selectOneMenu value="#{usuarioControlador.usuarioLog.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                                <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                                <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                                <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                                <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </div>
+                                    <label for="noDocumento">Número de documento</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Número de documento"><i class="fa fa-hashtag"></i></span>
+                                        <input  class="form-control" id="noDocumento" value="#{usuarioControlador.usuarioLog.noDocumento}" name="noDocumento" />                                                                           
+                                    </div>
+                                    <label for="correo">Correo</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Correo"><i class="fa fa-at"></i></span>
+                                        <input class="form-control" id="correo" value="#{usuarioControlador.usuarioLog.correo}" name="correo"   />
+                                    </div>
+                                    <label for="clave">Contraseña</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                        <input class="form-control"  id="clave"  value="#{usuarioControlador.usuarioLog.clave}" name="clave"   />
+                                    </div>
 
-                                <label for="telefono">Teléfono</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Teléfono"><i class="fa fa-mobile"  ></i></span>
-                                    <input class="form-control" id="telefono" value="#{usuarioControlador.usuarioLog.telefono}"  name="telefono" />
-                                </div>
-                                <label for="estado">Estado</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                    <input class="form-control" id="Estado" value="#{usuarioControlador.usuarioLog.estado}" name="estado"   />
-                                </div>
-                                <label for="rol">Rol</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                    <input  class="form-control" id="rol" value="#{usuarioControlador.usuarioLog.idRol.idRol}" name="rol"   />
-                                </div>
+                                    <label for="telefono">Teléfono</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Teléfono"><i class="fa fa-mobile"  ></i></span>
+                                        <input class="form-control" id="telefono" value="#{usuarioControlador.usuarioLog.telefono}"  name="telefono" />
+                                    </div>
+                                    <label for="estado">Estado</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                        <input class="form-control" id="Estado" value="#{usuarioControlador.usuarioLog.estado}" name="estado"   />
+                                    </div>
+                                    <label for="rol">Rol</label>
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                        <input  class="form-control" id="rol" value="#{usuarioControlador.usuarioLog.idRol.idRol}" name="rol"   />
+                                    </div>
 
-                                <hr />
-                            </h:form>
-                        </div>
-                        <div class="modal-footer">
-                            <h:form>
+                                    <hr />
+                               
+                            </div>
+                            <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizarAdministrador()}" />
-                            </h:form>
-                        </div>
+                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(usuarioControlador.usuarioLog)}" />
+                            </div>
+                        </h:form>
                     </div>
                 </div>
             </div>

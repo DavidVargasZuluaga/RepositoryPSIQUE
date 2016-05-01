@@ -48,6 +48,7 @@ public class controladorProgramaDeFormacion implements Serializable {
 
             Programaformacion objProgramaformacion = new Programaformacion();
             objProgramaformacion.setNombrePrograma("" + params.get("nombrePrograma"));
+        
             
             programaformacionFacade.create(objProgramaformacion);
             System.out.println("Programa registrado");

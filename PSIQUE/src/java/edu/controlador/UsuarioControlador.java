@@ -325,7 +325,7 @@ public class UsuarioControlador implements Serializable {
         return listaPs;
     }
 
-    public void actualizar(Usuario usuarioM) {
+    public String actualizar(Usuario usuarioM) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -347,6 +347,7 @@ public class UsuarioControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "/modAdmon/principalAdmon.xhtml";
     }
 
     public int getAño() {

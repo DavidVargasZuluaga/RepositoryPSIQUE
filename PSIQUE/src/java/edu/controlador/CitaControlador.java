@@ -112,9 +112,9 @@ public class CitaControlador implements Serializable {
                     }
                 }
             }
-            if(resul.isEmpty()){
+            if (resul.isEmpty()) {
                 modalVacio = 1;
-            }else{
+            } else {
                 modalVacio = 0;
             }
         } catch (Exception e) {

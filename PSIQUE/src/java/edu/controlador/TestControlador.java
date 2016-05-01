@@ -70,22 +70,32 @@ public class TestControlador implements Serializable {
         }
         return res;
     }
-    
-    public String eliminarTest(Test t){
+
+    public String eliminarTest(Test t) {
         testFacade.remove(t);
         return "mostrarTest.xhtml";
     }
-    
-    public List<Pregunta> listarPreguntas(Test t){
-        List<Pregunta> preguntas = t.getPreguntaList();
+
+    public List<Pregunta> listarPreguntas(Test t) {
+        List<Pregunta> preguntas = new ArrayList();
+        try {
+            preguntas = t.getPreguntaList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return preguntas;
     }
-    
-    public List<Respuesta> listarRespuestas(Pregunta p){
-        List<Respuesta> respuestas = p.getRespuestaList();
+
+    public List<Respuesta> listarRespuestas(Pregunta p) {
+        List<Respuesta> respuestas = new ArrayList();
+        try {
+            respuestas = p.getRespuestaList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return respuestas;
     }
-    
+
     public List<Test> listarTestPlantilla() {
         List<Test> tests = testFacade.findAll();
         List<Test> resTets = new ArrayList();
