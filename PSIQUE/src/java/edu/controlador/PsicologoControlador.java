@@ -66,7 +66,7 @@ public class PsicologoControlador implements Serializable {
     private Respuesta respuestaLog;
     private Cita citaLog;
     private Ficha fichaLog;
-    private int estados, modalObservacion;
+    private int modalObservacion;
 
     @PostConstruct
     public void init() {
@@ -115,26 +115,6 @@ public class PsicologoControlador implements Serializable {
         return fichaLog.getAprendizList();
     }
 
-    public String crearTest() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        Date fecha = new Date();
-        Test test = new Test();
-        try {
-            test.setIdTest(null);
-            test.setIdAprendiz(null);
-            test.setResultado(null);
-            test.setFecha(fecha);
-            test.setNombre((String) params.get("titulo"));
-            test.setDescripcion((String) params.get("descripcion"));
-            testFacade.create(test);
-            estados = 1;
-        } catch (Exception e) {
-        }
-        return "/modPiscologo/crearTest.xhtml";
-    }
-
     public List<Test> mostrarTest() {
         return testFacade.findAll();
     }
@@ -151,7 +131,6 @@ public class PsicologoControlador implements Serializable {
         respuesta.setValor(valor);
         respuestaFacade.create(respuesta);
         preguntaLog.getRespuestaList().add(respuesta);
-        estados = 1;
     }
 
     public void eliminarRespuesta(Respuesta respuesta) {
@@ -169,7 +148,6 @@ public class PsicologoControlador implements Serializable {
         pregunta.setTexto((String) params.get("pregunta"));
         preguntaFacade.create(pregunta);
         testLog.getPreguntaList().add(pregunta);
-        estados = 1;
 
         return "crearPregunta.xhtml";
     }
@@ -182,10 +160,8 @@ public class PsicologoControlador implements Serializable {
         lstaPregunta = test.getPreguntaList();
         List<Respuesta> lstaRespuesta = new ArrayList<Respuesta>();
         if (test.getEstado().equals("ASIGNADO")) {
-            estados = 10;
         }
         if (lstaPregunta == null) {
-            estados = 10;
         } else {
             test.setEstado("ASIGNADO");
             testFacade.create(test);
@@ -198,7 +174,6 @@ public class PsicologoControlador implements Serializable {
                     respuestaFacade.create(lstaRespuesta.get(j));
                 }
             }
-            estados = 20;
         }
 
     }
@@ -231,7 +206,6 @@ public class PsicologoControlador implements Serializable {
         cita.setEstado("CUMPLIDA");
         cita.setObservacion((String) params.get("observacion"));
         citaFacade.edit(cita);
-        estados = 1;
         return "indexPsicologo.xhtml";
     }
 
@@ -249,18 +223,15 @@ public class PsicologoControlador implements Serializable {
     public String editarTest() {
 
         testFacade.edit(testLog);
-        estados = 1;
         return "/modPiscologo/editarTest.xhtml";
     }
 
     public String editarPregunta() {
-        estados = 1;
         preguntaFacade.edit(preguntaLog);
         return "/modPiscologo/editarPregunta.xhtml";
     }
 
     public String editarRespuesta() {
-        estados = 1;
         respuestaFacade.edit(respuestaLog);
         return "/modPiscologo/editarRespuesta.xhtml";
     }
@@ -292,7 +263,6 @@ public class PsicologoControlador implements Serializable {
     }
 
     public String redioreccionarTest() {
-        estados = 0;
         return "/modPiscologo/editarTest.xhtml";
     }
 
@@ -347,14 +317,6 @@ public class PsicologoControlador implements Serializable {
 
     public void setPreguntaLog(Pregunta preguntaLog) {
         this.preguntaLog = preguntaLog;
-    }
-
-    public int getEstados() {
-        return estados;
-    }
-
-    public void setEstados(int estados) {
-        this.estados = estados;
     }
 
     public Respuesta getRespuestaLog() {

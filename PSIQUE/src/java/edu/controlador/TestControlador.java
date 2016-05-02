@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -48,6 +49,22 @@ public class TestControlador implements Serializable {
         listaPreguntas = preguntaFacade.findAll();
     }
 
+    public String crearTest() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        Test test = new Test();
+        try {
+            test.setNombre((String) params.get("titulo"));
+            test.setDescripcion((String) params.get("descripcion"));
+            test.setEstado("PLANTILLA");
+            testFacade.create(test);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/modPiscologo/crearTest.xhtml";
+    }
+
     public String asignarTest(Test t) {
         String res = "mostrarTest.xhtml";
         Test testTemp = new Test();
@@ -59,6 +76,7 @@ public class TestControlador implements Serializable {
             String para = (String) params.get("aprendiz");
             long para2 = Long.parseLong(para);
             testTemp = t;
+            testTemp.setIdPlantilla(testTemp.getIdTest());
             testTemp.setIdTest(null);
             testTemp.setIdAprendiz(aprendizFacade.find(para2));
             testTemp.setEstado("ASIGNADO");

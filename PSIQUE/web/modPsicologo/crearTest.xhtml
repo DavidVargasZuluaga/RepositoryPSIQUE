@@ -22,11 +22,6 @@
                     <div class="container-fluid ">
                         <div class="table-responsive">
                             <div style="font-size:19px;" class="panel filterable">
-                                <c:if test="#{psicologoControlador.estados == 1}">
-                                    <div class="alert alert-warning" role="alert">
-                                        Test creado correctamente
-                                    </div>
-                                </c:if>
                                 <h:form id="formulario" class="form-group" >
                                     <br/>
                                     <div class="form-group">
@@ -38,7 +33,7 @@
                                         <input id="descripcion" name="descripcion" type="text" class="form-control input-md" required=""/>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="#{psicologoControlador.crearTest()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
+                                        <h:commandButton action="#{testCortnolador.crearTest()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
                                     </div>
                                 </h:form>
                                 <h:form>

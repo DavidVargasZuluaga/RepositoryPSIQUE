@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +20,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -73,11 +71,6 @@ public class Test implements Serializable {
     @JoinColumn(name = "idAprendiz", referencedColumnName = "idAprendiz")
     @ManyToOne
     private Aprendiz idAprendiz;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "test1")
-    private Test test;
-    @JoinColumn(name = "idTest", referencedColumnName = "idPlantilla", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Test test1;
     @OneToMany(mappedBy = "idTest")
     private List<Pregunta> preguntaList;
 
@@ -150,22 +143,6 @@ public class Test implements Serializable {
 
     public void setIdAprendiz(Aprendiz idAprendiz) {
         this.idAprendiz = idAprendiz;
-    }
-
-    public Test getTest() {
-        return test;
-    }
-
-    public void setTest(Test test) {
-        this.test = test;
-    }
-
-    public Test getTest1() {
-        return test1;
-    }
-
-    public void setTest1(Test test1) {
-        this.test1 = test1;
     }
 
     @XmlTransient
