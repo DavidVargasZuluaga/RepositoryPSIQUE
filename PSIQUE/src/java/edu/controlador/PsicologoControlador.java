@@ -118,40 +118,7 @@ public class PsicologoControlador implements Serializable {
     public List<Test> mostrarTest() {
         return testFacade.findAll();
     }
-
-    public void crearRespuesta() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        int valor = Integer.parseInt((String) params.get("valor"));
-        Respuesta respuesta = new Respuesta();
-        respuesta.setIdRespuesta(null);
-        respuesta.setIdPregunta(preguntaLog);
-        respuesta.setTexto((String) params.get("texto"));
-        respuesta.setValor(valor);
-        respuestaFacade.create(respuesta);
-        preguntaLog.getRespuestaList().add(respuesta);
-    }
-
-    public void eliminarRespuesta(Respuesta respuesta) {
-        respuestaFacade.remove(respuesta);
-    }
-
-    public String crearPregunta() {
-
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        Pregunta pregunta = new Pregunta();
-        pregunta.setIdPregunta(null);
-        pregunta.setIdTest(testLog);
-        pregunta.setTexto((String) params.get("pregunta"));
-        preguntaFacade.create(pregunta);
-        testLog.getPreguntaList().add(pregunta);
-
-        return "crearPregunta.xhtml";
-    }
-
+    
     public void asignarTest(Test test) {
         test.setIdTest(null);
         test.setIdAprendiz(aprendizLog);
@@ -181,10 +148,6 @@ public class PsicologoControlador implements Serializable {
     public List<Respuesta> mostrarRespuestas() {
         return preguntaLog.getRespuestaList();
 
-    }
-
-    public void eliminarPregunta(Pregunta pregunta) {
-        preguntaFacade.remove(pregunta);
     }
 
     public List<Pregunta> mostrarPreguntas() {

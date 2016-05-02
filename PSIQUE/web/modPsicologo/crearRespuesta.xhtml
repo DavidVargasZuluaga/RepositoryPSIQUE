@@ -9,26 +9,43 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-              Citas Pendientes
+                Citas Pendientes
             </ui:define>
 
             <ui:define name="body">
                 <div class="row margen color1">
-                    <div class="container-fluid">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Crear Respuesta</h1>
-                        </div>
-                    </div>
                     <div class="container-fluid ">
                         <div class="table-responsive">
                             <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Respuestas SILSPA</h3>
-                                    <c:if test="#{psicologoControlador.estados == 1}">
-                                        <div class="alert alert-warning" role="alert">
-                                            Respuesta realizada correctamente
-                                        </div>
-                                    </c:if>
+                                <h2><i class="fa fa-random fa-lg"></i> Respuestas</h2>
+                                <hr/>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th data-field="Texto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Texto</th>
+                                            <th data-field="Valor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Valor</th>
+                                            <th data-field="Eliminar" data-align="center" data-sortable="true" class="col-md-3">Eliminar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>                                     
+                                        <c:forEach var="res" items="#{testCortnolador.preguntaLog.respuestaList}">  
+                                            <tr>
+                                                <td>#{res.texto}</td> 
+                                                <td>#{res.valor}</td>
+                                                <td align="center" width="20%" >
+                                                    <h:form>
+                                                        <h:commandLink class="btn botonesnav" action="#{testCortnolador.eliminarRespuesta(res)}" title="Eliminar respuesta">
+                                                            <i class="fa fa-times fa-lg"></i>
+                                                        </h:commandLink>
+                                                    </h:form>
+                                                </td>
+                                            </tr>
+                                        </c:forEach> 
+                                    </tbody>
+                                </table>
+                                <hr/>
+                                <div class="col-xs-12 col-sm-12 col-md-12 ">
+                                    <h2><i class="fa fa-plus-square fa-lg"></i> Crear Respuesta</h2>
                                 </div>
                                 <h:form id="formulario" class="form-group" >
                                     <div class="form-group">
@@ -40,18 +57,15 @@
                                         <input id="valor" name="valor" type="text" class="form-control input-md" required=""/>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="#{psicologoControlador.crearRespuesta()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"/> 
+                                        <h:commandButton action="#{testCortnolador.crearRespuesta()}" id="ingresar" value="Crear" class="btn botones btn-group-justified"/> 
                                     </div>
-                                </h:form>
-                                <h:form>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="mostrarRespuestas.xhtml" id="regresar" value="Regresar" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
+                                        <h:commandLink action="crearPregunta.xhtml}" value="Resgresar a preguntas" class="btn botones btn-group-justified"/> 
                                     </div>
                                 </h:form>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </ui:define>
         </ui:composition>

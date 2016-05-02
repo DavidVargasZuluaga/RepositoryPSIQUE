@@ -36,6 +36,7 @@ public class TestControlador implements Serializable {
     AprendizFacade aprendizFacade;
 
     int modalTest, modalTestAsignado;
+    Pregunta preguntaLog;
     Test testLog;
     Respuesta respuestaTem;
     List<Pregunta> listaPreguntas;
@@ -46,10 +47,12 @@ public class TestControlador implements Serializable {
         modalTestAsignado = 0;
         testLog = new Test();
         respuestaTem = new Respuesta();
+        preguntaLog = new Pregunta();
         listaPreguntas = preguntaFacade.findAll();
     }
 
     public String crearTest() {
+        String res = "crearPregunta.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -59,10 +62,63 @@ public class TestControlador implements Serializable {
             test.setDescripcion((String) params.get("descripcion"));
             test.setEstado("PLANTILLA");
             testFacade.create(test);
+            List<Test> listaTest = testFacade.findAll();
+            modalTest = 3;
+            int i = listaTest.size() - 1;
+            testLog = listaTest.get(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+            modalTest = 4;
+            res = " ";
+        }
+        return res;
+    }
+
+    public void eliminarPregunta(Pregunta pregunta) {
+        testLog.getPreguntaList().remove(pregunta);
+        preguntaFacade.remove(pregunta);
+    }
+
+    public void crearRespuesta() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        Respuesta respuesta = new Respuesta();
+        try {
+            int valor = Integer.parseInt((String) params.get("valor"));
+            respuesta.setIdPregunta(preguntaLog);
+            respuesta.setTexto((String) params.get("texto"));
+            respuesta.setValor(valor);
+            respuestaFacade.create(respuesta);
+            preguntaLog.getRespuestaList().add(respuesta);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/modPiscologo/crearTest.xhtml";
+    }
+
+    public String terminarTest(){
+        testLog = new Test();
+        preguntaLog = new Pregunta();
+        return "indexPsicologo.xhtml";
+    }
+    
+    public String crearPregunta() {
+        String res = "crearRespuesta.xhtml";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        Pregunta pregunta = new Pregunta();
+        try {
+            pregunta.setIdTest(testLog);
+            pregunta.setTexto((String) params.get("pregunta"));
+            preguntaFacade.create(pregunta);
+            testLog.getPreguntaList().add(pregunta);
+            preguntaLog = pregunta;
+        } catch (Exception e) {
+            e.printStackTrace();
+            res = " ";
+        }
+        return res;
     }
 
     public String asignarTest(Test t) {
@@ -187,6 +243,12 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
+    
+    
+    public void eliminarRespuesta(Respuesta respuesta) {
+        preguntaLog.getRespuestaList().remove(respuesta);
+        respuestaFacade.remove(respuesta);
+    }
 
     public void cerrarModal() {
         modalTest = 0;
@@ -231,6 +293,14 @@ public class TestControlador implements Serializable {
 
     public void setModalTestAsignado(int modalTestAsignado) {
         this.modalTestAsignado = modalTestAsignado;
+    }
+
+    public Pregunta getPreguntaLog() {
+        return preguntaLog;
+    }
+
+    public void setPreguntaLog(Pregunta preguntaLog) {
+        this.preguntaLog = preguntaLog;
     }
 
 }

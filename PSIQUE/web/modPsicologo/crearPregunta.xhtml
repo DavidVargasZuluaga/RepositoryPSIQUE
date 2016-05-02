@@ -9,47 +9,46 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-              Crear pregunta
+                Crear pregunta
             </ui:define>
 
             <ui:define name="body">
                 <div class="row margen color1">
                     <div class="container-fluid">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o fa-lg"></i> &nbsp; Crear Pregunta</h1>
-                        </div>
+                        <h1>#{testCortnolador.testLog.nombre}</h1>
                     </div>
                     <div class="container-fluid ">
-                        <div class="table-responsive">
-                            <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Preguntas SILSPA</h3>
-                                    <c:if test="#{psicologoControlador.estados == 1}">
-                                        <div class="alert alert-warning" role="alert">
-                                            Pregunta realizada correctamente
-                                        </div>
-                                    </c:if>
-                                </div>
-                                <h:form id="formulario" class="form-group" >
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label" for="pregunta">Pregunta</label>  
-                                        <input id="pregunta" name="pregunta" type="text" class="form-control input-md" required=""/>
-                                    </div>
-
-                                    <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="#{psicologoControlador.crearPregunta()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"/> 
-                                    </div>
-
-                                </h:form>
-                                <h:form>
-                                    <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="configurarTest.xhtml" id="lol" value="Regresar" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
+                        <h2><i class="fa fa-question fa-lg"></i> Preguntas</h2>
+                        <hr/>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th data-field="Texto" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Texto</th>
+                                    <th data-field="Titulo" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Resultado</th>
+                                    <th data-field="Eliminar" data-align="center" data-sortable="true" class="col-md-3">Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                     
+                                <c:forEach var="pregunta" items="#{testCortnolador.testLog.preguntaList}">  
+                                    <tr>
+                                        <td>#{pregunta.texto}</td> 
+                                        <td>#{pregunta.respuesta}</td>
+                                        <td align="center" width="20%" >
+                                            <h:form>
+                                                <h:commandLink class="btn botonesnav" action="#{testCortnolador.eliminarPregunta(pregunta)}" title="Eliminar pregunta">
+                                                    <i class="fa fa-times fa-lg"></i>
+                                                </h:commandLink>
+                                            </h:form>
+                                        </td>
+                                    </tr>
+                                </c:forEach> 
+                            </tbody>
+                        </table>
+                        <h:form>
+                            <h:commandLink class="btn botones" onclick="$('#modalCrearPregunta').modal(); return false;"><i class="fa fa-plus" ></i> Crear pregunta</h:commandLink>
+                            <h:commandLink class="btn botones2" action="#{testCortnolador.terminarTest()}"><i class="fa fa-plus" ></i> Terminar test</h:commandLink>
+                        </h:form>
                     </div>
-
                 </div>
             </ui:define>
         </ui:composition>

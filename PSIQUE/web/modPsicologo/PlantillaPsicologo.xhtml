@@ -363,6 +363,29 @@
                     </div>
                 </div>
             </ui:repeat>
+            <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod25">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear Pregunta</h4>
+                            </div>
+                            <div style="font-size: 18px" class="modal-body">
+                                <label>Texto</label>
+                                <br/>
+                                <textarea class="form-control" name="pregunta" required="true"/>
+                                <br/>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-footer">
+                                    <h:commandButton class="botones btn" value="Agregar" action="#{testCortnolador.crearPregunta()}" />
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
             <div class="modal fade" id="agregarObservacion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod21">
