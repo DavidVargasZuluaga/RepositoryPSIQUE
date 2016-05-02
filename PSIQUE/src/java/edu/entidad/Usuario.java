@@ -100,8 +100,6 @@ public class Usuario implements Serializable {
     private byte[] foto;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Administrador administrador;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Notificacion> notificacionList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Coordinador coordinador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
@@ -115,8 +113,6 @@ public class Usuario implements Serializable {
     private List<Mensaje> mensajeList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idReceptor")
     private List<Mensaje> mensajeList1;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioidUsuario")
-    private List<Auditoria> auditoriaList;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Aprendiz aprendiz;
     @OneToMany(mappedBy = "idRemitente")
@@ -241,15 +237,6 @@ public class Usuario implements Serializable {
         this.administrador = administrador;
     }
 
-    @XmlTransient
-    public List<Notificacion> getNotificacionList() {
-        return notificacionList;
-    }
-
-    public void setNotificacionList(List<Notificacion> notificacionList) {
-        this.notificacionList = notificacionList;
-    }
-
     public Coordinador getCoordinador() {
         return coordinador;
     }
@@ -299,15 +286,6 @@ public class Usuario implements Serializable {
 
     public void setMensajeList1(List<Mensaje> mensajeList1) {
         this.mensajeList1 = mensajeList1;
-    }
-
-    @XmlTransient
-    public List<Auditoria> getAuditoriaList() {
-        return auditoriaList;
-    }
-
-    public void setAuditoriaList(List<Auditoria> auditoriaList) {
-        this.auditoriaList = auditoriaList;
     }
 
     public Aprendiz getAprendiz() {
