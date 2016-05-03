@@ -6,7 +6,9 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -36,6 +38,7 @@ public class TestControlador implements Serializable {
     AprendizFacade aprendizFacade;
 
     int modalTest, modalTestAsignado;
+    Calendar fecha;
     Pregunta preguntaLog;
     Test testLog;
     Respuesta respuestaTem;
@@ -45,6 +48,7 @@ public class TestControlador implements Serializable {
     public void init() {
         modalTest = 0;
         modalTestAsignado = 0;
+        fecha = GregorianCalendar.getInstance();
         testLog = new Test();
         respuestaTem = new Respuesta();
         preguntaLog = new Pregunta();
@@ -203,7 +207,7 @@ public class TestControlador implements Serializable {
                 suma = +respu.getValor();
             }
             testLog.setResultado("" + suma);
-            testLog.setFecha(fecha);
+            testLog.setFecha(fecha.getTime());
             testLog.setEstado("RESUELTO");
             modalTest = 1;
             testFacade.edit(testLog);
