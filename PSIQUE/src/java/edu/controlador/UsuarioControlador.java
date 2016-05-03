@@ -77,7 +77,7 @@ public class UsuarioControlador implements Serializable {
         hora = fecha2.get(Calendar.HOUR_OF_DAY);
         minuto = fecha2.get(Calendar.MINUTE);
         segundo = fecha2.get(Calendar.SECOND);
-        fechaActual = (dia + "/" + mes);
+        fechaActual = (dia + "/" + mes +"/"+año);
         horaActual = (+hora + " : " + minuto);
 
         correo = new Correo();

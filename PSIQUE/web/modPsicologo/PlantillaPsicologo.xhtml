@@ -234,28 +234,6 @@
                         </h:form>
                     </div>
                 </div>
-                <div class="modal fade" id="verTest#{test.idTest}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                    <div class="modal-dialog modal-sm" role="document">
-                        <h:form class="form-horizontal form" id="mod22">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">Ver test </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <c:forEach items="#{testCortnolador.listarPreguntas(test)}" var="preguntas">
-                                        <select class="selectpicker form-control" >
-                                            <option>sfsadf</option>
-                                        </select>
-                                    </c:forEach>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
-                                </div>
-                            </div>
-                        </h:form>
-                    </div>
-                </div>
                 <div class="modal fade" id="cancelarTest#{test.idTest}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
                         <h:form class="form-horizontal form" id="mod23">
@@ -363,6 +341,35 @@
                     </div>
                 </div>
             </ui:repeat>
+            <c:forEach var="pregunta2" items="#{testCortnolador.testLog.preguntaList}">
+                <div class="modal fade" id="verRespuestas#{pregunta2.idPregunta}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod28">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Respuestas</h4>
+                                </div>
+                                <div style="font-size: 18px; color: black;" class="modal-body">
+                                    <ui:repeat  value="#{testCortnolador.listarRespuestas(pregunta2)}" var="resp">
+                                        <label>Texto:</label>
+                                        <br/>
+                                        #{resp.texto}
+                                        <br/>
+                                        <label>Valor:</label>
+                                        <br/>
+                                        #{resp.valor}
+                                        <br/>
+                                    </ui:repeat>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </c:forEach>
             <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod25">

@@ -96,12 +96,12 @@ public class TestControlador implements Serializable {
         }
     }
 
-    public String terminarTest(){
+    public String terminarTest() {
         testLog = new Test();
         preguntaLog = new Pregunta();
         return "indexPsicologo.xhtml";
     }
-    
+
     public String crearPregunta() {
         String res = "crearRespuesta.xhtml";
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -203,6 +203,7 @@ public class TestControlador implements Serializable {
                 suma = +respu.getValor();
             }
             testLog.setResultado("" + suma);
+            testLog.setFecha(fecha);
             testLog.setEstado("RESUELTO");
             modalTest = 1;
             testFacade.edit(testLog);
@@ -234,8 +235,10 @@ public class TestControlador implements Serializable {
         List<Test> listaTestT = testFacade.findAll();
         try {
             for (int i = 0; i < listaTestT.size(); i++) {
-                if (listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
-                    listaTestA.add(listaTestT.get(i));
+                if (listaTestT.get(i).getEstado().equals("RESUELTO")) {
+                    if (listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                        listaTestA.add(listaTestT.get(i));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -243,8 +246,18 @@ public class TestControlador implements Serializable {
         }
         return listaTestA;
     }
-    
-    
+
+    public List<Pregunta> listarPreguntasPlantilla(Test t) {
+        List<Pregunta> preguntas = new ArrayList();
+        List<Pregunta> preguntasT = preguntaFacade.findAll();
+        for (int i = 0; i < preguntasT.size(); i++) {
+            if (t.getIdPlantilla().equals(preguntasT.get(i).getIdTest().getIdTest())) {
+                preguntas.add(preguntasT.get(i));
+            }
+        }
+        return preguntas;
+    }
+
     public void eliminarRespuesta(Respuesta respuesta) {
         preguntaLog.getRespuestaList().remove(respuesta);
         respuestaFacade.remove(respuesta);

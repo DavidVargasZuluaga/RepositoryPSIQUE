@@ -31,18 +31,19 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="test" value="#{testCortnolador.listarTestPlantilla()}">
+                                            <ui:repeat var="tt" value="#{testCortnolador.listarTestPlantilla()}">
                                                 <tr>
-                                                    <td>#{test.nombre}</td>
-                                                    <td>#{test.descripcion}</td>
+                                                    <td>#{tt.nombre}</td>
+                                                    <td>#{tt.descripcion}</td>
                                                     <td align="center" width="15%">
-                                                        <h:commandLink class="color1" title="Asignar test" onclick="$('#asignarTest#{test.idTest}').modal(); return false;" >
+                                                        <h:commandLink class="color1" title="Asignar test" onclick="$('#asignarTest#{tt.idTest}').modal(); return false;" >
                                                             <i class="fa fa-child fa-lg"></i>
                                                         </h:commandLink>
-                                                        <h:commandLink class="color1" title="Ver test" onclick="$('#verTest#{test.idTest}').modal(); return false;" >
+                                                        <h:commandLink class="color1" title="Ver test" action="verTest.xhtml">
                                                             <i class="fa fa-eye fa-lg"></i>
+                                                            <f:setPropertyActionListener value="#{tt}"  target="#{testCortnolador.testLog}" />
                                                         </h:commandLink>
-                                                         <h:commandLink class="color1" title="Eliminar test" onclick="$('#cancelarTest#{test.idTest}').modal(); return false;" >
+                                                         <h:commandLink class="color1" title="Eliminar test" onclick="$('#cancelarTest#{tt.idTest}').modal(); return false;" >
                                                             <i class="fa fa-times fa-lg"></i>
                                                         </h:commandLink>
                                                     </td>

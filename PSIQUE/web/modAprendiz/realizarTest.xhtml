@@ -17,7 +17,7 @@
                 <hr/>
                 <h:form>
                     <div class="col-xs-12 col-sm-8 col-md-6">
-                        <c:forEach var="listaPregunta" items="#{testCortnolador.testLog.preguntaList}">
+                        <c:forEach var="listaPregunta" items="#{testCortnolador.listarPreguntasPlantilla(testCortnolador.testLog)}">
                             <div class="form-group ">
                                 <label class="control-label"><i class="fa fa-question-circle"></i> #{listaPregunta.texto}</label>
                                 <select class="selectpicker form-control" required="true" name="pregunta#{listaPregunta.idPregunta}">
