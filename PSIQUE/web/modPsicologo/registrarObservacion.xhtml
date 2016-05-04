@@ -9,7 +9,7 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-              Registrar Observacion
+                Registrar Observacion
             </ui:define>
 
             <ui:define name="body">
@@ -21,28 +21,19 @@
                     </div>
                     <div class="container-fluid ">
                         <div class="table-responsive">
-                            <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <c:if test="#{psicologoControlador.estados == 1}">
-                                        <div class="alert alert-warning" role="alert">
-                                            Observación registrada correcatemnte
-                                        </div>
-                                    </c:if>
-                                </div>
+                            <div class="panel filterable col-xs-12 col-sm-8 col-md-6">
                                 <h:form id="formulario" class="form-group" >
                                     <div class="form-group">
-                                        <label class="col-md-4 control-label" for="Observacion">Observación</label>
-                                        <div>                     
+                                        <br/>
+                                        <div style="font-size: 18px" class="form-group ">
+                                            <label>Aprendiz : </label> #{psicologoControlador.citaLog.idAprendiz.usuario.nombres} #{psicologoControlador.citaLog.idAprendiz.usuario.primerApellido} #{psicologoControlador.citaLog.idAprendiz.usuario.segundoApellido}
+                                            <br/>
                                             <textarea class="form-control" id="observacion" name="observacion" required="true"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="#{psicologoControlador.registrarObservacion()}" id="ingresar" value="Ingresar" class="btn botones btn-group-justified"> </h:commandButton>
-                                    </div>
-                                </h:form>
-                                <h:form>
-                                    <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="indexPsicologo.xhtml" id="regresar" value="Regresar" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
+                                        <div class="form-group ">
+                                            <small>Despues de agregar la observacion la ctia se cumplira</small>
+                                            <h:commandButton action="#{psicologoControlador.registrarObservacion()}" id="ingresar" value="Registrar Observacion" class="btn botones btn-group-justified"> </h:commandButton>
+                                        </div>
                                     </div>
                                 </h:form>
                             </div>

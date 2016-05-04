@@ -169,6 +169,7 @@ public class PsicologoControlador implements Serializable {
         cita.setEstado("CUMPLIDA");
         cita.setObservacion((String) params.get("observacion"));
         citaFacade.edit(cita);
+        modalObservacion = 1;
         return "indexPsicologo.xhtml";
     }
 

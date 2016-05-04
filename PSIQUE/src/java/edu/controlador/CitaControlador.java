@@ -67,14 +67,16 @@ public class CitaControlador implements Serializable {
     public void cerrarModal() {
         modalCita = 0;
     }
-    
-    public void cancelarCitas(){
+
+    public void cancelarCitas() {
         List<Cita> citas = citaFacade.findAll();
         SimpleDateFormat fechaComparar = new SimpleDateFormat("yyyyMMdd");
         for (int i = 0; i < citas.size(); i++) {
-            if(Integer.parseInt(fechaComparar.format(citas.get(i).getFecha())) < Integer.parseInt(fechaComparar.format(fecha.getTime()))){
-                citas.get(i).setEstado("INCUMPLIDA");
-                citaFacade.edit(citas.get(i));
+            if (citas.get(i).getEstado().equals("SOLICITADA") || citas.get(i).getEstado().equals("PENDIENTE")) {
+                if (Integer.parseInt(fechaComparar.format(citas.get(i).getFecha())) < Integer.parseInt(fechaComparar.format(fecha.getTime()))) {
+                    citas.get(i).setEstado("INCUMPLIDA");
+                    citaFacade.edit(citas.get(i));
+                }
             }
         }
     }

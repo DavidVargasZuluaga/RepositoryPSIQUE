@@ -188,21 +188,6 @@ public class UsuarioControlador implements Serializable {
             e.printStackTrace();
             return "/index.xhtml";
         }
-
-    }
-
-    public void validarSesion() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null) {
-                } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
     
     public void validarSesionAdmon() {
