@@ -92,7 +92,7 @@
                     <c:if test="#{usuarioControlador.modalIngreso == 1}" >
                         <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-                                #{mensajeControlador.cerrarModal()}
+                                #{usuarioControlador.cerrarModal()}
                             </button>
                             <strong>Datos incorrectos</strong> Vuelva a intentarlo
                         </div>
@@ -137,7 +137,7 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="clave"><i class="fa fa-key"></i> Contraseña</label>
-                                <input onkeypress="#{usuarioControlador.autenticar()}" id="clave" title="Sin caracteres especiales" name="clave" type="password" pattern="[a-z,A-Z,0-9]{4,20}" placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
+                                <input id="clave" title="Sin caracteres especiales" name="clave" type="password" pattern="[a-z,A-Z,0-9]{4,20}" placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
                                 <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" ><i class="fa fa-question-circle fa-lg"></i> Olvidaste tu contraseña</a>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">

@@ -77,7 +77,7 @@ public class UsuarioControlador implements Serializable {
         hora = fecha2.get(Calendar.HOUR_OF_DAY);
         minuto = fecha2.get(Calendar.MINUTE);
         segundo = fecha2.get(Calendar.SECOND);
-        fechaActual = (dia + "/" + mes +"/"+año);
+        fechaActual = (dia + "/" + mes + "/" + año);
         horaActual = (+hora + " : " + minuto);
 
         correo = new Correo();
@@ -115,7 +115,6 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return us;
 //    }
-    
     public String editarPerfilAprendiz() {
         try {
             aprendizFacade.edit(aprendizTemp);
@@ -152,29 +151,31 @@ public class UsuarioControlador implements Serializable {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
                     this.usuarioLog = listaUsuarios.get(i);
                     httpServletRequest.getSession().setAttribute("UsuarioLog", listaUsuarios.get(i));
+                    switch (usuarioLog.getIdRol().getIdRol()) {
+                        case 1:
+                            res = "/modAdmon/principalAdmon.xhtml";
+                            registrarIngresoAlSistema();
+                            break;
+                        case 2:
+                            res = "/modCoordinador/principalCoordinador.xhtml";
+                            registrarIngresoAlSistema();
+                            break;
+                        case 3:
+                            res = "/modPsicologo/indexPsicologo.xhtml";
+                            registrarIngresoAlSistema();
+                            break;
+                        case 4:
+                            res = "/modAprendiz/principalAprendiz.xhtml";
+                            registrarIngresoAlSistema();
+                            break;
+                    }
                     break;
+                } else {
+                    modalIngreso = 1;
                 }
             }
-            switch (usuarioLog.getIdRol().getIdRol()) {
-                case 1:
-                    res = "/modAdmon/principalAdmon.xhtml";
-                    registrarIngresoAlSistema();
-                    break;
-                case 2:
-                    res = "/modCoordinador/principalCoordinador.xhtml";
-                    registrarIngresoAlSistema();
-                    break;
-                case 3:
-                    res = "/modPsicologo/indexPsicologo.xhtml";
-                    registrarIngresoAlSistema();
-                    break;
-                case 4:
-                    res = "/modAprendiz/principalAprendiz.xhtml";
-                    registrarIngresoAlSistema();
-                    break;
-            }
+
         } catch (Exception e) {
-             modalIngreso = 1;
         }
         return res;
     }
