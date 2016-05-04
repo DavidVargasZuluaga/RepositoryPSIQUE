@@ -197,7 +197,63 @@ public class UsuarioControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null) {
-            } else {
+                } else {
+                facesContext.getExternalContext().redirect("/PSIQUE");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void validarSesionAdmon() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 1) {
+                } else {
+                facesContext.getExternalContext().redirect("/PSIQUE");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void validarSesionCoordinador() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 2) {
+                } else {
+                facesContext.getExternalContext().redirect("/PSIQUE");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void validarSesionPsicologo() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 3) {
+                } else {
+                facesContext.getExternalContext().redirect("/PSIQUE");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void validarSesionAprendiz() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 4) {
+                } else {
                 facesContext.getExternalContext().redirect("/PSIQUE");
             }
         } catch (Exception e) {
