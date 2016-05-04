@@ -148,6 +148,30 @@ public class TestControlador implements Serializable {
         }
         return res;
     }
+    
+    public String asignarTestApren(Aprendiz a) {
+        String res = "perfilAprendiz.xhtml";
+        Test testTemp = new Test();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String test = (String) params.get("testImp");
+            int testt = Integer.parseInt(test);
+            testTemp = testFacade.find(testt);
+            testTemp.setIdPlantilla(testTemp.getIdTest());
+            testTemp.setIdTest(null);
+            testTemp.setIdAprendiz(a);
+            testTemp.setEstado("ASIGNADO");
+            testFacade.create(testTemp);
+            modalTestAsignado = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+            modalTestAsignado = 2;
+        }
+        return res;
+    }
 
     public String eliminarTest(Test t) {
         testFacade.remove(t);

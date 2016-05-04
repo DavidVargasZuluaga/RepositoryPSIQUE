@@ -72,12 +72,12 @@
                                         <li><a href="/PSIQUE/modPsicologo/mostrarCitas.xhtml"><i class="fa fa fa-calendar fa-lg"></i> &nbsp; Todas las citas</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong class="botonesnav">Aprendices</strong></a></li>
+                                        <li><a href="/PSIQUE/modPsicologo/listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; Aprendices por ficha</a></li>
                                         <li><a href="/PSIQUE/modPsicologo/listarAprendices.xhtml"><i class="fa fa fa-users fa-lg"></i> &nbsp; Todos los aprendices</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a><strong class="botonesnav">Test</strong></a></li>
                                         <li><a href="/PSIQUE/modPsicologo/mostrarTest.xhtml"><i class="fa fa fa-align-justify fa-lg"></i> &nbsp; Mostrar los test</a></li>
                                         <li><a href="/PSIQUE/modPsicologo/crearTest.xhtml"><i class="fa fa fa-indent fa-lg"></i> &nbsp; Crear test</a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; Asignar test a un Aprendiz</a></li>
                                         <li role="separator" class="divider"></li>
                                     </ul>
                                 </li>
@@ -388,6 +388,34 @@
                             <div class="modal-footer">
                                 <div class="modal-footer">
                                     <h:commandButton class="botones btn" value="Agregar" action="#{testCortnolador.crearPregunta()}" />
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalTestAprendiz" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod30">
+                        <div class="modal-content" >
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Asignar test</h4>
+                            </div>
+                            <div style="font-size: 18px" class="modal-body">
+                                <label>Test</label>
+                                <br/>
+                                <select class="selectpicker" name="testImp" data-live-search="true">
+                                    <option disabled="true" selected="true">Seleccine el test</option>
+                                    <c:forEach var="testim" items="#{testCortnolador.listarTestPlantilla()}" >
+                                        <option value="#{testim.idTest}">#{testim.nombre}</option>
+                                    </c:forEach>
+                                </select>
+                                <br/>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="modal-footer">
+                                    <h:commandButton class="botones btn" value="Agregar" action="#{testCortnolador.asignarTestApren(usuarioControlador.aprendizTemp)}" />
                                 </div>
                             </div>
                         </div>
