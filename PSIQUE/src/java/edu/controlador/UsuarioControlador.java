@@ -197,7 +197,7 @@ public class UsuarioControlador implements Serializable {
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 1) {
                 } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
+                facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -211,7 +211,7 @@ public class UsuarioControlador implements Serializable {
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 2) {
                 } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
+                facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -225,7 +225,7 @@ public class UsuarioControlador implements Serializable {
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 3) {
                 } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
+                facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -239,7 +239,7 @@ public class UsuarioControlador implements Serializable {
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 4) {
                 } else {
-                facesContext.getExternalContext().redirect("/PSIQUE");
+                facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();

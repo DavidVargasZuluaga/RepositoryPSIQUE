@@ -21,27 +21,22 @@
                     <div class="container-fluid">
                         <div class="table-responsive">
                             <div class="panel filterable">
-                                <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                <table style="font-size: 17px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
                                         <tr>
-                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
-                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
-                                            <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-2">Primer apellido</th>
-                                            <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2">Fecha</th>
-                                            <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2">Opciones</th>
+                                            <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Documento"/></th>
+                                            <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Nombres"/></th>
+                                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Fecha"/></th>
+                                            <th data-field="Opciones" data-align="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Opciones"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <ui:repeat var="apren" value="#{psicologoControlador.mostrarAprendicesFicha()}">
                                             <tr>
-                                                <td>#{apren.usuario.nombres}</td>
-                                                <td>#{apren.usuario.nombres}</td>
-                                                <td>#{apren.usuario.primerApellido}</td>
-                                                <td>#{apren.usuario.segundoApellido}</td>
+                                                <td>#{apren.usuario.noDocumento}</td>
+                                                <td>#{apren.usuario.nombres} #{apren.usuario.primerApellido} #{apren.usuario.segundoApellido}</td>
                                                 <td>#{apren.usuario.fechaNacimiento}</td>
                                                 <td>#{apren.usuario.estado}</td>
-                                                <td><h:form><h:commandButton value="cancelar" action="#{psicologoControlador.cancelarCita(miLista)}" onclick=""/></h:form></td>
                                                 <td><h:form><h:commandButton value="Registrar Observación" action="registrarObservacion.xhtml" ><f:setPropertyActionListener target="#{psicologoControlador.citaLog}" value="#{miLista}"/></h:commandButton></h:form></td>
 
                                             </tr>

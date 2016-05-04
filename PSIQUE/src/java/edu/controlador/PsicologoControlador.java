@@ -5,6 +5,7 @@
  */
 package edu.controlador;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import edu.entidad.*;
 import edu.fachada.*;
 import java.io.IOException;
@@ -112,7 +113,13 @@ public class PsicologoControlador implements Serializable {
     }
 
     public List<Aprendiz> mostrarAprendicesFicha() {
-        return fichaLog.getAprendizList();
+        List<Aprendiz> apren = new ArrayList();
+        for (int i = 0; i < fichaLog.getAprendizList().size(); i++) {
+            if(fichaLog.getAprendizList().get(i).getUsuario().getEstado().equals("ACTIVO")){
+                apren.add(fichaLog.getAprendizList().get(i));
+            }
+        }
+        return apren;
     }
 
     public List<Test> mostrarTest() {
