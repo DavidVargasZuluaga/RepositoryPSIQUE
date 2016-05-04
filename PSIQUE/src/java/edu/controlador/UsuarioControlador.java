@@ -180,65 +180,67 @@ public class UsuarioControlador implements Serializable {
         return res;
     }
 
-    public String cerrarSesion() {
+    public void cerrarSesion() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
+            facesContext.getExternalContext().redirect("/PSIQUE/");
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-            return "/PSIQUE/index.xhtml";
         } catch (Exception e) {
             e.printStackTrace();
-            return "/index.xhtml";
         }
     }
-    
+
     public void validarSesionAdmon() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 1) {
-                } else {
+            } else {
                 facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void validarSesionCoordinador() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 2) {
-                } else {
+            } else {
                 facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void validarSesionPsicologo() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 3) {
-                } else {
+            } else {
                 facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    
+
     public void validarSesionAprendiz() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             if (httpServletRequest.getSession().getAttribute("UsuarioLog") != null && usuarioLog.getIdRol().getIdRol() == 4) {
-                } else {
+            } else {
                 facesContext.getExternalContext().redirect("/PSIQUE/403.xhtml");
             }
         } catch (Exception e) {
