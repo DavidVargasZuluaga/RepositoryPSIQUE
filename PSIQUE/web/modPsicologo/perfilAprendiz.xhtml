@@ -27,7 +27,7 @@
                                 <li role="presentation"><a style="color: #02584A ;" href="#diagrama" aria-controls="diagrama" role="tab" data-toggle="tab"><strong><i class="fa fa-tree"></i> Diagrama Familiar</strong></a></li>
                             </ul>
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane active fade" id="home">
+                                <div role="tabpanel" class="tab-pane fade in active " id="home">
                                     <div class="table-responsive ">
                                         <div style="font-size:19px; color:black;" class=" color1 panel filterable color1">
                                             <h2>Informacion basica</h2>
@@ -141,7 +141,9 @@
                                 <div role="tabpanel" class="tab-pane color1 fade" id="profile">
                                     <div style="font-size:18px;" class="table-responsive" >
                                         <h2>Observaciones</h2>
-                                        <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
+                                        <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                            <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
+                                        </c:if>
                                         <br/>
                                         <br/>
                                         <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
@@ -177,7 +179,9 @@
                                 <div role="tabpanel" class="tab-pane color1 fade" id="messages">
                                     <div  style="font-size:18px;" class="table-responsive">
                                         <h2>Test</h2>
-                                        <h:commandLink style="font-size: 19px; " class="btn botonesinv" onclick="$('#modalTestAprendiz').modal(); return false;">Asignar test</h:commandLink>
+                                        <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                            <h:commandLink style="font-size: 19px; " class="btn botonesinv" onclick="$('#modalTestAprendiz').modal(); return false;">Asignar test</h:commandLink>
+                                        </c:if>
                                         <br/>
                                         <c:forEach var="test" items="#{testCortnolador.listarTestAprendiz(usuarioControlador.aprendizTemp)}" >
                                             <div>
@@ -202,6 +206,9 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="diagrama">
                                     <h2>Diagrama familiar</h2>
+                                    <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                        <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
+                                    </c:if>
                                     <br/>
                                     <p:diagram value="#{diagramaControlador.model}" style="height:600px" styleClass="ui-widget-content" />
 
