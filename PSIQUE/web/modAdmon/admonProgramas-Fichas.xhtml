@@ -12,54 +12,20 @@
         </ui:define>
 
         <ui:define name="body">
-
-
             <div class="container-fluid color1 ">
-                <c:if test="#{controladorAprendiz.ver == 1}">
-                    <div class="alert "  aria-label="Close" data-dismiss="alert" >
-                        <table id="example" class="table table-bordered" width="100%">
-                            <legend>Caracteristicas del aprendiz</legend>
-                            <tr>
-                                <th>Tipo Documento</th>
-                                <th>Documento</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Telefono</th>
-                                <th>Correo</th>
-                                <th>Fecha de nacimiento</th>
-                            </tr>
-
-                            <tbody>
-                                <tr>  
-                                    <td>#{listaUsuario.usuario.tipoDocumento}</td> 
-                                    <td>#{listaUsuario.usuario.noDocumento}</td> 
-                                    <td>#{listaUsuario.usuario.nombres}</td> 
-                                    <td>#{listaUsuario.usuario.primerApellido}</td>                                       
-                                    <td>#{listaUsuario.usuario.telefono}</td> 
-                                    <td>#{listaUsuario.usuario.correo}</td> 
-                                    <td>#{listaUsuario.usuario.fechaNacimiento}</td>
-                                </tr>       
-                            </tbody>
-                        </table>
-                        <h:form>
-                            <h:link onclick="admonAprendiz"> <h:commandLink class="btn " value="Cerrar" action="#{controladorAprendiz.cerrarDatos()}"/></h:link>
-                        </h:form>
-                    </div>
-
-                </c:if>
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="panel filterable">
+                            <h1 class="centrar panel-title">Programas de formación</h1>
                             <div class="panel-heading ">
-                                <h3 class="centrar panel-title">Programas de formación</h3>
+                                <h:commandLink class="btn botones2" onclick="$('#editarPerfilAprendiz').modal(); return false;">Crear</h:commandLink>
                             </div>
-                            <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                            <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                 <thead>
                                     <tr>
-                                        <th data-field="Nombre del programa de formación" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombre del programa de formación</th>
+                                        <th data-field="Nombre del programa de formación" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Nombre del programa"/></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>                                     
                                     <ui:repeat var="listaPro" value="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}">  
                                         <tr>
@@ -71,29 +37,27 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="panel filterable">
+                            <h1 class="centrar panel-title">Fichas</h1>
                             <div class="panel-heading ">
-                                <h3 class="centrar panel-title">Fichas</h3>
+                                <h:commandLink class="btn botones2" >Crear</h:commandLink>
                             </div>
-                            <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                            <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                 <thead>
                                     <tr>
-                                        <th data-field="Programa al que corresponde" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Programa de formación al que corresponde</th>
-                                        <th data-field="Codigo de la ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Codigo de la ficha</th>
-                                        <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Estado</th>
+                                        <th data-field="Programa" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Programa"/></th>
+                                        <th data-field="Ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Ficha"/></th>
+                                        <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Estado"/></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>                                     
                                     <ui:repeat var="listaFicha" value="#{controladorFicha.listaFicha}">  
                                         <tr>
                                             <td>#{listaFicha.idPrograma.nombrePrograma}</td>
                                             <td>#{listaFicha.noFicha}</td>                                                                                                    
-                                            <td>#{listaFicha.estado}</td>                                                                                                    
-
+                                            <td>#{listaFicha.estado}</td>
                                         </tr>
                                     </ui:repeat> 
                                 </tbody>

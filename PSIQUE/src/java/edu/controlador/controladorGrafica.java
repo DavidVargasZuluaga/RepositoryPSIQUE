@@ -24,7 +24,6 @@ import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-
 /**
  *
  * @author DavidBrootal
@@ -33,7 +32,7 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class controladorGrafica implements Serializable {
 
-     @EJB
+    @EJB
     private CitaFacade citaFacade;
     private List<Cita> listaCita;
 
@@ -72,7 +71,6 @@ public class controladorGrafica implements Serializable {
     int Noviembre;
     int Diciembre;
 
-    
     public controladorGrafica() {
         listaAprendiz = new ArrayList<>();
         listaPsicologo = new ArrayList<>();
@@ -99,7 +97,7 @@ public class controladorGrafica implements Serializable {
         Noviembre = 0;
         Diciembre = 0;
     }
-    
+
     public List<Psicologo> traerPsicologos() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -121,7 +119,7 @@ public class controladorGrafica implements Serializable {
                 }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
         return listaPsicologo;
     }
@@ -130,40 +128,44 @@ public class controladorGrafica implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
+        try {
+            String pi = (String) params.get("obj");
+            long idpsicologo = Long.parseLong(pi);
+            nombrePsicologo = psicologoFacade.find(idpsicologo).getUsuario().getNombres() + " " + psicologoFacade.find(idpsicologo).getUsuario().getPrimerApellido();
+            List<Cita> lista = new ArrayList();
+            listaCita = citaFacade.findAll();
 
-        String pi = (String) params.get("obj");
-        long idpsicologo = Long.parseLong(pi);
-        nombrePsicologo = psicologoFacade.find(idpsicologo).getUsuario().getNombres() + " " + psicologoFacade.find(idpsicologo).getUsuario().getPrimerApellido();
-        List<Cita> lista = new ArrayList();
-        listaCita = citaFacade.findAll();
+            excelente = 0;
+            buena = 0;
+            aceptable = 0;
+            podriaMejorar = 0;
+            mala = 0;
 
-        excelente = 0;
-        buena = 0;
-        aceptable = 0;
-        podriaMejorar = 0;
-        mala = 0;
-
-        for (int i = 0; i < listaCita.size(); i++) {
-            if (listaCita.get(i).getIdPsicologo().getIdPsicologo().equals(idpsicologo)) {
-                switch (listaCita.get(i).getValoracion()) {
-                    case 5:
-                        excelente = excelente + listaCita.get(i).getValoracion()/listaCita.get(i).getValoracion();
-                        break;
-                    case 4:
-                        buena = buena + listaCita.get(i).getValoracion()/listaCita.get(i).getValoracion();
-                        break;
-                    case 3:
-                        aceptable = aceptable + listaCita.get(i).getValoracion()/listaCita.get(i).getValoracion();
-                        break;
-                    case 2:
-                        podriaMejorar = podriaMejorar + listaCita.get(i).getValoracion()/listaCita.get(i).getValoracion();
-                        break;
-                    case 1:
-                        mala = mala + listaCita.get(i).getValoracion()/listaCita.get(i).getValoracion();
-                        break;
+            for (int i = 0; i < listaCita.size(); i++) {
+                if (listaCita.get(i).getIdPsicologo().getIdPsicologo().equals(idpsicologo)) {
+                    switch (listaCita.get(i).getValoracion()) {
+                        case 5:
+                            excelente = excelente + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                            break;
+                        case 4:
+                            buena = buena + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                            break;
+                        case 3:
+                            aceptable = aceptable + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                            break;
+                        case 2:
+                            podriaMejorar = podriaMejorar + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                            break;
+                        case 1:
+                            mala = mala + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                            break;
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     public void cogerCitasMensuales() {
@@ -402,7 +404,4 @@ public class controladorGrafica implements Serializable {
         this.Diciembre = Diciembre;
     }
 
-    
-    
-    
 }
