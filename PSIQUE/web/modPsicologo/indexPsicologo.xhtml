@@ -19,9 +19,6 @@
                     <hr/>
                     <h2>Citas para hoy</h2>
                     <h:form>
-                        <c:if test="#{citaControlador.modalVacio == 1}" >
-                            <label>Usted no tiene citas programdas para este dia.</label>
-                        </c:if>
                         <c:forEach items="#{citaControlador.citasParaHoy(usuarioControlador.usuarioLog.psicologo)}" var="citas">
                             <label>#{citas.idAprendiz.usuario.nombres} #{citas.idAprendiz.usuario.primerApellido} #{citas.idAprendiz.usuario.segundoApellido}</label>
                             <br/>
@@ -35,6 +32,9 @@
                             </h:commandLink>
                             <hr/>
                         </c:forEach>
+                        <c:if test="${citaControlador.modalVacio == 1}" >
+                            <label>Usted no tiene citas programdas para este dia.</label>
+                        </c:if>
                     </h:form>
                 </div>
             </ui:define>

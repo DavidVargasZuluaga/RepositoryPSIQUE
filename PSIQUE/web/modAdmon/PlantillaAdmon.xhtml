@@ -165,69 +165,69 @@
                                 <h4 class="modal-title" id="myModalLabel">Modificar datos del administrador</h4>
                             </div>
                             <div class="modal-body">
-                               
 
-                                    <label for="nombres">Nombre</label>
-                                    <div class="form-group input-group">                                    
-                                        <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
-                                        <input  class="form-control" id="nombres" value="#{usuarioControlador.usuarioLog.nombres}" name="nombres" />
-                                    </div>
-                                    <label for="primerApellido">Apellido</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-                                        <input class="form-control" id="primerApellido" value="#{usuarioControlador.usuarioLog.primerApellido}" name="primerApellido"/>
-                                    </div>
-                                    <label for="segundoApellido">Segundo apellido</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
-                                        <input  class="form-control" id="segundoApellido" value="#{usuarioControlador.usuarioLog.segundoApellido}" name="segundoApellido" />
-                                    </div>
-                                    <label for="tipoDocumento">Tipo de documento</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                        <div class="form-group">
-                                            <h:selectOneMenu value="#{usuarioControlador.usuarioLog.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                            </h:selectOneMenu>
-                                        </div>
-                                    </div>
-                                    <label for="noDocumento">Número de documento</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Número de documento"><i class="fa fa-hashtag"></i></span>
-                                        <input  class="form-control" id="noDocumento" value="#{usuarioControlador.usuarioLog.noDocumento}" name="noDocumento" />                                                                           
-                                    </div>
-                                    <label for="correo">Correo</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Correo"><i class="fa fa-at"></i></span>
-                                        <input class="form-control" id="correo" value="#{usuarioControlador.usuarioLog.correo}" name="correo"   />
-                                    </div>
-                                    <label for="clave">Contraseña</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                        <input class="form-control"  id="clave"  value="#{usuarioControlador.usuarioLog.clave}" name="clave"   />
-                                    </div>
 
-                                    <label for="telefono">Teléfono</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Teléfono"><i class="fa fa-mobile"  ></i></span>
-                                        <input class="form-control" id="telefono" value="#{usuarioControlador.usuarioLog.telefono}"  name="telefono" />
+                                <label for="nombres">Nombre</label>
+                                <div class="form-group input-group">                                    
+                                    <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
+                                    <input  class="form-control" id="nombres" value="#{usuarioControlador.usuarioLog.nombres}" name="nombres" />
+                                </div>
+                                <label for="primerApellido">Apellido</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
+                                    <input class="form-control" id="primerApellido" value="#{usuarioControlador.usuarioLog.primerApellido}" name="primerApellido"/>
+                                </div>
+                                <label for="segundoApellido">Segundo apellido</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Segundo apellido"><i class="fa fa-user"></i></span>
+                                    <input  class="form-control" id="segundoApellido" value="#{usuarioControlador.usuarioLog.segundoApellido}" name="segundoApellido" />
+                                </div>
+                                <label for="tipoDocumento">Tipo de documento</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
+                                    <div class="form-group">
+                                        <h:selectOneMenu value="#{usuarioControlador.usuarioLog.tipoDocumento}"  id="tipoDocumento" class="form-control">
+                                            <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
+                                            <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
+                                            <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
+                                            <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
+                                        </h:selectOneMenu>
                                     </div>
-                                    <label for="estado">Estado</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                        <input class="form-control" id="Estado" value="#{usuarioControlador.usuarioLog.estado}" name="estado"   />
-                                    </div>
-                                    <label for="rol">Rol</label>
-                                    <div class="form-group input-group">
-                                        <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                        <input  class="form-control" id="rol" value="#{usuarioControlador.usuarioLog.idRol.idRol}" name="rol"   />
-                                    </div>
+                                </div>
+                                <label for="noDocumento">Número de documento</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Número de documento"><i class="fa fa-hashtag"></i></span>
+                                    <input  class="form-control" id="noDocumento" value="#{usuarioControlador.usuarioLog.noDocumento}" name="noDocumento" />                                                                           
+                                </div>
+                                <label for="correo">Correo</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Correo"><i class="fa fa-at"></i></span>
+                                    <input class="form-control" id="correo" value="#{usuarioControlador.usuarioLog.correo}" name="correo"   />
+                                </div>
+                                <label for="clave">Contraseña</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
+                                    <input class="form-control"  id="clave"  value="#{usuarioControlador.usuarioLog.clave}" name="clave"   />
+                                </div>
 
-                                    <hr />
-                               
+                                <label for="telefono">Teléfono</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Teléfono"><i class="fa fa-mobile"  ></i></span>
+                                    <input class="form-control" id="telefono" value="#{usuarioControlador.usuarioLog.telefono}"  name="telefono" />
+                                </div>
+                                <label for="estado">Estado</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
+                                    <input class="form-control" id="Estado" value="#{usuarioControlador.usuarioLog.estado}" name="estado"   />
+                                </div>
+                                <label for="rol">Rol</label>
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
+                                    <input  class="form-control" id="rol" value="#{usuarioControlador.usuarioLog.idRol.idRol}" name="rol"   />
+                                </div>
+
+                                <hr />
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -576,14 +576,65 @@
                                 <div class="control-label">
                                     <label style="color:black;">Correo electrónico</label>
                                     <br/>
-                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" />
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.correo}" required="true" />
                                     <label style="color:black;">Teléfono</label>
                                     <br/>
-                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" />
+                                    <h:inputText class="form-control" value="#{usuarioControlador.usuarioLog.telefono}" required="true" />
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton class="botones2 btn" value="Editar datos" action="#{usuarioControlador.editarDatosPersonales()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalcrearPrograma" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod31">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear Programa de Formacion</h4>
+                            </div>
+                            <div style="font-size:18px;" class="modal-body">
+                                <label>Nombre</label>
+                                <br/>
+                                <input class="form-control" name="noPrograma" required="true"/>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Crear Programa" action="#{usuarioControlador.crearPrograma()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalcrearFicha" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod32">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Crear Ficha</h4>
+                            </div>
+                            <div style="font-size:18px;" class="modal-body">
+                                <label>Programa de Formacion</label>
+                                <br/>
+                                <select class="selectpicker" name="idPrograma" data-live-search="true">
+                                    <option disabled="true" selected="true">Seleccione un programa de formacion</option>
+                                    <ui:repeat var="listaPro" value="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}">
+                                        <option value="#{listaPro.idPrograma}">#{listaPro.nombrePrograma}</option>
+                                    </ui:repeat>
+                                </select>
+                                <br/>
+                                <label>No ficha</label>
+                                <br/>
+                                <input class="form-control" name="noFicha" required="true" />
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Crear Ficha" action="#{usuarioControlador.crearPrograma()}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>

@@ -46,6 +46,9 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
+    @Inject
+    private ProgramaformacionFacade programaformacionFacade ;
+    
     private int ver, modalCreacion, modalRecuperarContraseña, modalIngreso, modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
@@ -64,7 +67,7 @@ public class UsuarioControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        version = "PSIQUE 3.9";
+        version = "PSIQUE 3.9.2";
         modalIngreso = 0;
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
@@ -367,6 +370,39 @@ public class UsuarioControlador implements Serializable {
             }
         }
         return listaPs;
+    }
+    
+    public String crearPrograma(){
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            Programaformacion programaformacion = new Programaformacion();
+            programaformacion.setNombrePrograma((String) params.get("noPrograma"));
+            programaformacionFacade.create(programaformacion);
+            modalCreacion = 3;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "admonProgramas-Fichas.xhtml";
+    }
+    
+    public String crearFicha(){
+        Ficha ficha = new Ficha();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            ficha.setNoFicha((String) params.get("noFicha"));
+            ficha.setIdPrograma(programaformacionFacade.find(Integer.parseInt((String) params.get("idPrograma"))));
+            ficha.setEstado("ACTIVO");
+            fichaFacade.create(ficha);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "admonProgramas-Fichas.xhtml";
     }
 
     public String actualizar(Usuario usuarioM) {

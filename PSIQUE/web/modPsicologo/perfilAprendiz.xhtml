@@ -15,7 +15,10 @@
 
             <ui:define name="body">
                 <div class="row margen color1">
-                    <h1>Perfil de #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido}</h1>
+                    <h1>Perfil de #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido}
+                        <br/>
+                        <small style="color: #933; font-family: inherit;" >#{usuarioControlador.aprendizTemp.usuario.estado}</small>
+                    </h1>
                     <div>
                         <h:form>
                             <br/>
@@ -37,7 +40,7 @@
                                             </div>
                                             <br/>
                                             <div class="form-group">
-                                                #{usuarioControlador.aprendizTemp.usuario.estado}
+
                                             </div>
                                             <div class="form-group">
                                                 <label style="font-size:17px;">Nombre :</label>
@@ -66,9 +69,11 @@
                                                 <br/>
                                                 #{usuarioControlador.aprendizTemp.usuario.telefono}
                                             </div>
-                                            <h:commandLink class="btn botonesinv" onclick="$('#editarPerfilAprendiz').modal(); return false;">
-                                                <i class="fa fa-pencil-square"></i> Editar
-                                            </h:commandLink>
+                                            <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                                <h:commandLink class="btn botonesinv" onclick="$('#editarPerfilAprendiz').modal(); return false;">
+                                                    <i class="fa fa-pencil-square"></i> Editar
+                                                </h:commandLink>
+                                            </c:if>
                                             <br/>
                                             <br/>
                                         </div>
@@ -132,16 +137,18 @@
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.pasaTiempo}
                                     </div>
-                                    <h:commandLink class="btn botonesinv" onclick="$('#informacionPersonalAprendiz').modal(); return false;">
-                                        <i class="fa fa-pencil-square"></i> Editar
-                                    </h:commandLink>
+                                    <c:if test="´${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                        <h:commandLink class="btn botonesinv" onclick="$('#informacionPersonalAprendiz').modal(); return false;">
+                                            <i class="fa fa-pencil-square"></i> Editar
+                                        </h:commandLink>
+                                    </c:if>
                                     <br/>
                                     <br/>
                                 </div>
                                 <div role="tabpanel" class="tab-pane color1 fade" id="profile">
                                     <div style="font-size:18px;" class="table-responsive" >
                                         <h2>Observaciones</h2>
-                                        <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                        <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
                                             <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
                                         </c:if>
                                         <br/>
@@ -179,7 +186,7 @@
                                 <div role="tabpanel" class="tab-pane color1 fade" id="messages">
                                     <div  style="font-size:18px;" class="table-responsive">
                                         <h2>Test</h2>
-                                        <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                        <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
                                             <h:commandLink style="font-size: 19px; " class="btn botonesinv" onclick="$('#modalTestAprendiz').modal(); return false;">Asignar test</h:commandLink>
                                         </c:if>
                                         <br/>
@@ -206,7 +213,7 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="diagrama">
                                     <h2>Diagrama familiar</h2>
-                                    <c:if test="´#{usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                    <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
                                         <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
                                     </c:if>
                                     <br/>

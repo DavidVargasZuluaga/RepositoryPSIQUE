@@ -16,52 +16,52 @@
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="panel filterable">
-                            <h1 class="centrar panel-title">Programas de formación</h1>
-                            <div class="panel-heading ">
-                                <h:commandLink class="btn botones2" onclick="$('#editarPerfilAprendiz').modal(); return false;">Crear</h:commandLink>
-                            </div>
-                            <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                <thead>
-                                    <tr>
-                                        <th data-field="Nombre del programa de formación" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Nombre del programa"/></th>
-                                    </tr>
-                                </thead>
-                                <tbody>                                     
-                                    <ui:repeat var="listaPro" value="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}">  
+                            <h1 class="">Programas de formación</h1>
+                            <h:form>
+                                <h:commandLink style="font-size:18px;" class="btn botones2" onclick="$('#modalcrearPrograma').modal(); return false;"><i class="fa fa-plus"></i> Crear</h:commandLink>
+                                <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                    <thead>
                                         <tr>
-                                            <td>#{listaPro.nombrePrograma}</td>                                                                                                  
+                                            <th data-field="Nombre del programa de formación" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Nombre del programa"/></th>
                                         </tr>
-                                    </ui:repeat> 
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>                                     
+                                        <ui:repeat var="listaPro" value="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}">  
+                                            <tr>
+                                                <td>#{listaPro.nombrePrograma}</td>                                                                                                  
+                                            </tr>
+                                        </ui:repeat> 
+                                    </tbody>
+                                </table>
+                            </h:form>
                         </div>
                     </div>
                 </div>
                 <div class="container-fluid">
                     <div class="table-responsive">
                         <div class="panel filterable">
-                            <h1 class="centrar panel-title">Fichas</h1>
-                            <div class="panel-heading ">
-                                <h:commandLink class="btn botones2" >Crear</h:commandLink>
-                            </div>
-                            <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                <thead>
-                                    <tr>
-                                        <th data-field="Programa" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Programa"/></th>
-                                        <th data-field="Ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Ficha"/></th>
-                                        <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Estado"/></th>
-                                    </tr>
-                                </thead>
-                                <tbody>                                     
-                                    <ui:repeat var="listaFicha" value="#{controladorFicha.listaFicha}">  
+                            <h1 >Fichas</h1>
+                            <h:form>
+                                <h:commandLink style="font-size:18px;"  class="btn botones2" onclick="$('#modalcrearFicha').modal(); return false;">Crear</h:commandLink>
+                                <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                                    <thead>
                                         <tr>
-                                            <td>#{listaFicha.idPrograma.nombrePrograma}</td>
-                                            <td>#{listaFicha.noFicha}</td>                                                                                                    
-                                            <td>#{listaFicha.estado}</td>
+                                            <th data-field="Programa" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Programa"/></th>
+                                            <th data-field="Ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Ficha"/></th>
+                                            <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Estado"/></th>
                                         </tr>
-                                    </ui:repeat> 
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>                                     
+                                        <ui:repeat var="listaFicha" value="#{controladorFicha.listaFicha}">  
+                                            <tr>
+                                                <td>#{listaFicha.idPrograma.nombrePrograma}</td>
+                                                <td>#{listaFicha.noFicha}</td>                                                                                                    
+                                                <td>#{listaFicha.estado}</td>
+                                            </tr>
+                                        </ui:repeat> 
+                                    </tbody>
+                                </table>
+                            </h:form>
                         </div>
                     </div>
                 </div>
