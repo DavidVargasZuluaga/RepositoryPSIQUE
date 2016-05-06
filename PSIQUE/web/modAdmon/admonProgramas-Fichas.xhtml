@@ -42,13 +42,14 @@
                         <div class="panel filterable">
                             <h1 >Fichas</h1>
                             <h:form>
-                                <h:commandLink style="font-size:18px;"  class="btn botones2" onclick="$('#modalcrearFicha').modal(); return false;">Crear</h:commandLink>
+                                <h:commandLink style="font-size:18px;"  class="btn botones2" onclick="$('#modalcrearFicha').modal(); return false;"><i class="fa fa-plus"></i> Crear</h:commandLink>
                                 <table style="font-size:19px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
                                     <thead>
                                         <tr>
                                             <th data-field="Programa" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Programa"/></th>
                                             <th data-field="Ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Ficha"/></th>
                                             <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Estado"/></th>
+                                            <th data-field="Opciones" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Opciones"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>                                     
@@ -57,6 +58,11 @@
                                                 <td>#{listaFicha.idPrograma.nombrePrograma}</td>
                                                 <td>#{listaFicha.noFicha}</td>                                                                                                    
                                                 <td>#{listaFicha.estado}</td>
+                                                <td>
+                                                    <c:if test="#{listaFicha.estado == 'ACTIVO'}" >
+                                                        <h:commandLink class="btn botones2" style="font-size:18px;" onclick="$('#modalEstadoFichas').modal(); return false;">Cambiar Estado</h:commandLink>
+                                                    </c:if>
+                                                </td>
                                             </tr>
                                         </ui:repeat> 
                                     </tbody>

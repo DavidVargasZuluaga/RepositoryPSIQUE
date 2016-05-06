@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-4 control-label" for="descripcion">Descripcion:</label>  
-                                        <input id="descripcion" name="descripcion" type="text" class="form-control input-md" required="true"/>
+                                        <textarea id="descripcion" name="descripcion" type="text" class="form-control input-md" required="true"/>
                                     </div>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
                                         <h:commandButton action="#{testCortnolador.crearTest()}" id="ingresar" value="Crear test" class="btn botones btn-group-justified"> </h:commandButton>
@@ -38,7 +38,7 @@
                                 </h:form>
                                 <h:form>
                                     <div class="form-group col-xs-6 col-sm-6 col-md-6">
-                                        <h:commandButton action="mostrarTest.xhtml" id="regresar" value="Mostrar test" class="btn botones btn-group-justified"><f:setPropertyActionListener target="#{psicologoControlador.estados}" value="0"/></h:commandButton> 
+                                        <h:commandButton action="mostrarTest.xhtml" value="Mostrar test" class="btn botones btn-group-justified"/> 
                                     </div>
                                 </h:form>
                             </div>
