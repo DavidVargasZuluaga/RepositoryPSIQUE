@@ -127,11 +127,49 @@ public class MensajeControlador implements Serializable {
         return mensajes;
     }
 
-    public String borrarMensajeAprendiz(Mensaje m) {
+    public String borrarMensaje(Mensaje m, Usuario us) {
         String res = "/modAprendiz/mensajeria.xhtml";
         try {
             m.setEstado("Borrado");
             mensajeFacade.edit(m);
+            switch (us.getIdRol().getIdRol()) {
+                case 1:
+                    res = "/modAdmon/mensajeria.xhtml";
+                    break;
+                case 2:
+                    res = "/modCoordinador/mensajeria.xhtml";
+                    break;
+                case 3:
+                    res = "/modPsicologo/mensajeria.xhtml";
+                    break;
+                case 4:
+                    res = "/modAprendiz/mensajeria.xhtml";
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String eliminarMensaje(Mensaje m, Usuario us) {
+        String res = "/modAprendiz/mensajeria.xhtml";
+        try {
+            mensajeFacade.remove(m);
+            switch (us.getIdRol().getIdRol()) {
+                case 1:
+                    res = "/modAdmon/mensajeria.xhtml";
+                    break;
+                case 2:
+                    res = "/modCoordinador/mensajeria.xhtml";
+                    break;
+                case 3:
+                    res = "/modPsicologo/mensajeria.xhtml";
+                    break;
+                case 4:
+                    res = "/modAprendiz/mensajeria.xhtml";
+                    break;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -269,5 +307,5 @@ public class MensajeControlador implements Serializable {
     public void setModalMensajeAdmon(int modalMensajeAdmon) {
         this.modalMensajeAdmon = modalMensajeAdmon;
     }
-        
+
 }

@@ -11,8 +11,6 @@
         </ui:define>
 
         <ui:define name="body">
-
-
             <div class="container-fluid color1 ">
                 <h1>Datos personales</h1>
                 <hr/>
@@ -47,6 +45,9 @@
                     <label class="control-label">Telefono</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.telefono} &nbsp;"/>
+                </div>
+                <div class="control-group col-xs-12 col-md-6">
+                    <button id="btnvalidar" type="button" class="btn btn-block botones" value="entrar" data-toggle="modal" data-target="#myModal"><i class="fa fa fa-pencil fa-lg"></i> Editar</button>
                 </div>
                 <br/>
             </div>
