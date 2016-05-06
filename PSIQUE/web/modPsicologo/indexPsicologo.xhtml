@@ -9,12 +9,12 @@
         <ui:composition template="PlantillaPsicologo.xhtml">
 
             <ui:define name="title">
-                Psicologo
+                Psicólogo
             </ui:define>
 
             <ui:define name="body">
                 <div style="font-size: 18px;"  class="container-fluid ">
-                    <h1 style="font-size: 40px;" class="color1">Bienvenido Psicologo</h1>
+                    <h1 style="font-size: 40px;" class="color1">Bienvenido Psicólogo</h1>
                     <h:outputLabel style="color:black; font-size: xx-large;" class="label" ><i class="fa fa-calendar fa-lg color1"></i> #{usuarioControlador.fechaActual}</h:outputLabel>
                     <hr/>
                     <h2>Citas para hoy</h2>
@@ -28,12 +28,12 @@
                             <br/>
                             <h:commandLink class="btn botones2" action="registrarObservacion.xhtml" >
                                 <f:setPropertyActionListener target="#{psicologoControlador.citaLog}" value="#{citas}"/>
-                                <i class="fa fa-check" ></i> Registrar Observacion
+                                <i class="fa fa-check" ></i> Registrar Observación
                             </h:commandLink>
                             <hr/>
                         </c:forEach>
                         <c:if test="${citaControlador.modalVacio == 1}" >
-                            <label>Usted no tiene citas programdas para este dia.</label>
+                            <label>Usted no tiene citas programas para este día.</label>
                         </c:if>
                     </h:form>
                 </div>

@@ -23,7 +23,7 @@
                         <h:form>
                             <br/>
                             <ul style="font-size:16px; color: #02584A;" class="nav nav-tabs" role="tablist">
-                                <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong><i class="fa fa-user"></i> Informacion Basica</strong></a></li>
+                                <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><strong><i class="fa fa-user"></i> Información Básica</strong></a></li>
                                 <li role="presentation"><a style="color: #02584A ;" href="#personal" aria-controls="personal" role="tab" data-toggle="tab"><strong><i class="fa fa-book"></i> Datos Personales</strong></a></li>
                                 <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><strong><i class="fa fa-eye"></i> Observaciones</strong></a></li>
                                 <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><strong><i class="fa fa-align-left"></i> Test</strong></a></li>
@@ -33,7 +33,7 @@
                                 <div role="tabpanel" class="tab-pane fade in active " id="home">
                                     <div class="table-responsive ">
                                         <div style="font-size:19px; color:black;" class=" color1 panel filterable color1">
-                                            <h2>Informacion basica</h2>
+                                            <h2>Información básica</h2>
                                             <br/>
                                             <div class="profile-userpic btn-group-lg">
                                                 <h:graphicImage style="max-width: 150px;" value="/resources/img/perfil/pAd.jpg" class="img-responsive img-circle" />
@@ -65,7 +65,7 @@
                                                 </h:outputLabel>
                                             </div>
                                             <div class="form-group">
-                                                <label style="font-size:17px; color:black;">Telefono</label>
+                                                <label style="font-size:17px; color:black;">Teléfono</label>
                                                 <br/>
                                                 #{usuarioControlador.aprendizTemp.usuario.telefono}
                                             </div>
@@ -83,7 +83,7 @@
                                     <h2>Datos personales</h2>
                                     <br/>
                                     <div class="form-group">
-                                        <label style="font-size:17px; color:black;">Programa de formacion</label>
+                                        <label style="font-size:17px; color:black;">Programa de formación</label>
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.ficha.idPrograma.nombrePrograma}
                                     </div>
@@ -93,7 +93,7 @@
                                         #{usuarioControlador.aprendizTemp.ficha.noFicha}
                                     </div>
                                     <div class="form-group">
-                                        <label style="font-size:17px; color:black;">Ubicacion</label>
+                                        <label style="font-size:17px; color:black;">Ubicación</label>
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.ubicacion}
                                     </div>
@@ -108,17 +108,17 @@
                                         #{usuarioControlador.aprendizTemp.estadoCivil}
                                     </div>
                                     <div class="form-group">
-                                        <label style="font-size:17px; color:black;">Raza o grupo etnico</label>
+                                        <label style="font-size:17px; color:black;">Raza o grupo étnico</label>
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.raza}
                                     </div>
                                     <div class="form-group">
-                                        <label style="font-size:17px; color:black;">Religion</label>
+                                        <label style="font-size:17px; color:black;">Religión</label>
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.religion}
                                     </div>
                                     <div class="form-group">
-                                        <label style="font-size:17px; color:black;">Tendencia politica</label>
+                                        <label style="font-size:17px; color:black;">Tendencia política</label>
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.tendenciaPolitica}
                                     </div>
@@ -149,13 +149,13 @@
                                     <div style="font-size:18px;" class="table-responsive" >
                                         <h2>Observaciones</h2>
                                         <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
-                                            <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observacion</h:commandLink>
+                                            <h:commandLink onclick="$('#agregarObservacion').modal(); return false;" class="btn botones" ><i class="fa fa-plus" ></i> Agregar observación</h:commandLink>
                                         </c:if>
                                         <br/>
                                         <br/>
                                         <c:forEach var="citas" items="#{citaControlador.citasAprendiz(usuarioControlador.aprendizTemp)}" >
                                             <div>
-                                                <label>Psicologo :</label>  &nbsp; 
+                                                <label>Psicólogo :</label>  &nbsp; 
                                                 #{citas.idPsicologo.usuario.nombres} #{citas.idPsicologo.usuario.primerApellido}
                                                 <br/>
                                                 <label>Fecha :</label> &nbsp; 
