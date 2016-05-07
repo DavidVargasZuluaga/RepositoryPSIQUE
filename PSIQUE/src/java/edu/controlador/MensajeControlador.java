@@ -11,7 +11,9 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -61,7 +63,7 @@ public class MensajeControlador implements Serializable {
         List<Mensaje> tMensajes = mensajeFacade.findAll();
         List<Mensaje> mensajes2 = new ArrayList();
         Date fechaComparar = new Date();
-        fechaComparar.setMonth(fechaComparar.getMonth() - 1);
+        fechaComparar.setDate(fechaComparar.getDate() - 5);
         try {
             for (int i = 0; i < tMensajes.size(); i++) {
                 if (tMensajes.get(i).getIdReceptor().getIdUsuario().equals(u.getIdUsuario())) {

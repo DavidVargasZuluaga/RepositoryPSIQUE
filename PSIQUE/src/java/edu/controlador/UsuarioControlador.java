@@ -46,9 +46,6 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    @Inject
-    private ProgramaformacionFacade programaformacionFacade ;
-    
     private int ver, modalCreacion, modalRecuperarContraseña, modalIngreso, modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
     private String version, fechaActual, horaActual;
 
@@ -152,27 +149,33 @@ public class UsuarioControlador implements Serializable {
             String clave = (String) params.get("clave");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getNoDocumento() == doc && listaUsuarios.get(i).getClave().equals(clave)) {
-                    this.usuarioLog = listaUsuarios.get(i);
-                    httpServletRequest.getSession().setAttribute("UsuarioLog", listaUsuarios.get(i));
-                    switch (usuarioLog.getIdRol().getIdRol()) {
-                        case 1:
-                            res = "/modAdmon/principalAdmon.xhtml";
-                            registrarIngresoAlSistema();
-                            break;
-                        case 2:
-                            res = "/modCoordinador/principalCoordinador.xhtml";
-                            registrarIngresoAlSistema();
-                            break;
-                        case 3:
-                            res = "/modPsicologo/indexPsicologo.xhtml";
-                            registrarIngresoAlSistema();
-                            break;
-                        case 4:
-                            res = "/modAprendiz/principalAprendiz.xhtml";
-                            registrarIngresoAlSistema();
-                            break;
+                    usuarioLog = listaUsuarios.get(i);
+                    if (usuarioLog.getEstado().equals("ACTIVO")) {
+                        httpServletRequest.getSession().setAttribute("UsuarioLog", listaUsuarios.get(i));
+                        switch (usuarioLog.getIdRol().getIdRol()) {
+                            case 1:
+                                res = "/modAdmon/principalAdmon.xhtml";
+                                registrarIngresoAlSistema();
+                                break;
+                            case 2:
+                                res = "/modCoordinador/principalCoordinador.xhtml";
+                                registrarIngresoAlSistema();
+                                break;
+                            case 3:
+                                res = "/modPsicologo/indexPsicologo.xhtml";
+                                registrarIngresoAlSistema();
+                                break;
+                            case 4:
+                                res = "/modAprendiz/principalAprendiz.xhtml";
+                                registrarIngresoAlSistema();
+                                break;
+                        }
+                        break;
+                    } else{
+                        modalIngreso = 2;
+                        break;
                     }
-                    break;
+
                 } else {
                     modalIngreso = 1;
                 }
@@ -370,39 +373,6 @@ public class UsuarioControlador implements Serializable {
             }
         }
         return listaPs;
-    }
-    
-    public String crearPrograma(){
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            Programaformacion programaformacion = new Programaformacion();
-            programaformacion.setNombrePrograma((String) params.get("noPrograma"));
-            programaformacionFacade.create(programaformacion);
-            modalCreacion = 3;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "admonProgramas-Fichas.xhtml";
-    }
-    
-    public String crearFicha(){
-        Ficha ficha = new Ficha();
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-        try {
-            ficha.setNoFicha((String) params.get("noFicha"));
-            ficha.setIdPrograma(programaformacionFacade.find(Integer.parseInt((String) params.get("idPrograma"))));
-            ficha.setEstado("ACTIVO");
-            fichaFacade.create(ficha);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "admonProgramas-Fichas.xhtml";
     }
 
     public String actualizar(Usuario usuarioM) {

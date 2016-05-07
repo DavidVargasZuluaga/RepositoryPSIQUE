@@ -117,6 +117,24 @@
                         <strong>Usuario inexistente </strong>Por favor vuelva a intentarlo verificando escribir correctamente el nombre completo.
                     </div>
                 </c:if>
+                <c:if test="#{controladorFicha.modalCreacion == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{controladorFicha.cerrarModal()}
+                        </button>
+                        <strong>Ficha creada </strong>
+                    </div>
+                </c:if>
+                 <c:if test="#{controladorFicha.modalCreacion == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{controladorFicha.cerrarModal()}
+                        </button>
+                        <strong>Numero de ficha ya existe </strong>
+                    </div>
+                </c:if>
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
                     <div class="container-fluid">
                         <div class="profile-sidebar control-group">
@@ -604,7 +622,7 @@
                                 <input class="form-control" name="noPrograma" required="true"/>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton class="botones2 btn" value="Crear Programa" action="#{usuarioControlador.crearPrograma()}"></h:commandButton>
+                                <h:commandButton class="botones2 btn" value="Crear Programa" action="#{controladorProgramaDeFormacion.crearPrograma()}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
@@ -634,7 +652,7 @@
                                 <input class="form-control" name="noFicha" required="true" />
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton class="botones2 btn" value="Crear Ficha" action="#{usuarioControlador.crearFicha()}"></h:commandButton>
+                                <h:commandButton class="botones2 btn" value="Crear Ficha" action="#{controladorFicha.crearFicha()}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>

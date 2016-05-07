@@ -89,6 +89,14 @@
                 <br/>
                 <br/>
                 <dir class="container-fluid">
+                     <c:if test="#{usuarioControlador.modalIngreso == 2}" >
+                        <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                                #{usuarioControlador.cerrarModal()}
+                            </button>
+                            <strong>Usuario inhabilitado</strong> Pongase en contacto con el administrador
+                        </div>
+                    </c:if>
                     <c:if test="#{usuarioControlador.modalIngreso == 1}" >
                         <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
