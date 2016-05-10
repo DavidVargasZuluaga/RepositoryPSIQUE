@@ -32,7 +32,7 @@
                                 </h:outputLabel>
                             </small>
                             <br/>
-                            Psicólogo
+                            <strong>Psicólogo:</strong>
                             <br/> 
                             #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}
                             <br/>
@@ -65,11 +65,11 @@
                                         </h:outputLabel>
                                     </small>
                                     <br/>
-                                    <strong>Psicólogo</strong>
+                                    <strong>Psicólogo :</strong>
                                     <br/>
                                     <small>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</small>
                                     <br/>
-                                    <strong>Cita confirmada</strong>
+                                    Estado: <strong style="color: greenyellow;">Cita confirmada</strong>
                                     <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
                                         <i class="fa fa-times-circle-o fa-lg"></i> Cancelar cita
                                     </h:commandLink>
@@ -84,11 +84,12 @@
                                     <h:outputLabel style="color:black;font-size: 19px;" value="#{c.fecha}">
                                         <f:convertDateTime pattern="dd/MM/yyy hh:mm" type="time" timeZone="GMT-5" />
                                     </h:outputLabel>
-                                    <br/>Psicólogo
+                                    <br/>Psicólogo :
                                     <br/>
                                     #{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}
                                     <br/>
-                                    <strong >No ha sido confirmada<br/><small>Debe esperar la confirmación del psicólogo</small></strong>
+                                     Estado: <strong style="color: tomato;">No ha sido confirmada
+                                    <br/><small>Debe esperar la confirmación del psicólogo</small></strong>
                                     <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
                                         <i class="fa fa-times-circle-o fa-lg"></i> Cancelar cita
                                     </h:commandLink>
