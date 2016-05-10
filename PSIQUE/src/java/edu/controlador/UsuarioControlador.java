@@ -364,7 +364,7 @@ public class UsuarioControlador implements Serializable {
     public List<Usuario> traerListaAprendiz() {
         List<Usuario> lista = new ArrayList();
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).getIdRol().getIdRol() == 4) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 4 && listaUsuarios.get(i).getEstado().endsWith("ACTIVO")) {
                 lista.add(listaUsuarios.get(i));
             }
         }
@@ -374,7 +374,7 @@ public class UsuarioControlador implements Serializable {
     public List<Usuario> traerListaCoordinadores() {
         List<Usuario> listaCo = new ArrayList();
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).getIdRol().getIdRol() == 2) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 2 && listaUsuarios.get(i).getEstado().endsWith("ACTIVO")) {
                 listaCo.add(listaUsuarios.get(i));
             }
         }
@@ -384,7 +384,7 @@ public class UsuarioControlador implements Serializable {
     public List<Usuario> traerListaPsicologos() {
         List<Usuario> listaPs = new ArrayList();
         for (int i = 0; i < listaUsuarios.size(); i++) {
-            if (listaUsuarios.get(i).getIdRol().getIdRol() == 3) {
+            if (listaUsuarios.get(i).getIdRol().getIdRol() == 3 && listaUsuarios.get(i).getEstado().endsWith("ACTIVO")) {
                 listaPs.add(listaUsuarios.get(i));
             }
         }
