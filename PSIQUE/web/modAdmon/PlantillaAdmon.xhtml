@@ -5,7 +5,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -638,22 +638,20 @@
             </div>
             <div class="modal fade" id="modalCambiarFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
-                    <h:form class="form-horizontal form" id="mod35">
+                    <h:form enctype="multipart/form-data" class="form-horizontal form" id="mod35">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 <h4 class="modal-title" id="myModalLabel">Cargar nueva foto</h4>
                             </div>
                             <div class="modal-body">
+                                <p:growl showDetail="true" />
                                 <div class="control-label">
-                                    <h:form  p:action="../precargaControlador" id="UploadForm" enctype="multipart/form-data"  >
-                                        <h:inputFile value="Cargar Archivo" id="file"/> 
-                                        <h:commandButton value="Enviar"/>
-                                    </h:form>    
+                                    <p:fileUpload mode="simple" value="#{cargaControlador.file}"/> 
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <h:commandButton class="botones2 btn" value="Editar contraseña" action="#{usuarioControlador.editarContraseña()}"></h:commandButton>
+                                <h:commandButton class="botones2 btn" value="Editar contraseña" action="#{cargaControlador.upload(usuarioControlador.usuarioLog)}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
