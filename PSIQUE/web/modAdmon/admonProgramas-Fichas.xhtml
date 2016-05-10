@@ -49,11 +49,11 @@
                                             <th data-field="Programa" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Programa"/></th>
                                             <th data-field="Ficha" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Ficha"/></th>
                                             <th data-field="Estado" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Estado"/></th>
-                                            <th data-field="Opciones" data-align="left" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Opciones"/></th>
+                                            <th data-field="Opciones" data-align="center" data-halign="center" data-sortable="true" class="col-md-2"><h:outputLabel style="font-size: 19px;" class="label color1" value="Opciones"/></th>
                                         </tr>
                                     </thead>
                                     <tbody>                                     
-                                        <ui:repeat var="listaFicha" value="#{controladorFicha.listaFicha}">  
+                                        <c:forEach var="listaFicha" items="#{controladorFicha.listaFicha}">  
                                             <tr>
                                                 <td>#{listaFicha.idPrograma.nombrePrograma}</td>
                                                 <td>#{listaFicha.noFicha}</td>                                                                                                    
@@ -64,7 +64,7 @@
                                                     </c:if>
                                                 </td>
                                             </tr>
-                                        </ui:repeat> 
+                                        </c:forEach> 
                                     </tbody>
                                 </table>
                             </h:form>
