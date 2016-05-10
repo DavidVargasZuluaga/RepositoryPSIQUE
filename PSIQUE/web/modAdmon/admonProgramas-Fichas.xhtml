@@ -59,9 +59,7 @@
                                                 <td>#{listaFicha.noFicha}</td>                                                                                                    
                                                 <td>#{listaFicha.estado}</td>
                                                 <td>
-                                                    <c:if test="#{listaFicha.estado == 'ACTIVO'}" >
-                                                        <h:commandLink class="btn botones2" style="font-size:18px;" onclick="$('#modalEstadoFichas').modal(); return false;">Cambiar Estado</h:commandLink>
-                                                    </c:if>
+                                                    <h:commandLink class="btn botones2" style="font-size:18px;" onclick="$('#modalEstadoFichas#{listaFicha.noFicha}').modal(); return false;">Cambiar Estado</h:commandLink>
                                                 </td>
                                             </tr>
                                         </c:forEach> 

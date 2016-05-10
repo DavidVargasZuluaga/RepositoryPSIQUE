@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -27,13 +28,15 @@ import javax.servlet.http.HttpServletRequest;
 @SessionScoped
 public class FichaControlador implements Serializable {
 
-    @EJB
-    private ProgramaformacionFacade programaformacionFacade;
-//    atributos tipo programaFormacion
-    private int idPrograma;
+    @Inject
+    private UsuarioFacade usuarioFacade;
 
-    @EJB
+    @Inject
     private FichaFacade fichaFacade;
+
+    @Inject
+    private ProgramaformacionFacade programaformacionFacade;
+    private int idPrograma;
 
     private Ficha ficha;
     private List<Ficha> listaFicha;
@@ -65,7 +68,9 @@ public class FichaControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             ficha.setNoFicha((String) params.get("noFicha"));
-            ficha.setIdPrograma(programaformacionFacade.find(Integer.parseInt((String) params.get("idPrograma"))));
+            ficha.setIdPrograma(programaformacionFacade.find(Integer.parseInt(
+                    (String) params.get("idPrograma")))
+            );
             ficha.setEstado("ACTIVO");
             for (int i = 0; i < fichas.size(); i++) {
                 if (fichas.get(i).getNoFicha().equals(ficha.getNoFicha())) {
@@ -74,7 +79,7 @@ public class FichaControlador implements Serializable {
                     break;
                 }
             }
-            if(siExiste){
+            if (siExiste) {
                 fichaFacade.create(ficha);
                 modalCreacion = 1;
             }
@@ -82,6 +87,30 @@ public class FichaControlador implements Serializable {
             e.printStackTrace();
         }
         return "admonProgramas-Fichas.xhtml";
+    }
+
+    public String cambiarEstado(Ficha f) {
+        List<Aprendiz> aprendices = new ArrayList();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String estado = (String) params.get("estadoPrograma");
+            f.setEstado(estado);
+            aprendices = f.getAprendizList();
+            for (int i = 0; i < aprendices.size(); i++) {
+                if (!aprendices.get(i).getUsuario().getEstado().equals("DESERTADO")) {
+                    aprendices.get(i).getUsuario().setEstado(estado);
+                    usuarioFacade.edit(aprendices.get(i).getUsuario());
+                }
+            }
+            modalCreacion = 3;
+            fichaFacade.edit(f);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 //    public void registrarFicha() {
@@ -122,7 +151,6 @@ public class FichaControlador implements Serializable {
 //            e.printStackTrace();
 //        }
 //    }
-
 //    public void eliminarEnTabla(Ficha ficha) {
 //        try {
 //            fichaFacade.remove(ficha);
@@ -146,7 +174,6 @@ public class FichaControlador implements Serializable {
 ////            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
 //        }
 //    }
-
     public int getIdPrograma() {
         return idPrograma;
     }

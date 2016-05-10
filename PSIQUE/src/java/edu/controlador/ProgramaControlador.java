@@ -47,7 +47,8 @@ public class ProgramaControlador implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) 
+                facesContext.getExternalContext().getRequest();
         try {
             Programaformacion programaformacion = new Programaformacion();
             programaformacion.setNombrePrograma((String) params.get("noPrograma"));
