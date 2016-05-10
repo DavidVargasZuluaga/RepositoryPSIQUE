@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -24,41 +25,60 @@ import javax.faces.context.FacesContext;
  */
 @Named(value = "controladorProgramaDeFormacion")
 @SessionScoped
-public class controladorProgramaDeFormacion implements Serializable {
+public class ProgramaControlador implements Serializable {
 
     @EJB
     private ProgramaformacionFacade programaformacionFacade;
     private Programaformacion programaformacion;
     List<Programaformacion> listaProgramaDeFormacion = new ArrayList<>();
-
+    private int modalCreacion;
     private String nombrePrograma;
-    public controladorProgramaDeFormacion() {
-    }
 
     @PostConstruct
     public void init() {
+        modalCreacion = 0;
     }
-
-    public String registrarPrograma() {
+    
+    public void cerrarModal() {
+        modalCreacion = 0;
+    }
+    
+    public String crearPrograma() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-            
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            ExternalContext externalContext = facesContext.getExternalContext();
-            Map params = externalContext.getRequestParameterMap();
-
-            Programaformacion objProgramaformacion = new Programaformacion();
-            objProgramaformacion.setNombrePrograma("" + params.get("nombrePrograma"));
-        
-            
-            programaformacionFacade.create(objProgramaformacion);
-            System.out.println("Programa registrado");
-//           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "La bodega ha sido registrada correctamente"));
+            Programaformacion programaformacion = new Programaformacion();
+            programaformacion.setNombrePrograma((String) params.get("noPrograma"));
+            programaformacionFacade.create(programaformacion);
+            modalCreacion = 1;
         } catch (Exception e) {
-            System.out.println("No se registro");
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+            e.printStackTrace();
         }
-        return "programaFormacionRegistro.xhtml";
+        return "admonProgramas-Fichas.xhtml";
     }
+
+//    public String registrarPrograma() {
+//        try {
+//            
+//            FacesContext facesContext = FacesContext.getCurrentInstance();
+//            ExternalContext externalContext = facesContext.getExternalContext();
+//            Map params = externalContext.getRequestParameterMap();
+//
+//            Programaformacion objProgramaformacion = new Programaformacion();
+//            objProgramaformacion.setNombrePrograma("" + params.get("nombrePrograma"));
+//        
+//            
+//            programaformacionFacade.create(objProgramaformacion);
+//            System.out.println("Programa registrado");
+////           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "La bodega ha sido registrada correctamente"));
+//        } catch (Exception e) {
+//            System.out.println("No se registro");
+////            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
+//        }
+//        return "programaFormacionRegistro.xhtml";
+//    }
 
     public void eliminarEnTabla(Programaformacion programaformacion) {
         try {

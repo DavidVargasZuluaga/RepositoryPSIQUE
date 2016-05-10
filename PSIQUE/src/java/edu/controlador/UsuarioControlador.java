@@ -46,8 +46,9 @@ public class UsuarioControlador implements Serializable {
     @Inject
     private FichaFacade fichaFacade;
 
-    private int ver, modalCreacion, modalRecuperarContraseña, modalIngreso, 
-            modalModificarAprendiz, año, mes, dia, hora, minuto, segundo;
+    private int ver, modalCreacion, modalRecuperarContraseña, modalIngreso,
+            modalModificarAprendiz, año, mes, dia, hora, minuto, segundo,
+            modalCambios;
     private String version, fechaActual, horaActual;
 
     private Entrada objEntrada;
@@ -70,6 +71,7 @@ public class UsuarioControlador implements Serializable {
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
         modalModificarAprendiz = 0;
+        modalCambios = 0;
         ver = 0;
         fecha2 = GregorianCalendar.getInstance();
         año = fecha2.get(Calendar.YEAR);
@@ -118,7 +120,6 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return us;
 //    }
-    
     public String editarPerfilAprendiz() {
         try {
             aprendizFacade.edit(aprendizTemp);
@@ -146,15 +147,14 @@ public class UsuarioControlador implements Serializable {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) 
-                facesContext.getExternalContext().getRequest();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             String doc2 = (String) params.get("documento");
             long doc = Long.parseLong(doc2);
             String clave = (String) params.get("clave");
             for (int i = 0; i < listaUsuarios.size(); i++) {
-                if (listaUsuarios.get(i).getNoDocumento() == doc && 
-                        listaUsuarios.get(i).getClave().equals(clave)) {
+                if (listaUsuarios.get(i).getNoDocumento() == doc
+                        && listaUsuarios.get(i).getClave().equals(clave)) {
                     usuarioLog = listaUsuarios.get(i);
                     if (usuarioLog.getEstado().equals("ACTIVO")) {
                         httpServletRequest.getSession().setAttribute(
@@ -178,7 +178,7 @@ public class UsuarioControlador implements Serializable {
                                 break;
                         }
                         break;
-                    } else{
+                    } else {
                         modalIngreso = 2;
                         break;
                     }
@@ -196,8 +196,7 @@ public class UsuarioControlador implements Serializable {
     public void cerrarSesion() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) 
-                facesContext.getExternalContext().getRequest();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             facesContext.getExternalContext().redirect("/PSIQUE/");
             FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
@@ -262,26 +261,34 @@ public class UsuarioControlador implements Serializable {
         }
     }
 
+    public String editarContraseña() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        try {
+            String contraseña = (String) params.get("nuevaContraseña");
+            String repetriContraseña = (String) params.get("repetriContraseña");
+            if (!usuarioLog.getClave().equals(contraseña)) {
+                if (contraseña.equals(repetriContraseña)) {
+                    usuarioLog.setClave(repetriContraseña);
+                    usuarioFacade.edit(usuarioLog);
+                    modalCambios = 4;
+                } else {
+                    modalCambios = 3;
+                }
+            } else {
+                modalCambios = 2;
+            }
+        } catch (Exception e) {
+        }
+        return "";
+    }
+
     public String editarDatosPersonales() {
         String res = "/PSIQUE";
         usuarioFacade.edit(usuarioLog);
-        switch (usuarioLog.getIdRol().getIdRol()) {
-            case 1:
-                res = "/modAdmon/configuracion.xhtml";
-                break;
-            case 2:
-                res = "/modCoordinador/configuracion.xhtml";
-                break;
-            case 3:
-                res = "/modPsicologo/configuracion.xhtml";
-                break;
-            case 4:
-                res = "/modAprendiz/configuracion.xhtml";
-                break;
-            default:
-                res = "/index.xhtml";
-                break;
-        }
+        modalCambios = 1;
         return "";
     }
 
@@ -342,6 +349,7 @@ public class UsuarioControlador implements Serializable {
         modalCreacion = 0;
         modalModificarAprendiz = 0;
         modalIngreso = 0;
+        modalCambios = 0;
     }
 
     //    Parte Andres parte del controlador Usuario
@@ -629,6 +637,14 @@ public class UsuarioControlador implements Serializable {
 
     public void setModalIngreso(int modalIngreso) {
         this.modalIngreso = modalIngreso;
+    }
+
+    public int getModalCambios() {
+        return modalCambios;
+    }
+
+    public void setModalCambios(int modalCambios) {
+        this.modalCambios = modalCambios;
     }
 
 }

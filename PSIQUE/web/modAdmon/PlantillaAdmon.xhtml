@@ -99,6 +99,42 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{usuarioControlador.modalCambios == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Informacion editada.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>La nueva contraseña debe ser diferente a la actual.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 3}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Las contraseñas no coinciden.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 4}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Contraseña editada.</strong>
+                    </div>
+                </c:if>
                 <c:if test="#{mensajeControlador.modalMensaje == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -126,7 +162,7 @@
                         <strong>Ficha creada </strong>
                     </div>
                 </c:if>
-                 <c:if test="#{controladorFicha.modalCreacion == 2}" >
+                <c:if test="#{controladorFicha.modalCreacion == 2}" >
                     <div style="font-size: 19px;" class="alert alert-warning page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -183,8 +219,6 @@
                                 <h4 class="modal-title" id="myModalLabel">Modificar datos del administrador</h4>
                             </div>
                             <div class="modal-body">
-
-
                                 <label for="nombres">Nombre</label>
                                 <div class="form-group input-group">                                    
                                     <span class="input-group-addon" title="Nombre"><i class="fa fa-user"  ></i></span>
@@ -217,35 +251,7 @@
                                     <span class="input-group-addon" title="Número de documento"><i class="fa fa-hashtag"></i></span>
                                     <input  class="form-control" id="noDocumento" value="#{usuarioControlador.usuarioLog.noDocumento}" name="noDocumento" />                                                                           
                                 </div>
-                                <label for="correo">Correo</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Correo"><i class="fa fa-at"></i></span>
-                                    <input class="form-control" id="correo" value="#{usuarioControlador.usuarioLog.correo}" name="correo"   />
-                                </div>
-                                <label for="clave">Contraseña</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                    <input class="form-control"  id="clave"  value="#{usuarioControlador.usuarioLog.clave}" name="clave"   />
-                                </div>
-
-                                <label for="telefono">Teléfono</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Teléfono"><i class="fa fa-mobile"  ></i></span>
-                                    <input class="form-control" id="telefono" value="#{usuarioControlador.usuarioLog.telefono}"  name="telefono" />
-                                </div>
-                                <label for="estado">Estado</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                    <input class="form-control" id="Estado" value="#{usuarioControlador.usuarioLog.estado}" name="estado"   />
-                                </div>
-                                <label for="rol">Rol</label>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                    <input  class="form-control" id="rol" value="#{usuarioControlador.usuarioLog.idRol.idRol}" name="rol"   />
-                                </div>
-
                                 <hr />
-
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
@@ -602,6 +608,35 @@
                             </div>
                             <div class="modal-footer">
                                 <h:commandButton class="botones2 btn" value="Editar datos" action="#{usuarioControlador.editarDatosPersonales()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCambiarContraseña" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod34">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Editar datos personales</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Nueva contraseña</label>
+                                    <br/>
+                                    <input name="nuevaContraseña" type="password" class="form-control" required="true" />
+
+                                </div>
+                                <div class="control-label">
+                                    <label style="color:black;">Repita La Contraseña</label>
+                                    <br/>
+                                    <input name="repetriContraseña" type="password" class="form-control" required="true" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Editar contraseña" action="#{usuarioControlador.editarContraseña()}"></h:commandButton>
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
