@@ -14,7 +14,7 @@
         <ui:define name="body">
 
             <div class="container-fluid ">
-                <h1 style="font-size: 40;" class="color1">Bienvenido Aprendiz</h1>
+                <h1 style="font-size: 40px;" class="color1">Bienvenido Aprendiz</h1>
                 <h:outputLabel style="color:black; font-size: xx-large;" class="label" ><i class="fa fa-calendar fa-lg color1"></i> #{usuarioControlador.fechaActual}</h:outputLabel>
                 <hr/>
                 <c:choose >
@@ -28,6 +28,69 @@
                         <h2>"A través de otros nos convertimos en nosotros mismos."<small><br/>-Lev S. Vygotsky.</small></h2>
                     </c:when>
                 </c:choose>
+                <br/>
+                <h3>Test pendientes</h3>
+                <table class="table table-striped table-hover" >
+                    <thead>
+                        <tr>
+                            <th data-field="#" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">#</th>
+                            <th data-field="Titulo" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Titulo</th>
+                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                            <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                        </tr>
+                    </thead>
+                    <tbody>                                     
+                        <c:forEach var="t" items="#{testCortnolador.mostrarTestsAprendiz(usuarioControlador.usuarioLog)}">  
+                            <tr>
+                                <td>#{t.idTest}</td> 
+                                <td>#{t.nombre}</td> 
+                                <td>
+                                    <h:outputLabel style="color:black;" class="label" value="#{t.fecha}">
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" />
+                                    </h:outputLabel></td> 
+                                <td align="center" width="20%" >
+                                    <h:form>
+                                        <h:commandLink class="btn botonesnav" onclick="$('#modalAplicarTest#{t.idTest}').modal(); return false;" title="Aplicar Test">
+                                            <i class="fa fa-eye fa-lg"></i>
+                                        </h:commandLink>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </c:forEach> 
+                    </tbody>
+                </table>
+                <h3>Mensajes nuevos</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th data-field="#" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">#</th>
+                            <th data-field="Titulo" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Titulo</th>
+                            <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
+                            <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
+                        </tr>
+                    </thead>
+                    <tbody>                                     
+                        <c:forEach var="m" items="#{mensajeControlador.listarMensajesNuevos(usuarioControlador.usuarioLog)}">  
+                            <tr>
+                                <td>#{m.idMensaje}</td> 
+                                <td>#{m.idEmisor.nombres}</td>
+                                <td>#{m.asunto}</td>
+                                <td>
+                                    <h:outputLabel style="color:black;" class="label" value="#{m.fecha}">
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" />
+                                    </h:outputLabel>
+                                </td> 
+                                <td align="center" width="20%" >
+                                    <h:form>
+                                        <h:commandLink class="btn botonesnav" action="mensajeria.xhtml" title="Ir a mensajeria">
+                                            <i class="fa fa-eye fa-lg"></i>
+                                        </h:commandLink>
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </c:forEach> 
+                    </tbody>
+                </table>
             </div>
         </ui:define>
     </ui:composition>
