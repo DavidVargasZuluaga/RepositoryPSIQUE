@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaCoordinador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">
+        Reporte de citas de los aprendices
+    </ui:define>
+
+    <h:head>
+        <!--Js Graficas -->
+        <h:outputScript library="js" name="Chart.js"/>
+        <h:outputScript library="js" name="fusioncharts.js"/>
+        <h:outputScript library="js" name="fusioncharts.charts.js"/>
+        <h:outputScript library="js" name="Chart.js"/>
+        <!--<script src="../../resources/js/Chart1.js" type="text/javascript"></script>
+        <script src="../../resources/js/fusioncharts.js" type="text/javascript"></script>
+        <script src="../../resources/js/fusioncharts.charts.js" type="text/javascript"></script>-->
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    </h:head>
+
+    <ui:define name="body">
+
+        <legend>Seguimiento de las citas con respecto a los aprendices</legend>
+        <br/>
+        <h:form>
+            <div class="form-group centrar">
+                <select class="selectpicker" name="objApre" id="select" data-live-search="true" >
+                    <option disabled="true" selected="true">Seleccione un aprendiz</option>
+                    <c:forEach var="u" items="#{controladorGrafica.traerAprendices()}" >
+                        <option value="#{u.idAprendiz}">#{u.usuario.nombres} #{u.usuario.primerApellido} #{u.usuario.segundoApellido}</option>
+                    </c:forEach>
+                </select>
+                <h:commandButton class="btn  botones2" value="Ver gráfica"  action="#{controladorGrafica.citas()}"/>
+            </div>
+
+        </h:form>
+        <div id="estadistica">  
+            <div id="graficaValoracion" >     
+                <div id="chart-container"></div>
+            </div>
+        </div>
+
+        <div class="form-group input-group">
+            <h:form>
+                <input  type="hidden" class="form-control"  value="#{controladorGrafica.CANCELADA}" name="cancelada" id="cancelada"   />
+            </h:form>
+        </div>
+
+        <div class="form-group input-group">
+            <h:form>
+                <input  type="hidden" class="form-control"  value="#{controladorGrafica.INCUMPLIDA}" name="incumplida" id="incumplida"   />
+            </h:form>
+        </div>
+
+        <div class="form-group input-group">
+            <h:form>
+                <input  type="hidden" class="form-control"  value="#{controladorGrafica.CUMPLIDA}" name="cumplida" id="cumplida"   />
+            </h:form>
+        </div>
+
+        <div class="form-group input-group centrar">
+            <h:form>
+                <input  type="hidden" class="form-control"  value="#{controladorGrafica.nombreAprendiz}" name="nombre" id="nombre"   />
+            </h:form>
+        </div>
+        <script>
+            var num1 = document.getElementById('cancelada').value;
+            var num2 = parseFloat(num1);
+
+            var num3 = document.getElementById('incumplida').value;
+            var num4 = parseFloat(num3);
+
+            var num5 = document.getElementById('cumplida').value;
+            var num6 = parseFloat(num5);
+
+            var nom = document.getElementById('nombre').value;
+
+            $(function () {
+
+                $(document).ready(function () {
+                    // Build the chart
+                    $('#graficaValoracion').highcharts({
+                        chart: {
+                            plotBackgroundColor: null,
+                            plotBorderWidth: null,
+                            plotShadow: false,
+                            type: 'pie'
+                        },
+                        title: {
+                            text: 'Aprendiz:' + " " + nom,
+                        },
+                        tooltip: {
+                            valueSuffix: ''
+                                    //pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                        },
+                        plotOptions: {
+                            pie: {
+                                allowPointSelect: true,
+                                cursor: 'pointer',
+                                dataLabels: {
+                                    enabled: false
+                                },
+                                showInLegend: true
+                            }
+                        },
+                        series: [{
+                                name: 'Número de citas',
+                                colorByPoint: true,
+                                data: [{
+                                        name: 'Citas canceladas',
+                                        y: num2,
+                                        sliced: true,
+                                        selected: true
+                                    }, {
+                                        name: 'Citas incumplidas',
+                                        y:num4
+                                    }, {
+                                        name: 'Citas cumplidas',
+                                        y:num6
+                                    }]
+                            }]
+                    });
+                });
+            });
+        </script>
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,416 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <body>
+        <ui:composition template="./PlantillaCoordinador.xhtml">
+
+            <ui:define name="title">
+                Reporte de citas
+            </ui:define>
+
+            <h:head>
+                <!--Js Graficas -->
+                <h:outputScript library="js" name="Chart.js"/>
+                <h:outputScript library="js" name="fusioncharts.js"/>
+                <h:outputScript library="js" name="fusioncharts.charts.js"/>
+                <h:outputScript library="js" name="Chart.js"/>
+                <!--<script src="../../resources/js/Chart1.js" type="text/javascript"></script>
+                <script src="../../resources/js/fusioncharts.js" type="text/javascript"></script>
+                <script src="../../resources/js/fusioncharts.charts.js" type="text/javascript"></script>-->
+                <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+                <script src="https://code.highcharts.com/highcharts.js"></script>
+                <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css"/>
+
+                <!-- Latest compiled and minified JavaScript -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+            </h:head>
+
+            <ui:define name="body">
+                <legend>Reporte de citas</legend>
+                <br/>
+                <h:form>
+                    <h:commandButton value="ver grafica" action="#{controladorGrafica.cogerCitasMensuales()}"/>
+                </h:form>
+                <div id="estadistica">  
+                    <div id="grafica" >     
+                        <div id="chart-container"></div>
+                    </div>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaEnero}" name="canceladaEnero" id="canceladaEnero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaEnero}" name="incumplidaEnero" id="incumplidaEnero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaEnero}" name="cumplidaEnero" id="cumplidaEnero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaFebrero}" name="canceladaFebrero" id="canceladaFebrero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaFebrero}" name="incumplidaFebrero" id="incumplidaFebrero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaFebrero}" name="cumplidaFebrero" id="cumplidaFebrero"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaMarzo}" name="canceladaMarzo" id="canceladaMarzo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaMarzo}" name="incumplidaMarzo" id="incumplidaMarzo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaMarzo}" name="cumplidaMarzo" id="cumplidaMarzo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaAbril}" name="canceladaAbril" id="canceladaAbril"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaAbril}" name="incumplidaAbril" id="incumplidaAbril"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaAbril}" name="cumplidaAbril" id="cumplidaAbril"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaMayo}" name="canceladaMayo" id="canceladaMayo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaMayo}" name="incumplidaMayo" id="incumplidaMayo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaMayo}" name="cumplidaMayo" id="cumplidaMayo"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaJunio}" name="canceladaJunio" id="canceladaJunio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaJunio}" name="incumplidaJunio" id="incumplidaJunio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaJunio}" name="cumplidaJunio" id="cumplidaJunio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaJulio}" name="canceladaJulio" id="canceladaJulio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaJulio}" name="incumplidaJulio" id="incumplidaJulio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaJulio}" name="cumplidaJulio" id="cumplidaJulio"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaAgosto}" name="canceladaAgosto" id="canceladaAgosto"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaAgosto}" name="incumplidaAgosto" id="incumplidaAgosto"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaAgosto}" name="cumplidaAgosto" id="cumplidaAgosto"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaSeptiembre}" name="canceladaSeptiembre" id="canceladaSeptiembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaSeptiembre}" name="incumplidaSeptiembre" id="incumplidaSeptiembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaSeptiembre}" name="cumplidaSeptiembre" id="cumplidaSeptiembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaOctubre}" name="canceladaOctubre" id="canceladaOctubre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaOctubre}" name="incumplidaOctubre" id="incumplidaOctubre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaOctubre}" name="cumplidaOctubre" id="cumplidaOctubre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaNoviembre}" name="canceladaNoviembre" id="canceladaNoviembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaNoviembre}}" name="incumplidaNoviembre" id="incumplidaNoviembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaNoviembre}}" name="cumplidaNoviembre" id="cumplidaNoviembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.canceladaDiciembre}" name="canceladaDiciembre" id="canceladaDiciembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.incumplidaDiciembre}" name="incumplidaDiciembre" id="incumplidaDiciembre"   />
+                    </h:form>
+                </div>
+
+                <div class="form-group input-group">
+                    <h:form>
+                        <input  type="hidden" class="form-control"  value="#{controladorGrafica.cumplidaDiciembre}" name="cumplidaDiciembre" id="cumplidaDiciembre"   />
+                    </h:form>
+                </div>
+
+                <script>
+
+                    var num1 = document.getElementById('canceladaEnero').value;
+                    var num2 = parseFloat(num1);
+
+                    var num3 = document.getElementById('incumplidaEnero').value;
+                    var num4 = parseFloat(num3);
+
+                    var num5 = document.getElementById('cumplidaEnero').value;
+                    var num6 = parseFloat(num5);
+
+                    var num7 = document.getElementById('canceladaFebrero').value;
+                    var num8 = parseFloat(num7);
+
+                    var num9 = document.getElementById('incumplidaFebrero').value;
+                    var num10 = parseFloat(num9);
+
+                    var num11 = document.getElementById('cumplidaFebrero').value;
+                    var num12 = parseFloat(num11);
+
+                    var num13 = document.getElementById('canceladaMarzo').value;
+                    var num14 = parseFloat(num13);
+
+                    var num15 = document.getElementById('incumplidaMarzo').value;
+                    var num16 = parseFloat(num15);
+
+                    var num17 = document.getElementById('cumplidaMarzo').value;
+                    var num18 = parseFloat(num17);
+
+                    var num19 = document.getElementById('canceladaAbril').value;
+                    var num20 = parseFloat(num19);
+alert(num20);
+                    var num21 = document.getElementById('incumplidaAbril').value;
+                    var num22 = parseFloat(num21);
+alert(num22);
+                    var num23 = document.getElementById('cumplidaAbril').value;
+                    var num24 = parseFloat(num23);
+alert(num24);
+                    var num25 = document.getElementById('canceladaMayo').value;
+                    var num26 = parseFloat(num25);
+
+                    var num27 = document.getElementById('incumplidaMayo').value;
+                    var num28 = parseFloat(num27);
+
+                    var num29 = document.getElementById('cumplidaMayo').value;
+                    var num30 = parseFloat(num29);
+
+                    var num31 = document.getElementById('canceladaJunio').value;
+                    var num32 = parseFloat(num31);
+
+                    var num33 = document.getElementById('incumplidaJunio').value;
+                    var num34 = parseFloat(num33);
+
+                    var num35 = document.getElementById('cumplidaJunio').value;
+                    var num36 = parseFloat(num35);
+
+                    var num37 = document.getElementById('canceladaJulio').value;
+                    var num38 = parseFloat(num37);
+
+                    var num39 = document.getElementById('incumplidaJulio').value;
+                    var num40 = parseFloat(num39);
+
+                    var num41 = document.getElementById('cumplidaJulio').value;
+                    var num42 = parseFloat(num41);
+
+                    var num43 = document.getElementById('canceladaAgosto').value;
+                    var num44 = parseFloat(num43);
+
+                    var num45 = document.getElementById('incumplidaAgosto').value;
+                    var num46 = parseFloat(num45);
+
+                    var num47 = document.getElementById('cumplidaAgosto').value;
+                    var num48 = parseFloat(num47);
+
+                    var num49 = document.getElementById('canceladaSeptiembre').value;
+                    var num50 = parseFloat(num49);
+
+                    var num51 = document.getElementById('incumplidaSeptiembre').value;
+                    var num52 = parseFloat(num51);
+
+                    var num53 = document.getElementById('cumplidaSeptiembre').value;
+                    var num54 = parseFloat(num53);
+
+                    var num55 = document.getElementById('canceladaOctubre').value;
+                    var num56 = parseFloat(num55);
+
+                    var num57 = document.getElementById('incumplidaOctubre').value;
+                    var num58 = parseFloat(num57);
+
+                    var num59 = document.getElementById('cumplidaOctubre').value;
+                    var num60 = parseFloat(num59);
+
+                    var num61 = document.getElementById('canceladaNoviembre').value;
+                    var num62 = parseFloat(num61);
+
+                    var num63 = document.getElementById('incumplidaNoviembre').value;
+                    var num64 = parseFloat(num63);
+
+                    var num65 = document.getElementById('cumplidaNoviembre').value;
+                    var num66 = parseFloat(num65);
+
+                    var num67 = document.getElementById('canceladaDiciembre').value;
+                    var num68 = parseFloat(num67);
+
+                    var num69 = document.getElementById('incumplidaDiciembre').value;
+                    var num70 = parseFloat(num69);
+
+                    var num71 = document.getElementById('cumplidaDiciembre').value;
+                    var num72 = parseFloat(num71);
+
+
+                    $(function () {
+                        $('#grafica').highcharts({
+                            chart: {
+                                type: 'line'
+                            },
+                            title: {
+                                text: 'Grafica anual de citas'
+                            },
+                            xAxis: {
+                                categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Número de citas'
+                                }
+                            },
+                            plotOptions: {
+                                line: {
+                                    dataLabels: {
+                                        enabled: true
+                                    },
+                                    enableMouseTracking: false
+                                }
+                            },
+                            series: [{
+                                    name: 'Citas canceladas',
+                                    data: [num2, num8, num14, num20, num26, num32, num38, num44, num50, num56, num62, num68]
+                                }, {
+                                    name: 'Citas cumplidas',
+                                    data: [num6, num12, num18, num24, num30, num36, num42, num48, num54, num60, num66, num72]
+                                }, {
+                                    name: 'Citas incumplidas',
+                                    data: [num4, num10, num16, num22, num28, num34, num40, num46, num52, num58, num64, num70]
+                                }]
+                        });
+                    });
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

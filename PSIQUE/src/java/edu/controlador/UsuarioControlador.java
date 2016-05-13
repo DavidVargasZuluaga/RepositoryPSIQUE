@@ -53,7 +53,8 @@ public class UsuarioControlador implements Serializable {
 
     private Entrada objEntrada;
     private Calendar fecha2;
-    private Usuario usuarioLog, usuarioTemp;
+    private Usuario usuarioLog, usuarioTemp, correo;
+    ;
     private Aprendiz aprendizLog, aprendizTemp;
     private Psicologo psicologoLog;
     private Date fecha1 = new Date();
@@ -62,10 +63,11 @@ public class UsuarioControlador implements Serializable {
     private List<Psicologo> listaPsicologos;
     private List<Entrada> listaEntrada;
     private List<Aprendiz> listaAprendices;
+    private List<Aprendiz> listaAprendicesCoor;
 
     @PostConstruct
     public void init() {
-        version = "PSIQUE 3.9.2";
+        version = "PSIQUE 3.9.4";
         modalIngreso = 0;
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
@@ -82,7 +84,7 @@ public class UsuarioControlador implements Serializable {
         fechaActual = (dia + "/" + mes + "/" + año);
         horaActual = (+hora + " : " + minuto);
 
-        //correo = new Correo();
+        correo = new Usuario();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -315,16 +317,12 @@ public class UsuarioControlador implements Serializable {
             String c = (String) params.get("correo");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getCorreo().equals(c)) {
-//                    correo.setContrasena("hwfjffasxglqqerx");
-//                    correo.setUsuario("psique2016@gmail.com");
-//                    correo.setAsunto("Recuperar Contraseña");
-//                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
-//                    correo.setDestino(c);
-//                    correo.setRutraArchivo("");
-//                    CorreoControlador enviar = new CorreoControlador();
-//                    enviar.enviarCorreo(correo);
-//                    modalRecuperarContraseña = 1;
-//                    break;
+                    correo = listaUsuarios.get(i);
+                    Mailer.send(correo.getCorreo(), "Recuperar contraseña sistema PSIQUE", "Coordial saludo señor@:" + correo.getNombres() + correo.getPrimerApellido() + " Su clave es: " + correo.getClave() + " Su numero de documento es: " + correo.getNoDocumento());
+                    modalRecuperarContraseña = 1;
+                    break;
+                } else {
+                    System.out.println("Ese usuario no se encuentra registrado en el sistema");
                 }
             }
         } catch (Exception e) {
@@ -389,7 +387,7 @@ public class UsuarioControlador implements Serializable {
         }
         return listaPs;
     }
-    
+
     public String actualizarAdmon() {
         try {
             usuarioFacade.edit(usuarioLog);
@@ -399,6 +397,27 @@ public class UsuarioControlador implements Serializable {
         }
         return "";
     }
+    
+     public List<Aprendiz> listaAprendicesCoordinador() {
+        List<Aprendiz> resListApre = new ArrayList();
+        for (int i = 0; i < listaAprendices.size(); i++) {
+            if (listaAprendices.get(i).getUsuario().getEstado().equals("ACTIVO") && listaAprendices.get(i).getFicha().getIdPrograma().getIdPrograma().equals(usuarioLog.getCoordinador().getIdPrograma().getIdPrograma())) {
+                resListApre.add(listaAprendices.get(i));
+            }
+        }
+        return resListApre;
+    }
+
+    public List<Psicologo> listaPsicologoCoordinador() {
+        List<Psicologo> resListPsi = new ArrayList();
+        for (int i = 0; i < listaPsicologos.size(); i++) {
+            if (listaPsicologos.get(i).getUsuario().getEstado().equals("ACTIVO")) {
+                resListPsi.add(listaPsicologos.get(i));
+            }
+        }
+        return resListPsi;
+    }
+
 
 //    public String actualizar(Usuario usuarioM) {
 //        FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -423,7 +442,6 @@ public class UsuarioControlador implements Serializable {
 //        }
 //        return "/modAdmon/principalAdmon.xhtml";
 //    }
-
     public int getAño() {
         return año;
     }

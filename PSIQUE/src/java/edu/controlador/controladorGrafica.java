@@ -16,8 +16,11 @@ import edu.fachada.UsuarioFacade;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
 import javax.ejb.EJB;
@@ -35,6 +38,8 @@ public class controladorGrafica implements Serializable {
     @EJB
     private CitaFacade citaFacade;
     private List<Cita> listaCita;
+    private List<Cita> listaCitaAprendiz;//Aprendices
+    private List<Cita> listaCitaSeguimiento;//
 
     @EJB
     private UsuarioFacade usuarioFacade;
@@ -49,53 +54,155 @@ public class controladorGrafica implements Serializable {
     private PsicologoFacade psicologoFacade;
     private Psicologo psicologo;
     private List<Psicologo> listaPsicologo;
-    String nombrePsicologo;
+    private String nombrePsicologo;
+    private String nombreAprendiz;
     int excelente;
     int buena;
     int aceptable;
     int podriaMejorar;
     int mala;
 
-    Date fecha = new Date();
+    private String CANCELADA;
+    private String CUMPLIDA;
+    private String INCUMPLIDA;
+    int tempCancelada;
+    int tempIncumplida;
+    int tempCumplida;
 
-    int Enero;
-    int Febrero;
-    int Marzo;
-    int Abril;
-    int Mayo;
-    int Junio;
-    int Julio;
-    int Agosto;
-    int Septiember;
-    int Octubre;
-    int Noviembre;
-    int Diciembre;
+    private int año, mes, dia, hora, minuto, segundo, mesAnterior;
+    private String fechaActual, horaActual;
+    private Calendar fecha;
+
+    Date fecha2 = new Date();
+
+    //Grafica Seguimiento aprendiz
+    String CanceladaEnero;
+    String CumplidaEnero;
+    String IncumplidaEnero;
+
+    String CanceladaFebrero;
+    String CumplidaFebrero;
+    String IncumplidaFebrero;
+
+    String CanceladaMarzo;
+    String CumplidaMarzo;
+    String IncumplidaMarzo;
+
+    String CanceladaAbril;
+    String CumplidaAbril;
+    String IncumplidaAbril;
+
+    String CanceladaMayo;
+    String CumplidaMayo;
+    String IncumplidaMayo;
+
+    String CanceladaJunio;
+    String CumplidaJunio;
+    String IncumplidaJunio;
+
+    String CanceladaJulio;
+    String CumplidaJulio;
+    String IncumplidaJulio;
+
+    String CanceladaAgosto;
+    String CumplidaAgosto;
+    String IncumplidaAgosto;
+
+    String CanceladaSeptiembre;
+    String CumplidaSeptiembre;
+    String IncumplidaSeptiembre;
+
+    String CanceladaOctubre;
+    String CumplidaOctubre;
+    String IncumplidaOctubre;
+
+    String CanceladaNoviembre;
+    String CumplidaNoviembre;
+    String IncumplidaNoviembre;
+
+    String CanceladaDiciembre;
+    String CumplidaDiciembre;
+    String IncumplidaDiciembre;
 
     public controladorGrafica() {
         listaAprendiz = new ArrayList<>();
         listaPsicologo = new ArrayList<>();
         listaCita = new ArrayList<>();
+        listaCitaAprendiz = new ArrayList<>();
+        listaCitaSeguimiento = new ArrayList<>();
         aprendiz = new Aprendiz();
         psicologo = new Psicologo();
         nombrePsicologo = "";
+        nombreAprendiz = "";
         excelente = 0;
         buena = 0;
         aceptable = 0;
         podriaMejorar = 0;
         mala = 0;
+        CANCELADA = "";
+        CUMPLIDA = "";
+        INCUMPLIDA = "";
+        tempCancelada = 0;
+        tempIncumplida = 0;
+        tempCumplida = 0;
 
-        Enero = 0;
-        Febrero = 0;
-        Marzo = 0;
-        Abril = 0;
-        Mayo = 0;
-        Junio = 0;
-        Julio = 0;
-        Agosto = 0;
-        Septiember = 0;
-        Octubre = 0;
-        Noviembre = 0;
-        Diciembre = 0;
+        fecha = GregorianCalendar.getInstance();
+        año = fecha.get(Calendar.YEAR);
+        mes = fecha.get(Calendar.MONTH) + 1;
+        dia = fecha.get(Calendar.DAY_OF_MONTH);
+        hora = fecha.get(Calendar.HOUR_OF_DAY);
+        minuto = fecha.get(Calendar.MINUTE);
+        segundo = fecha.get(Calendar.SECOND);
+        fechaActual = (dia + "/" + mes);
+        horaActual = (+hora + " : " + minuto);
+
+        CanceladaEnero = "";
+        CumplidaEnero = "";
+        IncumplidaEnero = "";
+
+        CanceladaFebrero = "";
+        CumplidaFebrero = "";
+        IncumplidaFebrero = "";
+
+        CanceladaMarzo = "";
+        CumplidaMarzo = "";
+        IncumplidaMarzo = "";
+
+        CanceladaAbril = "";
+        CumplidaAbril = "";
+        IncumplidaAbril = "";
+
+        CanceladaMayo = "";
+        CumplidaMayo = "";
+        IncumplidaMayo = "";
+
+        CanceladaJunio = "";
+        CumplidaJunio = "";
+        IncumplidaJunio = "";
+
+        CanceladaJulio = "";
+        CumplidaJulio = "";
+        IncumplidaJulio = "";
+
+        CanceladaAgosto = "";
+        CumplidaAgosto = "";
+        IncumplidaAgosto = "";
+
+        CanceladaSeptiembre = "";
+        CumplidaSeptiembre = "";
+        IncumplidaSeptiembre = "";
+
+        CanceladaOctubre = "";
+        CumplidaOctubre = "";
+        IncumplidaOctubre = "";
+
+        CanceladaNoviembre = "";
+        CumplidaNoviembre = "";
+        IncumplidaNoviembre = "";
+
+        CanceladaDiciembre = "";
+        CumplidaDiciembre = "";
+        IncumplidaDiciembre = "";
     }
 
     public List<Psicologo> traerPsicologos() {
@@ -165,75 +272,373 @@ public class controladorGrafica implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
-    public void cogerCitasMensuales() {
+    public List<Aprendiz> traerAprendices() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
 
-//        String pi = (String) params.get("obj");
-//        long idpsicologo = Long.parseLong(pi);
-//        nombrePsicologo = psicologoFacade.find(idpsicologo).getUsuario().getNombres() + " " + psicologoFacade.find(idpsicologo).getUsuario().getPrimerApellido();
-        List<Cita> lista = new ArrayList();
-        listaCita = citaFacade.findAll();
+        String pi = (String) params.get("psicologo");
 
-        Enero = 0;
-        Febrero = 0;
-        Marzo = 0;
-        Abril = 0;
-        Mayo = 0;
-        Junio = 0;
-        Julio = 0;
-        Agosto = 0;
-        Septiember = 0;
-        Octubre = 0;
-        Noviembre = 0;
-        Diciembre = 0;
+        listaAprendiz = aprendizFacade.findAll();
+        List<Aprendiz> listaApre = new ArrayList();
 
-        for (int i = 0; i < listaCita.size(); i++) {
-            if (listaCita.get(i).getFecha().getYear() == fecha.getYear()) {
-                switch (listaCita.get(i).getFecha().getMonth()) {
-                    case 1:
-                        Enero++;
-                        break;
-                    case 2:
-                        Febrero++;
-                        break;
-                    case 3:
-                        Marzo++;
-                        break;
-                    case 4:
-                        Abril++;
-                        break;
-                    case 5:
-                        Mayo++;
-                        break;
-                    case 6:
-                        Junio++;
-                        break;
-                    case 7:
-                        Julio++;
-                        break;
-                    case 8:
-                        Agosto++;
-                        break;
-                    case 9:
-                        Septiember++;
-                        break;
-                    case 10:
-                        Octubre++;
-                        break;
-                    case 11:
-                        Noviembre++;
-                        break;
-                    case 12:
-                        Diciembre++;
-                        break;
+        try {
+            long idAprendiz = Long.parseLong(pi);
+            nombreAprendiz = aprendizFacade.find(idAprendiz).getUsuario().getNombres() + " " + psicologoFacade.find(idAprendiz).getUsuario().getPrimerApellido();
+            for (int i = 0; i < listaAprendiz.size(); i++) {
+                if (listaAprendiz.get(i).getIdAprendiz().equals(idAprendiz)) {
+                    listaApre.add(listaAprendiz.get(i));
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return listaAprendiz;
+    }
+
+    public void citas() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        try {
+            String apr = (String) params.get("objApre");
+            long idaprendiz = Long.parseLong(apr);
+            nombreAprendiz = aprendizFacade.find(idaprendiz).getUsuario().getNombres() + " " + aprendizFacade.find(idaprendiz).getUsuario().getPrimerApellido();
+            listaCitaAprendiz = citaFacade.findAll();
+
+            tempCancelada = 0;
+            tempIncumplida = 0;
+            tempCumplida = 0;
+            for (int i = 0; i < listaCitaAprendiz.size(); i++) {
+                if (listaCitaAprendiz.get(i).getIdAprendiz().getIdAprendiz().equals(idaprendiz)) {
+                    switch (listaCitaAprendiz.get(i).getEstado()) {
+                        case "CANCELADA"://"CUMPLIDA":
+                            tempCancelada++;
+                            CANCELADA = Integer.toString(tempCancelada);
+                            break;
+                        case "INCUMPLIDA":
+                            tempIncumplida++;
+                            INCUMPLIDA = Integer.toString(tempIncumplida);
+                            break;
+                        case "CUMPLIDA":
+                            tempCumplida++;
+                            CUMPLIDA = Integer.toString(tempCumplida);
+                            break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void cogerCitasMensuales() {
+        try {
+            List<Cita> lista = new ArrayList();
+            listaCita = citaFacade.findAll();
+            SimpleDateFormat fechaComparar = new SimpleDateFormat("yyyy");
+            for (int i = 0; i < listaCita.size(); i++) {
+                int e = Integer.parseInt(fechaComparar.format(listaCita.get(i).getFecha()));
+                if (e == año) {
+                    switch (listaCita.get(i).getFecha().getMonth()) {
+                        case 0:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Enero++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaAprendiz.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaEnero = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaEnero = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaEnero = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 1:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Febrero++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaFebrero = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaFebrero = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaFebrero = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 2:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Marzo++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaMarzo = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaMarzo = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaMarzo = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 3:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            // Abril++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaAbril = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaAbril = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaAbril = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 4:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Mayo++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaMayo = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaMayo = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaMayo = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 5:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Junio++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaJunio = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaJunio = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaJunio = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 6:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Julio++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaJulio = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaJulio = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaJulio = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 7:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Agosto++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaAgosto = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaAgosto = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaAgosto = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 8:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Septiember++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaSeptiembre = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaSeptiembre = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaSeptiembre = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 9:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Octubre++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaOctubre = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaOctubre = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaOctubre = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 10:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Noviembre++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaNoviembre = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaNoviembre = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaNoviembre = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                        case 11:
+                            tempCancelada = 0;
+                            tempIncumplida = 0;
+                            tempCumplida = 0;
+                            listaCitaSeguimiento = citaFacade.findAll();
+                            //Diciembre++;
+                            for (int j = 0; j < listaCitaSeguimiento.size(); j++) {
+                                switch (listaCitaSeguimiento.get(i).getEstado()) {
+                                    case "CANCELADA"://"CUMPLIDA":
+                                        //tempCancelada++;
+                                        tempCancelada++;
+                                        CanceladaDiciembre = Integer.toString(tempCancelada);
+                                        break;
+                                    case "INCUMPLIDA":
+                                        tempIncumplida++;
+                                        IncumplidaDiciembre = Integer.toString(tempIncumplida);
+                                        break;
+                                    case "CUMPLIDA":
+                                        tempCumplida++;
+                                        CumplidaDiciembre = Integer.toString(tempCumplida);
+                                        break;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Aprendiz getAprendiz() {
@@ -308,100 +713,348 @@ public class controladorGrafica implements Serializable {
         this.nombrePsicologo = nombrePsicologo;
     }
 
-    public int getEnero() {
-        return Enero;
+    public String getNombreAprendiz() {
+        return nombreAprendiz;
     }
 
-    public void setEnero(int Enero) {
-        this.Enero = Enero;
+    public void setNombreAprendiz(String nombreAprendiz) {
+        this.nombreAprendiz = nombreAprendiz;
     }
 
-    public int getFebrero() {
-        return Febrero;
+    public String getCANCELADA() {
+        return CANCELADA;
     }
 
-    public void setFebrero(int Febrero) {
-        this.Febrero = Febrero;
+    public void setCANCELADA(String CANCELADA) {
+        this.CANCELADA = CANCELADA;
     }
 
-    public int getMarzo() {
-        return Marzo;
+    public String getCUMPLIDA() {
+        return CUMPLIDA;
     }
 
-    public void setMarzo(int Marzo) {
-        this.Marzo = Marzo;
+    public void setCUMPLIDA(String CUMPLIDA) {
+        this.CUMPLIDA = CUMPLIDA;
     }
 
-    public int getAbril() {
-        return Abril;
+    public String getINCUMPLIDA() {
+        return INCUMPLIDA;
     }
 
-    public void setAbril(int Abril) {
-        this.Abril = Abril;
+    public void setINCUMPLIDA(String INCUMPLIDA) {
+        this.INCUMPLIDA = INCUMPLIDA;
     }
 
-    public int getMayo() {
-        return Mayo;
+    public int getTempCancelada() {
+        return tempCancelada;
     }
 
-    public void setMayo(int Mayo) {
-        this.Mayo = Mayo;
+    public void setTempCancelada(int tempCancelada) {
+        this.tempCancelada = tempCancelada;
     }
 
-    public int getJunio() {
-        return Junio;
+    public int getTempIncumplida() {
+        return tempIncumplida;
     }
 
-    public void setJunio(int Junio) {
-        this.Junio = Junio;
+    public void setTempIncumplida(int tempIncumplida) {
+        this.tempIncumplida = tempIncumplida;
     }
 
-    public int getJulio() {
-        return Julio;
+    public int getTempCumplida() {
+        return tempCumplida;
     }
 
-    public void setJulio(int Julio) {
-        this.Julio = Julio;
+    public void setTempCumplida(int tempCumplida) {
+        this.tempCumplida = tempCumplida;
     }
 
-    public int getAgosto() {
-        return Agosto;
+    public String getCanceladaEnero() {
+        return CanceladaEnero;
     }
 
-    public void setAgosto(int Agosto) {
-        this.Agosto = Agosto;
+    public void setCanceladaEnero(String CanceladaEnero) {
+        this.CanceladaEnero = CanceladaEnero;
     }
 
-    public int getSeptiember() {
-        return Septiember;
+    public String getCumplidaEnero() {
+        return CumplidaEnero;
     }
 
-    public void setSeptiember(int Septiember) {
-        this.Septiember = Septiember;
+    public void setCumplidaEnero(String CumplidaEnero) {
+        this.CumplidaEnero = CumplidaEnero;
     }
 
-    public int getOctubre() {
-        return Octubre;
+    public String getIncumplidaEnero() {
+        return IncumplidaEnero;
     }
 
-    public void setOctubre(int Octubre) {
-        this.Octubre = Octubre;
+    public void setIncumplidaEnero(String IncumplidaEnero) {
+        this.IncumplidaEnero = IncumplidaEnero;
     }
 
-    public int getNoviembre() {
-        return Noviembre;
+    public String getCanceladaFebrero() {
+        return CanceladaFebrero;
     }
 
-    public void setNoviembre(int Noviembre) {
-        this.Noviembre = Noviembre;
+    public void setCanceladaFebrero(String CanceladaFebrero) {
+        this.CanceladaFebrero = CanceladaFebrero;
     }
 
-    public int getDiciembre() {
-        return Diciembre;
+    public String getCumplidaFebrero() {
+        return CumplidaFebrero;
     }
 
-    public void setDiciembre(int Diciembre) {
-        this.Diciembre = Diciembre;
+    public void setCumplidaFebrero(String CumplidaFebrero) {
+        this.CumplidaFebrero = CumplidaFebrero;
+    }
+
+    public String getIncumplidaFebrero() {
+        return IncumplidaFebrero;
+    }
+
+    public void setIncumplidaFebrero(String IncumplidaFebrero) {
+        this.IncumplidaFebrero = IncumplidaFebrero;
+    }
+
+    public String getCanceladaMarzo() {
+        return CanceladaMarzo;
+    }
+
+    public void setCanceladaMarzo(String CanceladaMarzo) {
+        this.CanceladaMarzo = CanceladaMarzo;
+    }
+
+    public String getCumplidaMarzo() {
+        return CumplidaMarzo;
+    }
+
+    public void setCumplidaMarzo(String CumplidaMarzo) {
+        this.CumplidaMarzo = CumplidaMarzo;
+    }
+
+    public String getIncumplidaMarzo() {
+        return IncumplidaMarzo;
+    }
+
+    public void setIncumplidaMarzo(String IncumplidaMarzo) {
+        this.IncumplidaMarzo = IncumplidaMarzo;
+    }
+
+    public String getCanceladaAbril() {
+        return CanceladaAbril;
+    }
+
+    public void setCanceladaAbril(String CanceladaAbril) {
+        this.CanceladaAbril = CanceladaAbril;
+    }
+
+    public String getCumplidaAbril() {
+        return CumplidaAbril;
+    }
+
+    public void setCumplidaAbril(String CumplidaAbril) {
+        this.CumplidaAbril = CumplidaAbril;
+    }
+
+    public String getIncumplidaAbril() {
+        return IncumplidaAbril;
+    }
+
+    public void setIncumplidaAbril(String IncumplidaAbril) {
+        this.IncumplidaAbril = IncumplidaAbril;
+    }
+
+    public String getCanceladaMayo() {
+        return CanceladaMayo;
+    }
+
+    public void setCanceladaMayo(String CanceladaMayo) {
+        this.CanceladaMayo = CanceladaMayo;
+    }
+
+    public String getCumplidaMayo() {
+        return CumplidaMayo;
+    }
+
+    public void setCumplidaMayo(String CumplidaMayo) {
+        this.CumplidaMayo = CumplidaMayo;
+    }
+
+    public String getIncumplidaMayo() {
+        return IncumplidaMayo;
+    }
+
+    public void setIncumplidaMayo(String IncumplidaMayo) {
+        this.IncumplidaMayo = IncumplidaMayo;
+    }
+
+    public String getCanceladaJunio() {
+        return CanceladaJunio;
+    }
+
+    public void setCanceladaJunio(String CanceladaJunio) {
+        this.CanceladaJunio = CanceladaJunio;
+    }
+
+    public String getCumplidaJunio() {
+        return CumplidaJunio;
+    }
+
+    public void setCumplidaJunio(String CumplidaJunio) {
+        this.CumplidaJunio = CumplidaJunio;
+    }
+
+    public String getIncumplidaJunio() {
+        return IncumplidaJunio;
+    }
+
+    public void setIncumplidaJunio(String IncumplidaJunio) {
+        this.IncumplidaJunio = IncumplidaJunio;
+    }
+
+    public String getCanceladaJulio() {
+        return CanceladaJulio;
+    }
+
+    public void setCanceladaJulio(String CanceladaJulio) {
+        this.CanceladaJulio = CanceladaJulio;
+    }
+
+    public String getCumplidaJulio() {
+        return CumplidaJulio;
+    }
+
+    public void setCumplidaJulio(String CumplidaJulio) {
+        this.CumplidaJulio = CumplidaJulio;
+    }
+
+    public String getIncumplidaJulio() {
+        return IncumplidaJulio;
+    }
+
+    public void setIncumplidaJulio(String IncumplidaJulio) {
+        this.IncumplidaJulio = IncumplidaJulio;
+    }
+
+    public String getCanceladaAgosto() {
+        return CanceladaAgosto;
+    }
+
+    public void setCanceladaAgosto(String CanceladaAgosto) {
+        this.CanceladaAgosto = CanceladaAgosto;
+    }
+
+    public String getCumplidaAgosto() {
+        return CumplidaAgosto;
+    }
+
+    public void setCumplidaAgosto(String CumplidaAgosto) {
+        this.CumplidaAgosto = CumplidaAgosto;
+    }
+
+    public String getIncumplidaAgosto() {
+        return IncumplidaAgosto;
+    }
+
+    public void setIncumplidaAgosto(String IncumplidaAgosto) {
+        this.IncumplidaAgosto = IncumplidaAgosto;
+    }
+
+    public String getCanceladaSeptiembre() {
+        return CanceladaSeptiembre;
+    }
+
+    public void setCanceladaSeptiembre(String CanceladaSeptiembre) {
+        this.CanceladaSeptiembre = CanceladaSeptiembre;
+    }
+
+    public String getCumplidaSeptiembre() {
+        return CumplidaSeptiembre;
+    }
+
+    public void setCumplidaSeptiembre(String CumplidaSeptiembre) {
+        this.CumplidaSeptiembre = CumplidaSeptiembre;
+    }
+
+    public String getIncumplidaSeptiembre() {
+        return IncumplidaSeptiembre;
+    }
+
+    public void setIncumplidaSeptiembre(String IncumplidaSeptiembre) {
+        this.IncumplidaSeptiembre = IncumplidaSeptiembre;
+    }
+
+    public String getCanceladaOctubre() {
+        return CanceladaOctubre;
+    }
+
+    public void setCanceladaOctubre(String CanceladaOctubre) {
+        this.CanceladaOctubre = CanceladaOctubre;
+    }
+
+    public String getCumplidaOctubre() {
+        return CumplidaOctubre;
+    }
+
+    public void setCumplidaOctubre(String CumplidaOctubre) {
+        this.CumplidaOctubre = CumplidaOctubre;
+    }
+
+    public String getIncumplidaOctubre() {
+        return IncumplidaOctubre;
+    }
+
+    public void setIncumplidaOctubre(String IncumplidaOctubre) {
+        this.IncumplidaOctubre = IncumplidaOctubre;
+    }
+
+    public String getCanceladaNoviembre() {
+        return CanceladaNoviembre;
+    }
+
+    public void setCanceladaNoviembre(String CanceladaNoviembre) {
+        this.CanceladaNoviembre = CanceladaNoviembre;
+    }
+
+    public String getCumplidaNoviembre() {
+        return CumplidaNoviembre;
+    }
+
+    public void setCumplidaNoviembre(String CumplidaNoviembre) {
+        this.CumplidaNoviembre = CumplidaNoviembre;
+    }
+
+    public String getIncumplidaNoviembre() {
+        return IncumplidaNoviembre;
+    }
+
+    public void setIncumplidaNoviembre(String IncumplidaNoviembre) {
+        this.IncumplidaNoviembre = IncumplidaNoviembre;
+    }
+
+    public String getCanceladaDiciembre() {
+        return CanceladaDiciembre;
+    }
+
+    public void setCanceladaDiciembre(String CanceladaDiciembre) {
+        this.CanceladaDiciembre = CanceladaDiciembre;
+    }
+
+    public String getCumplidaDiciembre() {
+        return CumplidaDiciembre;
+    }
+
+    public void setCumplidaDiciembre(String CumplidaDiciembre) {
+        this.CumplidaDiciembre = CumplidaDiciembre;
+    }
+
+    public String getIncumplidaDiciembre() {
+        return IncumplidaDiciembre;
+    }
+
+    public void setIncumplidaDiciembre(String IncumplidaDiciembre) {
+        this.IncumplidaDiciembre = IncumplidaDiciembre;
     }
 
 }

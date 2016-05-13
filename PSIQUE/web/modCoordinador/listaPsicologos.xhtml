@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaCoordinador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">
+        Lista de Psicólogos
+    </ui:define>
+
+    <ui:define name="body">
+        <legend> Lista de Psicólogos</legend>
+        <br/>
+        <div class="container-fluid">
+            <div class="table-responsive">
+                <div class="panel filterable">
+                    <div class="panel-heading ">
+                        <h3 class="centrar panel-title">Psicologos</h3>
+                    </div>
+                    <table id="Usuarios1" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
+                        <thead>
+                            <tr>
+                                <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
+                                <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody>  
+                            <ui:repeat value="#{usuarioControlador.listaPsicologoCoordinador()}" var="lista">
+                                <tr>
+                                    <td>#{lista.usuario.noDocumento}</td> 
+                                    <td>#{lista.usuario.nombres}</td> 
+                                    <td>#{lista.usuario.primerApellido}</td> 
+                                    <td>#{lista.usuario.segundoApellido}</td>                                  
+                                    <td>
+                                        <h:form>                                            
+                                            <h:commandLink class="btn botonesnav" onclick="$('#myModal#{lista.usuario.idUsuario}').modal(); return false;" title="Ver mensaje completo">
+                                                <i class="fa fa-pencil fa-lg botonesnav"></i>
+                                            </h:commandLink>
+                                        </h:form>         
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                             <!-- <ui:repeat value="#{usuarioControlador.listaPsicologoCoordinador()}" var="listaPsicologo">  -->
+
+                            <!--  </ui:repeat>        						-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>
