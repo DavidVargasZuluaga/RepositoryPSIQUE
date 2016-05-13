@@ -47,10 +47,8 @@ public class controladorCoordinador implements Serializable {
 
     private int ver;
     private int idPrograma;
+    private int modalCreacion;
 
-    public controladorCoordinador() {
-        ver = 0;
-    }
 
      private SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -59,11 +57,18 @@ public class controladorCoordinador implements Serializable {
         coordinador = new Coordinador();
         listaUsurio = new ArrayList<>();
         listaCoordinador = new ArrayList<>();
+        ver = 0;
+        modalCreacion = 0;
     }
 
+    public void cerrarModal(){
+        modalCreacion = 0;
+    }
+    
     public void crearUsuario() {
         usuarioTemp = new Usuario();
         boolean existe = true;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -76,7 +81,6 @@ public class controladorCoordinador implements Serializable {
             usuarioTemp.setClave((String) params.get("clave"));
             usuarioTemp.setCorreo((String) params.get("correo"));
             usuarioTemp.setEstado("ACTIVO");
-//            usuarioTemp.setFechaNacimiento((Date) params.get("fecha"));
             String fecha = (String)params.get("fecha");
             usuarioTemp.setFechaNacimiento((Date) format.parse(fecha));
             usuarioTemp.setNombres((String) params.get("nombres"));
@@ -103,7 +107,7 @@ public class controladorCoordinador implements Serializable {
                 listaCoordinador.add(coordinador);
 
                 System.out.println("usuario creado");
-//                modalCreacion = 1;
+                modalCreacion = 1;
 
             } else {
                 System.out.println("usuario no creado");
@@ -190,6 +194,30 @@ public class controladorCoordinador implements Serializable {
 
     public void setIdPrograma(int idPrograma) {
         this.idPrograma = idPrograma;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuarioTemp() {
+        return usuarioTemp;
+    }
+
+    public void setUsuarioTemp(Usuario usuarioTemp) {
+        this.usuarioTemp = usuarioTemp;
+    }
+
+    public int getModalCreacion() {
+        return modalCreacion;
+    }
+
+    public void setModalCreacion(int modalCreacion) {
+        this.modalCreacion = modalCreacion;
     }
 
 }

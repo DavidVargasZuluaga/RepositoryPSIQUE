@@ -8,6 +8,7 @@ package edu.controlador;
 import edu.entidad.*;
 import edu.fachada.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,6 +60,7 @@ public class controladorPsicologos implements Serializable {
 //    //Atributos de tipoPsicologo
 //    private String jornada;
     private int ver;
+    private int modalCreacion;
     
     public controladorPsicologos() {
         
@@ -68,12 +70,18 @@ public class controladorPsicologos implements Serializable {
     public void init() {
         psicologo = new Psicologo();
         ListaPsicologo = new ArrayList<>();
+        modalCreacion = 0;
+    }
+    
+    public void cerrarModal(){
+        modalCreacion = 0;
     }
     
     
     public void crearUsuario() {
         usuarioTemp = new Usuario();
         boolean existe = true;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
@@ -86,7 +94,7 @@ public class controladorPsicologos implements Serializable {
             usuarioTemp.setClave((String) params.get("clave"));
             usuarioTemp.setCorreo((String) params.get("correo"));
             usuarioTemp.setEstado("ACTIVO");
-            //   usuarioTemp.setFechaNacimiento((Date) params.get("fechaNacimiento"));
+            usuarioTemp.setFechaNacimiento((Date) format.parse((String) params.get("fecha")) );
             usuarioTemp.setNombres((String) params.get("nombres"));
             usuarioTemp.setPrimerApellido((String) params.get("primerApellido"));
             usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
@@ -107,11 +115,9 @@ public class controladorPsicologos implements Serializable {
                 psicologo.setJornada((String) params.get("jornada"));
                 psicologoFacade.create(psicologo);
                 System.out.println("usuario creado");
-//                modalCreacion = 1;
+                modalCreacion = 1;
                 
             } else {
-                System.out.println("Psicologo no creado");
-//                modalCreacion = 2;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -150,16 +156,7 @@ public class controladorPsicologos implements Serializable {
     public void recogerDato(Psicologo psicologo) {
         this.psicologo = psicologo;
     }
-    
-    public void actualizar() {
-        try {
-            psicologoFacade.edit(psicologo);
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "El usuario ha sido editado correctamente"));
-        } catch (Exception e) {
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-        }
-    }
-    
+        
     public void verDatos() {
         ver = 1;
     }
@@ -191,6 +188,30 @@ public class controladorPsicologos implements Serializable {
     
     public void setVer(int ver) {
         this.ver = ver;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Usuario getUsuarioTemp() {
+        return usuarioTemp;
+    }
+
+    public void setUsuarioTemp(Usuario usuarioTemp) {
+        this.usuarioTemp = usuarioTemp;
+    }
+
+    public int getModalCreacion() {
+        return modalCreacion;
+    }
+
+    public void setModalCreacion(int modalCreacion) {
+        this.modalCreacion = modalCreacion;
     }
     
 }

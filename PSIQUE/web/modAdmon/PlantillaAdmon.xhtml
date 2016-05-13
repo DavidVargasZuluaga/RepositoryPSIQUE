@@ -180,6 +180,24 @@
                         <strong>Estado de ficha editada </strong>
                     </div>
                 </c:if>
+                <c:if test="#{controladorPsicologos.modalCreacion == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{controladorPsicologos.cerrarModal()}
+                        </button>
+                        <strong>Psicologo creado </strong>
+                    </div>
+                </c:if>
+                <c:if test="#{controladorCoordinador.modalCreacion == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{controladorCoordinador.cerrarModal()}
+                        </button>
+                        <strong>Coordinador creado </strong>
+                    </div>
+                </c:if>
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
                     <div class="container-fluid">
                         <div class="profile-sidebar control-group">
@@ -264,7 +282,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(usuarioControlador.usuarioLog)}" />
+                                <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizarAdmon()}" />
                             </div>
                         </h:form>
                     </div>
@@ -298,18 +316,6 @@
                                             <input  class="form-control" id="segundoApellido" value="#{lista.segundoApellido}" name="segundoApellido" />
                                         </div>
 
-                                        <!-- <div class="form-group input-group">
-                                             <span class="input-group-addon" title="Tipo de documento"><i class="fa fa-key "></i></span>
-                                             <div class="form-group">
-                                                 <h:selectOneMenu  value="#{lista.tipoDocumento}"  id="tipoDocumento" class="form-control">
-                                                     <f:selectItem itemValue="CC" itemLabel="Cédula de Ciudadania" />
-                                                     <f:selectItem itemValue="TI" itemLabel="Tarjeta de identidad"/>
-                                                     <f:selectItem itemValue="CE" itemLabel="Cédula extranjera" />
-                                                     <f:selectItem itemValue="PP" itemLabel="Pasaporte" />                                                                                    
-                                                 </h:selectOneMenu>
-                                             </div>
-                                         </div>-->
-
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Número de documento">#</span>
                                             <input  class="form-control" id="noDocumento" value="#{lista.noDocumento}" name="noDocumento" />                                                                           
@@ -319,28 +325,10 @@
                                             <span class="input-group-addon" title="Correo">@</span>
                                             <input class="form-control" id="correo" value="#{lista.correo}" name="correo"   />
                                         </div>
-
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                            <input pattern="[a-z,A-Z,0-9]{4,20}" class="form-control"  id="clave"  value="#{lista.clave}" name="clave"   />
-                                        </div>
-
-
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{lista.telefono}"  name="telefono" />
                                         </div>
-
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                            <input class="form-control" id="Estado" value="#{lista.estado}" name="estado"   />
-                                        </div>
-
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                            <input  class="form-control" id="rol" value="#{lista.idRol.idRol}" name="rol"   />
-                                        </div>
-
                                         <hr />
                                     </div>
                                 </div>
@@ -441,26 +429,14 @@
                                         </div>
 
                                         <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                            <input pattern="[a-z,A-Z,0-9]{4,20}" class="form-control"  id="clave"  value="#{listaCoordinadores.clave}" name="clave"   />
-                                        </div>
-
-
-                                        <div class="form-group input-group">
                                             <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaCoordinadores.telefono}"  name="telefono" />
                                         </div>
-
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Estado"><i class="fa fa-unlock"  ></i></span>
-                                            <input class="form-control" id="Estado" value="#{listaCoordinadores.estado}" name="estado"   />
-                                        </div>
-
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Rol"><i class="fa fa-check-circle-o"  ></i></span>
-                                            <input  class="form-control" id="rol" value="#{listaCoordinadores.idRol.idRol}" name="rol"   />
-                                        </div>
-
+                                        <select class="selectpicker" name="programaFormacion" data-live-search="true" >
+                                            <c:forEach var="listaPro" items="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}" >
+                                                <option value="#{listaPro}">#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
+                                            </c:forEach>
+                                        </select>
                                         <hr />
                                     </div>
                                 </div>
@@ -523,10 +499,6 @@
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Correo">@</span>
                                             <input class="form-control" id="correo" value="#{listaPsicologo.correo}" name="correo"   />
-                                        </div>
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon" title="Contraseña"><i class="fa fa-lock" ></i></span>
-                                            <input pattern="[a-z,A-Z,0-9]{4,20}" class="form-control" id="clave"  value="#{listaPsicologo.clave}" name="clave"   />
                                         </div>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
