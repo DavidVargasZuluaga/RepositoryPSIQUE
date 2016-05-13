@@ -8,7 +8,15 @@
       xmlns:p="http://primefaces.org/ui">
     <h:body>
         <ui:composition template="PlantillaPsicologo.xhtml">
-
+            <head>
+                <style type="text/css">
+                    #mynetwork {
+                        width: 600px;
+                        height: 400px;
+                        border: 1px solid lightgray;
+                    }
+                </style>
+            </head>
             <ui:define name="title">
                 Perfil del aprendiz
             </ui:define>
@@ -217,25 +225,37 @@
                                         <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
                                     </c:if>
                                     <br/>
-                                    <p:diagram value="#{diagramaControlador.model}" style="height:600px" styleClass="ui-widget-content" />
 
-                                    <style type="text/css">
-                                        .ui-diagram-element {   
-                                            width:5em; 
-                                            height:5em;
-                                            line-height:5em;
-                                            text-align: center;
-                                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
-                                            border-radius: 5em;
-                                            border: 1px solid #404a4e;
-                                            background-color: #404a4e;
-                                            color: #cccccc;
-                                        }
+                                    <div id="mynetwork"></div>
 
-                                        .ui-diagram-element:hover {
-                                            background-color: #20282b;
-                                        }
-                                    </style>
+                                    <script type="text/javascript">
+                                        // create an array with nodes
+                                        var nodes = new vis.DataSet([
+                                            {id: 1, label: 'Node 1'},
+                                            {id: 2, label: 'Node 2'},
+                                            {id: 3, label: 'Node 3'},
+                                            {id: 4, label: 'Node 4'},
+                                            {id: 5, label: 'Node 5'}
+                                        ]);
+
+                                        // create an array with edges
+                                        var edges = new vis.DataSet([
+                                            {from: 1, to: 3},
+                                            {from: 1, to: 2},
+                                            {from: 2, to: 4},
+                                            {from: 2, to: 5}
+                                        ]);
+
+                                        // create a network
+                                        var container = document.getElementById('mynetwork');
+                                        var data = {
+                                            nodes: nodes,
+                                            edges: edges
+                                        };
+                                        var options = {};
+                                        var network = new vis.Network(container, data, options);
+                                    </script>
+
                                 </div>
                             </div>
                         </h:form>

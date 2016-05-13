@@ -17,6 +17,7 @@
         <h:outputStylesheet library="css" name="font-awesome.css"/>
         <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
         <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
+        <h:outputStylesheet library="css" name="vis.css"/>
         <!--<h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
         <h:outputStylesheet library="css" name="formValidation.min.css"/>
         <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/>-->
@@ -28,6 +29,7 @@
         <h:outputScript library="js" name="miCalendario.js" target="body"/>
         <h:outputScript library="js" name="mostrar.js" target="body"/>
         <h:outputScript library="js" name="bootstrap-table-exports.js" target="body"/>
+        <h:outputScript library="js" name="vis.js" target="body"/>
         <!--<h:outputScript library="js" name="formValidation.min.js" target="body"/>
         <h:outputScript library="js" name="validacionFormularios.js" target="body"/>
         <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
@@ -43,6 +45,14 @@
         <title>
             <ui:insert name="title"></ui:insert>
         </title>
+
+        <style type="text/css">
+            #mynetwork {
+                width: 600px;
+                height: 400px;
+                border: 1px solid lightgray;
+            }
+        </style>
 
     </h:head>
 
