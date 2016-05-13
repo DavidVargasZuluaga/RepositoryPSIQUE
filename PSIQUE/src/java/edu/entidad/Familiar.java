@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -113,9 +112,9 @@ public class Familiar implements Serializable {
     @JoinColumn(name = "idAprendiz", referencedColumnName = "idAprendiz")
     @ManyToOne(optional = false)
     private Aprendiz idAprendiz;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "familiar")
+    @OneToMany(mappedBy = "idFamiliarParentezco")
     private List<Familiarrelacion> familiarrelacionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "familiar1")
+    @OneToMany(mappedBy = "idFamiliarRelacion")
     private List<Familiarrelacion> familiarrelacionList1;
 
     public Familiar() {

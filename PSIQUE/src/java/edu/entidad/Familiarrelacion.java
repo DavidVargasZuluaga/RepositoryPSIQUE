@@ -6,9 +6,12 @@
 package edu.entidad;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -27,40 +30,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Familiarrelacion.findAll", query = "SELECT f FROM Familiarrelacion f"),
     @NamedQuery(name = "Familiarrelacion.findByParentezco", query = "SELECT f FROM Familiarrelacion f WHERE f.parentezco = :parentezco"),
-    @NamedQuery(name = "Familiarrelacion.findByIdFamiliarParentezco", query = "SELECT f FROM Familiarrelacion f WHERE f.familiarrelacionPK.idFamiliarParentezco = :idFamiliarParentezco"),
-    @NamedQuery(name = "Familiarrelacion.findByIdFamiliarRelacioncol", query = "SELECT f FROM Familiarrelacion f WHERE f.familiarrelacionPK.idFamiliarRelacioncol = :idFamiliarRelacioncol")})
+    @NamedQuery(name = "Familiarrelacion.findByIdRelacion", query = "SELECT f FROM Familiarrelacion f WHERE f.idRelacion = :idRelacion")})
 public class Familiarrelacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @EmbeddedId
-    protected FamiliarrelacionPK familiarrelacionPK;
     @Size(max = 25)
     @Column(name = "parentezco")
     private String parentezco;
-    @JoinColumn(name = "idFamiliarParentezco", referencedColumnName = "idFamiliar", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Familiar familiar;
-    @JoinColumn(name = "idFamiliarRelacioncol", referencedColumnName = "idFamiliar", insertable = false, updatable = false)
-    @ManyToOne(optional = false)
-    private Familiar familiar1;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idRelacion")
+    private Integer idRelacion;
+    @JoinColumn(name = "idFamiliarParentezco", referencedColumnName = "idFamiliar")
+    @ManyToOne
+    private Familiar idFamiliarParentezco;
+    @JoinColumn(name = "idFamiliarRelacion", referencedColumnName = "idFamiliar")
+    @ManyToOne
+    private Familiar idFamiliarRelacion;
 
     public Familiarrelacion() {
     }
 
-    public Familiarrelacion(FamiliarrelacionPK familiarrelacionPK) {
-        this.familiarrelacionPK = familiarrelacionPK;
-    }
-
-    public Familiarrelacion(long idFamiliarParentezco, long idFamiliarRelacioncol) {
-        this.familiarrelacionPK = new FamiliarrelacionPK(idFamiliarParentezco, idFamiliarRelacioncol);
-    }
-
-    public FamiliarrelacionPK getFamiliarrelacionPK() {
-        return familiarrelacionPK;
-    }
-
-    public void setFamiliarrelacionPK(FamiliarrelacionPK familiarrelacionPK) {
-        this.familiarrelacionPK = familiarrelacionPK;
+    public Familiarrelacion(Integer idRelacion) {
+        this.idRelacion = idRelacion;
     }
 
     public String getParentezco() {
@@ -71,26 +64,34 @@ public class Familiarrelacion implements Serializable {
         this.parentezco = parentezco;
     }
 
-    public Familiar getFamiliar() {
-        return familiar;
+    public Integer getIdRelacion() {
+        return idRelacion;
     }
 
-    public void setFamiliar(Familiar familiar) {
-        this.familiar = familiar;
+    public void setIdRelacion(Integer idRelacion) {
+        this.idRelacion = idRelacion;
     }
 
-    public Familiar getFamiliar1() {
-        return familiar1;
+    public Familiar getIdFamiliarParentezco() {
+        return idFamiliarParentezco;
     }
 
-    public void setFamiliar1(Familiar familiar1) {
-        this.familiar1 = familiar1;
+    public void setIdFamiliarParentezco(Familiar idFamiliarParentezco) {
+        this.idFamiliarParentezco = idFamiliarParentezco;
+    }
+
+    public Familiar getIdFamiliarRelacion() {
+        return idFamiliarRelacion;
+    }
+
+    public void setIdFamiliarRelacion(Familiar idFamiliarRelacion) {
+        this.idFamiliarRelacion = idFamiliarRelacion;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (familiarrelacionPK != null ? familiarrelacionPK.hashCode() : 0);
+        hash += (idRelacion != null ? idRelacion.hashCode() : 0);
         return hash;
     }
 
@@ -101,7 +102,7 @@ public class Familiarrelacion implements Serializable {
             return false;
         }
         Familiarrelacion other = (Familiarrelacion) object;
-        if ((this.familiarrelacionPK == null && other.familiarrelacionPK != null) || (this.familiarrelacionPK != null && !this.familiarrelacionPK.equals(other.familiarrelacionPK))) {
+        if ((this.idRelacion == null && other.idRelacion != null) || (this.idRelacion != null && !this.idRelacion.equals(other.idRelacion))) {
             return false;
         }
         return true;
@@ -109,7 +110,7 @@ public class Familiarrelacion implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.entidad.Familiarrelacion[ familiarrelacionPK=" + familiarrelacionPK + " ]";
+        return "edu.entidad.Familiarrelacion[ idRelacion=" + idRelacion + " ]";
     }
     
 }
