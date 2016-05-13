@@ -52,7 +52,6 @@ public class UsuarioControlador implements Serializable {
     private String version, fechaActual, horaActual;
 
     private Entrada objEntrada;
-    private Correo correo;
     private Calendar fecha2;
     private Usuario usuarioLog, usuarioTemp;
     private Aprendiz aprendizLog, aprendizTemp;
@@ -83,7 +82,7 @@ public class UsuarioControlador implements Serializable {
         fechaActual = (dia + "/" + mes + "/" + año);
         horaActual = (+hora + " : " + minuto);
 
-        correo = new Correo();
+        //correo = new Correo();
         usuarioLog = new Usuario();
         usuarioTemp = new Usuario();
         aprendizLog = new Aprendiz();
@@ -316,16 +315,16 @@ public class UsuarioControlador implements Serializable {
             String c = (String) params.get("correo");
             for (int i = 0; i < listaUsuarios.size(); i++) {
                 if (listaUsuarios.get(i).getCorreo().equals(c)) {
-                    correo.setContrasena("hwfjffasxglqqerx");
-                    correo.setUsuario("psique2016@gmail.com");
-                    correo.setAsunto("Recuperar Contraseña");
-                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
-                    correo.setDestino(c);
-                    correo.setRutraArchivo("");
-                    CorreoControlador enviar = new CorreoControlador();
-                    enviar.enviarCorreo(correo);
-                    modalRecuperarContraseña = 1;
-                    break;
+//                    correo.setContrasena("hwfjffasxglqqerx");
+//                    correo.setUsuario("psique2016@gmail.com");
+//                    correo.setAsunto("Recuperar Contraseña");
+//                    correo.setMensaje("Usuario " + listaUsuarios.get(i).getNombres() + " su contraseña es " + listaUsuarios.get(i).getClave());
+//                    correo.setDestino(c);
+//                    correo.setRutraArchivo("");
+//                    CorreoControlador enviar = new CorreoControlador();
+//                    enviar.enviarCorreo(correo);
+//                    modalRecuperarContraseña = 1;
+//                    break;
                 }
             }
         } catch (Exception e) {
@@ -607,14 +606,14 @@ public class UsuarioControlador implements Serializable {
     public void setModalModificarAprendiz(int modalModificarAprendiz) {
         this.modalModificarAprendiz = modalModificarAprendiz;
     }
-
-    public Correo getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(Correo correo) {
-        this.correo = correo;
-    }
+//
+//    public Correo getCorreo() {
+//        return correo;
+//    }
+//
+//    public void setCorreo(Correo correo) {
+//        this.correo = correo;
+//    }
 
     public List<Aprendiz> getListaAprendices() {
         return listaAprendices;
