@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:composition template="/modUsuario/PlantillaBasica.xhtml">
+        <ui:define name="title">
+            Test de Registro
+        </ui:define>
+
+        <ui:define name="body">
+            <div>
+                <h2>Llene los siguientes campos</h2>
+                <hr/>
+                <h:form>
+                    <div class="col-xs-12 col-sm-8 col-md-6">
+                        <c:forEach var="listaPregunta" items="#{testCortnolador.listarPreguntasPlantilla(testCortnolador.testRegistro)}">
+                            <div class="form-group ">
+                                <label class="control-label"><i class="fa fa-question-circle"></i> #{listaPregunta.texto}</label>
+                                <select class="selectpicker form-control" required="true" name="pregunta#{listaPregunta.idPregunta}">
+                                    <option disabled="true" selected="true">Seleccione una respuesta</option>
+                                    <ui:repeat value="#{testCortnolador.listaRespuestasAprendiz(listaPregunta)}" var="respuestas">
+                                        <option value="#{respuestas.idRespuesta}">#{respuestas.texto}</option>
+                                    </ui:repeat>
+                                </select>
+                            </div>
+                        </c:forEach>
+                        <br/>
+                        <h:commandLink class="btn botones btn-block" action="#{testCortnolador.respuestraTestAp()}">Realizar test</h:commandLink>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>

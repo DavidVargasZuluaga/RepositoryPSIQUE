@@ -619,7 +619,6 @@
                                     <label style="color:black;">Nueva contraseña</label>
                                     <br/>
                                     <input pattern="[a-z,A-Z,0-9]{4,20}" name="nuevaContraseña" type="password" class="form-control" required="true" />
-
                                 </div>
                                 <div class="control-label">
                                     <label style="color:black;">Repita La Contraseña</label>
@@ -644,7 +643,6 @@
                                 <h4 class="modal-title" id="myModalLabel">Cargar nueva foto</h4>
                             </div>
                             <div class="modal-body">
-                                <p:growl showDetail="true" />
                                 <div class="control-label">
                                     <p:fileUpload mode="simple" value="#{cargaControlador.file}"/> 
                                 </div>
@@ -708,7 +706,7 @@
                     </h:form>
                 </div>
             </div>
-            <ui:repeat var="listaFicha" value="#{controladorFicha.listaFicha}">
+            <ui:repeat var="listaFicha" value="#{controladorFicha.listaFichas}">
                 <div class="modal fade" id="modalEstadoFichas#{listaFicha.noFicha}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
                         <h:form class="form-horizontal form" id="mod33">

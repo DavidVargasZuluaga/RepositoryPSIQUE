@@ -40,7 +40,7 @@ public class TestControlador implements Serializable {
     int modalTest, modalTestAsignado;
     Calendar fecha;
     Pregunta preguntaLog;
-    Test testLog;
+    Test testLog, testRegistro;
     Respuesta respuestaTem;
     List<Pregunta> listaPreguntas;
 
@@ -50,6 +50,7 @@ public class TestControlador implements Serializable {
         modalTestAsignado = 0;
         fecha = GregorianCalendar.getInstance();
         testLog = new Test();
+        testRegistro = testFacade.find(1);
         respuestaTem = new Respuesta();
         preguntaLog = new Pregunta();
         listaPreguntas = preguntaFacade.findAll();
@@ -148,7 +149,7 @@ public class TestControlador implements Serializable {
         }
         return res;
     }
-    
+
     public String asignarTestApren(Aprendiz a) {
         String res = "perfilAprendiz.xhtml";
         Test testTemp = new Test();
@@ -278,11 +279,16 @@ public class TestControlador implements Serializable {
     public List<Pregunta> listarPreguntasPlantilla(Test t) {
         List<Pregunta> preguntas = new ArrayList();
         List<Pregunta> preguntasT = preguntaFacade.findAll();
-        for (int i = 0; i < preguntasT.size(); i++) {
-            if (t.getIdPlantilla().equals(preguntasT.get(i).getIdTest().getIdTest())) {
-                preguntas.add(preguntasT.get(i));
+        try {
+            for (int i = 0; i < preguntasT.size(); i++) {
+                if (t.getIdPlantilla().equals(preguntasT.get(i).getIdTest().getIdTest())) {
+                    preguntas.add(preguntasT.get(i));
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
         return preguntas;
     }
 
@@ -342,6 +348,14 @@ public class TestControlador implements Serializable {
 
     public void setPreguntaLog(Pregunta preguntaLog) {
         this.preguntaLog = preguntaLog;
+    }
+
+    public Test getTestRegistro() {
+        return testRegistro;
+    }
+
+    public void setTestRegistro(Test testRegistro) {
+        this.testRegistro = testRegistro;
     }
 
 }

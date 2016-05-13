@@ -39,14 +39,14 @@ public class FichaControlador implements Serializable {
     private int idPrograma;
 
     private Ficha ficha;
-    private List<Ficha> listaFicha;
+    private List<Ficha> listaFichas;
 
     private int modalCreacion;
 
     @PostConstruct
     public void init() {
         ficha = new Ficha();
-        listaFicha = new ArrayList<>();
+        listaFichas = fichaFacade.findAll();
         modalCreacion = 0;
     }
 
@@ -190,12 +190,12 @@ public class FichaControlador implements Serializable {
         this.ficha = ficha;
     }
 
-    public List<Ficha> getListaFicha() {
-        return listaFicha = fichaFacade.findAll();
+    public List<Ficha> getListaFichas() {
+        return listaFichas;
     }
 
-    public void setListaFicha(List<Ficha> listaFicha) {
-        this.listaFicha = listaFicha;
+    public void setListaFichas(List<Ficha> listaFichas) {
+        this.listaFichas = listaFichas;
     }
 
     public int getModalCreacion() {

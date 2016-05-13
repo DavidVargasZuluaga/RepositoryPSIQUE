@@ -7,15 +7,20 @@ package edu.controlador;
 
 import edu.entidad.*;
 import edu.fachada.*;
-//import edu.entidades.Mailer;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  *
@@ -25,124 +30,95 @@ import javax.ejb.EJB;
 @SessionScoped
 public class controladorAprendiz implements Serializable {
 
-    @EJB
+    @Inject
     private UsuarioFacade usuarioFacade;
-    private Usuario usuario;
-    private List<Usuario> listaUsurio;
 
-    //    atributos de tipo usuario
-    private Long idUsuario;
-    private String tipoDocumento;
-    private long noDocumento;
-    private String correo;
-    private String clave;
-    private String estado;
-    private Date fechaNacimiento;
-    private String nombres;
-    private String primerApellido;
-    private String segundoApellido;
-    private String telefono;
-
-//  atributos de tipo ficha
-    private String noFicha;
-
-    @EJB
+    @Inject
     private AprendizFacade aprendizFacade;
+
+    @Inject
+    private RolFacade rolFacade;
+    
+    @Inject
+    private FichaFacade fichaFacade;
+
+    private Usuario usuario;
     private Aprendiz aprendiz;
     private List<Aprendiz> listaAprendiz;
 
-    //atributos de tipo aprendiz
-    private Long idAprendiz;
-    private String ubicacion;
-    private String sexo;
-    private String estadoCivil;
-    private String raza;
-    private String religion;
-    private String tendenciaPolitica;
-    private String orientacionSexual;
-    private String discapacidad;
-    private String pasaTiempo;
-
     private int ver;
-
-    public controladorAprendiz() {
-        ver = 0;
-    }
+    private int modalAprendiz;
 
     @PostConstruct
     public void init() {
         aprendiz = new Aprendiz();
         listaAprendiz = new ArrayList<>();
-        listaUsurio = new ArrayList<>();
+        ver = 0;
+        modalAprendiz = 0;
+        usuario = new Usuario();
+    }
+    
+    public void cerrarModal(){
+        modalAprendiz = 0;
     }
 
-    public void registrarAprendiz() {
-
+    public String guardarAprendizUsuario() {
+        aprendiz = new Aprendiz();
+        usuario = new Usuario();
+        String res = "";
+        boolean existe = false;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        List<Usuario> usuarios = usuarioFacade.findAll();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-
-            Rol objRol = new Rol();
-            objRol.setIdRol(4);
-
-            Ficha objFicha = new Ficha();
-            objFicha.setNoFicha(noFicha);
-
-            Usuario objUsuario = new Usuario();
-            objUsuario.setIdRol(objRol);
-            objUsuario.setIdUsuario(idUsuario);
-            objUsuario.setTipoDocumento(tipoDocumento);
-            objUsuario.setNoDocumento(noDocumento);
-            objUsuario.setCorreo(correo);
-            objUsuario.setClave(clave);
-            objUsuario.setEstado("Activo");
-            objUsuario.setFechaNacimiento(fechaNacimiento);
-            objUsuario.setNombres(nombres);
-            objUsuario.setPrimerApellido(primerApellido);
-            objUsuario.setSegundoApellido(segundoApellido);
-            objUsuario.setTelefono(telefono);
-            usuarioFacade.create(objUsuario);
-            listaUsurio.add(objUsuario);
-
-            for (int i = 0; i < listaUsurio.size(); i++) {
-                if (objUsuario.getIdUsuario().equals(idUsuario)) {
-
-                    Aprendiz aprendiz = new Aprendiz();
-                    aprendiz.setIdAprendiz(idUsuario);
-                    aprendiz.setFicha(objFicha);
-                    aprendiz.setUbicacion(ubicacion);
-                    aprendiz.setSexo(sexo);
-                    aprendiz.setEstadoCivil(estadoCivil);
-                    aprendiz.setRaza(raza);
-                    aprendiz.setReligion(religion);
-                    aprendiz.setTendenciaPolitica(tendenciaPolitica);
-                    aprendiz.setOrientacionSexual(orientacionSexual);
-                    aprendiz.setDiscapacidad(discapacidad);
-                    aprendiz.setPasaTiempo(pasaTiempo);
-                    aprendizFacade.create(aprendiz);
+            String clave2 = (String) params.get("clave2");
+            usuario.setClave((String) params.get("clave1"));
+            usuario.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
+            usuario.setCorreo((String) params.get("correo"));
+            if (!usuario.getClave().equals(clave2)) {
+                existe = true;
+                modalAprendiz = 1;
+            }
+            for (int i = 0; i < usuarios.size(); i++) {
+                if (usuarios.get(i).getNoDocumento() == usuario.getNoDocumento() || usuarios.get(i).getCorreo().equals(usuario.getCorreo())) {
+                    existe = true;
+                    modalAprendiz = 2;
+                    break;
                 }
             }
-
-//            Mailer.send(usuario.getCorreo(), "Bienvenida", "El sistema HELIREP se alegra de que usted este con nosotros");
-            System.out.println("Aprendiz registrado");
+            if (!existe) {
+                usuario.setIdRol(rolFacade.find(4));
+                usuario.setTipoDocumento((String) params.get("tipoDocumento"));
+                usuario.setEstado("ACTIVO");
+                usuario.setFechaNacimiento((Date) format.parse((String) params.get("fecha")));
+                usuario.setNombres((String) params.get("nombres"));
+                usuario.setPrimerApellido((String) params.get("primerApellido"));
+                usuario.setTelefono((String) params.get("telefono"));
+                usuario.setSegundoApellido((String) params.get("segundoApellido"));
+                aprendiz.setFicha(fichaFacade.find((String) params.get("ficha")));
+                aprendiz.setUbicacion((String) params.get("ubicacion"));
+                aprendiz.setSexo((String) params.get("sexo"));
+                aprendiz.setEstadoCivil((String) params.get("estadoCivil"));
+                aprendiz.setRaza((String) params.get("raza"));
+                aprendiz.setReligion((String) params.get("religion"));
+                aprendiz.setTendenciaPolitica((String) params.get("tendenciaPolitica"));
+                aprendiz.setOrientacionSexual((String) params.get("orientacionSexual"));
+                aprendiz.setDiscapacidad((String) params.get("discapacidad"));
+                aprendiz.setPasaTiempo((String) params.get("pasaTiempo"));
+                res = "testRegistro.xhtml";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void eliminarEnTabla(Aprendiz aprendiz) {
-        try {
-            aprendizFacade.remove(aprendiz);
-            System.out.println("Aprendiz eliminado");
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Informacion", "Se elimino correctamente el usuario"));
-        } catch (Exception e) {
-//            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", e.getMessage()));
-        }
+        return res;
     }
 
     public void recogerDato(Aprendiz aprendiz) {
         this.aprendiz = aprendiz;
     }
-
-    
 
     public void verDatos() {
         ver = 1;
@@ -150,14 +126,6 @@ public class controladorAprendiz implements Serializable {
 
     public void cerrarDatos() {
         ver = 0;
-    }
-
-    public String getNoFicha() {
-        return noFicha;
-    }
-
-    public void setNoFicha(String noFicha) {
-        this.noFicha = noFicha;
     }
 
     public Aprendiz getAprendiz() {
@@ -177,86 +145,6 @@ public class controladorAprendiz implements Serializable {
         this.listaAprendiz = listaAprendiz;
     }
 
-    public Long getIdAprendiz() {
-        return idAprendiz;
-    }
-
-    public void setIdAprendiz(Long idAprendiz) {
-        this.idAprendiz = idAprendiz;
-    }
-
-    public String getUbicacion() {
-        return ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public String getEstadoCivil() {
-        return estadoCivil;
-    }
-
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
-    }
-
-    public String getRaza() {
-        return raza;
-    }
-
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-
-    public String getReligion() {
-        return religion;
-    }
-
-    public void setReligion(String religion) {
-        this.religion = religion;
-    }
-
-    public String getTendenciaPolitica() {
-        return tendenciaPolitica;
-    }
-
-    public void setTendenciaPolitica(String tendenciaPolitica) {
-        this.tendenciaPolitica = tendenciaPolitica;
-    }
-
-    public String getOrientacionSexual() {
-        return orientacionSexual;
-    }
-
-    public void setOrientacionSexual(String orientacionSexual) {
-        this.orientacionSexual = orientacionSexual;
-    }
-
-    public String getDiscapacidad() {
-        return discapacidad;
-    }
-
-    public void setDiscapacidad(String discapacidad) {
-        this.discapacidad = discapacidad;
-    }
-
-    public String getPasaTiempo() {
-        return pasaTiempo;
-    }
-
-    public void setPasaTiempo(String pasaTiempo) {
-        this.pasaTiempo = pasaTiempo;
-    }
-
     public int getVer() {
         return ver;
     }
@@ -265,5 +153,20 @@ public class controladorAprendiz implements Serializable {
         this.ver = ver;
     }
 
-    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getModalAprendiz() {
+        return modalAprendiz;
+    }
+
+    public void setModalAprendiz(int modalAprendiz) {
+        this.modalAprendiz = modalAprendiz;
+    }
+
 }

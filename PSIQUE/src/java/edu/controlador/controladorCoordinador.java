@@ -85,7 +85,7 @@ public class controladorCoordinador implements Serializable {
             usuarioTemp.setTelefono((String) params.get("telefono"));
 
             for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
-                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()) {
+                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento() || usuarioFacade.findAll().get(i).getCorreo().equals(usuarioTemp.getCorreo())) {
                     existe = false;
                     usuarioTemp = new Usuario();
                     break;

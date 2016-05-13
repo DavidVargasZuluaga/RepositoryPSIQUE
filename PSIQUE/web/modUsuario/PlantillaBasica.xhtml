@@ -48,15 +48,17 @@
             <h:form>
                 <nav class="trans2 navbar-fixed-top perfilHover">
                     <div class="container">
-                        <div style="font-size: 24px;" class="navbar-header">
-                            <a style="font-size: 24px;" class="navbar-brand botonesnav" >Usuario</a>
-                        </div>
-                        <div style="font-size: 24px;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
-                                <h:form>
-                                    <li><h:link outcome="/index.xhtml" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Salir</b></h:link></li>
-                                </h:form> 
-                            </ul>
+                        <div class="container-fluid" >
+                            <div style="font-size: 24px;" class="navbar-header">
+                                <a style="font-size: 25px;" class="navbar-brand botonesnav" >PSIQUE</a>
+                            </div>
+                            <div style="font-size: 24px;" class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul style="font-size: 19px;" class="nav navbar-nav navbar-right">
+                                    <h:form>
+                                        <li><h:link outcome="/index.xhtml" class="botonesnav"><i class="fa fa-sign-out fa-lg" ></i> <b>Salir</b></h:link></li>
+                                    </h:form> 
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </nav>
@@ -64,9 +66,24 @@
         </header>
         <div class="container">
 
-            <div class="col-xs-12 col-sm-12 col-md-12 ">
-                <!--CUERPO-->
+            <div class="container-fluid trans2">
                 <br/><br/><br/>
+                <c:if test="#{controladorAprendiz.modalAprendiz == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            #{controladorAprendiz.cerrarModal()}
+                        </button>
+                        <strong>Las contraseñas no coinciden</strong> Vuelva a intentarlo
+                    </div>
+                </c:if>
+                <c:if test="#{controladorAprendiz.modalAprendiz == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                            #{controladorAprendiz.cerrarModal()}
+                        </button>
+                        <strong>Numero de documento o correo existentes en el sistema</strong> Vuelva a intentarlo con otro documento o correo electronico.
+                    </div>
+                </c:if>
                 <ui:insert name="body"></ui:insert>
                 <br/><br/>
             </div>
