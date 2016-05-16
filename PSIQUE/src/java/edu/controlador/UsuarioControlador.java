@@ -338,7 +338,7 @@ public class UsuarioControlador implements Serializable {
         objEntrada.setFecha(fecha1);
         objEntrada.setUsuarioidUsuario(usuarioLog);
         entradaFacade.create(objEntrada);
-        if(entradaFacade.count() > 100){
+        if(entradaFacade.count() > 150){
             for (int i = 0; i < entradas.size(); i++) {
                 entradaFacade.remove(entradas.get(i));
                 break;

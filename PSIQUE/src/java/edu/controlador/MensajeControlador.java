@@ -198,6 +198,12 @@ public class MensajeControlador implements Serializable {
             m.setAsunto((String) params.get("asunto"));
             mensajeFacade.create(m);
             modalMensajeAdmon = 1;
+            if (mensajes.size() > 200) {
+                for (int i = 0; i < mensajes.size(); i++) {
+                    mensajeFacade.remove(mensajes.get(i));
+                    break;
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
