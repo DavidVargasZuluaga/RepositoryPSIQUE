@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -168,6 +169,55 @@
                     <ui:insert name="body"></ui:insert>
                 </div>
             </div>
+            <div class="modal fade" id="modalCambiarContraseña" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form class="form-horizontal form" id="mod34">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Editar datos personales</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <label style="color:black;">Nueva contraseña</label>
+                                    <br/>
+                                    <input pattern="[a-z,A-Z,0-9]{4,20}" name="nuevaContraseña" type="password" class="form-control" required="true" />
+                                </div>
+                                <div class="control-label">
+                                    <label style="color:black;">Repita La Contraseña</label>
+                                    <br/>
+                                    <input pattern="[a-z,A-Z,0-9]{4,20}" name="repetriContraseña" type="password" class="form-control" required="true" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Editar contraseña" action="#{usuarioControlador.editarContraseña()}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div class="modal fade" id="modalCambiarFoto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog modal-sm" role="document">
+                    <h:form enctype="multipart/form-data" class="form-horizontal form" id="mod35">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Cargar nueva foto</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="control-label">
+                                    <p:fileUpload mode="simple" value="#{cargaControlador.file}"/> 
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <h:commandButton class="botones2 btn" value="Editar contraseña" action="#{cargaControlador.upload(usuarioControlador.usuarioLog)}"></h:commandButton>
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
             <div class="modal fade" id="modalCrearMensaje" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
                     <h:form class="form-horizontal form" id="mod6">
@@ -247,7 +297,7 @@
                                         </div>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-          
+
                                             <input class="form-control" id="primerApellido" value="#{lista.usuario.primerApellido}" name="primerApellido"/>
                                         </div>
                                         <div class="form-group input-group">
@@ -255,7 +305,7 @@
                                             <input  class="form-control" id="segundoApellido" value="#{lista.usuario.segundoApellido}" name="segundoApellido" />
                                         </div>
 
-                                       
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Número de documento">#</span>
                                             <input  class="form-control" id="noDocumento" value="#{lista.usuario.noDocumento}" name="noDocumento" />                                                                           
@@ -279,16 +329,16 @@
                                 <div class="modal-footer">
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    
+
                                 </div>
                             </h:form>
                         </div>
                     </div>
                 </div>
             </ui:repeat>
-            
-          <ui:repeat value="#{usuarioControlador.listaAprendicesCoordinador()}" var="listaAprendiz">  
-              <div class="modal fade" id="modalPsicologos#{listaAprendiz.usuario.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+            <ui:repeat value="#{usuarioControlador.listaAprendicesCoordinador()}" var="listaAprendiz">  
+                <div class="modal fade" id="modalPsicologos#{listaAprendiz.usuario.idUsuario}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <h:form id="formulario#{listaAprendiz.usuario.idUsuario}">
@@ -305,7 +355,7 @@
                                         </div>
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Primer apellido"><i class="fa fa-user"></i></span>
-          
+
                                             <input class="form-control" id="primerApellido" value="#{listaAprendiz.usuario.primerApellido}" name="primerApellido"/>
                                         </div>
                                         <div class="form-group input-group">
@@ -313,7 +363,7 @@
                                             <input  class="form-control" id="segundoApellido" value="#{listaAprendiz.usuario.segundoApellido}" name="segundoApellido" />
                                         </div>
 
-                                       
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Número de documento">#</span>
                                             <input  class="form-control" id="noDocumento" value="#{listaAprendiz.usuario.noDocumento}" name="noDocumento" />                                                                           
@@ -328,22 +378,22 @@
                                             <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaAprendiz.usuario.telefono}"  name="telefono" />
                                         </div>
-                                        
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Discapacidad"><i class="fa fa-wheelchair"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaAprendiz.usuario.aprendiz.discapacidad}"  name="Discapacidad" />
                                         </div>
-                                        
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Pasatiempo"><i class="fa fa-futbol-o"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaAprendiz.usuario.aprendiz.pasaTiempo}"  name="Pasatiempo" />
                                         </div>
-                                        
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Religion"><i class="fa fa-plus"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaAprendiz.usuario.aprendiz.religion}"  name="Religion" />
                                         </div>
-                                        
+
                                         <div class="form-group input-group">
                                             <span class="input-group-addon" title="Raza"><i class="fa fa-reddit-alien"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaAprendiz.usuario.aprendiz.raza}"  name="Raza" />
@@ -357,7 +407,7 @@
                                 <div class="modal-footer">
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    
+
                                 </div>
                             </h:form>
                         </div>
