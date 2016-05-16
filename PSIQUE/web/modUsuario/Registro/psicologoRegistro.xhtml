@@ -49,11 +49,8 @@
 
                     <div class="form-group text-left">
                         <label for="fecha" ><i class="fa fa-exclamation-circle fa-lg"></i>  Fecha de Nacimiento:</label><br/>
-                        <div class="col-xs-6 dateContainer">
-                            <div class="input-group date" id="datetimePicker">
-                                <input type="text" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" required="true" tabindex="10"/>
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
+                        <div class="input-group date" id="datetimePicker">
+                            <input type="date" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" required="true" tabindex="4"/>
                         </div>
                     </div>
 
@@ -83,14 +80,12 @@
                             <input type="list" class="form-control" title="Porfavor digite su telefono" name="telefono" placeholder="Digite su telefono" required="true" id="telefono" maxlength="20" />
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="correo"><i  class="fa fa-exclamation-circle fa-lg"></i> Correo electronico:</label>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
                             <input type="list" class="form-control" title="Porfavor digite su correo electronico" name="correo" placeholder="Digite el correo electronico del coordinador" required="true" id="correo"/>
                         </div>
                     </div> 
-
                     <div class="form-group">
                         <label for="clave"><i  class="fa fa-exclamation-circle fa-lg"></i> Contraseña:</label>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-px-12">
@@ -130,51 +125,6 @@
                 </h:form>
                 <br/>
             </div>
-            <script>
-                $().ready(function () {
-                    $('#btnInicio').removeClass("active");
-                    $('#fecha').datepicker({
-                        language: 'es',
-                        format: 'dd/mm/yyyy',
-                        multidateSeparator: '/',
-                        startView: 0, //si inicia mostrando el dia (0), mes (1), año (2)
-                        startDate: '-40y', //fecha inicial habilitada: hoy
-                        endDate: '0d', //fecha final habilitada: 1 mes adelante
-                        todayHighlight: true, //señalar el día actual
-                        // daysOfWeekDisabled: '0,6', //deshabilitar días 0-sabado, 1-lunes... etc
-                        autoclose: true, //autocerrar al perder el foco en el input
-                        //defaultViewDate: {year: 2015} //Si se desea parametrizar una fecha por defecto
-                    });
-
-                    //Dos llamados al metodo de revalidar, cuando cambia (change) o cuando pierde foco (blur)
-                    $('#fecha').change(function () {
-                        $('#form').formValidation('revalidateField', 'fecha');
-                    });
-                    $('#fechaReserva').blur(function () {
-                        $('#form').formValidation('revalidateField', 'fecha');
-                    });
-
-                    //métodos de validacion del otro plugin formvalidation
-                    $('#form').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
-                        err: {container: 'tooltip'}, //muestra en tooltips
-                        icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
-                        locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
-                        fields: {
-                            fecha: {
-                                row: '.form-group',
-                                message: 'Introduce una fecha válida con formato dd/mm/aaaa',
-                                validators: {
-                                    notEmpty: {},
-                                    date: {
-                                        format: 'DD/MM/YYYY', // Muy importante hacer coincidir este formato, con el del DATEPICKER *******
-                                        separator: '/',
-                                    }
-                                }
-                            }
-                        }
-                    });
-                });
-            </script>
         </ui:define>
     </ui:composition>
 </html>
