@@ -10,66 +10,47 @@
     </ui:define>
 
     <ui:define name="body">
-        <section>           
-            <div class="container-fluid trans2">
-
-
-                <div class="row color1">
-                    <div class="container-fluid">
-                        <div class="col-xs-12 col-sm-12 col-md-12 ">
-                            <h1><i class="fa fa-circle-o-notch fa-spin fa-lg"></i>  Historial</h1>
-                        </div>
-                    </div>
-
-
-
-                    <div class="container-fluid">
-                        <div class="table-responsive">
-                            <div class="panel filterable">
-                                <div class="panel-heading ">
-                                    <h3 class="centrar panel-title">Historial de ingresos al sistema</h3>
-                                </div>
-                                <h:form>
-                                    <table id="Usuarios2" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['csv', 'png', 'txt', 'excel', 'pdf']" data-height="auto" data-pagination="true">
-                                        <thead>
-                                            <tr>
-                                                <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
-                                                <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
-                                                <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
-                                                <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
-                                                <th data-field="Fecha de ingreso" data-align="center" data-sortable="true" class="col-md-2">Fecha de ingreso</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tbody>                                     
-                                            <ui:repeat var="listaEntrada" value="#{usuarioControlador.listaEntrada}">  
-                                                <tr>
-                                                    <td>#{listaEntrada.usuarioidUsuario.nombres}</td> 
-                                                    <td>#{listaEntrada.usuarioidUsuario.primerApellido}</td> 
-                                                    <td>#{listaEntrada.usuarioidUsuario.segundoApellido}</td> 
-                                                    <td>#{listaEntrada.usuarioidUsuario.noDocumento}</td> 
-                                                    <td>
-                                                        <h:outputLabel  class="disabled " value="#{listaEntrada.fecha}" >
-                                                          <!--  <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss "/>-->
-                                                          <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT-5" />
-                                                        </h:outputLabel>
-                                                    </td>  
-                                                </tr>
-                                            </ui:repeat> 
-                                            <br/>
-                                        </tbody>
-                                    </table>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
+        <div class="container-fluid trans2">
+            <div class="container-fluid">
+                <h1><i class="fa fa-book fa-spin fa-lg"></i>  Historial</h1>
+                <div class="table-responsive">
+                    <h:form>
+                        <table id="tabla" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" 
+                               data-show-columns="true" data-search="true" data-show-export="true" 
+                               data-export-types="['json', 'xml', 'png', 'csv', 'txt', 'sql', 'doc', 'excel', 'pdf']" 
+                               data-height="auto" data-pagination="true" ata-page-size="5" data-page-list="[5,8,10]"
+                               data-page-size="5" >                                         
+                            <thead>
+                                <tr>
+                                    <th data-field="Nombres" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Nombres</th>
+                                    <th data-field="Primer apellido" data-align="center" data-sortable="true" class="col-md-3">Primer apellido</th>
+                                    <th data-field="Segundo apellido" data-align="center" data-sortable="true" class="col-md-2">Segundo apellido</th>
+                                    <th data-field="Documento" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Documento</th>
+                                    <th data-field="Fecha de ingreso" data-align="center" data-sortable="true" class="col-md-2">Fecha de ingreso</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                     
+                                <ui:repeat var="listaEntrada" value="#{usuarioControlador.listaEntrada}">  
+                                    <tr>
+                                        <td>#{listaEntrada.usuarioidUsuario.nombres}</td> 
+                                        <td>#{listaEntrada.usuarioidUsuario.primerApellido}</td> 
+                                        <td>#{listaEntrada.usuarioidUsuario.segundoApellido}</td> 
+                                        <td>#{listaEntrada.usuarioidUsuario.noDocumento}</td> 
+                                        <td>
+                                            <h:outputLabel  class="disabled " value="#{listaEntrada.fecha}" >
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" timeZone="GMT-5" />
+                                            </h:outputLabel>
+                                        </td>  
+                                    </tr>
+                                </ui:repeat> 
+                                <br/>
+                            </tbody>
+                        </table>
+                    </h:form>
                 </div>
-                <br/><br/><br/>
             </div>
-            <!-- InstanceEndEditable -->
-
-
-        </section>
+        </div>
+        <br/><br/><br/>
     </ui:define>
 
 </ui:composition>

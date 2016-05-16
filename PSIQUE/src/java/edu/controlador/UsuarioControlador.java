@@ -333,12 +333,17 @@ public class UsuarioControlador implements Serializable {
     }
 
     public void registrarIngresoAlSistema() {
+        List<Entrada> entradas = entradaFacade.findAll();
         objEntrada.setAccion("Ingreso al sistema");
         objEntrada.setFecha(fecha1);
-        //   objEntrada.setIdUsuario(usuarioLog.getIdUsuario());
         objEntrada.setUsuarioidUsuario(usuarioLog);
         entradaFacade.create(objEntrada);
-        System.out.println("Ingreso al sistema exitoso");
+        if(entradaFacade.count() > 100){
+            for (int i = 0; i < entradas.size(); i++) {
+                entradaFacade.remove(entradas.get(i));
+                break;
+            }
+        }
     }
 
     public void cerrarModal() {
