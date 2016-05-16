@@ -299,8 +299,8 @@
                                 <h3><small>Para:</small></h3>
                                 <select class="selectpicker" name="para" data-live-search="true">
                                     <option disabled="true" selected="true">Seleccione un usuario</option>
-                                    <c:forEach var="u" items="#{usuarioControlador.listaUsuarios}" >
-                                        <option value="#{u.idUsuario}">#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
+                                    <c:forEach var="u" items="#{usuarioControlador.listaPsicologos}" >
+                                        <option value="#{u.usuario.idUsuario}">#{u.usuario.nombres} #{u.usuario.primerApellido} #{u.usuario.segundoApellido}</option>
                                     </c:forEach>
                                 </select>
                                 <h3><small>Asunto:</small></h3>
