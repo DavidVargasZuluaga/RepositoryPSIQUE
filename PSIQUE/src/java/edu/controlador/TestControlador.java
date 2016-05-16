@@ -243,7 +243,7 @@ public class TestControlador implements Serializable {
             modalTest = 2;
             e.printStackTrace();
         }
-        return "notificacion.xhtml";
+        return "principalAprendiz.xhtml";
     }
 
     public String respuesRegistro(Usuario u, Aprendiz a) {
