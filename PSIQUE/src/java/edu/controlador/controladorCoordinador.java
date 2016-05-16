@@ -74,11 +74,11 @@ public class controladorCoordinador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-
             usuarioTemp.setIdRol(rolFacade.find(2));
             usuarioTemp.setTipoDocumento((String) params.get("tipoDocumento"));
             usuarioTemp.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
             usuarioTemp.setClave((String) params.get("clave"));
+            String clave2 = (String) params.get("calve2");
             usuarioTemp.setCorreo((String) params.get("correo"));
             usuarioTemp.setEstado("ACTIVO");
             String fecha = (String)params.get("fecha");
@@ -87,31 +87,27 @@ public class controladorCoordinador implements Serializable {
             usuarioTemp.setPrimerApellido((String) params.get("primerApellido"));
             usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
             usuarioTemp.setTelefono((String) params.get("telefono"));
-
             for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
                 if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento() || usuarioFacade.findAll().get(i).getCorreo().equals(usuarioTemp.getCorreo())) {
                     existe = false;
-                    usuarioTemp = new Usuario();
+                    modalCreacion = 2;
                     break;
                 }
             }
+            if(!usuarioTemp.getClave().equals(clave2)){
+                existe=false;
+                modalCreacion = 3;
+            }
             if (existe) {
                 usuarioFacade.create(usuarioTemp);
-
                 Programaformacion programaformacion = new Programaformacion();
                 programaformacion.setIdPrograma(idPrograma);
-
                 coordinador.setIdCoordinador(usuarioTemp.getIdUsuario());
                 coordinador.setIdPrograma(programaformacion);
                 coordinadorFacade.create(coordinador);
                 listaCoordinador.add(coordinador);
-
-                System.out.println("usuario creado");
                 modalCreacion = 1;
-
             } else {
-                System.out.println("usuario no creado");
-//                modalCreacion = 2;
             }
         } catch (Exception e) {
             e.printStackTrace();
