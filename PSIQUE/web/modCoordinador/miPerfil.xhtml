@@ -11,8 +11,6 @@
         </ui:define>
 
         <ui:define name="body">
-
-
             <div class="container-fluid color1 ">
                 <h1>Datos personales</h1>
                 <hr/>
@@ -22,11 +20,6 @@
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.estado} &nbsp;"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">ID Usuario</label>
-                    <br/>
-                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.idUsuario} &nbsp;"/>
-                </div>
-                <div style="font-size:  19px;;" class="form-group">
                     <label class="control-label">Documento</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.tipoDocumento} &nbsp; #{usuarioControlador.usuarioLog.noDocumento}"/>
@@ -34,7 +27,7 @@
                 <div style="font-size:  19px;;" class="form-group">
                     <label class="control-label">Nombre Completo</label>
                     <br/>
-                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.nombres} &nbsp; #{usuarioControlador.usuarioLog.primerApellido} &nbsp; #{usuarioControlador.usuarioLog.nombres}"/>
+                    <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.nombres} &nbsp; #{usuarioControlador.usuarioLog.primerApellido} &nbsp; #{usuarioControlador.usuarioLog.segundoApellido}"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
                     <label class="control-label">Correo</label>

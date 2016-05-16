@@ -27,7 +27,7 @@
             <div>
                 <br/>
                 <ul style="font-size:16px; color: #02584A;" class="nav nav-tabs" role="tablist">
-                    <li  role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-sign-in"></i> <strong> Bandeja de entrada</strong></a></li>
+                    <li role="presentation" class="active"><a style="color: #02584A ;" href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-sign-in"></i> <strong> Bandeja de entrada</strong></a></li>
                     <li role="presentation"><a style="color: #02584A ;" href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-sign-out"></i> <strong> Bandeja de salida</strong></a></li>
                     <li role="presentation"><a style="color: #02584A ;" href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-trash-o fa-lg"></i></a></li>
                 </ul>
@@ -57,8 +57,7 @@
                                                     </h:outputLabel>
                                                 </td> 
                                                 <td>#{l.idEmisor.nombres}</td> 
-                                                <td>#{l.asunto}</td> 
-
+                                                <td>#{l.asunto}</td>
                                                 <td align="center" width="20%">
                                                     <h:form>
                                                         <h:commandLink class="btn botonesnav" onclick="$('#modalVer#{l.idMensaje}').modal(); return false;" title="Ver mensaje completo">
