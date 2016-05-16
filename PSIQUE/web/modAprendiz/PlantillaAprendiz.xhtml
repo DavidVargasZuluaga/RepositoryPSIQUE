@@ -80,6 +80,42 @@
                 <br/>
                 <br/>
                 <br/>
+                <c:if test="#{usuarioControlador.modalCambios == 1}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Informacion editada.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>La nueva contraseña debe ser diferente a la actual.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 3}" >
+                    <div style="font-size: 19px;" class="alert alert-danger page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Las contraseñas no coinciden.</strong>
+                    </div>
+                </c:if>
+                <c:if test="#{usuarioControlador.modalCambios == 4}" >
+                    <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{usuarioControlador.cerrarModal()}
+                        </button>
+                        <strong>Contraseña editada.</strong>
+                    </div>
+                </c:if>
                 <c:if test="#{testCortnolador.modalTest == 1}" >
                     <div style="font-size: 19px;" class="alert alert-success page-alert" id="alert-1">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -138,6 +174,7 @@
                         <strong>Usuario inexistente </strong>Por favor vuelva a intentarlo verificando escribir correctamente el nombre completo.
                     </div>
                 </c:if>
+
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
                     <div class="container-fluid">
                         <div class="profile-sidebar control-group">
