@@ -8,7 +8,7 @@
       xmlns:p="http://primefaces.org/ui">
     <h:body>
         <ui:composition template="PlantillaPsicologo.xhtml">
-            
+
             <ui:define name="title">
                 Perfil del aprendiz
             </ui:define>
@@ -137,7 +137,7 @@
                                         <br/>
                                         #{usuarioControlador.aprendizTemp.pasaTiempo}
                                     </div>
-                                    <c:if test="´${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
+                                    <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
                                         <h:commandLink class="btn botonesinv" onclick="$('#informacionPersonalAprendiz').modal(); return false;">
                                             <i class="fa fa-pencil-square"></i> Editar
                                         </h:commandLink>
@@ -217,10 +217,17 @@
                                         <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
                                     </c:if>
                                     <br/>
-
                                     <div id="mynetwork"></div>
 
                                     <script type="text/javascript">
+
+                                        var familiares = {
+                                        var i;
+                                                for (i = 4; i <= 8; i++) {
+                                                    familiar:"",
+                                            }
+                                        }
+
                                         // create an array with nodes
                                         var nodes = new vis.DataSet([
                                             {id: 1, label: 'Node 1'},
@@ -229,7 +236,6 @@
                                             {id: 4, label: 'Node 4'},
                                             {id: 5, label: 'Node 5'}
                                         ]);
-
                                         // create an array with edges
                                         var edges = new vis.DataSet([
                                             {from: 1, to: 3},
@@ -237,7 +243,6 @@
                                             {from: 2, to: 4},
                                             {from: 2, to: 5}
                                         ]);
-
                                         // create a network
                                         var container = document.getElementById('mynetwork');
                                         var data = {
