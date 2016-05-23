@@ -14,6 +14,7 @@
             </ui:define>
 
             <ui:define name="body">
+                #{diagramaControlador.llenarFamiliares(usuarioControlador.aprendizTemp)}
                 <div class="row margen color1">
                     <h1>Perfil de #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido}
                         <br/>
@@ -218,30 +219,48 @@
                                     </c:if>
                                     <br/>
                                     <div id="mynetwork"></div>
-
+                                    <input type="hidden" class="form-control"  value="#{usuarioControlador.aprendizTemp.usuario.nombres}" name="nombreaprendiz" id="nombreaprendiz"/>
+                                    <input type="hidden" class="form-control"  value="#{diagramaControlador.cantidadFamiliaresTemp}" name="cantidadFamiliares" id="cantidadFamiliares"/>
+                                    <c:forEach var="familiar" items="#{diagramaControlador.todosFamiliares}">
+                                        <input  type="hidden" class="form-control"  value="#{familiar.nombres}" name="familliar#{familiar.hashCode()}" id="familliar#{familiar.hashCode()}"/>
+                                    </c:forEach>
                                     <script type="text/javascript">
-
-                                        var familiares = {
-                                        var i;
-                                                for (i = 4; i <= 8; i++) {
-                                                    familiar:"",
-                                            }
+                                        var nombreAprendizTemp = document.getElementById('nombreaprendiz').value;
+                                        var cantidadFamliares2 = document.getElementById('cantidadFamiliares').value;
+                                        var cantidadFamliares = parseInt(cantidadFamliares2);
+                                        var familia = [];
+                                        var cars = ["BMW", "Volvo", "Saab", "Ford"];
+                                        var i = 0;
+                                        var text = "";
+                                        for (; i; ) {
+                                            familia.push(document.getElementById('familliar' + i).value);
+                                            alert(familiar[i]);
+                                            i++;
                                         }
+                                        var diagrama = {
+                                            aprendiz: {
+                                                nombre: nombreAprendizTemp,
+                                                apellido: 'tralala'
+                                            },
+                                            familiares: {
+                                                familiar1: 'Mama',
+                                                familiar2: 'Papa'
+                                            }
+                                        };
 
                                         // create an array with nodes
                                         var nodes = new vis.DataSet([
-                                            {id: 1, label: 'Node 1'},
-                                            {id: 2, label: 'Node 2'},
-                                            {id: 3, label: 'Node 3'},
-                                            {id: 4, label: 'Node 4'},
-                                            {id: 5, label: 'Node 5'}
+                                            {id: 1, label: diagrama.aprendiz.nombre},
+                                            {id: 2, label: diagrama.familiares.familiar1},
+                                            {id: 3, label: diagrama.familiares.familiar2}
+                                        ]);
+
+                                        nodes.add([
                                         ]);
                                         // create an array with edges
                                         var edges = new vis.DataSet([
-                                            {from: 1, to: 3},
                                             {from: 1, to: 2},
-                                            {from: 2, to: 4},
-                                            {from: 2, to: 5}
+                                            {from: 1, to: 3}
                                         ]);
                                         // create a network
                                         var container = document.getElementById('mynetwork');

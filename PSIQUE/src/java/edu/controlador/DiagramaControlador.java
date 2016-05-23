@@ -26,6 +26,8 @@ public class DiagramaControlador implements Serializable {
     @Inject
     private AprendizFacade aprendizFacade;
     
+    private int cantidadFamiliaresTemp;
+    private int conteo;
     private List<Familiar> todosFamiliares;
     private List<Familiar> familiares;
     
@@ -33,6 +35,8 @@ public class DiagramaControlador implements Serializable {
     public void init(){
         familiares = new ArrayList();
         todosFamiliares = familiarFacade.findAll();
+        cantidadFamiliaresTemp = 0;
+        conteo = 0;
     }
     
     public void llenarFamiliares(Aprendiz a){
@@ -41,7 +45,34 @@ public class DiagramaControlador implements Serializable {
                 familiares.add(todosFamiliares.get(i));
             }
         }
+         cantidadFamiliaresTemp = familiares.size();
     }
+
+    public List<Familiar> getTodosFamiliares() {
+        return todosFamiliares;
+    }
+
+    public void setTodosFamiliares(List<Familiar> todosFamiliares) {
+        this.todosFamiliares = todosFamiliares;
+    }
+
+    public List<Familiar> getFamiliares() {
+        return familiares;
+    }
+
+    public void setFamiliares(List<Familiar> familiares) {
+        this.familiares = familiares;
+    }
+
+    public int getCantidadFamiliaresTemp() {
+        return cantidadFamiliaresTemp;
+    }
+
+    public void setCantidadFamiliaresTemp(int cantidadFamiliaresTemp) {
+        this.cantidadFamiliaresTemp = cantidadFamiliaresTemp;
+    }
+    
+    
     
     
 }

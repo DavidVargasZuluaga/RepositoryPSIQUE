@@ -27,7 +27,7 @@ public class TestControlador implements Serializable {
 
     @Inject
     UsuarioFacade usuarioFacade;
-    
+
     @Inject
     TestFacade testFacade;
 
@@ -260,25 +260,25 @@ public class TestControlador implements Serializable {
                 String resp = "" + params.get("pregunta" + "" + testRegistro.getPreguntaList().get(i).getIdPregunta());
                 Integer idRespuesta = Integer.parseInt(resp);
                 Respuesta respu = respuestaFacade.find(idRespuesta);
-                suma = respu.getValor()+ suma;
+                suma = respu.getValor() + suma;
             }
             for (int i = 0; i < usuarios.size(); i++) {
-                if(usuarios.get(i).getNoDocumento() == u.getNoDocumento()){
+                if (usuarios.get(i).getNoDocumento() == u.getNoDocumento()) {
                     existe = true;
                 }
             }
-            if(!existe){
-            usuarioFacade.create(u);
-            a.setIdAprendiz(u.getIdUsuario());
-            aprendizFacade.create(a);
-            t.setIdAprendiz(a);
-            t = testRegistro;
-            t.setIdTest(null);
-            t.setResultado(""+suma);
-            t.setFecha(fecha.getTime());
-            t.setEstado("RESUELTO");
-            testFacade.create(t);
-            modalTest = 4;
+            if (!existe) {
+                usuarioFacade.create(u);
+                a.setIdAprendiz(u.getIdUsuario());
+                aprendizFacade.create(a);
+                t.setIdAprendiz(a);
+                t = testRegistro;
+                t.setIdTest(null);
+                t.setResultado("" + suma);
+                t.setFecha(fecha.getTime());
+                t.setEstado("RESUELTO");
+                testFacade.create(t);
+                modalTest = 4;
             }
         } catch (Exception e) {
             modalTest = 5;
