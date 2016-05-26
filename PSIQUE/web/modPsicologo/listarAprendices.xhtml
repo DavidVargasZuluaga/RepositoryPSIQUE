@@ -43,7 +43,7 @@
                                                     </h:outputLabel>
                                                 </td>
                                                 <td align="center" width="10%" >
-                                                    <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
+                                                    <h:commandLink style="font-size: 18px" class="btn botonesinv" action="#{diagramaControlador.cargarFamiliaresCercanos(usuarioControlador.aprendizTemp)}" >
                                                         <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{aprendices}"/>
                                                         <i class="fa fa-user"></i> Perfil
                                                     </h:commandLink>

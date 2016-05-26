@@ -8,13 +8,11 @@
       xmlns:p="http://primefaces.org/ui">
     <h:body>
         <ui:composition template="PlantillaPsicologo.xhtml">
-
             <ui:define name="title">
                 Perfil del aprendiz
             </ui:define>
 
             <ui:define name="body">
-                #{diagramaControlador.llenarFamiliares(usuarioControlador.aprendizTemp)}
                 <div class="row margen color1">
                     <h1>Perfil de #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido}
                         <br/>
@@ -220,43 +218,227 @@
                                     </c:if>
                                     <br/>
                                     <br/>
-                                    <p:diagram value="#{diagramFlowChartView.model}" style="height:600px" styleClass="ui-widget-content" />
-
-                                    /* Demo CSS */
-                                    <style type="text/css">
-                                        .ui-diagram-element {   
-                                            width:14em; 
-                                            height:4em;     
-                                            line-height:4em;
-                                            text-align: center;
-                                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
-                                            border-radius: 4px;
-                                            border: 1px solid transparent;
-                                            background-color: #98AFC7;
-                                            color: #ffffff;
-                                        }
-
-                                        .ui-diagram-success {
-                                            background-color: #9CB071;
-                                            color: #ffffff;
-                                            border-color: #7ab02c;
-                                        }
-
-                                        .ui-diagram-fail {
-                                            background-color: #C34A2C;
-                                            color: #ffffff;
-                                        }
-
-                                        .flow-label {
-                                            font-size: 24px;
-                                            font-weight: bold;
-                                            color: #816A51;
-                                        }
-                                    </style>
+                                    <div class="table-responsive" style="overflow-x:scroll; overflow-y:hidden ;" >
+                                        <div style="min-width:3000px; height:500px;">
+                                            <div class="tree ">
+                                                <ul>
+                                                    <li>
+                                                        <a style="font-size: 20px;">
+                                                            #{usuarioControlador.aprendizTemp.usuario.nombres}
+                                                            #{usuarioControlador.aprendizTemp.usuario.primerApellido}
+                                                            #{usuarioControlador.aprendizTemp.usuario.segundoApellido}
+                                                            <br/>
+                                                            <small>Aprendiz</small>
+                                                        </a>
+                                                        <ul>
+                                                            <c:forEach items="#{diagramaControlador.padres}" var="padreDirecto" >
+                                                                <li><a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{padreDirecto.idFamiliar}').modal('show'); return false;" >
+                                                                        #{padreDirecto.nombres} 
+                                                                        #{padreDirecto.primeroApellido} 
+                                                                        #{padreDirecto.seguntoApellido}
+                                                                        <br/>
+                                                                        <small>#{padreDirecto.parentezco}</small>
+                                                                    </a>
+                                                                    <ul>
+                                                                        <c:forEach items="#{diagramaControlador.cargarRelaciones(padreDirecto)}" var="familiares" >
+                                                                            <li><a href="#">
+                                                                                    #{familiares.nombres} 
+                                                                                    #{familiares.primeroApellido} 
+                                                                                    #{familiares.seguntoApellido}
+                                                                                    <br/>
+                                                                                    <small>#{familiares.parentezco}</small>
+                                                                                </a>
+                                                                                <ul>
+                                                                                    <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares)}" var="tercero" >
+                                                                                        <li><a href="#">
+                                                                                                #{tercero.nombres} 
+                                                                                                #{tercero.primeroApellido} 
+                                                                                                #{tercero.seguntoApellido}
+                                                                                                <br/>
+                                                                                                <small>#{tercero.parentezco}</small>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </c:forEach>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </c:forEach>
+                                                                    </ul>
+                                                                </li>
+                                                            </c:forEach>
+                                                            <c:forEach items="#{diagramaControlador.parejas}" var="parejas" >
+                                                                <li><a href="#">
+                                                                        #{parejas.nombres} 
+                                                                        #{parejas.primeroApellido} 
+                                                                        #{parejas.seguntoApellido}
+                                                                        <br/>
+                                                                        <small>#{parejas.parentezco}</small>
+                                                                    </a> 
+                                                                    <ul>
+                                                                        <c:forEach items="#{diagramaControlador.cargarRelaciones(parejas)}" var="familiares2" >
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    #{familiares2.nombres} 
+                                                                                    #{familiares2.primeroApellido} 
+                                                                                    #{familiares2.seguntoApellido}
+                                                                                    <br/>
+                                                                                    <small>#{familiares2.parentezco}</small>
+                                                                                </a>
+                                                                                <ul>
+                                                                                    <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares2)}" var="tercero2" >
+                                                                                        <li><a href="#">
+                                                                                                #{tercero2.nombres} 
+                                                                                                #{tercero2.primeroApellido} 
+                                                                                                #{tercero2.seguntoApellido}
+                                                                                                <br/>
+                                                                                                <small>#{familiares2.parentezco}</small>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </c:forEach>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </c:forEach>
+                                                                    </ul>
+                                                                </li>
+                                                            </c:forEach>
+                                                            <c:forEach items="#{diagramaControlador.hijos}" var="hijos" >
+                                                                <li>
+                                                                    <a href="#">
+                                                                        #{hijos.nombres} 
+                                                                        #{hijos.primeroApellido} 
+                                                                        #{hijos.seguntoApellido}
+                                                                        <br/>
+                                                                        <small>#{hijos.parentezco}</small>
+                                                                    </a> 
+                                                                    <ul>
+                                                                        <c:forEach items="#{diagramaControlador.cargarRelaciones(hijos)}" var="familiares3" >
+                                                                            <li>
+                                                                                <a href="#">
+                                                                                    #{familiares3.nombres} 
+                                                                                    #{familiares3.primeroApellido} 
+                                                                                    #{familiares3.seguntoApellido}
+                                                                                    <br/>
+                                                                                    <small>#{familiares3.parentezco}</small>
+                                                                                </a>
+                                                                                <ul>
+                                                                                    <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares3)}" var="tercero3" >
+                                                                                        <li>
+                                                                                            <a href="#">
+                                                                                                #{tercero3.nombres} 
+                                                                                                #{tercero3.primeroApellido} 
+                                                                                                #{tercero3.seguntoApellido}
+                                                                                                <br/>
+                                                                                                <small>#{tercero3.parentezco}</small>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </c:forEach>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </c:forEach>
+                                                                    </ul>
+                                                                </li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <br/>
+                                    </div>
                                 </div>
                             </div>
                         </h:form>
                     </div>
+                    <style type="text/css">
+                        * {margin: 0; padding: 0;}
+
+                        .tree ul {
+                            padding-top: 20px; position: relative;
+
+                            transition: all 0.5s;
+                            -webkit-transition: all 0.5s;
+                            -moz-transition: all 0.5s;
+                        }
+
+                        .tree li {
+                            float: left; text-align: center;
+                            list-style-type: none;
+                            position: relative;
+                            padding: 20px 5px 0 5px;
+
+                            transition: all 0.5s;
+                            -webkit-transition: all 0.5s;
+                            -moz-transition: all 0.5s;
+                        }
+
+                        .tree li::before, .tree li::after{
+                            content: '';
+                            position: absolute; top: 0; right: 50%;
+                            border-top: 1px solid #ccc;
+                            width: 50%; height: 20px;
+                        }
+                        .tree li::after{
+                            right: auto; left: 50%;
+                            border-left: 1px solid #ccc;
+                        }
+
+                        .tree li:only-child::after, .tree li:only-child::before {
+                            display: none;
+                        }
+
+                        .tree li:only-child{ padding-top: 0;}
+
+                        .tree li:first-child::before, .tree li:last-child::after{
+                            border: 0 none;
+                        }
+
+                        .tree li:last-child::before{
+                            border-right: 1px solid #ccc;
+                            border-radius: 0 5px 0 0;
+                            -webkit-border-radius: 0 5px 0 0;
+                            -moz-border-radius: 0 5px 0 0;
+                        }
+                        .tree li:first-child::after{
+                            border-radius: 5px 0 0 0;
+                            -webkit-border-radius: 5px 0 0 0;
+                            -moz-border-radius: 5px 0 0 0;
+                        }
+
+                        .tree ul ul::before{
+                            content: '';
+                            position: absolute; top: 0; left: 50%;
+                            border-left: 1px solid #ccc;
+                            width: 0; height: 20px;
+                        }
+
+                        .tree li a{
+                            border: 2px solid #238676;
+                            padding: 5px 10px;
+                            text-decoration: none;
+                            color: black;
+                            font-family: Calibri, "Calibri Light";
+                            font-size: 15px;
+                            display: inline-block;
+
+                            border-radius: 8px;
+                            -webkit-border-radius: 5px;
+                            -moz-border-radius: 5px;
+
+                            transition: all 0.5s;
+                            -webkit-transition: all 0.5s;
+                            -moz-transition: all 0.5s;
+                        }
+
+                        .tree li a:hover, .tree li a:hover+ul li a {
+                            background: #238676; color: white; border: 2px solid white;
+                        }
+
+                        .tree li a:hover+ul li::after, 
+                        .tree li a:hover+ul li::before, 
+                        .tree li a:hover+ul::before, 
+                        .tree li a:hover+ul ul::before{
+                            border-color:  #238676;
+                        }
+                    </style>
                 </div>
             </ui:define>
         </ui:composition>
