@@ -214,64 +214,45 @@
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="diagrama">
                                     <h2>Diagrama familiar</h2>
+                                    <br/>
                                     <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
                                         <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
                                     </c:if>
                                     <br/>
-                                    <div id="mynetwork"></div>
-                                    <input type="hidden" class="form-control"  value="#{usuarioControlador.aprendizTemp.usuario.nombres}" name="nombreaprendiz" id="nombreaprendiz"/>
-                                    <input type="hidden" class="form-control"  value="#{diagramaControlador.cantidadFamiliaresTemp}" name="cantidadFamiliares" id="cantidadFamiliares"/>
-                                    <c:forEach var="familiar" items="#{diagramaControlador.todosFamiliares}">
-                                        <input  type="hidden" class="form-control"  value="#{familiar.nombres}" name="familliar#{familiar.hashCode()}" id="familliar#{familiar.hashCode()}"/>
-                                    </c:forEach>
-                                    <script type="text/javascript">
-                                        var nombreAprendizTemp = document.getElementById('nombreaprendiz').value;
-                                        var cantidadFamliares2 = document.getElementById('cantidadFamiliares').value;
-                                        var cantidadFamliares = parseInt(cantidadFamliares2);
-                                        var familia = [];
-                                        var cars = ["BMW", "Volvo", "Saab", "Ford"];
-                                        var i = 0;
-                                        var text = "";
-                                        for (; i; ) {
-                                            familia.push(document.getElementById('familliar' + i).value);
-                                            alert(familiar[i]);
-                                            i++;
+                                    <br/>
+                                    <p:diagram value="#{diagramFlowChartView.model}" style="height:600px" styleClass="ui-widget-content" />
+
+                                    /* Demo CSS */
+                                    <style type="text/css">
+                                        .ui-diagram-element {   
+                                            width:14em; 
+                                            height:4em;     
+                                            line-height:4em;
+                                            text-align: center;
+                                            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.8);
+                                            border-radius: 4px;
+                                            border: 1px solid transparent;
+                                            background-color: #98AFC7;
+                                            color: #ffffff;
                                         }
-                                        var diagrama = {
-                                            aprendiz: {
-                                                nombre: nombreAprendizTemp,
-                                                apellido: 'tralala'
-                                            },
-                                            familiares: {
-                                                familiar1: 'Mama',
-                                                familiar2: 'Papa'
-                                            }
-                                        };
 
-                                        // create an array with nodes
-                                        var nodes = new vis.DataSet([
-                                            {id: 1, label: diagrama.aprendiz.nombre},
-                                            {id: 2, label: diagrama.familiares.familiar1},
-                                            {id: 3, label: diagrama.familiares.familiar2}
-                                        ]);
+                                        .ui-diagram-success {
+                                            background-color: #9CB071;
+                                            color: #ffffff;
+                                            border-color: #7ab02c;
+                                        }
 
-                                        nodes.add([
-                                        ]);
-                                        // create an array with edges
-                                        var edges = new vis.DataSet([
-                                            {from: 1, to: 2},
-                                            {from: 1, to: 3}
-                                        ]);
-                                        // create a network
-                                        var container = document.getElementById('mynetwork');
-                                        var data = {
-                                            nodes: nodes,
-                                            edges: edges
-                                        };
-                                        var options = {};
-                                        var network = new vis.Network(container, data, options);
-                                    </script>
+                                        .ui-diagram-fail {
+                                            background-color: #C34A2C;
+                                            color: #ffffff;
+                                        }
 
+                                        .flow-label {
+                                            font-size: 24px;
+                                            font-weight: bold;
+                                            color: #816A51;
+                                        }
+                                    </style>
                                 </div>
                             </div>
                         </h:form>

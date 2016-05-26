@@ -437,7 +437,7 @@
                     </div>
                 </div>
             </ui:repeat>
-            <c:forEach var="pregunta2" items="#{testCortnolador.testLog.preguntaList}">
+            <c:forEach var="pregunta2" items="#{testCortnolador.listarPreguntas(testCortnolador.testLog)}">
                 <div class="modal fade" id="verRespuestas#{pregunta2.idPregunta}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                     <div class="modal-dialog modal-sm" role="document">
                         <h:form class="form-horizontal form" id="mod28">

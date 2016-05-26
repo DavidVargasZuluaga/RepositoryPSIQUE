@@ -46,6 +46,7 @@ public class TestControlador implements Serializable {
     Test testLog, testRegistro;
     Respuesta respuestaTem;
     List<Pregunta> listaPreguntas;
+    List<Respuesta> listaRespuestas;
 
     @PostConstruct
     public void init() {
@@ -57,6 +58,7 @@ public class TestControlador implements Serializable {
         respuestaTem = new Respuesta();
         preguntaLog = new Pregunta();
         listaPreguntas = preguntaFacade.findAll();
+        listaRespuestas = respuestaFacade.findAll();
     }
 
     public String crearTest() {
@@ -107,7 +109,7 @@ public class TestControlador implements Serializable {
     public String terminarTest() {
         testLog = new Test();
         preguntaLog = new Pregunta();
-        return "indexPsicologo.xhtml";
+        return "mostrarTest.xhtml";
     }
 
     public String crearPregunta() {
@@ -183,9 +185,16 @@ public class TestControlador implements Serializable {
     }
 
     public List<Pregunta> listarPreguntas(Test t) {
+        List<Pregunta> preguntasT = preguntaFacade.findAll();
         List<Pregunta> preguntas = new ArrayList();
         try {
-            preguntas = t.getPreguntaList();
+            if (t.getIdTest() != null ) {
+                for (int i = 0; i < preguntasT.size(); i++) {
+                    if (t.getIdTest().equals(preguntasT.get(i).getIdTest().getIdTest())) {
+                        preguntas.add(preguntasT.get(i));
+                    }
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -193,9 +202,14 @@ public class TestControlador implements Serializable {
     }
 
     public List<Respuesta> listarRespuestas(Pregunta p) {
+        List<Respuesta> respuestasT = respuestaFacade.findAll();
         List<Respuesta> respuestas = new ArrayList();
         try {
-            respuestas = p.getRespuestaList();
+            for (int i = 0; i < respuestasT.size(); i++) {
+                if(respuestasT.get(i).getIdPregunta().equals(p)){
+                    respuestas.add(respuestasT.get(i));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -218,18 +232,35 @@ public class TestControlador implements Serializable {
     }
 
     public List<Respuesta> listaRespuestasAprendiz(Pregunta p) {
-        return p.getRespuestaList();
+        List<Respuesta> respuestas = new ArrayList();
+        try {
+            for (int i = 0; i < listaRespuestas.size(); i++) {
+                if (listaRespuestas.get(i).getIdPregunta().equals(p)) {
+                    respuestas.add(listaRespuestas.get(i));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return respuestas;
     }
 
-    public String respuestraTestAp() {
+    public String respuestraTestAp(Test t) {
         int suma = 0;
+        List<Pregunta> preguntas2 = new ArrayList();
+        List<Pregunta> preguntasT = preguntaFacade.findAll();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
-            for (int i = 0; i < testLog.getPreguntaList().size(); i++) {
-                String resp = "" + params.get("pregunta" + "" + testLog.getPreguntaList().get(i).getIdPregunta());
+            for (int i = 0; i < preguntasT.size(); i++) {
+                if (t.getIdPlantilla().equals(preguntasT.get(i).getIdTest().getIdTest())) {
+                    preguntas2.add(preguntasT.get(i));
+                }
+            }
+            for (int i = 0; i < preguntas2.size(); i++) {
+                String resp = "" + params.get("pregunta" + "" + preguntas2.get(i).getIdPregunta());
                 Integer idRespuesta = Integer.parseInt(resp);
                 Respuesta respu = respuestaFacade.find(idRespuesta);
                 suma = +respu.getValor();
@@ -285,6 +316,21 @@ public class TestControlador implements Serializable {
             e.printStackTrace();
         }
         return "/index.xhtml";
+    }
+
+    public List<Pregunta> listarPregutnasTest(Test t) {
+        listaPreguntas = preguntaFacade.findAll();
+        List<Pregunta> preguntas = new ArrayList();
+        try {
+            for (int i = 0; i < listaPreguntas.size(); i++) {
+                if (listaPreguntas.get(i).getIdTest().equals(t)) {
+                    preguntas.add(listaPreguntas.get(i));
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return preguntas;
     }
 
     public List<Test> mostrarTestsAprendiz(Usuario u) {

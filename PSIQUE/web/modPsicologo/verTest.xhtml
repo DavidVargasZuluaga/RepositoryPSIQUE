@@ -26,7 +26,7 @@
                                 </tr>
                             </thead>
                             <tbody>                                     
-                                <c:forEach var="pregunta2" items="#{testCortnolador.testLog.preguntaList}">  
+                                <c:forEach var="pregunta2" items="#{testCortnolador.listarPregutnasTest(testCortnolador.testLog)}">  
                                     <tr>
                                         <td>#{pregunta2.texto}</td>
                                         <td width="20%" >
