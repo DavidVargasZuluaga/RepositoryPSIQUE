@@ -263,7 +263,7 @@ public class TestControlador implements Serializable {
                 String resp = "" + params.get("pregunta" + "" + preguntas2.get(i).getIdPregunta());
                 Integer idRespuesta = Integer.parseInt(resp);
                 Respuesta respu = respuestaFacade.find(idRespuesta);
-                suma = +respu.getValor();
+                suma = suma + respu.getValor();
             }
             testLog.setResultado("" + suma);
             testLog.setFecha(fecha.getTime());
