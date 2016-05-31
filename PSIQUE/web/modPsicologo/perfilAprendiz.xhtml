@@ -39,9 +39,6 @@
                                             </div>
                                             <br/>
                                             <div class="form-group">
-
-                                            </div>
-                                            <div class="form-group">
                                                 <label style="font-size:17px;">Nombre :</label>
                                                 <br/>
                                                 #{usuarioControlador.aprendizTemp.usuario.nombres} #{usuarioControlador.aprendizTemp.usuario.primerApellido} #{usuarioControlador.aprendizTemp.usuario.segundoApellido}
@@ -211,11 +208,7 @@
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane" id="diagrama">
-                                    <h2>Diagrama familiar</h2>
-                                    <br/>
-                                    <c:if test="${usuarioControlador.aprendizTemp.usuario.estado == 'ACTIVO'}">
-                                        <h:commandLink style="font-size: 19px; " class="btn botonesinv" >Agregar familiar</h:commandLink>
-                                    </c:if>
+                                    <h1><i class="fa fa-tree fa-lg"></i> Diagrama familiar</h1>
                                     <br/>
                                     <br/>
                                     <div class="table-responsive" style="overflow-x:scroll; overflow-y:hidden ;" >
@@ -241,7 +234,7 @@
                                                                     </a>
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(padreDirecto)}" var="familiares" >
-                                                                            <li><a href="#">
+                                                                            <li><a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{familiares.idFamiliar}').modal('show'); return false;" >
                                                                                     #{familiares.nombres} 
                                                                                     #{familiares.primeroApellido} 
                                                                                     #{familiares.seguntoApellido}
@@ -250,7 +243,7 @@
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares)}" var="tercero" >
-                                                                                        <li><a href="#">
+                                                                                        <li><a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{tercero.idFamiliar}').modal('show'); return false;" >
                                                                                                 #{tercero.nombres} 
                                                                                                 #{tercero.primeroApellido} 
                                                                                                 #{tercero.seguntoApellido}
@@ -259,14 +252,16 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
+                                                                                    <li><h:commandLink style="font-size: 19px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
+                                                                        <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
                                                             <c:forEach items="#{diagramaControlador.parejas}" var="parejas" >
-                                                                <li><a href="#">
+                                                                <li><a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{parejas.idFamiliar}').modal('show'); return false;" >
                                                                         #{parejas.nombres} 
                                                                         #{parejas.primeroApellido} 
                                                                         #{parejas.seguntoApellido}
@@ -276,7 +271,7 @@
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(parejas)}" var="familiares2" >
                                                                             <li>
-                                                                                <a href="#">
+                                                                                <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{familiares2.idFamiliar}').modal('show'); return false;" >
                                                                                     #{familiares2.nombres} 
                                                                                     #{familiares2.primeroApellido} 
                                                                                     #{familiares2.seguntoApellido}
@@ -285,7 +280,7 @@
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares2)}" var="tercero2" >
-                                                                                        <li><a href="#">
+                                                                                        <li><a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{tercero2.idFamiliar}').modal('show'); return false;" >
                                                                                                 #{tercero2.nombres} 
                                                                                                 #{tercero2.primeroApellido} 
                                                                                                 #{tercero2.seguntoApellido}
@@ -294,15 +289,17 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
+                                                                                    <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
+                                                                        <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
                                                             <c:forEach items="#{diagramaControlador.hijos}" var="hijos" >
                                                                 <li>
-                                                                    <a href="#">
+                                                                    <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{hijos.idFamiliar}').modal('show'); return false;" >
                                                                         #{hijos.nombres} 
                                                                         #{hijos.primeroApellido} 
                                                                         #{hijos.seguntoApellido}
@@ -312,7 +309,7 @@
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(hijos)}" var="familiares3" >
                                                                             <li>
-                                                                                <a href="#">
+                                                                                <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{familiares3.idFamiliar}').modal('show'); return false;" >
                                                                                     #{familiares3.nombres} 
                                                                                     #{familiares3.primeroApellido} 
                                                                                     #{familiares3.seguntoApellido}
@@ -322,7 +319,7 @@
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares3)}" var="tercero3" >
                                                                                         <li>
-                                                                                            <a href="#">
+                                                                                            <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{tercero3.idFamiliar}').modal('show'); return false;" >
                                                                                                 #{tercero3.nombres} 
                                                                                                 #{tercero3.primeroApellido} 
                                                                                                 #{tercero3.seguntoApellido}
@@ -331,12 +328,15 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
+                                                                                    <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
+                                                                        <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
+                                                            <h:commandLink style="font-size: 19px; " class="btn botones2" >Agregar familiar</h:commandLink>
                                                         </ul>
                                                     </li>
                                                 </ul>

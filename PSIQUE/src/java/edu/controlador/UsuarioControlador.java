@@ -67,7 +67,7 @@ public class UsuarioControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        version = "PSIQUE 3.9.4";
+        version = "PSIQUE 3.9.6";
         modalIngreso = 0;
         modalCreacion = 0;
         modalRecuperarContraseña = 0;
