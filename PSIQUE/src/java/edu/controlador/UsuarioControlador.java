@@ -423,30 +423,72 @@ public class UsuarioControlador implements Serializable {
         return resListPsi;
     }
 
+    public String actualizar(Usuario usuarioM) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        try {
+            //     rol.setIdRol((Integer.parseInt((String) params.get("rol"))));
+            usuarioM.setNombres((String) params.get("nombres"));
+            usuarioM.setPrimerApellido((String) params.get("primerApellido"));
+            usuarioM.setSegundoApellido((String) params.get("segundoApellido"));
+//            aprendiz.setTipoDocumento((String) params.get("tipoDocumento"));
+            usuarioM.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
+            usuarioM.setCorreo((String) params.get("correo"));
+            //usuarioM.setClave((String) params.get("clave"));
+            usuarioM.setTelefono((String) params.get("telefono"));
+            //usuarioM.setEstado((String) params.get("estado"));
 
-//    public String actualizar(Usuario usuarioM) {
-//        FacesContext facesContext = FacesContext.getCurrentInstance();
-//        ExternalContext externalContext = facesContext.getExternalContext();
-//        Map params = externalContext.getRequestParameterMap();
-//        try {
-//            //     rol.setIdRol((Integer.parseInt((String) params.get("rol"))));
-//            usuarioM.setNombres((String) params.get("nombres"));
-//            usuarioM.setPrimerApellido((String) params.get("primerApellido"));
-//            usuarioM.setSegundoApellido((String) params.get("segundoApellido"));
-////            aprendiz.setTipoDocumento((String) params.get("tipoDocumento"));
-//            usuarioM.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
-//            usuarioM.setCorreo((String) params.get("correo"));
-//            usuarioM.setClave((String) params.get("clave"));
-//            usuarioM.setTelefono((String) params.get("telefono"));
-//            usuarioM.setEstado((String) params.get("estado"));
-//            System.out.println("a");
-//            usuarioFacade.edit(usuarioM);
-//            System.out.println("Usuario modificado");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return "/modAdmon/principalAdmon.xhtml";
-//    }
+            usuarioFacade.edit(usuarioM);
+            modalCambios = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public String actualizarPsicologo(Usuario usuarioPs) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        try {
+            usuarioPs.setNombres((String) params.get("nombres"));
+            usuarioPs.setPrimerApellido((String) params.get("primerApellido"));
+            usuarioPs.setSegundoApellido((String) params.get("segundoApellido"));
+            //   usuarioM.setTipoDocumento((String) params.get("tipoDocumento"));
+            usuarioPs.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
+            usuarioPs.setCorreo((String) params.get("correo"));
+            usuarioPs.setTelefono((String) params.get("telefono"));
+
+            usuarioFacade.edit(usuarioPs);
+            modalCambios = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
+      public String actualizarCoordinador(Usuario usuarioPs) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        try {
+            usuarioPs.setNombres((String) params.get("nombres"));
+            usuarioPs.setPrimerApellido((String) params.get("primerApellido"));
+            usuarioPs.setSegundoApellido((String) params.get("segundoApellido"));
+            //   usuarioM.setTipoDocumento((String) params.get("tipoDocumento"));
+            usuarioPs.setNoDocumento(Long.parseLong((String) params.get("noDocumento")));
+            usuarioPs.setCorreo((String) params.get("correo"));
+            usuarioPs.setTelefono((String) params.get("telefono"));
+
+            usuarioFacade.edit(usuarioPs);
+            modalCambios = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+    
     public int getAño() {
         return año;
     }

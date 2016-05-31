@@ -467,11 +467,6 @@
                                             <span class="input-group-addon" title="Telefono"><i class="fa fa-mobile"  ></i></span>
                                             <input class="form-control" id="telefono" value="#{listaCoordinadores.telefono}"  name="telefono" />
                                         </div>
-                                        <select class="selectpicker" name="programaFormacion" data-live-search="true" >
-                                            <c:forEach var="listaPro" items="#{controladorProgramaDeFormacion.listaProgramaDeFormacion}" >
-                                                <option value="#{listaPro}">#{u.nombres} #{u.primerApellido} #{u.segundoApellido}</option>
-                                            </c:forEach>
-                                        </select>
                                         <hr />
                                     </div>
                                 </div>
@@ -479,7 +474,7 @@
                                 <div class="modal-footer">
 
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizar(listaCoordinadores)}" >
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizarCoordinador(listaCoordinadores)}" >
                                         <f:param name="formularioCo" value="Actualizar#{listaCoordinadores.idUsuario}"/> 
                                     </h:commandButton>
                                 </div>
@@ -544,7 +539,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{controladorUsuario.actualizar(listaPsicologo)}" >
+                                    <h:commandButton id="enviarDatos" value="Actualizar" class="btn btn-success" action="#{usuarioControlador.actualizarCoordinador(listaPsicologo)}" >
                                         <f:param name="formularioPs" value="Actualizar#{listaPsicologo.idUsuario}"/> 
                                     </h:commandButton>
                                 </div>
