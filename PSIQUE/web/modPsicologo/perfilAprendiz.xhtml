@@ -230,7 +230,21 @@
                                                                         #{padreDirecto.primeroApellido} 
                                                                         #{padreDirecto.seguntoApellido}
                                                                         <br/>
-                                                                        <small>#{padreDirecto.parentezco}</small>
+                                                                        <small>
+                                                                            #{padreDirecto.parentezco}
+                                                                            <c:if test="#{padreDirecto.fechaNacimiento != null}">
+                                                                                <i class="fa fa-arrows"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{padreDirecto.sexo == 'Masculino'}">
+                                                                                <i class="fa fa-child"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{padreDirecto.sexo == 'Femenino'}">
+                                                                                <i class="fa fa-female"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{padreDirecto.discapacidad != 'No'}">
+                                                                                <i class="fa fa-wheelchair"></i>
+                                                                            </c:if>
+                                                                        </small>
                                                                     </a>
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(padreDirecto)}" var="familiares" >
@@ -239,7 +253,19 @@
                                                                                     #{familiares.primeroApellido} 
                                                                                     #{familiares.seguntoApellido}
                                                                                     <br/>
-                                                                                    <small>#{familiares.parentezco}</small>
+                                                                                    <small>#{familiares.parentezco} 
+                                                                                        <c:if test="#{familiares.fechaNacimiento != null}">
+                                                                                            <i class="fa fa-arrows"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares.sexo == 'Masculino'}">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares.sexo == 'Femenino'}">
+                                                                                            <i class="fa fa-female"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares.discapacidad != 'No'}">
+                                                                                            <i class="fa fa-wheelchair"></i>
+                                                                                        </c:if></small>
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares)}" var="tercero" >
@@ -248,7 +274,19 @@
                                                                                                 #{tercero.primeroApellido} 
                                                                                                 #{tercero.seguntoApellido}
                                                                                                 <br/>
-                                                                                                <small>#{tercero.parentezco}</small>
+                                                                                                <small>#{tercero.parentezco} 
+                                                                                                    <c:if test="#{tercero.fechaNacimiento != null}">
+                                                                                                        <i class="fa fa-arrows"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero.sexo == 'Masculino'}">
+                                                                                                        <i class="fa fa-child"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero.sexo == 'Femenino'}">
+                                                                                                        <i class="fa fa-female"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero.discapacidad != 'No'}">
+                                                                                                        <i class="fa fa-wheelchair"></i>
+                                                                                                    </c:if></small>
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
@@ -276,7 +314,20 @@
                                                                         #{parejas.primeroApellido} 
                                                                         #{parejas.seguntoApellido}
                                                                         <br/>
-                                                                        <small>#{parejas.parentezco}</small>
+                                                                        <small>#{parejas.parentezco}
+                                                                            <c:if test="#{parejas.fechaNacimiento != null}">
+                                                                                <i class="fa fa-arrows"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{parejas.sexo == 'Masculino'}">
+                                                                                <i class="fa fa-child"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{parejas.sexo == 'Femenino'}">
+                                                                                <i class="fa fa-female"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{parejas.discapacidad != 'No'}">
+                                                                                <i class="fa fa-wheelchair"></i>
+                                                                            </c:if>
+                                                                        </small>
                                                                     </a> 
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(parejas)}" var="familiares2" >
@@ -286,7 +337,19 @@
                                                                                     #{familiares2.primeroApellido} 
                                                                                     #{familiares2.seguntoApellido}
                                                                                     <br/>
-                                                                                    <small>#{familiares2.parentezco}</small>
+                                                                                    <small>#{familiares2.parentezco} 
+                                                                                        <c:if test="#{familiares2.fechaNacimiento != null}">
+                                                                                            <i class="fa fa-arrows"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares2.sexo == 'Masculino'}">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares2.sexo == 'Femenino'}">
+                                                                                            <i class="fa fa-female"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares2.discapacidad != 'No'}">
+                                                                                            <i class="fa fa-wheelchair"></i>
+                                                                                        </c:if></small>
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares2)}" var="tercero2" >
@@ -295,7 +358,19 @@
                                                                                                 #{tercero2.primeroApellido} 
                                                                                                 #{tercero2.seguntoApellido}
                                                                                                 <br/>
-                                                                                                <small>#{familiares2.parentezco}</small>
+                                                                                                <small>#{familiares2.parentezco} 
+                                                                                                    <c:if test="#{tercero2.fechaNacimiento != null}">
+                                                                                                        <i class="fa fa-arrows"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero2.sexo == 'Masculino'}">
+                                                                                                        <i class="fa fa-child"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero2.sexo == 'Femenino'}">
+                                                                                                        <i class="fa fa-female"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero2.discapacidad != 'No'}">
+                                                                                                        <i class="fa fa-wheelchair"></i>
+                                                                                                    </c:if></small>
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
@@ -324,7 +399,19 @@
                                                                         #{hijos.primeroApellido} 
                                                                         #{hijos.seguntoApellido}
                                                                         <br/>
-                                                                        <small>#{hijos.parentezco}</small>
+                                                                        <small>#{hijos.parentezco} 
+                                                                            <c:if test="#{hijos.fechaNacimiento != null}">
+                                                                                <i class="fa fa-arrows"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{hijos.sexo == 'Masculino'}">
+                                                                                <i class="fa fa-child"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{hijos.sexo == 'Femenino'}">
+                                                                                <i class="fa fa-female"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{hijos.discapacidad != 'No'}">
+                                                                                <i class="fa fa-wheelchair"></i>
+                                                                            </c:if></small>
                                                                     </a> 
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(hijos)}" var="familiares3" >
@@ -334,7 +421,19 @@
                                                                                     #{familiares3.primeroApellido} 
                                                                                     #{familiares3.seguntoApellido}
                                                                                     <br/>
-                                                                                    <small>#{familiares3.parentezco}</small>
+                                                                                    <small>#{familiares3.parentezco} 
+                                                                                        <c:if test="#{familiares3.fechaNacimiento != null}">
+                                                                                            <i class="fa fa-arrows"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares3.sexo == 'Masculino'}">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares3.sexo == 'Femenino'}">
+                                                                                            <i class="fa fa-female"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares3.discapacidad != 'No'}">
+                                                                                            <i class="fa fa-wheelchair"></i>
+                                                                                        </c:if></small>
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares3)}" var="tercero3" >
@@ -344,7 +443,19 @@
                                                                                                 #{tercero3.primeroApellido} 
                                                                                                 #{tercero3.seguntoApellido}
                                                                                                 <br/>
-                                                                                                <small>#{tercero3.parentezco}</small>
+                                                                                                <small>#{tercero3.parentezco} 
+                                                                                                    <c:if test="#{tercero3.fechaNacimiento != null}">
+                                                                                                        <i class="fa fa-arrows"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero3.sexo == 'Masculino'}">
+                                                                                                        <i class="fa fa-child"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero3.sexo == 'Femenino'}">
+                                                                                                        <i class="fa fa-female"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero3.discapacidad != 'No'}">
+                                                                                                        <i class="fa fa-wheelchair"></i>
+                                                                                                    </c:if></small>
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
@@ -373,7 +484,19 @@
                                                                         #{amigos.primeroApellido} 
                                                                         #{amigos.seguntoApellido}
                                                                         <br/>
-                                                                        <small>#{amigos.parentezco}</small>
+                                                                        <small>#{amigos.parentezco} 
+                                                                            <c:if test="#{amigos.fechaNacimiento != null}">
+                                                                                <i class="fa fa-arrows"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{amigos.sexo == 'Masculino'}">
+                                                                                <i class="fa fa-child"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{amigos.sexo == 'Femenino'}">
+                                                                                <i class="fa fa-female"></i>
+                                                                            </c:if>
+                                                                            <c:if test="#{amigos.discapacidad != 'No'}">
+                                                                                <i class="fa fa-wheelchair"></i>
+                                                                            </c:if></small>
                                                                     </a> 
                                                                     <ul>
                                                                         <c:forEach items="#{diagramaControlador.cargarRelaciones(amigos)}" var="familiares4" >
@@ -383,7 +506,19 @@
                                                                                     #{familiares4.primeroApellido} 
                                                                                     #{familiares4.seguntoApellido}
                                                                                     <br/>
-                                                                                    <small>#{familiares4.parentezco}</small>
+                                                                                    <small>#{familiares4.parentezco} 
+                                                                                        <c:if test="#{familiares4.fechaNacimiento != null}">
+                                                                                            <i class="fa fa-arrows"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares4.sexo == 'Masculino'}">
+                                                                                            <i class="fa fa-child"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares4.sexo == 'Femenino'}">
+                                                                                            <i class="fa fa-female"></i>
+                                                                                        </c:if>
+                                                                                        <c:if test="#{familiares4.discapacidad != 'No'}">
+                                                                                            <i class="fa fa-wheelchair"></i>
+                                                                                        </c:if></small>
                                                                                 </a>
                                                                                 <ul>
                                                                                     <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares4)}" var="tercero4" >
@@ -393,7 +528,19 @@
                                                                                                 #{tercero4.primeroApellido} 
                                                                                                 #{tercero4.seguntoApellido}
                                                                                                 <br/>
-                                                                                                <small>#{tercero4.parentezco}</small>
+                                                                                                <small>#{tercero4.parentezco}
+                                                                                                    <c:if test="#{tercero4.fechaNacimiento != null}">
+                                                                                                        <i class="fa fa-arrows"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero4.sexo == 'Masculino'}">
+                                                                                                        <i class="fa fa-child"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero4.sexo == 'Femenino'}">
+                                                                                                        <i class="fa fa-female"></i>
+                                                                                                    </c:if>
+                                                                                                    <c:if test="#{tercero4.discapacidad != 'No'}">
+                                                                                                        <i class="fa fa-wheelchair"></i>
+                                                                                                    </c:if></small>
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
@@ -415,7 +562,7 @@
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
-                                                            <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar 1</h:commandLink></li>
+                                                            <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
                                                         </ul>
                                                     </li>
                                                 </ul>
