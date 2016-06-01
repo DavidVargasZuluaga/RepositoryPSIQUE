@@ -252,11 +252,21 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
-                                                                                    <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                                    <li>
+                                                                                        <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{familiares.idFamiliar}').modal('show'); return false;" >
+                                                                                            <i class="fa fa-plus-circle" ></i> 
+                                                                                            Agregar familiar
+                                                                                        </h:commandLink>
+                                                                                    </li>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
-                                                                        <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                        <li>
+                                                                            <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{padreDirecto.idFamiliar}').modal('show'); return false;" >
+                                                                                <i class="fa fa-plus-circle" ></i> 
+                                                                                Agregar familiar
+                                                                            </h:commandLink>
+                                                                        </li>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
@@ -289,11 +299,21 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
-                                                                                    <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                                    <li>
+                                                                                        <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{familiares2.idFamiliar}').modal('show'); return false;" >
+                                                                                            <i class="fa fa-plus-circle" ></i> 
+                                                                                            Agregar familiar
+                                                                                        </h:commandLink>
+                                                                                    </li>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
-                                                                        <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                        <li>
+                                                                            <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{parejas.idFamiliar}').modal('show'); return false;" >
+                                                                                <i class="fa fa-plus-circle" ></i> 
+                                                                                Agregar familiar
+                                                                            </h:commandLink>
+                                                                        </li>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
@@ -328,15 +348,74 @@
                                                                                             </a>
                                                                                         </li>
                                                                                     </c:forEach>
-                                                                                    <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                                    <li>
+                                                                                        <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{familiares3.idFamiliar}').modal('show'); return false;" >
+                                                                                            <i class="fa fa-plus-circle" ></i> 
+                                                                                            Agregar familiar
+                                                                                        </h:commandLink>
+                                                                                    </li>
                                                                                 </ul>
                                                                             </li>
                                                                         </c:forEach>
-                                                                        <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                                        <li>
+                                                                            <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{hijos.idFamiliar}').modal('show'); return false;" >
+                                                                                <i class="fa fa-plus-circle" ></i> 
+                                                                                Agregar familiar
+                                                                            </h:commandLink>
+                                                                        </li>
                                                                     </ul>
                                                                 </li>
                                                             </c:forEach>
-                                                            <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar</h:commandLink></li>
+                                                            <c:forEach items="#{diagramaControlador.amigos}" var="amigos" >
+                                                                <li>
+                                                                    <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{amigos.idFamiliar}').modal('show'); return false;" >
+                                                                        #{amigos.nombres} 
+                                                                        #{amigos.primeroApellido} 
+                                                                        #{amigos.seguntoApellido}
+                                                                        <br/>
+                                                                        <small>#{amigos.parentezco}</small>
+                                                                    </a> 
+                                                                    <ul>
+                                                                        <c:forEach items="#{diagramaControlador.cargarRelaciones(amigos)}" var="familiares4" >
+                                                                            <li>
+                                                                                <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{familiares4.idFamiliar}').modal('show'); return false;" >
+                                                                                    #{familiares4.nombres} 
+                                                                                    #{familiares4.primeroApellido} 
+                                                                                    #{familiares4.seguntoApellido}
+                                                                                    <br/>
+                                                                                    <small>#{familiares4.parentezco}</small>
+                                                                                </a>
+                                                                                <ul>
+                                                                                    <c:forEach items="#{diagramaControlador.cargarRelaciones(familiares4)}" var="tercero4" >
+                                                                                        <li>
+                                                                                            <a href="#" style="font-size: 16px;" onclick="$('#modalFamiliar#{tercero3.idFamiliar}').modal('show'); return false;" >
+                                                                                                #{tercero4.nombres} 
+                                                                                                #{tercero4.primeroApellido} 
+                                                                                                #{tercero4.seguntoApellido}
+                                                                                                <br/>
+                                                                                                <small>#{tercero4.parentezco}</small>
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    </c:forEach>
+                                                                                    <li>
+                                                                                        <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{familiares4.idFamiliar}').modal('show'); return false;" >
+                                                                                            <i class="fa fa-plus-circle" ></i> 
+                                                                                            Agregar familiar
+                                                                                        </h:commandLink>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </li>
+                                                                        </c:forEach>
+                                                                        <li>
+                                                                            <h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar2#{amigos.idFamiliar}').modal('show'); return false;" >
+                                                                                <i class="fa fa-plus-circle" ></i> 
+                                                                                Agregar familiar
+                                                                            </h:commandLink>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </c:forEach>
+                                                            <li><h:commandLink style="font-size: 15px; " class="btn botones" onclick="$('#agregarFamiliar').modal('show'); return false;" ><i class="fa fa-plus-circle" ></i> Agregar familiar 1</h:commandLink></li>
                                                         </ul>
                                                     </li>
                                                 </ul>

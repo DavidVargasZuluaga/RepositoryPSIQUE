@@ -31,10 +31,12 @@ public class DiagramaControlador implements Serializable {
     FamiliarrelacionFacade familiarrelacionFacade;
 
     private Aprendiz aprendizTemp;
-    private Familiar familiarTemp;
+    private Familiar familiarTemp, familiarPre;
+    private Familiarrelacion familiarrelacionTemp;
 
     private List<Familiar> padres;
     private List<Familiar> hijos;
+    private List<Familiar> amigos;
     private List<Familiar> parejas;
     private List<Familiar> todosFamiliars;
 
@@ -44,10 +46,13 @@ public class DiagramaControlador implements Serializable {
     public void init() {
         aprendizTemp = new Aprendiz();
         familiarTemp = new Familiar();
+        familiarPre = new Familiar();
+        familiarrelacionTemp = new Familiarrelacion();
         modalModificado = 0;
         padres = new ArrayList();
         hijos = new ArrayList();
         parejas = new ArrayList();
+        amigos = new ArrayList();
         todosFamiliars = familiarFacade.findAll();
     }
 
@@ -72,6 +77,9 @@ public class DiagramaControlador implements Serializable {
                             case "HIJO":
                                 hijos.add(todosFamiliares.get(i));
                                 break;
+                            case "AMIGO":
+                                amigos.add(todosFamiliares.get(i));
+                                break;
                         }
                     }
                 }
@@ -81,7 +89,63 @@ public class DiagramaControlador implements Serializable {
             e.printStackTrace();
         }
         return "perfilAprendiz.xhtml";
+    }
 
+    public String crearFamiliarCercano(Aprendiz a) {
+        String res = "";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String t = (String) params.get("fecha");
+            if (!t.equals("")) {
+                familiarTemp.setFechaNacimiento((Date) format.parse((String) params.get("fecha")));
+            }
+            t = (String) params.get("fecha2");
+            if (!t.equals("")) {
+                familiarTemp.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
+            }
+            familiarTemp.setIdAprendiz(a);
+            familiarFacade.create(familiarTemp);
+            modalModificado = 3;
+            cargarFamiliaresCercanos(this.aprendizTemp);
+            familiarTemp = new Familiar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String crearFamiliar(Aprendiz a, Familiar f) {
+        String res = "";
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            String t = (String) params.get("fecha");
+            if (!t.equals("")) {
+                familiarTemp.setFechaNacimiento((Date) format.parse((String) params.get("fecha")));
+            }
+            t = (String) params.get("fecha2");
+            if (!t.equals("")) {
+                familiarTemp.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
+            }
+            familiarTemp.setIdAprendiz(a);
+            familiarFacade.create(familiarTemp);
+            familiarrelacionTemp.setIdFamiliarParentezco(f);
+            familiarrelacionTemp.setIdFamiliarRelacion(familiarTemp);
+            familiarrelacionFacade.create(familiarrelacionTemp);
+            modalModificado = 3;
+            cargarFamiliaresCercanos(this.aprendizTemp);
+            familiarTemp = new Familiar();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     public List<Familiar> cargarRelaciones(Familiar f) {
@@ -89,8 +153,10 @@ public class DiagramaControlador implements Serializable {
         List<Familiar> familiares = new ArrayList();
         try {
             for (int i = 0; i < todasRelaciones.size(); i++) {
-                if (todasRelaciones.get(i).getIdFamiliarParentezco().equals(f)) {
-                    familiares.add(todasRelaciones.get(i).getIdFamiliarRelacion());
+                if (todasRelaciones.get(i).getIdFamiliarParentezco() != null) {
+                    if (todasRelaciones.get(i).getIdFamiliarParentezco().equals(f)) {
+                        familiares.add(todasRelaciones.get(i).getIdFamiliarRelacion());
+                    }
                 }
             }
         } catch (Exception e) {
@@ -108,11 +174,11 @@ public class DiagramaControlador implements Serializable {
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
             String t = (String) params.get("fecha");
-            if(!t.equals("")){
+            if (!t.equals("")) {
                 f.setFechaNacimiento((Date) format.parse((String) params.get("fecha")));
             }
             t = (String) params.get("fecha2");
-            if(!t.equals("")){
+            if (!t.equals("")) {
                 f.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
             }
             familiarFacade.edit(f);
@@ -196,6 +262,38 @@ public class DiagramaControlador implements Serializable {
 
     public void setFamiliarTemp(Familiar familiarTemp) {
         this.familiarTemp = familiarTemp;
+    }
+
+    public Aprendiz getAprendizTemp() {
+        return aprendizTemp;
+    }
+
+    public void setAprendizTemp(Aprendiz aprendizTemp) {
+        this.aprendizTemp = aprendizTemp;
+    }
+
+    public Familiar getFamiliarPre() {
+        return familiarPre;
+    }
+
+    public void setFamiliarPre(Familiar familiarPre) {
+        this.familiarPre = familiarPre;
+    }
+
+    public Familiarrelacion getFamiliarrelacionTemp() {
+        return familiarrelacionTemp;
+    }
+
+    public void setFamiliarrelacionTemp(Familiarrelacion familiarrelacionTemp) {
+        this.familiarrelacionTemp = familiarrelacionTemp;
+    }
+
+    public List<Familiar> getAmigos() {
+        return amigos;
+    }
+
+    public void setAmigos(List<Familiar> amigos) {
+        this.amigos = amigos;
     }
 
 }
