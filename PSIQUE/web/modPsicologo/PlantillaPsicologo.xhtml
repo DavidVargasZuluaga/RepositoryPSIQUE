@@ -218,6 +218,15 @@
                         <strong>Informacion editada.</strong>
                     </div>
                 </c:if>
+                <c:if test="#{diagramaControlador.modalModificado == 2}" >
+                    <div style="font-size: 19px;" class="alert alert-info page-alert" id="alert-1">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            #{diagramaControlador.cerrarModal()}
+                        </button>
+                        <strong>Familiar Eliminado.</strong>
+                    </div>
+                </c:if>
 
                 <div class="col-xs-12 col-sm-4 col-md-3  color1">
                     <div class="container-fluid">
@@ -893,20 +902,124 @@
             </c:forEach>
             <c:forEach var="familiaress" items="#{diagramaControlador.todosFamiliars}">
                 <div class="modal fade" id="modalFamiliar#{familiaress.idFamiliar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                    <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-dialog modal-lg" role="document">
                         <h:form class="form-horizontal form" id="mod90">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h4 class="modal-title" id="myModalLabel">#{familiaress.nombres} #{familiaress.primeroApellido} #{familiaress.seguntoApellido}</h4>
+                                    <h3 class="modal-title centrar color1" id="myModalLabel">#{familiaress.nombres} #{familiaress.primeroApellido} #{familiaress.seguntoApellido}</h3>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container-fluid">
-                                        <h3>Datos personales</h3>
-                                        <div style="font-size: 17px;" class="form-group">
+                                        <h2>Datos personales :</h2>
+                                        <br/>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
                                             <label class="control-label">Parentezco con el aprendiz</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.parentezco}" >
+                                            #{familiaress.parentezco}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Genero</label>
+                                            <br/>
+                                            #{familiaress.sexo}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Ocupacion</label>
+                                            <br/>
+                                            #{familiaress.ocupacion}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Fecha de nacimineto</label>
+                                            <br/>
+                                            <h:outputLabel value="#{familiaress.fechaNacimiento}">
+                                                <f:convertDateTime pattern="dd/MM/yyy" />
+                                            </h:outputLabel>
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Fecha de Defuncion</label>
+                                            <br/>
+                                            <h:outputLabel value="#{familiaress.fechaDdefuncion}">
+                                                <f:convertDateTime pattern="dd/MM/yyy" />
+                                            </h:outputLabel>
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Ubicacion</label>
+                                            <br/>
+                                            #{familiaress.ubicacion}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Estado civil</label>
+                                            <br/>
+                                            #{familiaress.estadoCivil}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Raza</label>
+                                            <br/>
+                                            #{familiaress.raza}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Religion</label>
+                                            <br/>
+                                            #{familiaress.religion}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Tendencia politica</label>
+                                            <br/>
+                                            #{familiaress.tendenciaPolitica}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Orientacion sexual</label>
+                                            <br/>
+                                            #{familiaress.orientacionSexual}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Discapacidad</label>
+                                            <br/>
+                                            #{familiaress.discapacidad}
+                                            <br/>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-6" >
+                                            <label class="control-label">Comentario</label>
+                                            <br/>
+                                            #{familiaress.comentario}
+                                            <br/>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" class="botones2 btn" style="font-size: 18px;" onclick="$('#modalEditarFamiliar#{familiaress.idFamiliar}').modal('show'); return false;" ><i class="fa fa-pencil" ></i></a>
+                                        <a href="#" class="botones2 btn" style="font-size: 18px;" onclick="$('#modalEliminarFamiliar#{familiaress.idFamiliar}').modal('show'); return false;" ><i class="fa fa-trash" ></i></a>
+                                        <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="modal fade" id="modalEditarFamiliar#{familiaress.idFamiliar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod77">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <!--div style="font-size: 17px;" class="form-group">
+                                            <label class="control-label">Parentezco con el aprendiz</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.parentezco}" required="true">
                                                 <f:selectItem itemLabel="PADRE" itemValue="PADRE" />
                                                 <f:selectItem itemLabel="PAREJA" itemValue="PAREJA" />
                                                 <f:selectItem itemLabel="HIJO" itemValue="HIJO" />
@@ -917,10 +1030,10 @@
                                                 <f:selectItem itemLabel="OTRO" itemValue="OTRO" />
                                             </h:selectOneMenu> 
                                         </div>
-                                        <div style="font-size: 17px;" class="form-group">
+                                        <div style="font-size: 17px;" class="form-group" >
                                             <label class="control-label">Genero</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.sexo}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.sexo}" required="true">
                                                 <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
                                                 <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
                                             </h:selectOneMenu>
@@ -928,26 +1041,30 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Ocupacion</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.ocupacion} &nbsp;"/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.ocupacion}" required="true"/>
                                         </div>
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Fecha de nacimineto</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.fechaNacimiento}">
-                                                <f:convertDateTime pattern="dd/MM/yyy" />
-                                            </h:inputText>
+                                            <div class=" date" id="datetimePicker">
+                                                <p:inputText type="date" style="color:black;" class="form-control" value="#{familiaress.fechaNacimiento}" required="true">
+                                                    <f:convertDateTime pattern="dd/MM/yyy" />
+                                                </p:inputText>
+                                            </div>
                                         </div>
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Fecha de Defuncion</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.fechaDdefuncion}">
-                                                <f:convertDateTime pattern="dd/MM/yyy" />
-                                            </h:inputText>
+                                            <div class=" date" id="datetimePicker">
+                                                <p:inputText type="date" style="color:black;" class="form-control" value="#{familiaress.fechaDdefuncion}" required="true">
+                                                    <f:convertDateTime pattern="dd/MM/yyy" />
+                                                </p:inputText>
+                                            </div>
                                         </div>
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Ubicacion</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.ubicacion}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.ubicacion}" required="true">
                                                 <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
                                                 <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
                                                 <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
@@ -972,7 +1089,7 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Estado civil</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.estadoCivil}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.estadoCivil}" required="true">
                                                 <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
                                                 <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
                                                 <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
@@ -982,7 +1099,7 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Raza o Grupo Etnico</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.raza}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.raza}" required="true">
                                                 <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
                                                 <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
                                                 <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
@@ -992,7 +1109,7 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Religion</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.religion}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.religion}" required="true">
                                                 <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
                                                 <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
                                                 <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
@@ -1010,7 +1127,7 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Tendencia politica</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.tendenciaPolitica}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.tendenciaPolitica}" required="true">
                                                 <f:selectItem itemValue="Partido Social de Unidad Nacional" itemLabel="Partido Social de Unidad Nacional" />
                                                 <f:selectItem itemValue="Centro Democrático" itemLabel="Centro Democrático" />
                                                 <f:selectItem itemValue="Partido Conservador Colombiano" itemLabel="Partido Conservador Colombiano" />
@@ -1031,7 +1148,7 @@
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Orientacion Sexual</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{familiaress.orientacionSexual}" >
+                                            <h:selectOneMenu class="form-control" value="#{familiaress.orientacionSexual}" required="true">
                                                 <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
                                                 <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
                                                 <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
@@ -1044,14 +1161,14 @@
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Discapacidad</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.discapacidad}"/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{familiaress.discapacidad}" required="true"/>
                                         </div>
                                         <div style="font-size:  17px;" class="form-group">
                                             <label class="control-label">Comentario</label>
                                             <br/>
-                                            <h:inputTextarea style="color:black;" class="form-control" value="#{familiaress.comentario}"/>
-                                        </div>
-                                        <br/>
+                                            <h:inputTextarea style="color:black;" class="form-control" value="#{familiaress.comentario}" required="true"/>
+                                        </div>-->
+                                        <br/>    
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="botones2 btn" value="Editar" action="#{diagramaControlador.editarFamiliar(familiaress)}"></h:commandButton>
@@ -1061,7 +1178,32 @@
                             </div>
                         </h:form>
                     </div>
-                </div> 
+                </div>
+                <div class="modal fade" id="modalEliminarFamiliar#{familiaress.idFamiliar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod85">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="myModalLabel">Eliminar a #{familiaress.nombres}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <h4>
+                                            Esta seguro de quesea eliminar a esta persona?
+                                            <br/>
+                                            Los familiares relacionados con este tambien se perderan.
+                                        </h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <h:commandButton class="botones2 btn" value="Eliminar" action="#{diagramaControlador.eliminarFamiliar(familiaress)}"></h:commandButton>
+                                        <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
             </c:forEach>
             <div class="modal fade" id="agregarFamiliar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">

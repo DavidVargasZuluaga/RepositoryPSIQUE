@@ -1,5 +1,5 @@
 function mostrarJornada(id) {
-    if (id ==  1) {
+    if (id == 1) {
         $("#Mañana").show();
         $("#Tarde").hide();
     }

@@ -27,15 +27,18 @@ public class DiagramaControlador implements Serializable {
     @Inject
     FamiliarrelacionFacade familiarrelacionFacade;
 
-    List<Familiar> padres;
-    List<Familiar> hijos;
-    List<Familiar> parejas;
-    List<Familiar> todosFamiliars;
+    private Aprendiz aprendizTemp;
+
+    private List<Familiar> padres;
+    private List<Familiar> hijos;
+    private List<Familiar> parejas;
+    private List<Familiar> todosFamiliars;
 
     private int modalModificado;
 
     @PostConstruct
     public void init() {
+        aprendizTemp = new Aprendiz();
         modalModificado = 0;
         padres = new ArrayList();
         hijos = new ArrayList();
@@ -45,6 +48,7 @@ public class DiagramaControlador implements Serializable {
 
     public String cargarFamiliaresCercanos(Aprendiz a) {
         init();
+        this.aprendizTemp = a;
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
@@ -92,10 +96,33 @@ public class DiagramaControlador implements Serializable {
     }
 
     public String editarFamiliar(Familiar f) {
-        String res = "perfilAprendiz.xhtml";
+        String res = "";
         try {
             familiarFacade.edit(f);
+            cargarFamiliaresCercanos(this.aprendizTemp);
             modalModificado = 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public String eliminarFamiliar(Familiar f) {
+        String res = "";
+        List<Familiar> familiares = familiarFacade.findAll();
+        List<Familiarrelacion> todasRelaciones = familiarrelacionFacade.findAll();
+        try {
+            for (int i = 0; i < todasRelaciones.size(); i++) {
+                if (todasRelaciones.get(i).getIdFamiliarParentezco().equals(f)) {
+                    // familiarFacade.remove(familiarFacade.find(todasRelaciones.get(i).getIdFamiliarParentezco()));
+                    if (!cargarRelaciones(todasRelaciones.get(i).getIdFamiliarParentezco()).isEmpty()) {
+                        eliminarFamiliar(todasRelaciones.get(i).getIdFamiliarRelacion());
+                    }
+                }
+            }
+            familiarFacade.remove(f);
+            cargarFamiliaresCercanos(this.aprendizTemp);
+            modalModificado = 2;
         } catch (Exception e) {
             e.printStackTrace();
         }
