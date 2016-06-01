@@ -1226,200 +1226,200 @@
                     </div>
                 </div>
                 <div class="modal fade" id="agregarFamiliar2#{familiaress.idFamiliar}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-                <div class="modal-dialog modal-sm" role="document">
-                    <h:form class="form-horizontal form" id="mod46">
-                        <div class="modal-content" >
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h2 class="modal-title" id="myModalLabel">Agregar Familiar</h2>
-                            </div>
-                            <div class="modal-body">
-                                <div class="container-fluid">
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Nombres</label>
-                                        <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.nombres}"/>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Primer Apellido</label>
-                                        <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.primeroApellido}" required="true"/>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Segundo Apellido</label>
-                                        <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.seguntoApellido}" required="true"/>
-                                    </div>
-                                    <div style="font-size: 19px;" class="form-group">
-                                        <label class="control-label">Parentezco con #{diagramaControlador.familiarPre.nombres}</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarrelacionTemp.parentezco}" required="true">
-                                            <f:selectItem itemLabel="SOBRINO" itemValue="SOBRINO" />
-                                            <f:selectItem itemLabel="NIETO" itemValue="NIETO" />
-                                            <f:selectItem itemLabel="PRIMO" itemValue="PRIMO" />
-                                            <f:selectItem itemLabel="CUÑADO" itemValue="CUÑADO" />
-                                            <f:selectItem itemLabel="OTRO" itemValue="OTRO" />
-                                        </h:selectOneMenu> 
-                                    </div>
-                                    <div style="font-size: 19px;" class="form-group">
-                                        <label class="control-label">Parentezco con el aprendiz</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.parentezco}" required="true">
-                                            <f:selectItem itemLabel="SOBRINO" itemValue="SOBRINO" />
-                                            <f:selectItem itemLabel="NIETO" itemValue="NIETO" />
-                                            <f:selectItem itemLabel="PRIMO" itemValue="PRIMO" />
-                                            <f:selectItem itemLabel="CUÑADO" itemValue="CUÑADO" />
-                                            <f:selectItem itemLabel="OTRO" itemValue="OTRO" />
-                                        </h:selectOneMenu> 
-                                    </div>
-                                    <div style="font-size: 19px;" class="form-group" >
-                                        <label class="control-label">Genero</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.sexo}" required="true">
-                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
-                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Ocupacion</label>
-                                        <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.ocupacion}" required="true"/>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Fecha de Nacimineto</label>
-                                        <br/>
-                                        <div class="input-group date" id="datetimePicker">
-                                            <input type="date" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" />
-                                        </div>                                           
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Fecha de Defuncion</label>
-                                        <br/>
-                                        <div class="input-group date" id="datetimePicker">
-                                            <input type="date" id="fecha2" name="fecha2" title="Ingrese la fecha de defuncion" class="form-control" placeholder="Seleccione una fecha válida" />
-                                        </div>                                           
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Ubicacion</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.ubicacion}" required="true">
-                                            <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
-                                            <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
-                                            <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
-                                            <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
-                                            <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
-                                            <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
-                                            <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
-                                            <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
-                                            <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
-                                            <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
-                                            <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
-                                            <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
-                                            <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
-                                            <f:selectItem itemLabel="Suba" itemValue="Suba" />
-                                            <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
-                                            <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
-                                            <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
-                                            <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
-                                            <f:selectItem itemLabel="Usme" itemValue="Usme" />
-                                        </h:selectOneMenu> 
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Estado civil</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.estadoCivil}" required="true">
-                                            <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
-                                            <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
-                                            <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
-                                            <f:selectItem itemValue="Viudo/a" itemLabel="Viudo/a" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Raza o Grupo Etnico</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.raza}" required="true">
-                                            <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
-                                            <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
-                                            <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                            <f:selectItem itemValue="Otro.." itemLabel="Otro" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Religion</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.religion}" required="true">
-                                            <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
-                                            <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
-                                            <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
-                                            <f:selectItem itemValue="Pentecostalismo" itemLabel="Pentecostalismo" />
-                                            <f:selectItem itemValue="Testigos de Jehová" itemLabel="Testigos de Jehová" />
-                                            <f:selectItem itemValue="Comunión Anglicana" itemLabel="Comunión Anglicana" />
-                                            <f:selectItem itemValue="Rastafarismo" itemLabel="Rastafarismo" />
-                                            <f:selectItem itemValue="Islamismo" itemLabel="Islamismo" />
-                                            <f:selectItem itemValue="Budismo" itemLabel="Budismo" />
-                                            <f:selectItem itemValue="Judaísmo" itemLabel="Judaísmo" />
-                                            <f:selectItem itemValue="Iglesia Ortodoxa" itemLabel="Iglesia Ortodoxa" />
-                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Tendencia politica</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.tendenciaPolitica}" required="true">
-                                            <f:selectItem itemValue="PSUN" itemLabel="Partido Social de Unidad Nacional" />
-                                            <f:selectItem itemValue="CD" itemLabel="Centro Democrático" />
-                                            <f:selectItem itemValue="PC" itemLabel="Partido Conservador Colombiano" />
-                                            <f:selectItem itemValue="PLC" itemLabel="Partido Liberal Colombiano" />
-                                            <f:selectItem itemValue="PCR" itemLabel="Partido Cambio Radical" />
-                                            <f:selectItem itemValue="POC" itemLabel="Partido Opción Ciudadana" />
-                                            <f:selectItem itemValue="AV" itemLabel="Alianza Verde" />
-                                            <f:selectItem itemValue="Polo" itemLabel="Polo Democrático Alternativo" />
-                                            <f:selectItem itemValue="MInRA" itemLabel="Movimiento Independiente de Renovación Absoluta" />
-                                            <f:selectItem itemValue="ASI" itemLabel="Alianza Social Independiente" />
-                                            <f:selectItem itemValue="MAIS" itemLabel="Movimiento Alternativo Indígena y Socialo" />
-                                            <f:selectItem itemValue="FÉCFu" itemLabel="Fundación Ébano por Colombia Funeco" />
-                                            <f:selectItem itemValue="AICo" itemLabel="Autoridades Indígenas de Colombia" />
-                                            <f:selectItem itemValue="UP" itemLabel="Unión Patriótica" />
-                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Orientacion Sexual</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.orientacionSexual}" required="true">
-                                            <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
-                                            <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
-                                            <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
-                                            <f:selectItem itemValue="Asexualidado" itemLabel="Asexualidado" />
-                                            <f:selectItem itemValue="Pansexualidad" itemLabel="Pansexualidad" />
-                                            <f:selectItem itemValue="Demisexualidad" itemLabel="Demisexualidad" />
-                                            <f:selectItem itemValue="Antrosexualidad" itemLabel="Antrosexualidad" />
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Discapacidad</label>
-                                        <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.discapacidad}" />
-                                    </div>
-                                    <div style="font-size:  19px;" class="form-group">
-                                        <label class="control-label">Comentario</label>
-                                        <br/>
-                                        <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
-                                    </div>
-                                    <br/>
-                                    <h2>Si deja algun campo vacio, no creara el familiar.</h2>
+                    <div class="modal-dialog modal-sm" role="document">
+                        <h:form class="form-horizontal form" id="mod46">
+                            <div class="modal-content" >
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h2 class="modal-title" id="myModalLabel">Agregar Familiar</h2>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Nombres</label>
+                                            <br/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.nombres}"/>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Primer Apellido</label>
+                                            <br/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.primeroApellido}" required="true"/>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Segundo Apellido</label>
+                                            <br/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.seguntoApellido}" required="true"/>
+                                        </div>
+                                        <div style="font-size: 19px;" class="form-group">
+                                            <label class="control-label">Parentezco con #{familiaress.nombres}</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarrelacionTemp.parentezco}" required="true">
+                                                <f:selectItem itemLabel="PADRE" itemValue="PADRE" />
+                                                <f:selectItem itemLabel="PAREJA" itemValue="PAREJA" />
+                                                <f:selectItem itemLabel="HIJO" itemValue="HIJO"/>
+                                                <f:selectItem itemLabel="AMIGO" itemValue="AMIGO"/>
+                                            </h:selectOneMenu> 
+                                        </div>
+                                        <div style="font-size: 19px;" class="form-group">
+                                            <label class="control-label">Parentezco con el aprendiz</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.parentezco}" required="true">
+                                                <f:selectItem itemLabel="SOBRINO" itemValue="SOBRINO" />
+                                                <f:selectItem itemLabel="ABUELO" itemValue="ABUELO" />
+                                                <f:selectItem itemLabel="NIETO" itemValue="NIETO" />
+                                                <f:selectItem itemLabel="PRIMO" itemValue="PRIMO" />
+                                                <f:selectItem itemLabel="CUÑADO" itemValue="CUÑADO" />
+                                                <f:selectItem itemLabel="OTRO" itemValue="OTRO" />
+                                            </h:selectOneMenu> 
+                                        </div>
+                                        <div style="font-size: 19px;" class="form-group" >
+                                            <label class="control-label">Genero</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.sexo}" required="true">
+                                                <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
+                                                <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Ocupacion</label>
+                                            <br/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.ocupacion}" required="true"/>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Fecha de Nacimineto</label>
+                                            <br/>
+                                            <div class="input-group date" id="datetimePicker">
+                                                <input type="date" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" />
+                                            </div>                                           
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Fecha de Defuncion</label>
+                                            <br/>
+                                            <div class="input-group date" id="datetimePicker">
+                                                <input type="date" id="fecha2" name="fecha2" title="Ingrese la fecha de defuncion" class="form-control" placeholder="Seleccione una fecha válida" />
+                                            </div>                                           
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Ubicacion</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.ubicacion}" required="true">
+                                                <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
+                                                <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
+                                                <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
+                                                <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
+                                                <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
+                                                <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
+                                                <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
+                                                <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
+                                                <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
+                                                <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
+                                                <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
+                                                <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
+                                                <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
+                                                <f:selectItem itemLabel="Suba" itemValue="Suba" />
+                                                <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
+                                                <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
+                                                <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
+                                                <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
+                                                <f:selectItem itemLabel="Usme" itemValue="Usme" />
+                                            </h:selectOneMenu> 
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Estado civil</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.estadoCivil}" required="true">
+                                                <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
+                                                <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
+                                                <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
+                                                <f:selectItem itemValue="Viudo/a" itemLabel="Viudo/a" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Raza o Grupo Etnico</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.raza}" required="true">
+                                                <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
+                                                <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
+                                                <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
+                                                <f:selectItem itemValue="Otro.." itemLabel="Otro" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Religion</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.religion}" required="true">
+                                                <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
+                                                <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
+                                                <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
+                                                <f:selectItem itemValue="Pentecostalismo" itemLabel="Pentecostalismo" />
+                                                <f:selectItem itemValue="Testigos de Jehová" itemLabel="Testigos de Jehová" />
+                                                <f:selectItem itemValue="Comunión Anglicana" itemLabel="Comunión Anglicana" />
+                                                <f:selectItem itemValue="Rastafarismo" itemLabel="Rastafarismo" />
+                                                <f:selectItem itemValue="Islamismo" itemLabel="Islamismo" />
+                                                <f:selectItem itemValue="Budismo" itemLabel="Budismo" />
+                                                <f:selectItem itemValue="Judaísmo" itemLabel="Judaísmo" />
+                                                <f:selectItem itemValue="Iglesia Ortodoxa" itemLabel="Iglesia Ortodoxa" />
+                                                <f:selectItem itemValue="Otra" itemLabel="Otra" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Tendencia politica</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.tendenciaPolitica}" required="true">
+                                                <f:selectItem itemValue="PSUN" itemLabel="Partido Social de Unidad Nacional" />
+                                                <f:selectItem itemValue="CD" itemLabel="Centro Democrático" />
+                                                <f:selectItem itemValue="PC" itemLabel="Partido Conservador Colombiano" />
+                                                <f:selectItem itemValue="PLC" itemLabel="Partido Liberal Colombiano" />
+                                                <f:selectItem itemValue="PCR" itemLabel="Partido Cambio Radical" />
+                                                <f:selectItem itemValue="POC" itemLabel="Partido Opción Ciudadana" />
+                                                <f:selectItem itemValue="AV" itemLabel="Alianza Verde" />
+                                                <f:selectItem itemValue="Polo" itemLabel="Polo Democrático Alternativo" />
+                                                <f:selectItem itemValue="MInRA" itemLabel="Movimiento Independiente de Renovación Absoluta" />
+                                                <f:selectItem itemValue="ASI" itemLabel="Alianza Social Independiente" />
+                                                <f:selectItem itemValue="MAIS" itemLabel="Movimiento Alternativo Indígena y Socialo" />
+                                                <f:selectItem itemValue="FÉCFu" itemLabel="Fundación Ébano por Colombia Funeco" />
+                                                <f:selectItem itemValue="AICo" itemLabel="Autoridades Indígenas de Colombia" />
+                                                <f:selectItem itemValue="UP" itemLabel="Unión Patriótica" />
+                                                <f:selectItem itemValue="Otra" itemLabel="Otra" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Orientacion Sexual</label>
+                                            <br/>
+                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.orientacionSexual}" required="true">
+                                                <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
+                                                <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
+                                                <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
+                                                <f:selectItem itemValue="Asexualidado" itemLabel="Asexualidado" />
+                                                <f:selectItem itemValue="Pansexualidad" itemLabel="Pansexualidad" />
+                                                <f:selectItem itemValue="Demisexualidad" itemLabel="Demisexualidad" />
+                                                <f:selectItem itemValue="Antrosexualidad" itemLabel="Antrosexualidad" />
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Discapacidad</label>
+                                            <br/>
+                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.discapacidad}" />
+                                        </div>
+                                        <div style="font-size:  19px;" class="form-group">
+                                            <label class="control-label">Comentario</label>
+                                            <br/>
+                                            <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
+                                        </div>
+                                        <br/>
+                                        <h2>Si deja algun campo vacio, no creara el familiar.</h2>
+                                    </div>
+                                </div>
                                 <div class="modal-footer">
-                                    <h:commandButton class="botones btn" value="Agregar" action="#{diagramaControlador.crearFamiliar(usuarioControlador.aprendizTemp, familiaress)}" />
-                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    <div class="modal-footer">
+                                        <h:commandButton class="botones btn" value="Agregar" action="#{diagramaControlador.crearFamiliar(usuarioControlador.aprendizTemp, familiaress)}" />
+                                        <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </h:form>
+                        </h:form>
+                    </div>
                 </div>
-            </div>
             </c:forEach>
             <div class="modal fade" id="agregarFamiliar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog modal-sm" role="document">
@@ -1604,7 +1604,7 @@
                     </h:form>
                 </div>
             </div>
-            
+
             <div class="color1 row">
                 <div class="centrar container tfooter col-md-12">
                     <hr/>

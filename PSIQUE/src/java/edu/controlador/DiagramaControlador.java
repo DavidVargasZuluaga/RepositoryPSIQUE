@@ -91,7 +91,7 @@ public class DiagramaControlador implements Serializable {
         return "perfilAprendiz.xhtml";
     }
 
-    public String crearFamiliarCercano(Aprendiz a) {
+    public void crearFamiliarCercano(Aprendiz a) {
         String res = "";
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext externalContext = facesContext.getExternalContext();
@@ -115,7 +115,6 @@ public class DiagramaControlador implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return res;
     }
 
     public String crearFamiliar(Aprendiz a, Familiar f) {
