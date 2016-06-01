@@ -5,8 +5,11 @@ import edu.fachada.*;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -28,6 +31,7 @@ public class DiagramaControlador implements Serializable {
     FamiliarrelacionFacade familiarrelacionFacade;
 
     private Aprendiz aprendizTemp;
+    private Familiar familiarTemp;
 
     private List<Familiar> padres;
     private List<Familiar> hijos;
@@ -39,6 +43,7 @@ public class DiagramaControlador implements Serializable {
     @PostConstruct
     public void init() {
         aprendizTemp = new Aprendiz();
+        familiarTemp = new Familiar();
         modalModificado = 0;
         padres = new ArrayList();
         hijos = new ArrayList();
@@ -81,7 +86,6 @@ public class DiagramaControlador implements Serializable {
 
     public List<Familiar> cargarRelaciones(Familiar f) {
         List<Familiarrelacion> todasRelaciones = familiarrelacionFacade.findAll();
-        List<Familiar> todosFamiliares = familiarFacade.findAll();
         List<Familiar> familiares = new ArrayList();
         try {
             for (int i = 0; i < todasRelaciones.size(); i++) {
@@ -97,7 +101,20 @@ public class DiagramaControlador implements Serializable {
 
     public String editarFamiliar(Familiar f) {
         String res = "";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
+        Map params = externalContext.getRequestParameterMap();
+        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
+            String t = (String) params.get("fecha");
+            if(!t.equals("")){
+                f.setFechaNacimiento((Date) format.parse((String) params.get("fecha")));
+            }
+            t = (String) params.get("fecha2");
+            if(!t.equals("")){
+                f.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
+            }
             familiarFacade.edit(f);
             cargarFamiliaresCercanos(this.aprendizTemp);
             modalModificado = 1;
@@ -171,6 +188,14 @@ public class DiagramaControlador implements Serializable {
 
     public void setModalModificado(int modalModificado) {
         this.modalModificado = modalModificado;
+    }
+
+    public Familiar getFamiliarTemp() {
+        return familiarTemp;
+    }
+
+    public void setFamiliarTemp(Familiar familiarTemp) {
+        this.familiarTemp = familiarTemp;
     }
 
 }
