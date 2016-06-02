@@ -147,8 +147,10 @@ public class CitaControlador implements Serializable {
         List<Cita> citas = citaFacade.findAll();
         try {
             for (int i = 0; i < citas.size(); i++) {
-                if (citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
-                    resul.add(citas.get(i));
+                if (citas.get(i).getIdAprendiz() != null) {
+                    if (citas.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                        resul.add(citas.get(i));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -266,9 +268,9 @@ public class CitaControlador implements Serializable {
                 citaTemp = listaCitas.get(i);
             }
         }
-        if (citaTemp.getIdCita() == null) {
-            citaTemp = null;
-        }
+//        if (citaTemp.getIdCita() == null) {
+//            citaTemp = null;
+//        }
         return citaTemp;
     }
 

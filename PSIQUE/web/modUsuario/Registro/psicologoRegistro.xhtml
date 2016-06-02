@@ -12,12 +12,12 @@
 
         <ui:define name="body">
             <div class="container-fluid color1 ">
-                <h1><i class="fa fa-user-plus fa-lg"></i>  Agregar Psicologo</h1>
+                <h1><i class="fa fa-user-plus fa-lg"></i>  Agregar Psicólogo</h1>
                 <hr/>
                 <h4>Llene los siguientes campos para crear una cuenta como psicologo</h4>
                 <h4>Campo requerido <i title="Campo requerido" class="fa fa-exclamation-circle fa-lg"></i></h4>
                 <br/>
-                <h:form id="form" class="form-group form-horizontal" >
+                <h:form id="formularioRegistroPsicologo" class="form-group form-horizontal" >
                     <br/>
                     <div class="form-group">
                         <label for="nombres"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer y segundo nombre:</label>
@@ -125,6 +125,152 @@
                 </h:form>
                 <br/>
             </div>
+            
+              <script>
+                $().ready(function () {
+                    //métodos de validacion del otro plugin formvalidation
+                    $('#formularioRegistroPsicologo').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
+                        icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
+                        locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
+                        fields: {
+                            nombres: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese sus nombres.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 20,
+                                        message: 'El nombre debe tener por lo menos mas de dos caracteres y menos de 20.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras.'
+                                    }
+                                }
+                            },
+                            primerApellido: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su primer apellido.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 10,
+                                        message: 'Su primer apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras.'
+                                    }
+                                }
+                            },
+                            segundoApellido: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su segundo apellido.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 10,
+                                        message: 'Su segundo apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras.'
+                                    }
+                                }
+                            },
+                            tipoDocumento: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione su tipo de documento.'
+                                    }
+                                }
+                            },
+                            noDocumento: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su número de documento.'
+                                    },
+                                    stringLength: {
+                                        min: 10,
+                                        max: 15,
+                                        message: 'El documento por lo menos debe tener como minimo 10 caracteres y menos de 15.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[0-9]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar numeros.'
+                                    }
+                                }
+                            },
+                            telefono: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su número de télefono.'
+                                    },
+                                    stringLength: {
+                                        min: 10,
+                                        max: 15,
+                                        message: 'El número de télefono debe tener por lo menos como minimo 10 caracteres y menos de 15.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[0-9]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar numeros.'
+                                    }
+                                }
+                            },
+                            correo: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su correo electronico'
+                                    },
+                                    regexp: {
+                                        regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                                        message: 'Tenga encuenta que el correo consta de tres partes el nombre del usuario, la dirreccion, y el dominio ejemplo:(usuario123@hotmail.com)'
+                                    }
+                                }
+                            },
+                            clave1: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su contraseña'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras y números, ademas de esto no debe dejar espacios.'
+                                    }
+                                }
+                            },
+                            clave2: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor confirme su contraseña'
+                                    },
+                                    identical: {//Que sea el mismo valor de otro campo
+                                        field: 'clave1',
+                                        message: 'Debe introducir el mismo valor del campo anterior contraseña'
+                                    }
+                                }
+                            },
+                            fecha: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'La fecha de nacimiento es requerida'
+                                    }
+                                }
+                            },
+                            jornada:{
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la jornada de trabajo del psicólogo'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
         </ui:define>
     </ui:composition>
 </html>
