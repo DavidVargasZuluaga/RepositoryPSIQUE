@@ -98,13 +98,6 @@ public class FichaControlador implements Serializable {
         try {
             String estado = (String) params.get("estadoPrograma");
             f.setEstado(estado);
-            aprendices = f.getAprendizList();
-            for (int i = 0; i < aprendices.size(); i++) {
-                if (!aprendices.get(i).getUsuario().getEstado().equals("DESERTADO")) {
-                    aprendices.get(i).getUsuario().setEstado(estado);
-                    usuarioFacade.edit(aprendices.get(i).getUsuario());
-                }
-            }
             modalCreacion = 3;
             fichaFacade.edit(f);
         } catch (Exception e) {

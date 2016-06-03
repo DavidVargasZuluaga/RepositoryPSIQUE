@@ -211,18 +211,19 @@ public class controladorGrafica implements Serializable {
         Map params = externalContext.getRequestParameterMap();
 
         String pi = (String) params.get("psicologo");
-//        if (pi == null) {
-//            pi = "1000";
-//        }
+
         listaPsicologo = psicologoFacade.findAll();
         List<Psicologo> listapsi = new ArrayList();
 
         try {
-            long idpsicologo = Long.parseLong(pi);
-            nombrePsicologo = psicologoFacade.find(idpsicologo).getUsuario().getNombres() + " " + psicologoFacade.find(idpsicologo).getUsuario().getPrimerApellido();
-            for (int i = 0; i < listaPsicologo.size(); i++) {
-                if (listaPsicologo.get(i).getIdPsicologo().equals(idpsicologo)) {
-                    listapsi.add(listaPsicologo.get(i));
+            if (pi == null) {
+            } else {
+                long idpsicologo = Long.parseLong(pi);
+                nombrePsicologo = psicologoFacade.find(idpsicologo).getUsuario().getNombres() + " " + psicologoFacade.find(idpsicologo).getUsuario().getPrimerApellido();
+                for (int i = 0; i < listaPsicologo.size(); i++) {
+                    if (listaPsicologo.get(i).getIdPsicologo().equals(idpsicologo)) {
+                        listapsi.add(listaPsicologo.get(i));
+                    }
                 }
             }
         } catch (Exception e) {
@@ -250,22 +251,25 @@ public class controladorGrafica implements Serializable {
 
             for (int i = 0; i < listaCita.size(); i++) {
                 if (listaCita.get(i).getIdPsicologo().getIdPsicologo().equals(idpsicologo)) {
-                    switch (listaCita.get(i).getValoracion()) {
-                        case 5:
-                            excelente = excelente + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
-                            break;
-                        case 4:
-                            buena = buena + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
-                            break;
-                        case 3:
-                            aceptable = aceptable + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
-                            break;
-                        case 2:
-                            podriaMejorar = podriaMejorar + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
-                            break;
-                        case 1:
-                            mala = mala + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
-                            break;
+                    if (listaCita.get(i).getValoracion() == null ) {
+                    } else {
+                        switch (listaCita.get(i).getValoracion()) {
+                            case 5:
+                                excelente = excelente + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                                break;
+                            case 4:
+                                buena = buena + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                                break;
+                            case 3:
+                                aceptable = aceptable + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                                break;
+                            case 2:
+                                podriaMejorar = podriaMejorar + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                                break;
+                            case 1:
+                                mala = mala + listaCita.get(i).getValoracion() / listaCita.get(i).getValoracion();
+                                break;
+                        }
                     }
                 }
             }
@@ -285,13 +289,13 @@ public class controladorGrafica implements Serializable {
         List<Aprendiz> listaApre = new ArrayList();
 
         try {
-            long idAprendiz = Long.parseLong(pi);
-            nombreAprendiz = aprendizFacade.find(idAprendiz).getUsuario().getNombres() + " " + psicologoFacade.find(idAprendiz).getUsuario().getPrimerApellido();
-            for (int i = 0; i < listaAprendiz.size(); i++) {
-                if (listaAprendiz.get(i).getIdAprendiz().equals(idAprendiz)) {
-                    listaApre.add(listaAprendiz.get(i));
-                }
-            }
+//            long idAprendiz = Long.parseLong(pi);
+//            nombreAprendiz = aprendizFacade.find(idAprendiz).getUsuario().getNombres() + " " + psicologoFacade.find(idAprendiz).getUsuario().getPrimerApellido();
+//            for (int i = 0; i < listaAprendiz.size(); i++) {
+//                if (listaAprendiz.get(i).getIdAprendiz().equals(idAprendiz)) {
+//                    listaApre.add(listaAprendiz.get(i));
+//                }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         }

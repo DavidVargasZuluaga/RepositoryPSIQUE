@@ -13,16 +13,25 @@
 
         <link rel="shortcut icon" type="image/x-icon" href="/PSIQUE/resources/img/icono.ico"/>
 
-       <h:outputStylesheet library="css" name="font-awesome.css"/>
         <h:outputStylesheet library="css" name="bootstrap.css"/>
         <h:outputStylesheet library="css" name="estilos.css"/>
+        <h:outputStylesheet library="css" name="font-awesome.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-table.min.css"/>
+        <h:outputStylesheet library="css" name="jquery.timepicker.css"/>
+        <!-- <h:outputStylesheet library="css" name="bootstrapFormValidation.css"/>
         <h:outputStylesheet library="css" name="formValidation.min.css"/>
+        <h:outputStylesheet library="css" name="bootstrap-datepicker.min.css"/> -->
 
-        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="body"/>
+        <h:outputScript library="js" name="jquery-1.12.2.min.js" target="head"/>
         <h:outputScript library="js" name="bootstrap.js" target="body"/>
-        <h:outputScript library="js" name="formValidation.min.js" target="body"/>
-        <h:outputScript library="js" name="Validator.js" target="body"/>
-        <h:outputScript library="js" name="es_ES.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-table.js" target="body"/>
+        <h:outputScript library="js" name="jquery.timepicker.js" target="body"/>
+        <h:outputScript library="js" name="miCalendario.js" target="body"/>
+        <h:outputScript library="js" name="mostrar.js" target="body"/>
+        <!--<h:outputScript library="js" name="formValidation.min.js" target="body"/>
+        <h:outputScript library="js" name="validacionFormularios.js" target="body"/>
+        <h:outputScript library="js" name="bootstrap-datepicker.min.js" target="body"/>
+        <h:outputScript library="js" name="es_ES.js" target="body"/>-->
 
         <title>Bienvenido a PSIQUE</title>
 
@@ -148,11 +157,11 @@
                             <p:focus context="formRegistro"/>
                             <div  class="form-group" >
                                 <label  class="control-label" for="documento" ><i class="fa fa-hashtag"></i> Documento</label> 
-                                <input id="documento" title="Solo numeros" name="documento" type="tel"  placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
+                                <input id="documento" title="Solo numeros" name="documento" type="tel" pattern="[0-9]{4,15}" placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="clave"><i class="fa fa-key"></i> Contraseña</label>
-                                <input id="clave" title="Sin caracteres especiales" name="clave" type="password"  placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
+                                <input id="clave" title="Sin caracteres especiales" name="clave" type="password" pattern="[a-z,A-Z,0-9]{4,20}" placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
                                 <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" ><i class="fa fa-question-circle fa-lg"></i> Olvidaste tu contraseña</a>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
@@ -331,7 +340,7 @@
                                 <h4 class="modal-title" id="myModalLabel">IngenieriaPsique</h4>
                             </div>
                             <div class="modal-body">
-
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
@@ -340,7 +349,6 @@
                     </h:form>
                 </div>
             </div>
-
             <div class="color1 row">
                 <br/>
                 <div class="col-sx-12 col-sm-8 col-md-4">
@@ -360,7 +368,7 @@
             <div class="color1 row">
                 <div style="border-color: #02584A; border: 3px;" class="col-xs-12 col-sm-6 col-md-2 col-md-offset-5  col-sm-offset-3">
                     <div class="centrar" >
-                        <a class="btn btn-group-vertical botonesinv" ><i class="fa fa-google fa-3x"></i></a>
+                        <a href="https://plus.google.com/u/1/116653411160040816760/posts" class="btn btn-group-vertical botonesinv" ><i class="fa fa-google fa-3x"></i></a>
                     </div>
                 </div>
             </div>
@@ -376,46 +384,5 @@
                 </div>
             </div>
         </div>
-        
-           <script>
-                $().ready(function () {
-                    //métodos de validacion del otro plugin formvalidation
-                    $('#formRegistro').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
-                        icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
-                        locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
-                        fields: {                          
-                            noDocumento: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor digite su número de documento.'
-                                    },
-                                    stringLength: {
-                                        min: 10,
-                                        max: 15,
-                                        message: 'El documento por lo menos debe tener como minimo 10 caracteres y menos de 15.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[0-9]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar numeros.'
-                                    }
-                                }
-                            },                        
-                            clave: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor digite su contraseña'
-                                    },
-                                     regexp: {
-                                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras y números, ademas de esto no debe dejar espacios.'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                });
-            </script>
-
-
     </h:body>
 </html>

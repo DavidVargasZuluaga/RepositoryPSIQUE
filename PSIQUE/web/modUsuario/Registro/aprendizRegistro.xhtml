@@ -17,39 +17,39 @@
                 <hr/>
                 Campo requerido <i title="Campo requerido" class="fa fa-exclamation-circle fa-lg"></i>   
                 <br/>
-                <h:form id="formularioRegistroAprendiz">
+                <h:form>
                     <br/>
                     <div class="form-group">
                         <label for="nombres"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer y segundo nombre:</label>
-                        <input class="form-control" title="Porfavor digite el primer y el sugundo nombre" name="nombres" placeholder="Digite el primer y el sugundo nombre" required="true" id="nombres" maxlength="20" />
+                        <input pattern="[A-Z a-z]{4,25}" class="form-control" title="Porfavor digite el primer y el sugundo nombre" name="nombres" placeholder="Digite el primer y el sugundo nombre" required="true" id="nombres" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="primerApellido"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer apellido:</label>
-                        <input class="form-control" title="Porfavor digite su primer apellido" name="primerApellido" placeholder="Digite su primer apellido" required="true" id="primerApellido" maxlength="20" />
+                        <input pattern="[A-Z a-z]{4,20}" class="form-control" title="Porfavor digite su primer apellido" name="primerApellido" placeholder="Digite su primer apellido" required="true" id="primerApellido" maxlength="20" />
                     </div>
                     <div class="form-group">
-                        <label  for="segundoApellido">Segundo apellido:</label>
-                        <input class="form-control" title="Porfavor digite su segundo apellido" name="segundoApellido" placeholder="Digite su segundo apellido" id="segundoApellido" maxlength="20" />
+                        <label for="segundoApellido">Segundo apellido:</label>
+                        <input pattern="[A-Z a-z]{4,20}" class="form-control" title="Porfavor digite su segundo apellido" name="segundoApellido" placeholder="Digite su segundo apellido" id="segundoApellido" maxlength="20" />
                     </div>
                     <div class="form-group ">
                         <label for="tipoDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Tipo documento:</label>
                         <select class="form-control" title="Porfavor seleccione su tipo de documento" name="tipoDocumento"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
                             <option disabled="true" selected="true" value="">-- Seleccione un tipo de documento --</option>
-                            <option value="CC">Cédula de Ciudadania</option>
+                            <option value="CC">CÃ©dula de Ciudadania</option>
                             <option value="TI">Tarjeta de identidad</option>
-                            <option value="CE">Cédula extranjera</option>
+                            <option value="CE">CÃ©dula extranjera</option>
                             <option value="PP">Pasaporte</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="noDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Documento:</label>
-                        <input class="form-control" title="Porfavor digite su documento" name="noDocumento" placeholder="Digite su documento del coordinador" required="true" id="noDocumento" maxlength="20" />
+                        <input pattern="[0-9]{4,15}" type="tel" class="form-control" title="Porfavor digite su documento" name="noDocumento" placeholder="Digite su documento del coordinador" required="true" id="noDocumento" maxlength="20" />
                     </div>
                     <br/>
                     <div class="form-group text-left">
                         <label title="Campo requerido" for="fecha" ><i class="fa fa-exclamation-circle fa-lg"></i>  Fecha de Nacimiento:</label><br/>
                         <div class="input-group date" id="datetimePicker">
-                            <input type="date" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha válida" required="true" tabindex="10"/>
+                            <input type="date" id="fecha" name="fecha" title="Ingrese la fecha de nacimiento" class="form-control" placeholder="Seleccione una fecha vÃ¡lida" required="true" tabindex="10"/>
                         </div>
                     </div>
                     <div class="form-group ">
@@ -71,31 +71,33 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Telefono:</label>
-                        <input type="list" class="form-control" title="Porfavor digite su telefono" name="telefono" placeholder="Digite su telefono" id="telefono" maxlength="20" />
+                        <input type="tel" pattern="[0-9]{,20}" class="form-control" title="Porfavor digite su telefono" name="telefono" placeholder="Digite su telefono" id="telefono" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="ubicacion"><i  class="fa fa-exclamation-circle fa-lg"></i> Localidad de Residencia:</label>
                         <select class="form-control" name="ubicacion" title="Seleccione una localida" data-fv-notempty-message="La localidad es requerida" required="true">
                             <option disabled="true" selected="true" value="">-- Seleccione una localidad --</option>
-                            <option value="Antonio Nariño">Antonio Nariño</option>
+                            <option value="Antonio NariÃ±o">Antonio NariÃ±o</option>
                             <option value="Barrios Unidos">Barrios Unidos</option>
                             <option value="Bosa">Bosa</option>
                             <option value="Chapinero">Chapinero</option>
-                            <option value="Ciudad Bolívar">Ciudad Bolívar</option>
-                            <option value="Engativá">Engativá</option>
-                            <option value="Fontibón">Fontibón</option>
+                            <option value="Ciudad BolÃ­var">Ciudad BolÃ­var</option>
+                            <option value="EngativÃ¡">EngativÃ¡</option>
+                            <option value="FontibÃ³n">FontibÃ³n</option>
                             <option value="La Candelaria">La Candelaria</option>
-                            <option value="Los Mártires">Los Mártires</option>
+                            <option value="Los MÃ¡rtires">Los MÃ¡rtires</option>
                             <option value="Puente Aranda">Puente Aranda</option>
                             <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
-                            <option value="San Cristóbal">San Cristóbal</option>
+                            <option value="San CristÃ³bal">San CristÃ³bal</option>
                             <option value="Santa Fe">Santa Fe</option>
                             <option value="Suba">Suba</option>
                             <option value="Sumapaz">Sumapaz</option>
+                            <option value="Soacha">Soacha</option>
                             <option value="Teusaquillo">Teusaquillo</option>
                             <option value="Tunjuelito">Tunjuelito</option>
-                            <option value="Usaquén">Usaquén</option>
+                            <option value="UsaquÃ©n">UsaquÃ©n</option>
                             <option value="Usme">Usme</option>
+                            <option value="Otra">Otra</option>
                         </select>
                     </div>
                     <div class="form-group ">
@@ -116,7 +118,7 @@
                             <option value="Blanco">Blanco</option>
                             <option value="Afrocolombiano">Afrocolombiano</option>                                           
                             <option value="Indegena">Indegena</option>                                                                                                                               
-                            <option value="Otro..">Otro..</option>                                                                                                                               
+                            <option value="Otro">Otro..</option>                                                                                                                               
                         </select>
                     </div>
                     <div class="form-group ">
@@ -128,12 +130,12 @@
                             <option value="Evangelica">Evangelica</option>                                           
                             <option value="Pentecostalismo">Pentecostalismo</option>                                                                                                                               
                             <option value="Protestantismo">Protestantismo</option>                                                                                                                               
-                            <option value="Testigos de Jehová">Testigos de Jehová</option>                                                                                                                               
-                            <option value="Comunión Anglicana">Comunión Anglicana</option>                                                                                                                               
+                            <option value="Testigos de JehovÃ¡">Testigos de JehovÃ¡</option>                                                                                                                               
+                            <option value="ComuniÃ³n Anglicana">ComuniÃ³n Anglicana</option>                                                                                                                               
                             <option value="Rastafarismo">Rastafarismo</option>                                                                                                                               
                             <option value="Islamismo">Islamismo</option>                                                                                                                               
                             <option value="Budismo">Budismo</option>                                                                                                                               
-                            <option value="Judaísmo">Judaísmo</option>                                                                                                                               
+                            <option value="JudaÃ­smo">JudaÃ­smo</option>                                                                                                                               
                             <option value="Iglesia Ortodoxa">Iglesia Ortodoxa</option>                                                                                                                               
                             <option value="Otra">Otra..</option>                                                                                                                               
                         </select>
@@ -143,19 +145,19 @@
                         <select class="form-control" title="Seleccione su tendencia politica" name="tendenciaPolitica"  data-fv-notempty-message="La tendencia politica es requerida">
                             <option disabled="true" selected="true" value="">-- Seleccione su grupo politico --</option>
                             <option value="Partido Social de Unidad Nacional">Partido de la U</option>
-                            <option value="Centro Democrático">Centro Democrático</option>
+                            <option value="Centro DemocrÃ¡tico">Centro DemocrÃ¡tico</option>
                             <option value="Partido Conservador Colombiano">Conservador</option>                                           
                             <option value="Partido Liberal Colombiano">Liberal</option>                                                                                                                               
                             <option value="Partido Cambio Radical">Cambio Radical</option>                                                                                                                               
-                            <option value="Partido Opción Ciudadana">PIN</option>                                                                                                                               
+                            <option value="Partido OpciÃ³n Ciudadana">PIN</option>                                                                                                                               
                             <option value="Alianza Verde">Alianza Verde</option>                                                                                                                               
-                            <option value="Polo Democrático Alternativo">PDA</option>                                                                                                                               
-                            <option value="Movimiento Independiente de Renovación Absoluta">MIRA</option>                                                                                                                               
+                            <option value="Polo DemocrÃ¡tico Alternativo">PDA</option>                                                                                                                               
+                            <option value="Movimiento Independiente de RenovaciÃ³n Absoluta">MIRA</option>                                                                                                                               
                             <option value="Alianza Social Independiente">Alianza Social Independiente</option>                                                                                                                               
-                            <option value="Movimiento Alternativo Indígena y Socialo">MAIS</option>                                                                                                                               
-                            <option value="Fundación Ébano por Colombia Funeco">Funeco</option>                                                                                                                               
-                            <option value="Autoridades Indígenas de Colombia">Autoridades Indígenas de Colombia</option>                                                                                                                               
-                            <option value="Unión Patriótica">Unión Patriótica</option>                                                                                                                               
+                            <option value="Movimiento Alternativo IndÃ­gena y Socialo">MAIS</option>                                                                                                                               
+                            <option value="FundaciÃ³n Ã‰bano por Colombia Funeco">Funeco</option>                                                                                                                               
+                            <option value="Autoridades IndÃ­genas de Colombia">Autoridades IndÃ­genas de Colombia</option>                                                                                                                               
+                            <option value="UniÃ³n PatriÃ³tica">UniÃ³n PatriÃ³tica</option>                                                                                                                               
                             <option value="Otra">Otra..</option>                                                                                                                               
                         </select>
                     </div>
@@ -175,23 +177,23 @@
                     </div>
                     <div class="form-group">
                         <label for="discapacidad">Discapacidad:</label>
-                        <input type="text" class="form-control" title="Si posee alguna discapacidad porfavor digitela" name="discapacidad" placeholder="Tipo de discapacidad" id="discapacidad" maxlength="20" />
+                        <input type="text" pattern="[A-Z a-z]{,40}" class="form-control" title="Si posee alguna discapacidad porfavor digitela" name="discapacidad" placeholder="Tipo de discapacidad" id="discapacidad" maxlength="20" />
                     </div>                                                          
                     <div class="form-group">
                         <label for="pasaTiempo">Pasa tiempo:</label>
-                        <input type="text" class="form-control" title="Porfavor digite sus pasatiempos" name="pasaTiempo" placeholder="Pasatiempos" id="pasaTiempo" maxlength="20" />
+                        <input type="text" pattern="[A-Z a-z]{,40}" class="form-control" title="Porfavor digite sus pasatiempos" name="pasaTiempo" placeholder="Pasatiempos" id="pasaTiempo" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="correo"><i  class="fa fa-exclamation-circle fa-lg"></i> Correo electronico:</label>
-                        <input type="list" class="form-control" title="Porfavor digite su correo electronico" name="correo" placeholder="Digite el correo electronico del coordinador" required="true" id="correo" maxlength="25" />
+                        <input type="email" pattern="[a-z0-9._]{,40}" class="form-control" title="Porfavor digite su correo electronico" name="correo" placeholder="Digite el correo electronico del coordinador" required="true" id="correo" maxlength="25" />
                     </div>
                     <div class="form-group">
-                        <label for="clave"><i  class="fa fa-exclamation-circle fa-lg"></i> Contraseña:</label>
-                        <input type="password" class="form-control" title="Porfavor digite su contraseña" name="clave1" placeholder="Digite su contraseña" required="true" id="clave" maxlength="20" />
+                        <label for="clave"><i  class="fa fa-exclamation-circle fa-lg"></i> ContraseÃ±a:</label>
+                        <input type="password" pattern="[A-Z a-z0-9]{,40}" class="form-control" title="Porfavor digite su contraseÃ±a" name="clave1" placeholder="Digite su contraseÃ±a" required="true" id="clave" maxlength="20" />
                     </div>
                     <div class="form-group">
-                        <label  for="confirmarClave"><i class="fa fa-exclamation-circle fa-lg"></i> Confirmar contraseña:</label>
-                        <input type="password" class="form-control" title="Porfavor confirme su contraseña" name="clave2" placeholder="Confirme la contraseña del coordinador" required="true" id="clave" maxlength="20" />
+                        <label  for="confirmarClave"><i class="fa fa-exclamation-circle fa-lg"></i> Confirmar contraseÃ±a:</label>
+                        <input type="password" pattern="[A-Z a-z0-9]{,40}" class="form-control" title="Porfavor confirme su contraseÃ±a" name="clave2" placeholder="Confirme la contraseÃ±a del coordinador" required="true" id="clave" maxlength="20" />
                     </div>
                     <div class="form-group text-left">
                         <div class="col-xm-12 col-sm-6 col-md-6">
@@ -207,212 +209,6 @@
                 <br/>
                 <br/>
             </div>
-            
-             <script>
-                $().ready(function () {
-                    //métodos de validacion del otro plugin formvalidation
-                    $('#formularioRegistroAprendiz').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
-                        icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
-                        locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
-                        fields: {
-                            nombres: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor ingrese sus nombres.'
-                                    },
-                                    stringLength: {
-                                        min: 3,
-                                        max: 20,
-                                        message: 'El nombre debe tener por lo menos mas de dos caracteres y menos de 20.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras.'
-                                    }
-                                }
-                            },
-                            primerApellido: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor ingrese su primer apellido.'
-                                    },
-                                    stringLength: {
-                                        min: 3,
-                                        max: 10,
-                                        message: 'Su primer apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras.'
-                                    }
-                                }
-                            },
-                            segundoApellido: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor ingrese su segundo apellido.'
-                                    },
-                                    stringLength: {
-                                        min: 3,
-                                        max: 10,
-                                        message: 'Su segundo apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras.'
-                                    }
-                                }
-                            },
-                            tipoDocumento: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione su tipo de documento.'
-                                    }
-                                }
-                            },
-                            noDocumento: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor digite su número de documento.'
-                                    },
-                                    stringLength: {
-                                        min: 10,
-                                        max: 15,
-                                        message: 'El documento por lo menos debe tener como minimo 10 caracteres y menos de 15.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[0-9]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar numeros.'
-                                    }
-                                }
-                            },
-                            tipoDeGenero: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione el genero al que petenece.'
-                                    }
-                                }
-                            },
-                            telefono: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor ingrese su número de télefono.'
-                                    },
-                                    stringLength: {
-                                        min: 10,
-                                        max: 15,
-                                        message: 'El número de télefono debe tener por lo menos como minimo 10 caracteres y menos de 15.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[0-9]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar numeros.'
-                                    }
-                                }
-                            },
-                            ubicacion: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione la localidad donde vive.'
-                                    }
-                                }
-                            },
-                            estadoCivil: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione su estado civil.'
-                                    }
-                                }
-                            },
-                            raza: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione el rupo etnico al cual pertenece.'
-                                    }
-                                }
-                            },
-                            religion: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione la religion a la cual pertenece.'
-                                    }
-                                }
-                            },
-                            tendenciaPolitica: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione la tendencia politica a la cual pertenece.'
-                                    }
-                                }
-                            },
-                            orientacionSexual: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione la orientación sexual a la cual pertenece.'
-                                    }
-                                }
-                            },
-                            discapacidad: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Si posee alguna discapacidad porfavor digitela de lo contrario digite ninguna.'
-                                    },
-                                    regexp: {
-                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras.'
-                                    }
-                                }
-                            },
-                            correo: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor digite su correo electronico'
-                                    },
-                                    regexp: {
-                                        regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
-                                        message: 'Tenga encuenta que el correo consta de tres partes el nombre del usuario, la dirreccion, y el dominio ejemplo:(usuario123@hotmail.com)'
-                                    }
-                                }
-                            },
-                            clave1: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor digite su contraseña'
-                                    },
-                                     regexp: {
-                                        regexp: /^[a-zA-Z0-9_\.]+$/,
-                                        message: 'Caracteres incorrectos solo puede usar letras y números, ademas de esto no debe dejar espacios.'
-                                    }
-                                }
-                            },
-                            clave2: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor confirme su contraseña'
-                                    },
-                                    identical: {//Que sea el mismo valor de otro campo
-                                        field: 'clave1',
-                                        message: 'Debe introducir el mismo valor del campo anterior contraseña'
-                                    }
-                                }
-                            },
-                            ficha: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'Porfavor seleccione la ficha a la que pertenece'
-                                    }
-                                }
-                            },
-                            fecha: {
-                                validators: {
-                                    notEmpty: {
-                                        message: 'La fecha de nacimiento es requerida'
-                                    }
-                                }
-                            }
-                        }
-                    });
-                });
-            </script>
         </ui:define>
     </ui:composition>
 </html>
