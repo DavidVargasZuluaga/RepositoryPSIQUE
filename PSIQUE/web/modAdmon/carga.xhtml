@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./PlantillaAdmon.xhtml"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="title">
+        Carga de archivos
+    </ui:define>
+
+    <ui:define name="body">
+
+        <div class="container-fluid color1">
+            <div class="row color1">
+                <div class="container-fluid">
+                    <div class="table-responsive">
+                        <h1>${requestScope['libro']}</h1>
+                        <h1>Cantidad de paginas: #{excelControlador.cantidadHojas(requestScope["libro"])}</h1>
+
+                        <table border="1" class="table table-striped table-hover" 
+                                       >
+                            <tbody>
+                                <c:forEach end="#{excelControlador.miHoja.columns-1}" begin="0" var="paso">
+                                    <th>
+                                        #{excelControlador.miHoja.getCell(paso, 0).getContents()}
+                                    </th>
+                                </c:forEach>
+
+                                <th>
+                                    Estado
+                                </th>
+                            </tbody>
+
+                            <tbody>
+                                <c:forEach end="#{excelControlador.miHoja.rows - 1}" begin="1" var="fila">
+                                    <tr>
+                                        <c:forEach end="#{excelControlador.miHoja.columns - 1}" begin="0" var="columna">
+                                            <td>
+                                                #{excelControlador.miHoja.getCell(columna,fila).getContents()}
+                                            </td>    
+                                        </c:forEach>
+
+                                        #{excelControlador.setNombres(excelControlador.miHoja.getCell(0,fila).getContents())}
+                                        #{excelControlador.setPrimerApellido(excelControlador.miHoja.getCell(1,fila).getContents())}
+                                        #{excelControlador.setSegundoApellido(excelControlador.miHoja.getCell(2,fila).getContents())}
+                                        #{excelControlador.setTipoDocumento(excelControlador.miHoja.getCell(3,fila).getContents())}
+                                        #{excelControlador.setNoDocumento(excelControlador.miHoja.getCell(4,fila).getContents())}
+                                        #{excelControlador.setCorreo(excelControlador.miHoja.getCell(5,fila).getContents())}
+                                        #{excelControlador.setClave(excelControlador.miHoja.getCell(6,fila).getContents())}
+                                        #{excelControlador.setTelefono(excelControlador.miHoja.getCell(8,fila).getContents())}
+                                        #{excelControlador.setJornada(excelControlador.miHoja.getCell(9,fila).getContents())}
+
+                                        <td>
+                                            #{excelControlador.ingresarPsicologo()}
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

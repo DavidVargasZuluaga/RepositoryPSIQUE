@@ -18,13 +18,11 @@ import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-
 /**
  *
  * @author JoseLuis
  */
 public class precargaControlador extends HttpServlet {
-
 
     private int estados;
 
@@ -63,18 +61,18 @@ public class precargaControlador extends HttpServlet {
                             item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
                         }
                     }
-                   request.setAttribute("libro",UPLOAD_DIRECTORY +"/"+ name );
-                   request.setAttribute("message", "Su archivo se ha cargado !");
-                
+                    request.setAttribute("libro", UPLOAD_DIRECTORY + "/" + name);
+                    request.setAttribute("message", "Su archivo se ha cargado !");
+
                 } catch (Exception e) {
-                    
+
                     request.setAttribute("message", "Cargar archivo ha fallado debido a " + e);
                 }
             } else {
-                
-            request.setAttribute("message", "Este servlet solo maneja petición de carga de archivos");            }
-            request.getRequestDispatcher("/modAdmon/mostrar.xhtml").forward(request, response);
 
+                request.setAttribute("message", "Este servlet solo maneja petición de carga de archivos");
+            }
+            request.getRequestDispatcher("../modAdmon/carga.xhtml").forward(request, response);
         }
     }
 

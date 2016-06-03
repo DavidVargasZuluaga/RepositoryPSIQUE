@@ -13,8 +13,10 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -28,16 +30,20 @@ import jxl.read.biff.BiffException;
 @SessionScoped
 public class excelControlador implements Serializable {
 
-    @Inject
-    UsuarioFacade usuarioFacade;
-    
-    @Inject
-    RolFacade rolFacade;
+    @EJB
+    private PsicologoFacade psicologoFacade;
+
+    @EJB
+    private RolFacade rolFacade;
+
+    @EJB
+    private UsuarioFacade usuarioFacade;
+    private Usuario usuario;
 
     Workbook archivoExcel;
     Sheet miHoja;
 
-    private int rol;
+    private int idrol;
     private String tipoDocumento;
     private long noDocumento;
     private String correo;
@@ -48,34 +54,65 @@ public class excelControlador implements Serializable {
     private String primerApellido;
     private String segundoApellido;
     private String telefono;
+    private String jornada;
+
+    private String fechatemp;
+    private String nombre;
+
+    private int modalCargaPsicologo;
+
+    public excelControlador() {
+        usuario = new Usuario();
+        modalCargaPsicologo = 0;
+    }
 
     public int cantidadHojas(String url) throws IOException, BiffException {
         archivoExcel = Workbook.getWorkbook(new File(url));
         miHoja = archivoExcel.getSheet(0);
         return archivoExcel.getNumberOfSheets();
     }
-    
-    public boolean ingresarUsuario(){ 
-        
+
+    public boolean ingresarPsicologo() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        boolean existe = true;
         try {
-        Usuario u = new Usuario();
-        u.setIdRol(rolFacade.find(rol));
-        u.setTipoDocumento(tipoDocumento);
-        u.setNoDocumento(noDocumento);
-        u.setCorreo(correo);
-        u.setClave(clave);
-        u.setEstado(estado);
-        u.setFechaNacimiento(fechaNacimiento);
-        u.setPrimerApellido(primerApellido);
-        u.setNombres(nombres);
-        u.setSegundoApellido(segundoApellido);
-        u.setTelefono(telefono);
-       
-           usuarioFacade.create(u);
-           return true;
-       } catch (Exception e) {
-           return false;
-       }
+
+            usuario.setNombres(nombres);
+            usuario.setPrimerApellido(primerApellido);
+            usuario.setSegundoApellido(segundoApellido);
+            usuario.setIdRol(rolFacade.find(2));
+            usuario.setTipoDocumento(tipoDocumento);
+            usuario.setNoDocumento(noDocumento);
+            usuario.setCorreo(correo);
+            usuario.setClave(clave);
+            usuario.setEstado("ACTIVO");
+            usuario.setTelefono(telefono);
+
+            //  String fecha = (String) (fechaNacimiento.toString());
+            //   usuario.setFechaNacimiento((Date) format.parse(fecha));
+            for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
+                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuario.getNoDocumento()) {
+                    existe = false;
+                    modalCargaPsicologo = 2;
+                    break;
+                }
+            }
+            if (existe) {
+                usuarioFacade.create(usuario);
+
+                Psicologo psicologo = new Psicologo();
+                psicologo.setIdPsicologo(usuario.getIdUsuario());
+                psicologo.setJornada(jornada);
+                psicologoFacade.create(psicologo);
+                System.out.println("usuario creado");
+                modalCargaPsicologo = 1;
+            } else {
+            }
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public Workbook getArchivoExcel() {
@@ -92,6 +129,14 @@ public class excelControlador implements Serializable {
 
     public void setMiHoja(Sheet miHoja) {
         this.miHoja = miHoja;
+    }
+
+    public String getJornada() {
+        return jornada;
+    }
+
+    public void setJornada(String jornada) {
+        this.jornada = jornada;
     }
 
     public String getTipoDocumento() {
@@ -172,6 +217,22 @@ public class excelControlador implements Serializable {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public String getFechatemp() {
+        return fechatemp;
+    }
+
+    public void setFechatemp(String fechatemp) {
+        this.fechatemp = fechatemp;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
 }
