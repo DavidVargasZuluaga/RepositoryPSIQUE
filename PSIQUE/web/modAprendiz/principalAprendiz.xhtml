@@ -46,7 +46,7 @@
                                 <td>#{t.nombre}</td> 
                                 <td>
                                     <h:outputLabel style="color:black;" class="label" value="#{t.fecha}">
-                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" />
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" timeZone="GMT-5"/>
                                     </h:outputLabel></td> 
                                 <td align="center" width="20%" >
                                     <h:form>
@@ -63,21 +63,19 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th data-field="#" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">#</th>
+                            <th data-field="Emisor" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Emisor</th>
                             <th data-field="Titulo" data-align="left" data-halign="center" data-sortable="true" class="col-md-2">Titulo</th>
                             <th data-field="Fecha" data-align="center" data-sortable="true" class="col-md-3">Fecha</th>
-                            <th data-field="Edición" data-align="center" data-sortable="true" class="col-md-2">Edición</th>
                         </tr>
                     </thead>
                     <tbody>                                     
                         <c:forEach var="m" items="#{mensajeControlador.listarMensajesNuevos(usuarioControlador.usuarioLog)}">  
                             <tr>
-                                <td>#{m.idMensaje}</td> 
                                 <td>#{m.idEmisor.nombres}</td>
                                 <td>#{m.asunto}</td>
                                 <td>
                                     <h:outputLabel style="color:black;" class="label" value="#{m.fecha}">
-                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" />
+                                        <f:convertDateTime pattern="dd/MM/yyy hh:mma" timeZone="GMT-5"/>
                                     </h:outputLabel>
                                 </td> 
                                 <td align="center" width="20%" >

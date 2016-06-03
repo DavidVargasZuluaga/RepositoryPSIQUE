@@ -74,13 +74,13 @@
                                         <li><a href="/PSIQUE/modPsicologo/citasPendientes.xhtml"><i class="fa fa fa-clock-o fa-lg"></i> &nbsp; Citas pendientes</a></li>
                                         <li><a href="/PSIQUE/modPsicologo/mostrarCitas.xhtml"><i class="fa fa fa-calendar fa-lg"></i> &nbsp; Todas las citas</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a><strong class="botonesnav">Aprendices</strong></a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; Aprendices por ficha</a></li>
-                                        <li><a href="/PSIQUE/modPsicologo/listarAprendices.xhtml"><i class="fa fa fa-users fa-lg"></i> &nbsp; Todos los aprendices</a></li>
-                                        <li role="separator" class="divider"></li>
                                         <li><a><strong class="botonesnav">Test</strong></a></li>
                                         <li><a href="/PSIQUE/modPsicologo/mostrarTest.xhtml"><i class="fa fa fa-align-justify fa-lg"></i> &nbsp; Mostrar los test</a></li>
                                         <li><a href="/PSIQUE/modPsicologo/crearTest.xhtml"><i class="fa fa fa-indent fa-lg"></i> &nbsp; Crear test</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a><strong class="botonesnav">Aprendices</strong></a></li>
+                                        <li><a href="/PSIQUE/modPsicologo/listarFichas.xhtml"><i class="fa fa fa-male fa-lg"></i> &nbsp; Aprendices por ficha</a></li>
+                                        <li><a href="/PSIQUE/modPsicologo/listarAprendices.xhtml"><i class="fa fa fa-users fa-lg"></i> &nbsp; Todos los aprendices</a></li>
                                         <li role="separator" class="divider"></li>
                                     </ul>
                                 </li>
@@ -1046,8 +1046,10 @@
                                             <h:selectOneMenu class="form-control" value="#{familiaress.parentezco}" required="true">
                                                 <f:selectItem itemLabel="PADRE" itemValue="PADRE" />
                                                 <f:selectItem itemLabel="PAREJA" itemValue="PAREJA" />
-                                                <f:selectItem itemLabel="HIJO" itemValue="HIJO" />
+                                                <f:selectItem itemLabel="HIJO" itemValue="HIJO"/>
+                                                <f:selectItem itemLabel="AMIGO" itemValue="AMIGO"/>
                                                 <f:selectItem itemLabel="SOBRINO" itemValue="SOBRINO" />
+                                                <f:selectItem itemLabel="ABUELO" itemValue="ABUELO" />
                                                 <f:selectItem itemLabel="NIETO" itemValue="NIETO" />
                                                 <f:selectItem itemLabel="PRIMO" itemValue="PRIMO" />
                                                 <f:selectItem itemLabel="CUÑADO" itemValue="CUÑADO" />
@@ -1099,11 +1101,13 @@
                                                 <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
                                                 <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
                                                 <f:selectItem itemLabel="Suba" itemValue="Suba" />
+                                                <f:selectItem itemLabel="Soacha" itemValue="Soacha" />
                                                 <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
                                                 <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
                                                 <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
                                                 <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
                                                 <f:selectItem itemLabel="Usme" itemValue="Usme" />
+                                                <f:selectItem itemLabel="Otro" itemValue="Otro" />
                                             </h:selectOneMenu> 
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
@@ -1123,7 +1127,8 @@
                                                 <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
                                                 <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
                                                 <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                                <f:selectItem itemValue="Otro.." itemLabel="Otro" />
+                                                <f:selectItem itemValue="Ninguno" itemLabel="Ninguno"/>
+                                                <f:selectItem itemValue="Otro" itemLabel="Otro" />
                                             </h:selectOneMenu>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
@@ -1189,7 +1194,7 @@
                                             <h:inputTextarea style="color:black;" class="form-control" value="#{familiaress.comentario}"/>
                                         </div>
                                         <br/>
-                                        <h2>Si deja algun campo vacio, no editara el familiar.</h2>
+                                        <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no editara el familiar.</h4>
                                     </div>
                                     <div class="modal-footer">
                                         <h:commandButton class="botones2 btn" value="Editar" action="#{diagramaControlador.editarFamiliar(familiaress)}"></h:commandButton>
@@ -1317,11 +1322,13 @@
                                                 <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
                                                 <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
                                                 <f:selectItem itemLabel="Suba" itemValue="Suba" />
+                                                <f:selectItem itemLabel="Soacha" itemValue="Soacha" />
                                                 <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
                                                 <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
                                                 <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
                                                 <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
                                                 <f:selectItem itemLabel="Usme" itemValue="Usme" />
+                                                <f:selectItem itemLabel="Otro" itemValue="Otro" />
                                             </h:selectOneMenu> 
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
@@ -1407,8 +1414,7 @@
                                             <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
                                         </div>
                                         <br/>
-                                        <h2>Si deja algun campo vacio, no creara el familiar.</h2>
-                                    </div>
+                                        <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <div class="modal-footer">
@@ -1500,12 +1506,14 @@
                                             <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
                                             <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
                                             <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
+                                            <f:selectItem itemLabel="Soacha"  itemValue="Soacha" />
                                             <f:selectItem itemLabel="Suba" itemValue="Suba" />
                                             <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
                                             <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
                                             <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
                                             <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
                                             <f:selectItem itemLabel="Usme" itemValue="Usme" />
+                                            <f:selectItem itemLabel="Otro" itemValue="Otro" />
                                         </h:selectOneMenu> 
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
@@ -1525,7 +1533,7 @@
                                             <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
                                             <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
                                             <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                            <f:selectItem itemValue="Otro.." itemLabel="Otro" />
+                                            <f:selectItem itemValue="Otro" itemLabel="Otro" />
                                         </h:selectOneMenu>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
@@ -1591,8 +1599,7 @@
                                         <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
                                     </div>
                                     <br/>
-                                    <h2>Si deja algun campo vacio, no creara el familiar.</h2>
-                                </div>
+                                    <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                </div>
                             </div>
                             <div class="modal-footer">
                                 <div class="modal-footer">

@@ -52,7 +52,7 @@
                                             <tr>
                                                 <td data-order="desc"  align="center" width="15%">
                                                     <h:outputLabel style="color:black;" class="label" value="#{l.fecha}">
-                                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" />
+                                                        <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5" />
                                                     </h:outputLabel>
                                                 </td> 
                                                 <td>#{l.idEmisor.nombres}</td> 
