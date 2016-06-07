@@ -32,9 +32,9 @@ public class Mailer {
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(para));//quien lo va a recivir
             message.setSubject(sujeto);//asunto
             message.setContent(mensaje, "text/html; charset= utf-8");//lo que lleva el correo 
-            //3rd paso)send message
+//3rd paso)send message
             Transport.send(message);
-            System.out.println("Done");
+            System.out.println("Correo enviado");
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }
