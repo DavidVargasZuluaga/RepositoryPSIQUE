@@ -78,7 +78,7 @@
                             </li>
                             <li role="separator" style="color: black;" class="divider"></li>
                         </ul>
-                        <a style="font-size: 19px;" class="navbar-brand botonesnav navbar-right"><strong>¡ Bienvenido ! <i class="fa fa-home fa-lg"></i></strong></a>
+                        <a style="font-size: 19px;" class="navbar-brand botonesnav navbar-right"><strong>Bienvenido <i class="fa fa-home fa-lg"></i></strong></a>
                     </div>
                 </div>
             </nav>
@@ -156,13 +156,13 @@
                             <p:defaultCommand target="ingresar"/>
                             <p:focus context="formRegistro"/>
                             <div  class="form-group" >
-                                <label  class="control-label" for="documento" ><i class="fa fa-hashtag"></i> Documento</label> 
+                                <label  class="control-label" for="documento" >Número de documento:</label> 
                                 <input id="documento" title="Solo numeros" name="documento" type="tel" pattern="[0-9]{4,15}" placeholder="10118666789" class="form-control input-md" tabindex="1" required="true" autofocus="true"/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label" for="clave"><i class="fa fa-key"></i> Contraseña</label>
+                                <label class="control-label" for="clave">Contraseña:</label>
                                 <input id="clave" title="Sin caracteres especiales" name="clave" type="password" pattern="[a-z,A-Z,0-9]{4,20}" placeholder="************" class="form-control input-md" tabindex="2" required="true"/>
-                                <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" ><i class="fa fa-question-circle fa-lg"></i> Olvidaste tu contraseña</a>
+                                <a href="/PSIQUE/modUsuario/recuperarContraseña.xhtml" ><i class="fa fa-question-circle fa-lg"></i> Olvido su contraseña</a>
                             </div>
                             <div class="form-group col-xs-6 col-sm-6 col-md-6">
                                 <h:commandButton style="font-size: 17px;" action="#{usuarioControlador.autenticar()}" id="ingresar" class="btn botones btn-group-justified" tabindex="3" value="Ingresar" ></h:commandButton>
