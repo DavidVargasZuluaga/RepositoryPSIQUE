@@ -17,7 +17,7 @@
                     <h1 style="font-size: 40px;" class="color1">Bienvenido Psicólogo</h1>
                     <h:outputLabel style="color:black; font-size: xx-large;" class="label" ><i class="fa fa-calendar fa-lg color1"></i> #{usuarioControlador.fechaActual}</h:outputLabel>
                     <hr/>
-                    <h2>Citas para hoy</h2>
+                    <h2>Citas para Hoy</h2>
                     <h:form>
                         <c:forEach items="#{citaControlador.citasParaHoy(usuarioControlador.usuarioLog.psicologo)}" var="citas">
                             <label>#{citas.idAprendiz.usuario.nombres} #{citas.idAprendiz.usuario.primerApellido} #{citas.idAprendiz.usuario.segundoApellido}</label>
@@ -36,7 +36,7 @@
                             <label>Usted no tiene citas programas para este día.</label>
                         </c:if>
                     </h:form>
-                    <h3>Mensajes nuevos</h3>
+                    <h3>Mensajes Nuevos</h3>
                     <table class="table table-hover">
                         <thead>
                             <tr>

@@ -16,7 +16,7 @@
                     <div class="table-responsive">
                         <div class="panel filterable">
                             <div class="panel-heading ">
-                                <h1 class="centrar ">Todos los aprendices</h1>
+                                <h1 class="centrar ">Todos los Aprendices</h1>
                             </div>
                             <table style="font-size: 17px;" class="table table-striped table-hover" data-toggle="table" data-url="data1.json" data-show-toggle="true" data-show-columns="true" data-search="true" data-show-export="true" data-export-types="['xml','sql','doc','excel']" data-height="auto" data-pagination="true">
                                 <h:form>
@@ -43,7 +43,7 @@
                                                     </h:outputLabel>
                                                 </td>
                                                 <td align="center" width="10%" >
-                                                    <h:commandLink style="font-size: 18px" class="btn botonesinv" action="#{diagramaControlador.cargarFamiliaresCercanos(usuarioControlador.aprendizTemp)}" >
+                                                    <h:commandLink style="font-size: 18px" class="btn botones" action="#{diagramaControlador.cargarFamiliaresCercanos(usuarioControlador.aprendizTemp)}" >
                                                         <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{aprendices}"/>
                                                         <i class="fa fa-user"></i> Perfil
                                                     </h:commandLink>

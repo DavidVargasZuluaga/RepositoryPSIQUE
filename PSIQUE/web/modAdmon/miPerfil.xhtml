@@ -12,37 +12,37 @@
 
         <ui:define name="body">
             <div class="container-fluid color1 ">
-                <h1>Datos personales</h1>
+                <h1>Datos Personales</h1>
                 <hr/>
                 <div style="font-size: 19px;" class="form-group">
-                    <label class="control-label">Estado de cuenta</label>
+                    <label class="control-label">Estado de Cuenta:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.estado} &nbsp;"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">Documento</label>
+                    <label class="control-label">Documento:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.tipoDocumento} &nbsp; #{usuarioControlador.usuarioLog.noDocumento}"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">Nombre Completo</label>
+                    <label class="control-label">Nombre Completo:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.nombres} &nbsp; #{usuarioControlador.usuarioLog.primerApellido} &nbsp; #{usuarioControlador.usuarioLog.segundoApellido}"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">Correo</label>
+                    <label class="control-label">Correo:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.correo} &nbsp;"/>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">Fecha de nacimineto</label>
+                    <label class="control-label">Fecha de Nacimineto:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.fechaNacimiento}">
                         <f:convertDateTime pattern="dd/MM/yyy" />
                     </h:outputLabel>
                 </div>
                 <div style="font-size:  19px;;" class="form-group">
-                    <label class="control-label">Telefono</label>
+                    <label class="control-label">Teléfono:</label>
                     <br/>
                     <h:outputLabel style="color:black;" class="label" value="#{usuarioControlador.usuarioLog.telefono} &nbsp;"/>
                 </div>

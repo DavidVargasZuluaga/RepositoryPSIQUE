@@ -8,7 +8,7 @@
     <ui:composition template="PlantillaAprendiz.xhtml">
 
         <ui:define name="title">
-            Administrar cita
+            Administrar Cita
         </ui:define>
 
         <ui:define name="body">
@@ -17,33 +17,33 @@
                 <h:form>
                     <c:if test="#{citaControlador.confirmacionSolicitud(usuarioControlador.usuarioLog.aprendiz) == 0}">
                         <div class="col-xm-12 ">
-                            <h2>Usted no tiene citas pendientes <br/><br/><small>Solicite una ahora</small></h2>
+                            <h2>Usted No Tiene Citas Pendientes <br/><br/><small>Solicite una ahora</small></h2>
                             <h:commandLink style="font-size: 19px;" class="btn botones2 btn-block" onclick="$('#modalNuevaCita').modal('show'); return false;"><i class="fa fa-calendar-plus-o fa-lg"></i> Solicitar cita</h:commandLink>
                             <hr/>
                         </div>
                     </c:if>
                     <c:if test="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz) != null}" >
                         <div style="font-size: 21px;" class="col-xm-12s">
-                            <h3>Ultima cita cumplida</h3>
-                            Fecha y hora<br/>
+                            <h2>Ultima Cita Cumplida</h2>
+                            * Fecha y Hora<br/>
                             <small>
                                 <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).fecha}">
                                     <f:convertDateTime pattern="dd/MM/yyy hh:mm" timeZone="GMT-5"/>
                                 </h:outputLabel>
                             </small>
                             <br/>
-                            <strong>Psicólogo:</strong>
+                            <strong>* Psicólogo:</strong>
                             <br/> 
                             #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.nombres} #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).idPsicologo.usuario.primerApellido}
                             <br/>
                             <c:choose>
                                 <c:when test="#{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).valoracion == 0}">
                                     <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalValorar').modal('show'); return false;" >
-                                        Valorar ultima cita
+                                        * Valorar ultima cita
                                     </h:commandLink>
                                 </c:when>
                                 <c:otherwise>
-                                    <b class="color1">Valoración :</b>
+                                    <b class="color1">* Valoración :</b>
                                     #{citaControlador.ultimaCitaAprendiz(usuarioControlador.usuarioLog.aprendiz).valoracion}
                                     <br/>
                                     <small >5(Muy buena), 4(Buena), 3(Aceptable), 2(Podría mejorar), 1(Mala)</small>
@@ -56,8 +56,8 @@
                         <c:choose>
                             <c:when test="#{c.estado == 'PENDIENTE'}">
                                 <div class="col-xm-12">
-                                    <h3>Usted tiene una cita programada</h3>
-                                    <strong>Fecha y hora</strong>
+                                    <h3>Usted Tiene Una Cita Programada</h3>
+                                    <strong>* Fecha y Hora:</strong>
                                     <br/>
                                     <small>
                                         <h:outputLabel style="color:black; font-size: 19px;" class="label" value="#{c.fecha}">
@@ -65,11 +65,11 @@
                                         </h:outputLabel>
                                     </small>
                                     <br/>
-                                    <strong>Psicólogo :</strong>
+                                    <strong>* Psicólogo :</strong>
                                     <br/>
                                     <small>#{c.idPsicologo.usuario.nombres} #{c.idPsicologo.usuario.primerApellido}</small>
                                     <br/>
-                                    Estado: <strong style="color: #449d44;">Cita confirmada</strong>
+                                    * Estado: <strong style="color: #449d44;">Cita confirmada</strong>
                                     <h:commandLink style="font-size: 19px;" class="btn botones btn-block" onclick="$('#modalEliminar#{c.idCita}').modal(); return false;" title="Eliminar cita">
                                         <i class="fa fa-times-circle-o fa-lg"></i> Cancelar cita
                                     </h:commandLink>
