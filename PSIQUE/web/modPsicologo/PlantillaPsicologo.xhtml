@@ -444,9 +444,9 @@
                                     <br/>
                                     #{miLista3.idAprendiz.usuario.nombres} #{miLista3.idAprendiz.usuario.primerApellido} #{miLista3.idAprendiz.usuario.segundoApellido}
                                     <br/>
-                                    <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
+                                    <h:commandLink style="font-size: 18px" class="btn botones" action="#{diagramaControlador.cargarFamiliaresCercanos(usuarioControlador.aprendizTemp)}" >
                                         <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{miLista3.idAprendiz}"/>
-                                        <i class="fa fa-user"></i> Ver perfil
+                                        <i class="fa fa-user"></i> Perfil
                                     </h:commandLink>
                                 </div>
                                 <div class="modal-footer">

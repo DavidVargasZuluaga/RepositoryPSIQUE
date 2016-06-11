@@ -42,10 +42,10 @@
                                                         </h:outputLabel>
                                                     </td>
                                                     <td>
-                                                        <h:commandLink style="font-size: 18px" class="btn botonesinv" action="perfilAprendiz.xhtml" >
-                                                            <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{apren}"/>
-                                                            <i class="fa fa-user"></i> Perfil
-                                                        </h:commandLink>
+                                                        <h:commandLink style="font-size: 18px" class="btn botones" action="#{diagramaControlador.cargarFamiliaresCercanos(usuarioControlador.aprendizTemp)}" >
+                                                        <f:setPropertyActionListener target="#{usuarioControlador.aprendizTemp}" value="#{apren}"/>
+                                                        <i class="fa fa-user"></i> Perfil
+                                                    </h:commandLink>
                                                     </td>
                                                 </tr>
                                             </ui:repeat>
