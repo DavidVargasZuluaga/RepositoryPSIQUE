@@ -150,6 +150,7 @@ public class UsuarioControlador implements Serializable {
         Map params = externalContext.getRequestParameterMap();
         HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
         try {
+            listaUsuarios = usuarioFacade.findAll();
             String doc2 = (String) params.get("documento");
             long doc = Long.parseLong(doc2);
             String clave = (String) params.get("clave");

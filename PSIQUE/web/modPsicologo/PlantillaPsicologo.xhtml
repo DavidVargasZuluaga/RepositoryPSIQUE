@@ -1237,59 +1237,62 @@
                             <div class="modal-content" >
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h2 class="modal-title" id="myModalLabel">Agregar Familiar</h2>
+                                    <h2 class="modal-title" >Agregar Familiar</h2>
                                 </div>
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Nombres</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.nombres}"/>
+                                            <input style="color:black;" class="form-control" name="nombre" required="true" ></input>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Primer Apellido</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.primeroApellido}" required="true"/>
+                                            <input style="color:black;" class="form-control" name="primerApellido" required="true"></input>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Segundo Apellido</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.seguntoApellido}" required="true"/>
+                                            <input style="color:black;" class="form-control" name="segundoApellido" required="true"></input>
                                         </div>
                                         <div style="font-size: 19px;" class="form-group">
                                             <label class="control-label">Parentezco con #{familiaress.nombres}</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarrelacionTemp.parentezco}" required="true">
-                                                <f:selectItem itemLabel="PADRE" itemValue="PADRE" />
-                                                <f:selectItem itemLabel="PAREJA" itemValue="PAREJA" />
-                                                <f:selectItem itemLabel="HIJO" itemValue="HIJO"/>
-                                                <f:selectItem itemLabel="AMIGO" itemValue="AMIGO"/>
-                                            </h:selectOneMenu> 
+                                            <select class="form-control" title="Porfavor seleccione el parentezco del aprendiz" name="parentezcoAprendiz"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                                <option disabled="true" selected="true" value="">-- Seleccione el parentezco con el aprendiz --</option>
+                                                <option value="SOBRINO">SOBRINO</option>
+                                                <option value="ABUELO">ABUELO</option>
+                                                <option value="NIETO">NIETO</option>
+                                                <option value="PRIMO">PRIMO</option>
+                                                <option value="CUÑADO">CUÑADO</option>
+                                                <option value="OTRO">OTRO</option>
+                                            </select>
                                         </div>
                                         <div style="font-size: 19px;" class="form-group">
                                             <label class="control-label">Parentezco con el aprendiz</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.parentezco}" required="true">
-                                                <f:selectItem itemLabel="SOBRINO" itemValue="SOBRINO" />
-                                                <f:selectItem itemLabel="ABUELO" itemValue="ABUELO" />
-                                                <f:selectItem itemLabel="NIETO" itemValue="NIETO" />
-                                                <f:selectItem itemLabel="PRIMO" itemValue="PRIMO" />
-                                                <f:selectItem itemLabel="CUÑADO" itemValue="CUÑADO" />
-                                                <f:selectItem itemLabel="OTRO" itemValue="OTRO" />
-                                            </h:selectOneMenu> 
+                                            <select class="form-control" title="Porfavor seleccione el parentezco del aprendiz" name="parentezco"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                                <option disabled="true" selected="true" value="">-- Seleccione el parentezco con el aprendiz --</option>
+                                                <option value="PADRE">PADRE</option>
+                                                <option value="PAREJA">PAREJA</option>
+                                                <option value="HIJO">HIJO</option>
+                                                <option value="AMIGO">AMIGO</option>
+                                            </select>
                                         </div>
                                         <div style="font-size: 19px;" class="form-group" >
                                             <label class="control-label">Genero</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.sexo}" required="true">
-                                                <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
-                                                <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" title="Porfavor seleccione el parentezco del aprendiz" name="sexo"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                                <option disabled="true" selected="true" value="">-- Seleccione el genero --</option>
+                                                <option value="Masculino">Masculino</option>
+                                                <option value="Femenino">Femenino</option>
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Ocupacion</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.ocupacion}" required="true"/>
+                                            <input style="color:black;" class="form-control" name="ocupacion" required="true"></input>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Fecha de Nacimineto</label>
@@ -1308,115 +1311,123 @@
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Ubicacion</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.ubicacion}" required="true">
-                                                <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
-                                                <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
-                                                <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
-                                                <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
-                                                <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
-                                                <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
-                                                <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
-                                                <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
-                                                <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
-                                                <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
-                                                <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
-                                                <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
-                                                <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
-                                                <f:selectItem itemLabel="Suba" itemValue="Suba" />
-                                                <f:selectItem itemLabel="Soacha" itemValue="Soacha" />
-                                                <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
-                                                <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
-                                                <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
-                                                <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
-                                                <f:selectItem itemLabel="Usme" itemValue="Usme" />
-                                                <f:selectItem itemLabel="Otro" itemValue="Otro" />
-                                            </h:selectOneMenu> 
+                                            <select class="form-control" name="ubicacion" title="Seleccione una localida" data-fv-notempty-message="La localidad es requerida" required="true">
+                                                <option disabled="true" selected="true" value="">-- Seleccione una localidad --</option>
+                                                <option value="Antonio Narino">Antonino Nariño</option>
+                                                <option value="Barrios Unidos">Barrios Unidos</option>
+                                                <option value="Bosa">Bosa</option>
+                                                <option value="Chapinero">Chapinero</option>
+                                                <option value="Ciudad Bolivar">Ciudad Bolivar</option>
+                                                <option value="Engativa">Engativa</option>
+                                                <option value="Fontibon">Fontion</option>
+                                                <option value="La Candelaria">La Candelaria</option>
+                                                <option value="Los Martires">Los Martires</option>
+                                                <option value="Puente Aranda">Puente Aranda</option>
+                                                <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                                <option value="San Cristobal">San Cristobal</option>
+                                                <option value="Santa Fe">Santa Fe</option>
+                                                <option value="Suba">Suba</option>
+                                                <option value="Sumapaz">Sumapaz</option>
+                                                <option value="Soacha">Soacha</option>
+                                                <option value="Teusaquillo">Teusaquillo</option>
+                                                <option value="Tunjuelito">Tunjuelito</option>
+                                                <option value="Usaquen">Usaquen</option>
+                                                <option value="Usme">Usme</option>
+                                                <option value="Otra">Otra</option>
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Estado civil</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.estadoCivil}" required="true">
-                                                <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
-                                                <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
-                                                <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
-                                                <f:selectItem itemValue="Viudo/a" itemLabel="Viudo/a" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" title="Seleccione su estado civil" name="estadoCivil"  data-fv-notempty-message="El tipo de estado civil es requerido">
+                                                <option disabled="true" selected="true" value="">-- Seleccione su estado civil --</option>
+                                                <option value="Soltero/a">Soltero/a</option>
+                                                <option value="Casado/a">Casado/a</option>
+                                                <option value="Divorciado/a">Divorciado/a</option>                                           
+                                                <option value="Viudo/a">Viudo/a</option>                                                                                                                               
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Raza o Grupo Etnico</label>
-                                            <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.raza}" required="true">
-                                                <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
-                                                <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
-                                                <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                                <f:selectItem itemValue="Otro.." itemLabel="Otro" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" title="Seleccione su grupo etnico" name="raza"  data-fv-notempty-message="El grupo etnico  es requerido">
+                                                <option disabled="true" selected="true" value="">-- Seleccione su grupo etnico --</option>
+                                                <option value="Meztizo">Ninguno</option>
+                                                <option value="Meztizo">Meztizo</option>
+                                                <option value="Blanco">Blanco</option>
+                                                <option value="Afrocolombiano">Afrocolombiano</option>                                           
+                                                <option value="Indegena">Indegena</option>                                                                                                                               
+                                                <option value="Otro">Otro..</option>                                                                                                                               
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Religion</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.religion}" required="true">
-                                                <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
-                                                <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
-                                                <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
-                                                <f:selectItem itemValue="Pentecostalismo" itemLabel="Pentecostalismo" />
-                                                <f:selectItem itemValue="Testigos de Jehová" itemLabel="Testigos de Jehová" />
-                                                <f:selectItem itemValue="Comunión Anglicana" itemLabel="Comunión Anglicana" />
-                                                <f:selectItem itemValue="Rastafarismo" itemLabel="Rastafarismo" />
-                                                <f:selectItem itemValue="Islamismo" itemLabel="Islamismo" />
-                                                <f:selectItem itemValue="Budismo" itemLabel="Budismo" />
-                                                <f:selectItem itemValue="Judaísmo" itemLabel="Judaísmo" />
-                                                <f:selectItem itemValue="Iglesia Ortodoxa" itemLabel="Iglesia Ortodoxa" />
-                                                <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" name="religion" title="Seleccione su grupo religioso" data-fv-notempty-message="La religion es requerida">
+                                                <option disabled="true" selected="true" value="">-- Seleccione su grupo religioso --</option>
+                                                <option value="Catolica">Católica</option>
+                                                <option value="Cristiana">Cristiana</option>
+                                                <option value="Evangelica">Evangélica</option>                                           
+                                                <option value="Pentecostalismo">Pentecostalismo</option>                                                                                                                               
+                                                <option value="Protestantismo">Protestantismo</option>                                                                                                                               
+                                                <option value="Testigos de Jehova¡">Testigos de Jehova¡</option>                                                                                                                               
+                                                <option value="Comunidad Anglicana">Comunidad Anglicana</option>                                                                                                                               
+                                                <option value="Rastafarismo">Rastafarismo</option>                                                                                                                               
+                                                <option value="Islamismo">Islamismo</option>                                                                                                                               
+                                                <option value="Budismo">Budismo</option>                                                                                                                               
+                                                <option value="Judaismo">Judaísmo</option>                                                                                                                               
+                                                <option value="Iglesia Ortodoxa">Iglesia Ortodoxa</option>                                                                                                                               
+                                                <option value="Otra">Otra..</option>                                                                                                                               
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Tendencia politica</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.tendenciaPolitica}" required="true">
-                                                <f:selectItem itemValue="PSUN" itemLabel="Partido Social de Unidad Nacional" />
-                                                <f:selectItem itemValue="CD" itemLabel="Centro Democrático" />
-                                                <f:selectItem itemValue="PC" itemLabel="Partido Conservador Colombiano" />
-                                                <f:selectItem itemValue="PLC" itemLabel="Partido Liberal Colombiano" />
-                                                <f:selectItem itemValue="PCR" itemLabel="Partido Cambio Radical" />
-                                                <f:selectItem itemValue="POC" itemLabel="Partido Opción Ciudadana" />
-                                                <f:selectItem itemValue="AV" itemLabel="Alianza Verde" />
-                                                <f:selectItem itemValue="Polo" itemLabel="Polo Democrático Alternativo" />
-                                                <f:selectItem itemValue="MInRA" itemLabel="Movimiento Independiente de Renovación Absoluta" />
-                                                <f:selectItem itemValue="ASI" itemLabel="Alianza Social Independiente" />
-                                                <f:selectItem itemValue="MAIS" itemLabel="Movimiento Alternativo Indígena y Socialo" />
-                                                <f:selectItem itemValue="FÉCFu" itemLabel="Fundación Ébano por Colombia Funeco" />
-                                                <f:selectItem itemValue="AICo" itemLabel="Autoridades Indígenas de Colombia" />
-                                                <f:selectItem itemValue="UP" itemLabel="Unión Patriótica" />
-                                                <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" title="Seleccione su tendencia politica" name="tendenciaPolitica"  data-fv-notempty-message="La tendencia politica es requerida">
+                                                <option disabled="true" selected="true" value="">-- Seleccione su grupo político --</option>
+                                                <option value="Partido Social de Unidad Nacional">Partido de la U</option>
+                                                <option value="Centro Democratico">Centro Democrático</option>
+                                                <option value="Partido Conservador Colombiano">Conservador</option>                                           
+                                                <option value="Liberal Colombiano">Liberal</option>                                                                                                                               
+                                                <option value="Cambio Radical">Cambio Radical</option>                                                                                                                               
+                                                <option value="PIN">PIN</option>                                                                                                                               
+                                                <option value="Alianza Verde">Alianza Verde</option>                                                                                                                               
+                                                <option value="Polo">PDA</option>                                                                                                                               
+                                                <option value="MIRA">MIRA</option>                                                                                                                               
+                                                <option value="Alianza Social Independiente">Alianza Social Independiente</option>                                                                                                                               
+                                                <option value="MAIS">MAIS</option>                                                                                                                               
+                                                <option value="Funeco">Funeco</option>                                                                                                                               
+                                                <option value="Autoridades Indigenas de Colombia">Autoridades Indigenas de Colombia</option>                                                                                                                               
+                                                <option value="Union Patriartica">Unión Patriartica</option>                                                                                                                               
+                                                <option value="Otra">Otra..</option>                                                                                                                               
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Orientacion Sexual</label>
                                             <br/>
-                                            <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.orientacionSexual}" required="true">
-                                                <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
-                                                <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
-                                                <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
-                                                <f:selectItem itemValue="Asexualidado" itemLabel="Asexualidado" />
-                                                <f:selectItem itemValue="Pansexualidad" itemLabel="Pansexualidad" />
-                                                <f:selectItem itemValue="Demisexualidad" itemLabel="Demisexualidad" />
-                                                <f:selectItem itemValue="Antrosexualidad" itemLabel="Antrosexualidad" />
-                                            </h:selectOneMenu>
+                                            <select class="form-control" name="orientacionSexual" title="Seleccione su grupo sexual" data-fv-notempty-message="El grupo sexual es requerido">
+                                                <option disabled="true" selected="true" value="">-- Seleccione su grupo sexual --</option>
+                                                <option value="Heterosexual">Heterosexual</option>
+                                                <option value="Homosexual">Homosexual</option>                                      
+                                                <option value="Asexual">Asexual</option>                                                                                                                               
+                                                <option value="Pansexual">Pansexual</option>                                                                                                                               
+                                                <option value="Demisexual">Demisexual</option>                                                                                                                               
+                                                <option value="Antrosexual">Antrosexual</option>                                                                                                                                                                                                                                                            
+                                                <option value="Otra">Otra..</option>                                                                                                                               
+                                            </select>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Discapacidad</label>
                                             <br/>
-                                            <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.discapacidad}" />
-                                            <h4>Si no la posee digite No</h4>
+                                            <input style="color:black;" class="form-control" name="discapacidad" required="true"></input>
                                         </div>
                                         <div style="font-size:  19px;" class="form-group">
                                             <label class="control-label">Comentario</label>
                                             <br/>
-                                            <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
+                                            <input style="color:black;" class="form-control" name="comentario" required="true"></input>
                                         </div>
                                         <br/>
-                                        <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                    </div>
+                                        <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <div class="modal-footer">
@@ -1442,40 +1453,42 @@
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Nombres</label>
                                         <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.nombres}"/>
+                                        <input style="color:black;" class="form-control" name="nombre" required="true" ></input>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Primer Apellido</label>
                                         <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.primeroApellido}" required="true"/>
+                                        <input style="color:black;" class="form-control" name="primerApellido" required="true"></input>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Segundo Apellido</label>
                                         <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.seguntoApellido}" required="true"/>
+                                        <input style="color:black;" class="form-control" name="segundoApellido" required="true"></input>
                                     </div>
                                     <div style="font-size: 19px;" class="form-group">
                                         <label class="control-label">Parentezco con el aprendiz</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.parentezco}" required="true">
-                                            <f:selectItem itemLabel="PADRE" itemValue="PADRE" />
-                                            <f:selectItem itemLabel="PAREJA" itemValue="PAREJA" />
-                                            <f:selectItem itemLabel="HIJO" itemValue="HIJO"/>
-                                            <f:selectItem itemLabel="AMIGO" itemValue="AMIGO"/>
-                                        </h:selectOneMenu> 
+                                        <select class="form-control" title="Porfavor seleccione el parentezco del aprendiz" name="parentezcoAprendiz"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione el parentezco con el aprendiz --</option>
+                                            <option value="PADRE">PADRE</option>
+                                            <option value="PAREJA">PAREJA</option>
+                                            <option value="HIJO">HIJO</option>
+                                            <option value="AMIGO">AMIGO</option>
+                                        </select>
                                     </div>
                                     <div style="font-size: 19px;" class="form-group" >
                                         <label class="control-label">Genero</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.sexo}" required="true">
-                                            <f:selectItem itemValue="Masculino" itemLabel="Masculino"/>
-                                            <f:selectItem itemValue="Femenino" itemLabel="Femenino" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" title="Porfavor seleccione el parentezco del aprendiz" name="sexo"  data-fv-notempty-message="El tipo de documento es requerido" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione el genero --</option>
+                                            <option value="Masculino">Masculino</option>
+                                            <option value="Femenino">Femenino</option>
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Ocupacion</label>
                                         <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.ocupacion}" required="true"/>
+                                        <input style="color:black;" class="form-control" name="ocupacion" required="true"></input>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Fecha de Nacimineto</label>
@@ -1494,120 +1507,129 @@
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Ubicacion</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.ubicacion}" required="true">
-                                            <f:selectItem itemLabel="Antonio Nariño" itemValue="Antonio Nariño" />
-                                            <f:selectItem itemLabel="Barrios Unidos" itemValue="Barrios Unidos" />
-                                            <f:selectItem itemLabel="Bosa" itemValue="Bosa" />
-                                            <f:selectItem itemLabel="Chapinero" itemValue="Chapinero" />
-                                            <f:selectItem itemLabel="Ciudad Bolívar" itemValue="Ciudad Bolívar" />
-                                            <f:selectItem itemLabel="Engativá" itemValue="Engativá" />
-                                            <f:selectItem itemLabel="Fontibón" itemValue="Fontibón" />
-                                            <f:selectItem itemLabel="La Candelaria" itemValue="La Candelaria" />
-                                            <f:selectItem itemLabel="Los Mártires" itemValue="Los Mártires" />
-                                            <f:selectItem itemLabel="Puente Aranda" itemValue="Puente Aranda" />
-                                            <f:selectItem itemLabel="Rafael Uribe Uribe" itemValue="Rafael Uribe Uribe" />
-                                            <f:selectItem itemLabel="San Cristóbal" itemValue="San Cristóbal" />
-                                            <f:selectItem itemLabel="Santa Fe"  itemValue="Santa Fe" />
-                                            <f:selectItem itemLabel="Soacha"  itemValue="Soacha" />
-                                            <f:selectItem itemLabel="Suba" itemValue="Suba" />
-                                            <f:selectItem itemLabel="Sumapaz" itemValue="Sumapaz" />
-                                            <f:selectItem itemLabel="Teusaquillo" itemValue="Teusaquillo" />
-                                            <f:selectItem itemLabel="Tunjuelito" itemValue="Tunjuelito" />
-                                            <f:selectItem itemLabel="Usaquén" itemValue="Usaquén" />
-                                            <f:selectItem itemLabel="Usme" itemValue="Usme" />
-                                            <f:selectItem itemLabel="Otro" itemValue="Otro" />
-                                        </h:selectOneMenu> 
+                                        <select class="form-control" name="ubicacion" title="Seleccione una localida" data-fv-notempty-message="La localidad es requerida" required="true">
+                                            <option disabled="true" selected="true" value="">-- Seleccione una localidad --</option>
+                                            <option value="Antonio Narino">Antonino Nariño</option>
+                                            <option value="Barrios Unidos">Barrios Unidos</option>
+                                            <option value="Bosa">Bosa</option>
+                                            <option value="Chapinero">Chapinero</option>
+                                            <option value="Ciudad Bolivar">Ciudad Bolivar</option>
+                                            <option value="Engativa">Engativa</option>
+                                            <option value="Fontibon">Fontion</option>
+                                            <option value="La Candelaria">La Candelaria</option>
+                                            <option value="Los Martires">Los Martires</option>
+                                            <option value="Puente Aranda">Puente Aranda</option>
+                                            <option value="Rafael Uribe Uribe">Rafael Uribe Uribe</option>
+                                            <option value="San Cristobal">San Cristobal</option>
+                                            <option value="Santa Fe">Santa Fe</option>
+                                            <option value="Suba">Suba</option>
+                                            <option value="Sumapaz">Sumapaz</option>
+                                            <option value="Soacha">Soacha</option>
+                                            <option value="Teusaquillo">Teusaquillo</option>
+                                            <option value="Tunjuelito">Tunjuelito</option>
+                                            <option value="Usaquen">Usaquen</option>
+                                            <option value="Usme">Usme</option>
+                                            <option value="Otra">Otra</option>
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Estado civil</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.estadoCivil}" required="true">
-                                            <f:selectItem itemValue="Soltero/a" itemLabel="Soltero/a"/>
-                                            <f:selectItem itemValue="Casado/a" itemLabel="Casado/a" />
-                                            <f:selectItem itemValue="Divorciado/a" itemLabel="Divorciado/a" />
-                                            <f:selectItem itemValue="Casado/a" itemLabel="Viudo/a" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" title="Seleccione su estado civil" name="estadoCivil"  data-fv-notempty-message="El tipo de estado civil es requerido">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su estado civil --</option>
+                                            <option value="Soltero/a">Soltero/a</option>
+                                            <option value="Casado/a">Casado/a</option>
+                                            <option value="Divorciado/a">Divorciado/a</option>                                           
+                                            <option value="Viudo/a">Viudo/a</option>                                                                                                                               
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Raza o Grupo Etnico</label>
-                                        <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.raza}" required="true">
-                                            <f:selectItem itemValue="Meztizo" itemLabel="Meztizo"/>
-                                            <f:selectItem itemValue="Blanco" itemLabel="Blanco" />
-                                            <f:selectItem itemValue="Indegena" itemLabel="Indegena" />
-                                            <f:selectItem itemValue="Otro" itemLabel="Otro" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" title="Seleccione su grupo etnico" name="raza"  data-fv-notempty-message="El grupo etnico  es requerido">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo etnico --</option>
+                                            <option value="Meztizo">Ninguno</option>
+                                            <option value="Meztizo">Meztizo</option>
+                                            <option value="Blanco">Blanco</option>
+                                            <option value="Afrocolombiano">Afrocolombiano</option>                                           
+                                            <option value="Indegena">Indegena</option>                                                                                                                               
+                                            <option value="Otro">Otro..</option>                                                                                                                               
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Religion</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.religion}" required="true">
-                                            <f:selectItem itemValue="Catolica" itemLabel="Catolica"/>
-                                            <f:selectItem itemValue="Cristiana" itemLabel="Cristiana" />
-                                            <f:selectItem itemValue="Evangelica" itemLabel="Evangelica" />
-                                            <f:selectItem itemValue="Pentecostalismo" itemLabel="Pentecostalismo" />
-                                            <f:selectItem itemValue="Testigos de Jehová" itemLabel="Testigos de Jehová" />
-                                            <f:selectItem itemValue="Comunión Anglicana" itemLabel="Comunión Anglicana" />
-                                            <f:selectItem itemValue="Rastafarismo" itemLabel="Rastafarismo" />
-                                            <f:selectItem itemValue="Islamismo" itemLabel="Islamismo" />
-                                            <f:selectItem itemValue="Budismo" itemLabel="Budismo" />
-                                            <f:selectItem itemValue="Judaísmo" itemLabel="Judaísmo" />
-                                            <f:selectItem itemValue="Iglesia Ortodoxa" itemLabel="Iglesia Ortodoxa" />
-                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" name="religion" title="Seleccione su grupo religioso" data-fv-notempty-message="La religion es requerida">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo religioso --</option>
+                                            <option value="Catolica">Católica</option>
+                                            <option value="Cristiana">Cristiana</option>
+                                            <option value="Evangelica">Evangélica</option>                                           
+                                            <option value="Pentecostalismo">Pentecostalismo</option>                                                                                                                               
+                                            <option value="Protestantismo">Protestantismo</option>                                                                                                                               
+                                            <option value="Testigos de Jehova¡">Testigos de Jehova¡</option>                                                                                                                               
+                                            <option value="Comunidad Anglicana">Comunidad Anglicana</option>                                                                                                                               
+                                            <option value="Rastafarismo">Rastafarismo</option>                                                                                                                               
+                                            <option value="Islamismo">Islamismo</option>                                                                                                                               
+                                            <option value="Budismo">Budismo</option>                                                                                                                               
+                                            <option value="Judaismo">Judaísmo</option>                                                                                                                               
+                                            <option value="Iglesia Ortodoxa">Iglesia Ortodoxa</option>                                                                                                                               
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Tendencia politica</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.tendenciaPolitica}" required="true">
-                                            <f:selectItem itemValue="PSUN" itemLabel="Partido Social de Unidad Nacional" />
-                                            <f:selectItem itemValue="CD" itemLabel="Centro Democrático" />
-                                            <f:selectItem itemValue="PC" itemLabel="Partido Conservador Colombiano" />
-                                            <f:selectItem itemValue="PLC" itemLabel="Partido Liberal Colombiano" />
-                                            <f:selectItem itemValue="PCR" itemLabel="Partido Cambio Radical" />
-                                            <f:selectItem itemValue="POC" itemLabel="Partido Opción Ciudadana" />
-                                            <f:selectItem itemValue="AV" itemLabel="Alianza Verde" />
-                                            <f:selectItem itemValue="Polo" itemLabel="Polo Democrático Alternativo" />
-                                            <f:selectItem itemValue="MInRA" itemLabel="Movimiento Independiente de Renovación Absoluta" />
-                                            <f:selectItem itemValue="ASI" itemLabel="Alianza Social Independiente" />
-                                            <f:selectItem itemValue="MAIS" itemLabel="Movimiento Alternativo Indígena y Socialo" />
-                                            <f:selectItem itemValue="FÉCFu" itemLabel="Fundación Ébano por Colombia Funeco" />
-                                            <f:selectItem itemValue="AICo" itemLabel="Autoridades Indígenas de Colombia" />
-                                            <f:selectItem itemValue="UP" itemLabel="Unión Patriótica" />
-                                            <f:selectItem itemValue="Otra" itemLabel="Otra" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" title="Seleccione su tendencia politica" name="tendenciaPolitica"  data-fv-notempty-message="La tendencia politica es requerida">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo político --</option>
+                                            <option value="Partido Social de Unidad Nacional">Partido de la U</option>
+                                            <option value="Centro Democratico">Centro Democrático</option>
+                                            <option value="Partido Conservador Colombiano">Conservador</option>                                           
+                                            <option value="Liberal Colombiano">Liberal</option>                                                                                                                               
+                                            <option value="Cambio Radical">Cambio Radical</option>                                                                                                                               
+                                            <option value="PIN">PIN</option>                                                                                                                               
+                                            <option value="Alianza Verde">Alianza Verde</option>                                                                                                                               
+                                            <option value="Polo">PDA</option>                                                                                                                               
+                                            <option value="MIRA">MIRA</option>                                                                                                                               
+                                            <option value="Alianza Social Independiente">Alianza Social Independiente</option>                                                                                                                               
+                                            <option value="MAIS">MAIS</option>                                                                                                                               
+                                            <option value="Funeco">Funeco</option>                                                                                                                               
+                                            <option value="Autoridades Indigenas de Colombia">Autoridades Indigenas de Colombia</option>                                                                                                                               
+                                            <option value="Union Patriartica">Unión Patriartica</option>                                                                                                                               
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Orientacion Sexual</label>
                                         <br/>
-                                        <h:selectOneMenu class="form-control" value="#{diagramaControlador.familiarTemp.orientacionSexual}" required="true">
-                                            <f:selectItem itemValue="Heterosexual" itemLabel="Heterosexual"/>
-                                            <f:selectItem itemValue="Homosexual" itemLabel="Homosexual" />
-                                            <f:selectItem itemValue="Bisexualidad" itemLabel="Bisexualidad" />
-                                            <f:selectItem itemValue="Asexualidado" itemLabel="Asexualidado" />
-                                            <f:selectItem itemValue="Pansexualidad" itemLabel="Pansexualidad" />
-                                            <f:selectItem itemValue="Demisexualidad" itemLabel="Demisexualidad" />
-                                            <f:selectItem itemValue="Antrosexualidad" itemLabel="Antrosexualidad" />
-                                        </h:selectOneMenu>
+                                        <select class="form-control" name="orientacionSexual" title="Seleccione su grupo sexual" data-fv-notempty-message="El grupo sexual es requerido">
+                                            <option disabled="true" selected="true" value="">-- Seleccione su grupo sexual --</option>
+                                            <option value="Heterosexual">Heterosexual</option>
+                                            <option value="Homosexual">Homosexual</option>                                      
+                                            <option value="Asexual">Asexual</option>                                                                                                                               
+                                            <option value="Pansexual">Pansexual</option>                                                                                                                               
+                                            <option value="Demisexual">Demisexual</option>                                                                                                                               
+                                            <option value="Antrosexual">Antrosexual</option>                                                                                                                                                                                                                                                            
+                                            <option value="Otra">Otra..</option>                                                                                                                               
+                                        </select>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Discapacidad</label>
                                         <br/>
-                                        <h:inputText style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.discapacidad}" />
+                                        <input style="color:black;" class="form-control" name="discapacidad" required="true"></input>
                                     </div>
                                     <div style="font-size:  19px;" class="form-group">
                                         <label class="control-label">Comentario</label>
                                         <br/>
-                                        <h:inputTextarea style="color:black;" class="form-control" value="#{diagramaControlador.familiarTemp.comentario}"/>
+                                        <input style="color:black;" class="form-control" name="comentario" required="true"></input>
                                     </div>
                                     <br/>
-                                    <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <div class="modal-footer">
-                                    <h:commandButton class="botones btn" value="Agregar" action="#{diagramaControlador.crearFamiliarCercano(usuarioControlador.aprendizTemp)}" />
-                                    <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
+                                    <h4>Unicamente puede dejar la fecha de defuncion sin llenar, de lo contrario no creara el familiar.</h4>                                
                                 </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal-footer">
+                                <h:commandButton class="botones btn" value="Agregar" action="#{diagramaControlador.crearFamiliarCercano(usuarioControlador.aprendizTemp)}" />
+                                <button type="button" class="btn botones" data-dismiss="modal" >Cancelar</button>
                             </div>
                         </div>
                     </h:form>

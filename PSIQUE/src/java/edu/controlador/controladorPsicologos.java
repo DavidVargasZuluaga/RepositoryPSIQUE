@@ -60,7 +60,7 @@ public class controladorPsicologos implements Serializable {
 //    //Atributos de tipoPsicologo
 //    private String jornada;
     private int ver;
-    private int modalCreacion;
+    private int modalCreacionPsicologo;
 
     public controladorPsicologos() {
 
@@ -70,11 +70,11 @@ public class controladorPsicologos implements Serializable {
     public void init() {
         psicologo = new Psicologo();
         ListaPsicologo = new ArrayList<>();
-        modalCreacion = 0;
+        modalCreacionPsicologo = 0;
     }
 
     public void cerrarModal() {
-        modalCreacion = 0;
+        modalCreacionPsicologo = 0;
     }
 
     public void crearUsuario() {
@@ -99,48 +99,29 @@ public class controladorPsicologos implements Serializable {
             usuarioTemp.setSegundoApellido((String) params.get("segundoApellido"));
             usuarioTemp.setTelefono((String) params.get("telefono"));
             for (int i = 0; i < usuarioFacade.findAll().size(); i++) {
-                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento()) {
+                if (usuarioFacade.findAll().get(i).getNoDocumento() == usuarioTemp.getNoDocumento() || usuarioFacade.findAll().get(i).getCorreo().equals(usuarioTemp.getCorreo())) {
                     existe = false;
-                    modalCreacion = 2;
+                    modalCreacionPsicologo = 2;
                     break;
                 }
             }
             if (!usuarioTemp.getClave().equals(clave2)) {
                 existe = false;
-                modalCreacion = 3;
+                modalCreacionPsicologo = 3;
             }
             if (existe) {
                 usuarioFacade.create(usuarioTemp);
-//                psicologo.setUsuario(usuarioTemp);
+
                 psicologo.setIdPsicologo(usuarioTemp.getIdUsuario());
                 psicologo.setJornada((String) params.get("jornada"));
                 psicologoFacade.create(psicologo);
                 System.out.println("usuario creado");
-                modalCreacion = 1;
+                modalCreacionPsicologo = 1;
             } else {
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public String crearPsicologo() {
-        crearUsuario();
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        ExternalContext externalContext = facesContext.getExternalContext();
-        Map params = externalContext.getRequestParameterMap();
-        HttpServletRequest httpServletRequest = (HttpServletRequest) facesContext.getExternalContext().getRequest();
-
-        try {
-            if (usuarioTemp != null) {
-                psicologo.setUsuario(usuarioTemp);
-                psicologo.setJornada((String) params.get("jornada"));
-                psicologoFacade.create(psicologo);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return " ";
     }
 
     public void eliminarEnTabla(Psicologo psicologo) {
@@ -206,12 +187,12 @@ public class controladorPsicologos implements Serializable {
         this.usuarioTemp = usuarioTemp;
     }
 
-    public int getModalCreacion() {
-        return modalCreacion;
+    public int getModalCreacionPsicologo() {
+        return modalCreacionPsicologo;
     }
 
-    public void setModalCreacion(int modalCreacion) {
-        this.modalCreacion = modalCreacion;
+    public void setModalCreacionPsicologo(int modalCreacionPsicologo) {
+        this.modalCreacionPsicologo = modalCreacionPsicologo;
     }
 
 }

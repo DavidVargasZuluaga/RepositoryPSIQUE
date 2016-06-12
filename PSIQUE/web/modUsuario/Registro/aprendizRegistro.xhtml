@@ -17,19 +17,19 @@
                 <hr/>
                 Campo Requerido <i title="Campo requerido" class="fa fa-exclamation-circle fa-lg"></i>   
                 <br/>
-                <h:form>
+                <h:form id="formularioRegistroAprendiz"> 
                     <br/>
                     <div class="form-group">
                         <label for="nombres"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer y Segundo Nombre:</label>
-                        <input pattern="[A-Z a-z]{4,25}" class="form-control" title="Porfavor digite el primer y el sugundo nombre" name="nombres" placeholder="Digite el primer y el sugundo nombre" required="true" id="nombres" maxlength="20" />
+                        <input  class="form-control" title="Porfavor digite el primer y el segundo nombre" name="nombres" placeholder="Digite el primer y el segundo nombre" required="true" id="nombres" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="primerApellido"><i  class="fa fa-exclamation-circle fa-lg"></i> Primer Apellido:</label>
-                        <input pattern="[A-Z a-z]{4,20}" class="form-control" title="Porfavor digite su primer apellido" name="primerApellido" placeholder="Digite su primer apellido" required="true" id="primerApellido" maxlength="20" />
+                        <input  class="form-control" title="Porfavor digite su primer apellido" name="primerApellido" placeholder="Digite su primer apellido" required="true" id="primerApellido" maxlength="20" />
                     </div>
                     <div class="form-group">
-                    <label for="segundoApellido">Segundo Apellido:</label>
-                        <input pattern="[A-Z a-z]{4,20}" class="form-control" title="Porfavor digite su segundo apellido" name="segundoApellido" placeholder="Digite su segundo apellido" id="segundoApellido" maxlength="20" />
+                        <label for="segundoApellido"><i  class="fa fa-exclamation-circle fa-lg"></i> Segundo Apellido:</label>
+                        <input  class="form-control" title="Porfavor digite su segundo apellido" name="segundoApellido" placeholder="Digite su segundo apellido" id="segundoApellido" maxlength="20" />
                     </div>
                     <div class="form-group ">
                         <label for="tipoDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Tipo Documento:</label>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="noDocumento"><i  class="fa fa-exclamation-circle fa-lg"></i> Documento:</label>
-                        <input pattern="[0-9]{4,15}" type="tel" class="form-control" title="Porfavor digite su documento" name="noDocumento" placeholder="Digite su numero de documen" required="true" id="noDocumento" maxlength="20" />
+                        <input  type="tel" class="form-control" title="Porfavor digite su número de documento" name="noDocumento" placeholder="Digite su número de documento" required="true" id="noDocumento" maxlength="20" />
                     </div>
                     <br/>
                     <div class="form-group text-left">
@@ -59,7 +59,8 @@
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>                                      
                         </select>
-                    </div>
+                    </div
+
                     <div class="form-group">
                         <label  for="ficha"><i title="Ficha" class="fa fa-exclamation-circle fa-lg"></i> No de Ficha:</label>
                         <select class="selectpicker form-control" name="ficha" data-live-search="true" required="true">
@@ -68,10 +69,11 @@
                                 <option value="#{listaF.noFicha}">#{listaF.noFicha} #{listaF.idPrograma.nombrePrograma}</option>
                             </c:forEach>
                         </select>
-                    </div>
+                    </div
+
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
-                        <input type="tel" pattern="[0-9]{,20}" class="form-control" title="Porfavor digite su telefono" name="telefono" placeholder="Digite su telefono" id="telefono" maxlength="20" />
+                        <input type="tel"  class="form-control" title="Porfavor digite su teléfono" name="telefono" placeholder="Digite su teléfono" id="telefono" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="ubicacion"><i  class="fa fa-exclamation-circle fa-lg"></i> Localidad de Residencia:</label>
@@ -178,38 +180,239 @@
                     </div>
                     <div class="form-group">
                         <label for="discapacidad">Discapacidad:</label>
-                        <input type="text" pattern="[A-Z a-z]{,40}" class="form-control" title="Si posee alguna discapacidad porfavor digitela" name="discapacidad" placeholder="Tipo de discapacidad" id="discapacidad" maxlength="20" />
+                        <input type="text"  class="form-control" title="Si posee alguna discapacidad porfavor digitela" name="discapacidad" placeholder="Tipo de discapacidad" id="discapacidad" maxlength="20" />
                     </div>                                                          
                     <div class="form-group">
                         <label for="pasaTiempo">Pasa Tiempo:</label>
-                        <input type="text" pattern="[A-Z a-z]{,40}" class="form-control" title="Porfavor digite sus pasatiempos" name="pasaTiempo" placeholder="Pasatiempos" id="pasaTiempo" maxlength="20" />
+                        <input type="text"  class="form-control" title="Porfavor digite sus pasatiempos" name="pasaTiempo" placeholder="Pasatiempos" id="pasaTiempo" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label for="correo"><i  class="fa fa-exclamation-circle fa-lg"></i> Correo Electrónico:</label>
-                        <input type="email" pattern="[a-z0-9._]{,40}" class="form-control" title="Porfavor digite su correo electronico" name="correo" placeholder="Digite el correo electronico del coordinador" required="true" id="correo" maxlength="25" />
+                        <input type="email"  class="form-control" title="Porfavor digite su correo electrónico" name="correo" placeholder="Digite su correo electrónico" required="true" id="correo" maxlength="25" />
                     </div>
                     <div class="form-group">
                         <label for="clave"><i  class="fa fa-exclamation-circle fa-lg"></i> Contraseña:</label>
-                        <input type="password" pattern="[A-Z a-z0-9]{,40}" class="form-control" title="Porfavor digite su contraseña" name="clave1" placeholder="Digite su contraseña" required="true" id="clave" maxlength="20" />
+                        <input type="password"  class="form-control" title="Porfavor digite su contraseña" name="clave1" placeholder="Digite su contraseña" required="true" id="clave" maxlength="20" />
                     </div>
                     <div class="form-group">
                         <label  for="confirmarClave"><i class="fa fa-exclamation-circle fa-lg"></i> Confirmar Contraseña:</label>
-                        <input type="password" pattern="[A-Z a-z0-9]{,40}" class="form-control" title="Porfavor confirme su contraseña" name="clave2" placeholder="Confirme la contraseña del coordinador" required="true" id="clave" maxlength="20" />
+                        <input type="password"  class="form-control" title="Porfavor confirme su contraseña" name="clave2" placeholder="Confirme la contraseña del coordinador" required="true" id="clave" maxlength="20" />
                     </div>
                     <div class="form-group text-left">
                         <div class="col-xm-12 col-sm-6 col-md-6">
-                            <h:commandButton class="btn botones2 btn-block" tabindex="11" value="Ir a cuestionario" action="#{controladorAprendiz.guardarAprendizUsuario()}" >
-                                
-                            </h:commandButton>
-                        </div>
-                        <div class="col-xm-12 col-sm-6 col-md-6">
-                            <button type="reset" class="btn botones btn-block" tabindex="12" style="margin-bottom: 50px" >Borrar</button>
+                            <h:commandButton class="btn botones2 btn-block" tabindex="11" value="Ir a cuestionario" action="#{controladorAprendiz.guardarAprendizUsuario()}" />                           
                         </div>
                     </div>
                 </h:form>
                 <br/>
                 <br/>
             </div>
+
+            <script>
+                $().ready(function () {
+                    //métodos de validacion del otro plugin formvalidation
+                    $('#formularioRegistroAprendiz').formValidation({// Validación datos capa cliente. TENER PRESENTE EL ID DEL FORM
+                        icon: {valid: 'fa fa-check-circle', invalid: 'fa fa-times-circle', validating: 'fa fa-refresh'}, //iconos
+                        locale: 'es_ES', //idioma - debe enlazar el archivo "es_ES.js"
+                        fields: {
+                            nombres: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese sus nombres.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 20,
+                                        message: 'El nombre debe tener por lo menos mas de dos caracteres y menos de 20.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú\s]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras.'
+                                    }
+                                }
+                            },
+                            primerApellido: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su primer apellido.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 10,
+                                        message: 'Su primer apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras, ademas de esto tenga encuenta que no puede dejar espacios.'
+                                    }
+                                }
+                            },
+                            segundoApellido: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su segundo apellido.'
+                                    },
+                                    stringLength: {
+                                        min: 3,
+                                        max: 10,
+                                        message: 'Su segundo apellido debe tener por lo menos mas de dos caracteres y menos de 10.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras, ademas de esto tenga encuenta que no puede dejar espacios.'
+                                    }
+                                }
+                            },
+                            tipoDocumento: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione su tipo de documento.'
+                                    }
+                                }
+                            },
+                            noDocumento: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su número de documento.'
+                                    },
+                                    stringLength: {
+                                        min: 10,
+                                        max: 15,
+                                        message: 'El documento por lo menos debe tener como minimo 10 caracteres y menos de 15.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[0-9]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar numeros.'
+                                    }
+                                }
+                            },
+                            tipoDeGenero: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione el genero al que petenece.'
+                                    }
+                                }
+                            },
+                            telefono: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor ingrese su número de télefono.'
+                                    },
+                                    stringLength: {
+                                        min: 10,
+                                        max: 15,
+                                        message: 'El número de télefono debe tener por lo menos como minimo 10 caracteres y menos de 15.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[0-9]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar numeros.'
+                                    }
+                                }
+                            },
+                            ubicacion: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la localidad donde vive.'
+                                    }
+                                }
+                            },
+                            estadoCivil: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione su estado civil.'
+                                    }
+                                }
+                            },
+                            raza: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione el rupo etnico al cual pertenece.'
+                                    }
+                                }
+                            },
+                            religion: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la religion a la cual pertenece.'
+                                    }
+                                }
+                            },
+                            tendenciaPolitica: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la tendencia politica a la cual pertenece.'
+                                    }
+                                }
+                            },
+                            orientacionSexual: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la orientación sexual a la cual pertenece.'
+                                    }
+                                }
+                            },
+                            discapacidad: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Si posee alguna discapacidad porfavor digitela de lo contrario digite ninguna.'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z_\.ñáéíóú\s]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras.'
+                                    }
+                                }
+                            },
+                            correo: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su correo electronico'
+                                    },
+                                    regexp: {
+                                        regexp: /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/,
+                                        message: 'Tenga encuenta que el correo consta de tres partes el nombre del usuario, la dirreccion, y el dominio ejemplo:(usuario123@hotmail.com)'
+                                    }
+                                }
+                            },
+                            clave1: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor digite su contraseña'
+                                    },
+                                    regexp: {
+                                        regexp: /^[a-zA-Z0-9_\.]+$/,
+                                        message: 'Caracteres incorrectos solo puede usar letras y números, ademas de esto no debe dejar espacios.'
+                                    }
+                                }
+                            },
+                            clave2: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor confirme su contraseña'
+                                    },
+                                    identical: {//Que sea el mismo valor de otro campo
+                                        field: 'clave1',
+                                        message: 'Debe introducir el mismo valor del campo anterior contraseña'
+                                    }
+                                }
+                            },
+                            ficha: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'Porfavor seleccione la ficha a la que pertenece'
+                                    }
+                                }
+                            },
+                            fecha: {
+                                validators: {
+                                    notEmpty: {
+                                        message: 'La fecha de nacimiento es requerida'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
         </ui:define>
     </ui:composition>
 </html>

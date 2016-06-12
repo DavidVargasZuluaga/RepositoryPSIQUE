@@ -107,11 +107,25 @@ public class DiagramaControlador implements Serializable {
             if (!t.equals("")) {
                 familiarTemp.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
             }
+            familiarTemp.setNombres((String) params.get("nombre"));
+            familiarTemp.setPrimeroApellido((String) params.get("primerApellido"));
             familiarTemp.setIdAprendiz(a);
+            familiarTemp.setSeguntoApellido((String) params.get("segundoApellido"));
+            familiarTemp.setParentezco((String) params.get("parentezcoAprendiz"));
+            familiarTemp.setUbicacion((String) params.get("ubicacion"));
+            familiarTemp.setSexo((String) params.get("sexo"));
+            familiarTemp.setEstadoCivil((String) params.get("estadoCivil"));
+            familiarTemp.setRaza((String) params.get("raza"));
+            familiarTemp.setReligion((String) params.get("religion"));
+            familiarTemp.setTendenciaPolitica((String) params.get("tendenciaPolitica"));
+            familiarTemp.setOrientacionSexual((String) params.get("orientacionSexual"));
+            familiarTemp.setDiscapacidad((String) params.get("discapacidad"));
+            familiarTemp.setOcupacion((String) params.get("ocupacion"));
+            familiarTemp.setComentario((String) params.get("comentario"));
             familiarFacade.create(familiarTemp);
-            modalModificado = 3;
             cargarFamiliaresCercanos(this.aprendizTemp);
             familiarTemp = new Familiar();
+            modalModificado = 3;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -133,14 +147,30 @@ public class DiagramaControlador implements Serializable {
             if (!t.equals("")) {
                 familiarTemp.setFechaDdefuncion((Date) format.parse((String) params.get("fecha2")));
             }
+            familiarTemp.setNombres((String) params.get("nombre"));
+            familiarTemp.setPrimeroApellido((String) params.get("primerApellido"));
             familiarTemp.setIdAprendiz(a);
+            familiarTemp.setSeguntoApellido((String) params.get("segundoApellido"));
+            familiarTemp.setParentezco((String) params.get("parentezcoAprendiz"));
+            familiarTemp.setUbicacion((String) params.get("ubicacion"));
+            familiarTemp.setSexo((String) params.get("sexo"));
+            familiarTemp.setEstadoCivil((String) params.get("estadoCivil"));
+            familiarTemp.setRaza((String) params.get("raza"));
+            familiarTemp.setReligion((String) params.get("religion"));
+            familiarTemp.setTendenciaPolitica((String) params.get("tendenciaPolitica"));
+            familiarTemp.setOrientacionSexual((String) params.get("orientacionSexual"));
+            familiarTemp.setDiscapacidad((String) params.get("discapacidad"));
+            familiarTemp.setOcupacion((String) params.get("ocupacion"));
+            familiarTemp.setComentario((String) params.get("comentario"));
             familiarFacade.create(familiarTemp);
+            familiarrelacionTemp.setParentezco((String) params.get("parentezco"));
             familiarrelacionTemp.setIdFamiliarParentezco(f);
             familiarrelacionTemp.setIdFamiliarRelacion(familiarTemp);
             familiarrelacionFacade.create(familiarrelacionTemp);
-            modalModificado = 3;
             cargarFamiliaresCercanos(this.aprendizTemp);
             familiarTemp = new Familiar();
+            familiarrelacionTemp = new Familiarrelacion();
+            modalModificado = 3;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -195,9 +225,9 @@ public class DiagramaControlador implements Serializable {
         List<Familiarrelacion> todasRelaciones = familiarrelacionFacade.findAll();
         try {
             for (int i = 0; i < todasRelaciones.size(); i++) {
-                if (todasRelaciones.get(i).getIdFamiliarParentezco().equals(f)) {
-                    // familiarFacade.remove(familiarFacade.find(todasRelaciones.get(i).getIdFamiliarParentezco()));
-                    if (!cargarRelaciones(todasRelaciones.get(i).getIdFamiliarParentezco()).isEmpty()) {
+                if (!cargarRelaciones(todasRelaciones.get(i).getIdFamiliarParentezco()).isEmpty()) {
+                    if (todasRelaciones.get(i).getIdFamiliarParentezco().equals(f)) {
+                        // familiarFacade.remove(familiarFacade.find(todasRelaciones.get(i).getIdFamiliarParentezco()));
                         eliminarFamiliar(todasRelaciones.get(i).getIdFamiliarRelacion());
                     }
                 }
