@@ -188,7 +188,7 @@ public class TestControlador implements Serializable {
         List<Pregunta> preguntasT = preguntaFacade.findAll();
         List<Pregunta> preguntas = new ArrayList();
         try {
-            if (t.getIdTest() != null ) {
+            if (t.getIdTest() != null) {
                 for (int i = 0; i < preguntasT.size(); i++) {
                     if (t.getIdTest().equals(preguntasT.get(i).getIdTest().getIdTest())) {
                         preguntas.add(preguntasT.get(i));
@@ -206,7 +206,7 @@ public class TestControlador implements Serializable {
         List<Respuesta> respuestas = new ArrayList();
         try {
             for (int i = 0; i < respuestasT.size(); i++) {
-                if(respuestasT.get(i).getIdPregunta().equals(p)){
+                if (respuestasT.get(i).getIdPregunta().equals(p)) {
                     respuestas.add(respuestasT.get(i));
                 }
             }
@@ -355,8 +355,12 @@ public class TestControlador implements Serializable {
         try {
             for (int i = 0; i < listaTestT.size(); i++) {
                 if (listaTestT.get(i).getEstado().equals("RESUELTO")) {
-                    if (listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
-                        listaTestA.add(listaTestT.get(i));
+                    if (listaTestT.get(i).getIdAprendiz() == null) {
+                        
+                    }else{
+                        if (listaTestT.get(i).getIdAprendiz().getIdAprendiz().equals(a.getIdAprendiz())) {
+                            listaTestA.add(listaTestT.get(i));
+                        }
                     }
                 }
             }
